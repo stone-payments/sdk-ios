@@ -4,6 +4,8 @@
 
 SDK de integração para iOS.
 
+> Download do último release pode ser feito em [releases](https://github.com/stone-pagamentos/sdk-ios-v2/releases).
+
 ## Features
 
 - Ativação do Stone Code
@@ -439,16 +441,13 @@ if ([STNValidationProvider validateTablesDownloaded] == YES)
 - 101 - erro genérico
 - 103 - falha no envio de email
 - 105 - número de caracteres acima do permitido
-
 - 204 - transação cancelada durante operação
 - 205 - transação inválida
 - 206 - falha na transação
 - 207 - tempo da transação expirado
 - 209 - Stone Code desconhecido
 - 214 - operação cancelada pelo usuario
-
 - 303 - conexão com o pinpad não encontrada
 - 304 - tabelas AID e CAPK não encontradas
 - 305 - erro ao carregar tabelas para o pinpad
-
 - 601 - erro na conexão com a internet
