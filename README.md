@@ -99,7 +99,7 @@ STNPinPadConnectionProvider *pinPadConnectionProvider = [[STNPinPadConnectionPro
 
 ### Ativação do Stone Code
 
-O provider `STNStoneCodeActivationProvider` possui o método `activateWithStoneCode`, que recebe uma string com o Stone Code do lojista como parâmetro.
+O provider `STNStoneCodeActivationProvider` possui o método `activateStoneCode`, que recebe uma string com o Stone Code do lojista como parâmetro.
 
 > O Stone Code deve ser ativado antes de realizar qualquer operação na Stone.
 
@@ -108,7 +108,7 @@ NSString *stoneCode = @"999999999"; // Stone Code do lojista
 
 STNStoneCodeActivationProvider *activationProvider = [[STNStoneCodeActivationProvider alloc] init];
 
-[activationProvider activateWithStoneCode:stoneCode withBlock:^(BOOL succeeded, NSError *error)
+[activationProvider activateStoneCode:stoneCode withBlock:^(BOOL succeeded, NSError *error)
 {
     if (succeeded) // verifica se a requisição ocorreu com sucesso
     {
@@ -209,8 +209,6 @@ Parâmetro que informa o número de parcelas da transação. Um dos seguintes en
 - `TenInstalmetsNoInterest` - para 10x sem juros
 - `ElevenInstalmetsNoInterest` - para 11x sem juros
 - `TwelveInstalmetsNoInterest` - para 12x sem juros
-
-
 - `TwoInstalmetsWithInterest` - para 2x com juros
 - `ThreeInstalmetsWithInterest` - para 3x com juros
 - `FourInstalmetsWithInterest` - para 4x com juros
@@ -228,13 +226,12 @@ Parâmetro que informa o número de parcelas da transação. Um dos seguintes en
 Deve receber uma string com a descrição da transação. Esse valor é **opcional** e pode ser recuperado no provider `STNTransactionInfoProvider`.
 
 ```objective-c
-NSInteger value = 1000; // valor correspondente a R$ 10,00
-NSString *orderIdentification = @"Descrição da transação"; // opcional
+NSString *value = @"1000"; // valor correspondente a R$ 10,00
+NSString *orderIdentification = @"Descrição da transação"; // Campo opcional
 
 STNTransactionProvider *transactionProvider = [[STNTransactionProvider alloc] init];
 
-// transação no crédito à vista
-[transactionProvider sendTransactionWithValue:&value transactionTypeSimplified:TransactionCredit instalmentTransaction:OneInstalment orderIdentification:orderIdentification withBlock:^(BOOL succeeded, NSError *error)
+[transactionProvider sendTransactionWithValue:(int *)[value integerValue] transactionTypeSimplified:TransactionCredit instalmentTransaction:OneInstalment orderIdentification:orderIdentification withBlock:^(BOOL succeeded, NSError *error)
 {
     if (succeeded) // verifica se a requisição ocorreu com sucesso
     {
@@ -344,7 +341,7 @@ STNCancellationProvider *cancelation = [[STNCancellationProvider alloc] init];
 
 #### Possíveis códigos de erro
 
-101, 601
+101, 210, 601
 
 ### Envio de comprovante por email
 
@@ -446,6 +443,7 @@ if ([STNValidationProvider validateTablesDownloaded] == YES)
 - 206 - falha na transação
 - 207 - tempo da transação expirado
 - 209 - Stone Code desconhecido
+- 210 - Transação já foi cancelada
 - 214 - operação cancelada pelo usuario
 - 303 - conexão com o pinpad não encontrada
 - 304 - tabelas AID e CAPK não encontradas

@@ -1,0 +1,8 @@
+
+# Ignore system files
+.DS_Store
+
+# Ignore user data
+"Stone Demo.xcodeproj/project.xcworkspace/xcuserdata/"
+"Stone Demo.xcodeproj/xcuserdata/" 
+"Stone Demo.xcworkspace/xcuserdata/"
