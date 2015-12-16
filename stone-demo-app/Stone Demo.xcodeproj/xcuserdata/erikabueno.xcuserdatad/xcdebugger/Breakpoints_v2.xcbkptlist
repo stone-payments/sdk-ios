@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stone Demo/ViewController.m"
-            timestampString = "471366849.888058"
+            timestampString = "471967618.100877"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "758"
-            endingLineNumber = "758"
+            startingLineNumber = "760"
+            endingLineNumber = "760"
             landmarkName = "@implementation ViewController"
             landmarkType = "3">
          </BreakpointContent>
