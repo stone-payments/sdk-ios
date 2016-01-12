@@ -25,6 +25,8 @@
 
 #import "ViewController.h"
 #import "TransactionsViewController.h"
+#import "CancelTransactionsViewController.h"
+#import "EmailViewController.h"
 
 @interface ViewController ()
 
@@ -544,12 +546,12 @@ static NSString *cellIdentifier;
         
     } else if ([segue.identifier isEqualToString:@"CancelTransactions"])
     {
-        TransactionsViewController * destination = segue.destinationViewController;
+        CancelTransactionsViewController * destination = segue.destinationViewController;
         destination.transactions = self.transactionsList;
         
     } else if ([segue.identifier isEqualToString:@"SendEmail"])
     {
-        TransactionsViewController * destination = segue.destinationViewController;
+        EmailViewController * destination = segue.destinationViewController;
         destination.transactions = self.transactionsList;
         
     }
