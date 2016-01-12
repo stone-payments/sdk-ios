@@ -58,6 +58,8 @@ Ainda no target do projeto, na guia `Info` adicione a propriedade `Supported ext
 
 - STNTransactionProvider - Captura o cartão do comprador e envia a transação
 
+- STNUserInfoProvider - Objeto que contém informações do lojista/usuario do app
+
 - STNValidationProvider - Responsavel pelas seguintes validações: se há conexão com a internet, se o Stone Code está ativado, se há conexão com o pinpad e se as tabelas já foram baixadas
 
 ## Utilização
@@ -196,8 +198,6 @@ Nesse parâmetro deve ser informado se a transação é débito ou crédito. Par
 Parâmetro que informa o número de parcelas da transação. Um dos seguintes enums devem ser usados:
 
 - `OneInstalment` - para 1x (à vista)
-
-
 - `TwoInstalmetsNoInterest` - para 2x sem juros
 - `ThreeInstalmetsNoInterest` - para 3x sem juros
 - `FourInstalmetsNoInterest` - para 4x sem juros
