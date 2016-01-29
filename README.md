@@ -52,13 +52,15 @@ Ainda no target do projeto, na guia `Info` adicione a propriedade `Supported ext
 
 - STNTableLoaderProvider - Carrega as tabelas AID e CAPK para o pinpad
 
-- STNTransactionInfoProvider - Provê o objeto de transação
-
 - STNTransactionListProvider  - Lista transações com opção de listar pelo cartão do comprador
 
 - STNTransactionProvider - Captura o cartão do comprador e envia a transação
 
-- STNUserInfoProvider - Objeto que contém informações do lojista/usuario do app
+- STNCardProvider - Captura os 4 últimos números do cartão
+
+- STNTransactionInfoProvider - Provê o informações das transação
+
+- STNUserInfoProvider - Contém informações do lojista/usuario do app
 
 - STNValidationProvider - Responsavel pelas seguintes validações: se há conexão com a internet, se o Stone Code está ativado, se há conexão com o pinpad e se as tabelas já foram baixadas
 
@@ -221,17 +223,17 @@ Parâmetro que informa o número de parcelas da transação. Um dos seguintes en
 - `ElevenInstalmetsWithInterest` - para 11x com juros
 - `TwelveInstalmetsWithInterest` - para 12x com juros
 
-#### orderIdentification
+#### transactionId
 
 Deve receber uma string com a descrição da transação. Esse valor é **opcional** e pode ser recuperado no provider `STNTransactionInfoProvider`.
 
 ```objective-c
 NSString *value = @"1000"; // valor correspondente a R$ 10,00
-NSString *orderIdentification = @"Descrição da transação"; // Campo opcional
+NSString *transactionId = @"Identificação da transação";
 
 STNTransactionProvider *transactionProvider = [[STNTransactionProvider alloc] init];
 
-[transactionProvider sendTransactionWithValue:(int *)[value integerValue] transactionTypeSimplified:TransactionCredit instalmentTransaction:OneInstalment orderIdentification:orderIdentification withBlock:^(BOOL succeeded, NSError *error)
+[transactionProvider sendTransactionWithValue:(int *)[value integerValue] transactionTypeSimplified:TransactionCredit instalmentTransaction:OneInstalment transactionId:transactionId withBlock:^(BOOL succeeded, NSError *error)
 {
     if (succeeded) // verifica se a requisição ocorreu com sucesso
     {
@@ -275,7 +277,7 @@ for (STNTransactionInfoProvider *transaction in transactions)
     NSLog(@"Valor da transação em centavos: %@", transaction.amount);
     NSLog(@"Status da transação: %@", transaction.status);
     NSLog(@"Data da transação: %@", transaction.date);
-    NSLog(@"Descrição da transação: %@", transaction.idOrder);
+    NSLog(@"Descrição da transação: %@", transaction.transactionId);
 }
 ```
 
@@ -302,7 +304,7 @@ for (STNTransactionInfoProvider *transaction in transactions)
     NSLog(@"Valor da transação em centavos: %@", transaction.amount);
     NSLog(@"Status da transação: %@", transaction.status);
     NSLog(@"Data da transação: %@", transaction.date);
-    NSLog(@"Descrição da transação: %@", transaction.idOrder);
+    NSLog(@"Descrição da transação: %@", transaction.transactionId);
 }
 ```
 
@@ -432,6 +434,64 @@ if ([STNValidationProvider validateTablesDownloaded] == YES)
 ```
 
 > É importante que essas validações sejam executadas e tratadas antes de realizar as operações.
+
+### Captura de PAN
+
+Para capturar o PAN (4 últimos dígitos do cartão) deve ser usado o método `getCardPan` do provider `SNTCardProvider`.
+
+```objective-c
+NSString *pan = [cardProvider getCardPan:^(BOOL succeeded, NSError *error)
+    {
+        if (succeeded) // verifica se a requisição ocorreu com sucesso
+        {
+            // executa alguma coisa
+        } else
+        {
+            // trata o erro
+            NSLog(@"%@", error.description);
+        }
+    }];
+
+NSLog(@"**** **** **** %@", pan);
+```
+
+#### Possíveis códigos de erro
+
+101, 304
+
+### Informações sobre a transação
+
+O provider `STNTransactionInfoProvider` disponibiliza, em suas propriedades, informações de uma transação.
+
+#### Lista de propriedades
+
+- amount - Valor da transação no formato de centavos (ex: 10,00 vai ser 1000. Basta multiplicar por 0.01 para obter o valor real.)
+- instalments - Número de parcelas da transação
+- aid - Código AID da transação
+- arqc - código ARQC da transação
+- type - Débito ou crédito
+- status - Aprovada ou cancelada
+- date - Data da transação
+- receiptTransactionKey - ID da transação
+- reference - Referencia da transação
+- pan - 4 últimos número do cartão
+- flag - Bandeira do cartão
+- cardHolderName - Nome do portador do cartão
+- authorizationCode - Stone ID
+- transactionId - String contendo identificação da transação (valor opcional, pode ser usado pelo integrador para armazenar alguma informação)
+
+### Informações sobre o lojista
+
+O provider `STNUserInfoProvider` disponibiliza, em suas propriedades, informações do lojista/usuario do aplicativo.
+
+#### Lista de propriedades
+
+- afKey - Afiliation key
+- documentNumber - CPF/CNPJ
+- store - Nome do lojista
+- address - Endereço do lojista
+- stonecode - Stone Code
+
 
 ### Códigos de erro
 
