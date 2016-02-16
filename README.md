@@ -36,6 +36,32 @@ No target do projeto acesse a guia `Build Phases` e em `Link binary With Librari
 
 Ainda no target do projeto, na guia `Info` adicione a propriedade `Supported external accessory protocols` em `Custom iOS Target Properties` e adicione os protocolos dos dispositivos bluetooth que terão permissão de se comunicar com o aplicativo.
 
+Na guia `Build Settings`, em `Build Options`, selecione `No` para a configuração `Enable Bitcode`.
+
+É necessário que a aplicação habilite TLS v1.2 para a comunicação com nossos servidores. Para isso adicione as linhas de código a seguir no `Info.plist` (clique no arquivo `Info.plist` com o botão direito do mouse e selecione `Open As` > `Source Code`):
+
+```xml
+<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>stone.com.br</key>
+			<dict>
+				<key>NSExceptionMinimumTLSVersion</key>
+				<string>TLSV1.2</string>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+```
+
+O mesmo deverá ficar como na imagem abaixo:
+
+![info.plist](https://cloud.githubusercontent.com/assets/2567823/13082778/3ce6afbc-d4b9-11e5-9cdf-0764a8970f73.png)
+
 ## Lista de providers disponiveis
 
 - STNCancellationProvider - Cancelamento de transações
