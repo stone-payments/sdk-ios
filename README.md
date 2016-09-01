@@ -59,39 +59,39 @@ O mesmo deverá ficar como na imagem abaixo:
 
 ## Lista de providers disponiveis
 
-- STNCancellationProvider - Cancelamento de transações
+- [STNPinPadConnectionProvider](#criação-de-sessão-com-o-pinpad) - Estabelece sessão entre o aplicativo e o pinpad
 
-- STNDisplayProvider - Exibe mensagem de até 32 caracteres no vizor do pinpad
+- [STNStoneCodeActivationProvider](#ativação-do-stone-code) - Ativa o Stone Code do lojista
 
-- STNMailProvider - Envia email com comprovante da transação ou cancelamento
+- [STNTableDownloaderProvider](#download-das-tabelas-aid-e-capk) - Baixa tabelas AID e CAPK do servidor para o celular
 
-- STNPinPadConnectionProvider - Estabelece sessão entre o aplicativo e o pinpad
+- [STNTableLoaderProvider](#carregamento-das-tabelas-aid-e-capk-para-o-pinpad) - Carrega as tabelas AID e CAPK para o pinpad
 
-- STNStoneCodeActivationProvider - Ativa o Stone Code do lojista
+- [STNTransactionProvider](#envio-de-transações) - Captura o cartão do comprador e envia a transação
 
-- STNTableDownloaderProvider - Baixa tabelas AID e CAPK do servidor para o celular
+- [STNTransactionListProvider](#listagem-de-transações)  - Lista transações com opção de listar pelo cartão do comprador
 
-- STNTableLoaderProvider - Carrega as tabelas AID e CAPK para o pinpad
+- [STNMerchantListProvider](#listagem-de-lojistas)  - Lista lojistas ativados no aplicativo
 
-- STNTransactionListProvider  - Lista transações com opção de listar pelo cartão do comprador
+- [STNCancellationProvider](#cancelamento-de-transações) - Cancelamento de transações
 
-- STNMerchantListProvider  - Lista lojistas ativados no aplicativo
+- [STNMailProvider](#envio-de-comprovante-por-email) - Envia email com comprovante da transação ou cancelamento
 
-- STNTransactionProvider - Captura o cartão do comprador e envia a transação
+- [STNValidationProvider](#validações) - Responsavel pelas seguintes validações: se há conexão com a internet, se o Stone Code está ativado, se há conexão com o pinpad e se as tabelas já foram baixadas
 
-- STNCardProvider - Captura os 4 últimos números do cartão
+- [STNCardProvider](#captura-de-pan) - Captura os 4 últimos números do cartão
 
-- STNValidationProvider - Responsavel pelas seguintes validações: se há conexão com a internet, se o Stone Code está ativado, se há conexão com o pinpad e se as tabelas já foram baixadas
+- [STNDisplayProvider](#exibição-no-display-do-pinpad) - Exibe mensagem de até 32 caracteres no vizor do pinpad
 
 ## Lista de models disponiveis
 
-- STNTransactionModel - Model com propriedades da transação
+- [STNTransactionModel](#transação) - Model com propriedades da transação
 
-- STNMerchantModel - Model com propriedades do lojista
+- [STNMerchantModel](#lojista) - Model com propriedades do lojista
 
-- STNPinpadModel - Model com propriedades do pinpad
+- [STNPinpadModel](#pinpad) - Model com propriedades do pinpad
 
-- STNAddressModel - Model com propriedades de endereço do lojista
+- [STNAddressModel](#endereço) - Model com propriedades de endereço do lojista
 
 ## Utilização
 
@@ -520,6 +520,30 @@ NSString *pan = [STNCardProvider getCardPan:^(BOOL succeeded, NSString *pan, NSE
 #### Possíveis códigos de erro
 
 101, 304
+
+### Exibição no display do pinpad
+
+Para exibir uma mensagem no display do pinpad pode ser usado o método `displayMessage:withBlock:` do provider `STNDisplayProvider` que recebe uma mensagem no formato de string. A string enviada deve conter no máximo 16 caracteres.
+
+```objective-c
+[STNDisplayProvider displayMessage:@"MINHA MENSAGEM" withBlock:^(BOOL succeeded, NSError *error)
+{
+		if (succeeded) // verifica se a requisição ocorreu com sucesso
+		{
+				// em caso de sucesso,
+				// executa alguma coisa
+		} else
+		{
+				// em caso de erro,
+				// trata o erro
+				NSLog(@"%@", error.description);
+		}
+}];
+```
+
+#### Possíveis códigos de erro
+
+101, 105, 304
 
 ## Models
 
