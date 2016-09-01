@@ -531,27 +531,27 @@ O model `STNTransactionModel` disponibiliza, em suas propriedades, informações
 
 #### Lista de propriedades
 
-- amount (NSNumber) - valor da transação no formato de centavos (ex: 10,00 vai ser 1000. Basta multiplicar por 0.01 para obter o valor real.)
-- instalmentAmount (STNTransactionInstalmentAmount) - número de parcelas da transação
-- instalmentType (STNInstalmentType) - tipo de parcelamento da transação
-- aid (NSString) - Código AID da transação
-- arqc (NSString) - código ARQC da transação
-- type (STNTransactionTypeSimplified) - Débito ou crédito
-- typeString (NSString) - string que representa a propriedade `type`
-- status (STNTransactionStatus) - aprovada, cancelada, negada...
-- statusString (NSString) - string que representa a propriedade `status`
-- date (NSDate) - Data da transação
-- dateString (NSString) - string que representa a propriedade `date`
-- receiptTransactionKey (NSString) - ID da transação
-- reference (NSString) - referencia da transação
-- pan (NSString) - 4 últimos número do cartão
-- cardBrand (NSString) - bandeira do cartão
-- cardHolderName (NSString) - nome do portador do cartão
-- authorizationCode (NSString) - Stone ID
-- initiatorTransactionKey (NSString) - identificação da transação
-- shortName (NSString) - nome customizado exibido na fatura (se não for definido será `nil`)
-- merchant (STNMerchantModel) - lojista que passou a transação
-- pinpad (STNPinpadModel) - pinpad que passou a transação
+- amount (**NSNumber**) - valor da transação no formato de centavos (ex: 10,00 vai ser 1000. Basta multiplicar por 0.01 para obter o valor real.)
+- instalmentAmount (**STNTransactionInstalmentAmount**) - número de parcelas da transação
+- instalmentType (**STNInstalmentType**) - tipo de parcelamento da transação
+- aid (**NSString**) - Código AID da transação
+- arqc (**NSString**) - código ARQC da transação
+- type (**STNTransactionTypeSimplified**) - Débito ou crédito
+- typeString (**NSString**) - string que representa a propriedade `type`
+- status (**STNTransactionStatus**) - aprovada, cancelada, negada...
+- statusString (**NSString**) - string que representa a propriedade `status`
+- date (**NSDate**) - Data da transação
+- dateString (**NSString**) - string que representa a propriedade `date`
+- receiptTransactionKey (**NSString**) - ID da transação
+- reference (**NSString**) - referencia da transação
+- pan (**NSString**) - 4 últimos número do cartão
+- cardBrand (**NSString**) - bandeira do cartão
+- cardHolderName (**NSString**) - nome do portador do cartão
+- authorizationCode (**NSString**) - Stone ID
+- initiatorTransactionKey (**NSString**) - identificação da transação
+- shortName (**NSString**) - nome customizado exibido na fatura (se não for definido será `nil`)
+- merchant (**STNMerchantModel**) - lojista que passou a transação
+- pinpad (**STNPinpadModel**) - pinpad que passou a transação
 
 ### Lojista
 
@@ -559,12 +559,12 @@ O model `STNMerchantModel` disponibiliza, em suas propriedades, informações do
 
 #### Lista de propriedades
 
-- saleAffiliationKey (NSString) - Afiliation key
-- documentNumber (NSString) - CPF/CNPJ
-- merchantName (NSString) - Nome do lojista
-- stonecode (NSString) - Stone Code
-- address (STNAddressModel) - Endereço do lojista
-- transactions (NSOrderedSet<STNTransactionModel>) - transações do lojista
+- saleAffiliationKey (**NSString**) - Afiliation key
+- documentNumber (**NSString**) - CPF/CNPJ
+- merchantName (**NSString**) - Nome do lojista
+- stonecode (**NSString**) - Stone Code
+- address (**STNAddressModel**) - Endereço do lojista
+- transactions (**NSOrderedSet<STNTransactionModel>**) - transações do lojista
 
 ### Pinpad
 
@@ -572,10 +572,10 @@ O model `STNPinpadModel` disponibiliza, em suas propriedades, informações do p
 
 #### Lista de propriedades
 
-- name (NSString) - nome
-- model (NSString) - modelo
-- serialNumber (NSString) - número de serie
-- transaction (STNTransactionModel) - transação passada com o pinpad
+- name (**NSString**) - nome
+- model (**NSString**) - modelo
+- serialNumber (**NSString**) - número de serie
+- transaction (**STNTransactionModel**) - transação passada com o pinpad
 
 ### Endereço
 
@@ -583,14 +583,14 @@ O model `STNAddressModel` disponibiliza, em suas propriedades, informações de 
 
 #### Lista de propriedades
 
-city (NSString) - cidade
-district (NSString) - estado
-neighborhood (NSString) - bairro
-street (NSString) - rua
-doorNumber (NSString) - número
-complement (NSString) - complemento
-zipCode (NSString) - CEP
-merchant (STNMerchantModel) - lojista que possui esse endereço
+- city (**NSString**) - cidade
+- district (**NSString**) - estado
+- neighborhood (**NSString**) - bairro
+- street (**NSString**) - rua
+- doorNumber (**NSString**) - número
+- complement (**NSString**) - complemento
+- zipCode (**NSString**) - CEP
+- merchant (**STNMerchantModel**) - lojista que possui esse endereço
 
 ### Códigos de erro
 
