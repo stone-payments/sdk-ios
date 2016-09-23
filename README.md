@@ -6,17 +6,19 @@ SDK de integração para iOS.
 
 > Download do último release pode ser feito em [releases](https://github.com/stone-pagamentos/sdk-ios-v2/releases).
 
-## Features
+## Funcionalidades
 
 - Ativação do Stone Code
 - Criação de sessão com o pinpad
 - Download / carragamento das tabelas AID e CAPK
+- Envio transações
+- Cancelamento de transações
 - Listagem das transações
 - Envio de recibo por email
 
 ## Requisitos
 
-- iOS 7.1+
+- iOS 8.0+
 - Xcode 7.1+
 
 ## Contato
@@ -299,6 +301,50 @@ transaction.initiatorTransactionKey = @"9999999999999"; // ITK customizado
 			NSLog(@"%@", error.description);
 		}
 }];
+```
+
+#### Mensagens de notificação
+
+Durante a execução de uma transação o pinpad pode envar mensagens de notificação. Essas mensagens são exibidas na tela do pinpad e também podem ser acessadas dentro da aplicação usando o `NSNotificationCenter`. Basta adicionar um observer antes do envio da transação disparando um método que usará a notificação recebida. A notificação vem como uma string. Abaixo um exemplo:
+
+```objective-c
+- (void)sendTransaction
+{
+    // adiciona o observer que executará o método 'handleNotification:'
+		// o SDK provê o define 'PINPAD_MESSAGE' que possui o nome que a notificação deverá ter
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:PINPAD_MESSAGE object:nil];
+
+    STNTransactionModel *transaction = [[STNTransactionModel alloc] init];
+
+    transaction.amount = [NSNumber numberWithInt:1000];
+    transaction.type = STNTransactionTypeSimplifiedCredit;
+    transaction.instalmentAmount = STNTransactionInstalmentAmountOne;
+    transaction.instalmentType = STNInstalmentTypeNone;
+
+    [STNTransactionProvider sendTransaction:transaction withBlock:^(BOOL succeeded, NSError *error) {
+
+			  if (succeeded) // verifica se a requisição ocorreu com sucesso
+			  {
+			  		// em caso de sucesso,
+		  			// executa alguma coisa
+		  	} else
+		  	{
+		  		// em caso de erro,
+		  		// trata o erro
+		  		NSLog(@"%@", error.description);
+		  	}
+        // remove o observer
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:PINPAD_MESSAGE object:nil];
+    }];
+}
+
+- (void)handleNotification:(NSNotification *) notification
+{
+		// converte a notificação para string
+    NSString *notificationString = [notification object];
+		// imprime a string recebida
+    NSLog(@"Mensagem do pinpad: %@", notificationString);
+}
 ```
 
 #### Possíveis códigos de erro
