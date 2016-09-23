@@ -303,7 +303,7 @@ transaction.initiatorTransactionKey = @"9999999999999"; // ITK customizado
 }];
 ```
 
-#### Mensagens de notificação
+#### Mensagens de notificação
 
 Durante a execução de uma transação o pinpad pode envar mensagens de notificação. Essas mensagens são exibidas na tela do pinpad e também podem ser acessadas dentro da aplicação usando o `NSNotificationCenter`. Basta adicionar um observer antes do envio da transação disparando um método que usará a notificação recebida. A notificação vem como uma string. Abaixo um exemplo:
 
@@ -340,9 +340,9 @@ Durante a execução de uma transação o pinpad pode envar mensagens de notific
 
 - (void)handleNotification:(NSNotification *) notification
 {
-		// converte a notificação para string
+    // converte a notificação para string
     NSString *notificationString = [notification object];
-		// imprime a string recebida
+    // imprime a string recebida
     NSLog(@"Mensagem do pinpad: %@", notificationString);
 }
 ```
