@@ -62,5 +62,5 @@ O mesmo deverá ficar como na imagem abaixo:
 
 ## Exemplos de Código
 
-- [Objective-C](https://github.com/stone-pagamentos/sdk-ios-v2/objc/README.md)
-- [Swift](https://github.com/stone-pagamentos/sdk-ios-v2/swift/README.md)
+- [Objective-C](https://github.com/stone-pagamentos/sdk-ios-v2/tree/master/objc)
+- [Swift](https://github.com/stone-pagamentos/sdk-ios-v2/tree/master/swift)
