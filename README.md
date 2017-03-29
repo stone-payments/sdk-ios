@@ -1,6 +1,6 @@
 ![StoneSDK](https://cloud.githubusercontent.com/assets/2567823/11539067/6300c838-990c-11e5-9831-4f8ce691859e.png)
 
-![Objective-C](https://img.shields.io/badge/linguagem-Objective--C-green.svg)
+![Objective-C](https://img.shields.io/badge/linguagem-Objective--C-green.svg?style=plastic) ![Swift](https://img.shields.io/badge/linguagem-Swift-blue.svg?style=plastic)
 
 SDK de integração para iOS.
 
