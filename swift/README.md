@@ -58,7 +58,7 @@ Para realizar qualquer comunicação com o pinpad é necessario que se crie uma 
       } else
       {
         // trata o erro
-        print(error.debugDescription);
+        print(error.debugDescription)
       }
     }
 ```
@@ -89,7 +89,7 @@ STNStoneCodeActivationProvider.activateStoneCode(stoneCode) { (succeeded, error)
   {
     // em caso de erro,
     // faz alguma tratativa
-    print(error.debugDescription);
+    print(error.debugDescription)
   }
 }
 ```
@@ -303,9 +303,9 @@ let transactionsList = STNTransactionListProvider.listTransactions() as! [STNTra
 
 for (STNTransactionModel transaction in transactionsList)
 {
-    print("Valor da transação em centavos: \(transaction.amount)");
-    print("Status da transação: \(transaction.statusString)");
-    print("Tipo da transação: \(transaction.typeString)");
+    print("Valor da transação em centavos: \(transaction.amount)")
+    print("Status da transação: \(transaction.statusString)")
+    print("Tipo da transação: \(transaction.typeString)")
 }
 ```
 
@@ -319,9 +319,9 @@ STNTransactionListProvider.listTransactions(byPan: { (succeeded, transactionsLis
   {
     for (STNTransactionModel transaction in transactionsList)
     {
-      print("Valor da transação em centavos: \(transaction.amount)");
-      print("Status da transação: \(transaction.statusString)");
-      print("Tipo da transação: \(transaction.typeString)");
+      print("Valor da transação em centavos: \(transaction.amount)")
+      print("Status da transação: \(transaction.statusString)")
+      print("Tipo da transação: \(transaction.typeString)")
     }
   } else
   {
@@ -345,9 +345,9 @@ let merchantsList = STNMerchantListProvider.listMerchants() as! [STNMerchantMode
 
 for (STNMerchantModel merchant in merchantsList)
 {
-    print("Nome do lojista: \(merchantsList.merchantName)");
-    print("CPF ou CNPJ do lojista: \(merchantsList.documentNumber)");
-    print("SAK: \(merchantsList.saleAffiliationKey)");
+    print("Nome do lojista: \(merchantsList.merchantName)")
+    print("CPF ou CNPJ do lojista: \(merchantsList.documentNumber)")
+    print("SAK: \(merchantsList.saleAffiliationKey)")
 }
 ```
 
@@ -414,7 +414,7 @@ Esse parâmetro recebe um booleano que dirá se os dados do lojista (como endere
 let transactions = STNTransactionListProvider.listTransactions() as! [STNTransactionModel]
 
 // destinatario
-let destination: String = "fulano@destino.com.br";
+let destination: String = "fulano@destino.com.br"
 
 // envia email com comprovante da última transação realizada
 STNMailProvider.sendReceipt(viaEmail: STNMailTemplateTransaction, transaction: transactions?[0] as! STNTransactionModel, toDestination: destination, displayCompanyInformation: true with: { (succeeded, error) in
@@ -495,7 +495,7 @@ STNCardProvider.getCardPan{ ( succeeded, pan, error) in
   {
     // em caso de erro,
     // trata o erro
-    print(error.debugDescription);
+    print(error.debugDescription)
   }
 }
 ```
