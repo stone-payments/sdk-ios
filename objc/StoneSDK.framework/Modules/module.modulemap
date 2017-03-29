@@ -1,0 +1,6 @@
+framework module StoneSDK {
+  umbrella header "StoneSDK.h"
+
+  export *
+  module * { export * }
+}

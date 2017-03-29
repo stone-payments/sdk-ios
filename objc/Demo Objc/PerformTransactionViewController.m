@@ -1,0 +1,262 @@
+//
+//  PerformTransaction.m
+//  Demo Objc
+//
+//  Created by Eduardo Mello de Macedo | Stone on 24/02/17.
+//  Copyright © 2017 Eduardo Mello de Macedo | Stone. All rights reserved.
+//
+
+#import "PerformTransactionViewController.h"
+
+@interface PerformTransactionViewController ()
+
+@property (strong, nonatomic) NSArray *pickerMenu;
+@property (weak, nonatomic) NSString *instalmentString;
+
+@property (weak, nonatomic) IBOutlet UILabel *feedback;
+@property (weak, nonatomic) IBOutlet UITextField *transactionValue;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *transactionType;
+@property (weak, nonatomic) IBOutlet UIPickerView *instalmentPicker;
+@property (weak, nonatomic) IBOutlet UILabel *rate;
+@property (weak, nonatomic) IBOutlet UISwitch *rateSwitch;
+
+@end
+
+@implementation PerformTransactionViewController
+
+static int rowNumber;
+
+- (void)viewDidLoad {
+    
+    [super viewDidLoad];
+    self.transactionValue.delegate = self;
+    self.navigationItem.hidesBackButton = NO;
+    
+    self.navigationItem.title = @"Realizar Transação";
+    
+    self.pickerMenu = @[@"À vista", @"2 parcelas", @"3 parcelas", @"4 parcelas", @"5 parcelas", @"6 parcelas", @"7 parcelas", @"8 parcelas", @"9 parcelas", @"10 parcelas", @"11 parcelas", @"12 parcelas"];
+    
+    self.instalmentPicker.hidden = YES;
+    self.rate.hidden = YES;
+    self.rateSwitch.enabled = NO;
+    
+    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
+    
+    self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicator.center = self.overlayView.center;
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+
+- (IBAction)performTransaction:(id)sender {
+    
+    [self.overlayView addSubview:self.activityIndicator];
+    [self.activityIndicator startAnimating];
+    [self.navigationController.view addSubview:self.overlayView];
+    
+    /*
+        O valor da transação deve ser sempre por CENTAVOS e para isso 
+        devemos utilizar com um int no objeto da transação;
+     */
+    float realValue = [self convertToFloat:self.transactionValue.text];
+    float centsFromFloatValue = 100 * realValue;
+    int justCents = (int) centsFromFloatValue;
+    
+    // Iniciando o modelo transaction para efetivar a transacao;
+    STNTransactionModel *transaction = [[STNTransactionModel alloc] init];
+    
+    // Propriedade Obrigatória, deve conter o valor da transação em centavos. (EX. R$ 56,45 = 5645);
+    transaction.amount = [NSNumber numberWithInteger:justCents];
+    
+    // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros ou pagamento a vista;
+    transaction.instalmentType = STNInstalmentTypeNone;
+    
+    // Verifica se é DÉBITO ou CRÉDITO.
+    if (self.transactionType.selectedSegmentIndex == 0) { // é Débito
+        
+        // Propriedade Obrigatória, define o número de parcelas da transação;
+        transaction.instalmentAmount = STNTransactionInstalmentAmountOne;
+        
+        // Propriedade Obrigatória, define o tipo de transação, se é débito ou crédito;
+        transaction.type = STNTransactionTypeSimplifiedDebit;
+        
+    } else { // é Crédito
+        
+        // Propriedade Obrigatória, define o tipo de transação, se é débito ou crédito;
+        transaction.type = STNTransactionTypeSimplifiedCredit;
+        
+        // Propriedade Obrigatória, define o número de parcelas da transação;
+        switch (rowNumber) {
+            case 0: transaction.instalmentAmount = STNTransactionInstalmentAmountOne; break; // 1 parcela ou à vista;
+            case 1: transaction.instalmentAmount = STNTransactionInstalmentAmountTwo; break; // 2 parcelas
+            case 3: transaction.instalmentAmount = STNTransactionInstalmentAmountThree; break; // ...
+            case 4: transaction.instalmentAmount = STNTransactionInstalmentAmountFour; break;
+            case 5: transaction.instalmentAmount = STNTransactionInstalmentAmountFive; break;
+            case 6: transaction.instalmentAmount = STNTransactionInstalmentAmountSix; break;
+            case 7: transaction.instalmentAmount = STNTransactionInstalmentAmountSeven; break;
+            case 8: transaction.instalmentAmount = STNTransactionInstalmentAmountEight; break;
+            case 9: transaction.instalmentAmount = STNTransactionInstalmentAmountNine; break;
+            case 10: transaction.instalmentAmount = STNTransactionInstalmentAmountTen; break;
+            case 11: transaction.instalmentAmount = STNTransactionInstalmentAmountEleven; break; // ...
+            case 12: transaction.instalmentAmount = STNTransactionInstalmentAmountTwelve; break;  // 12 parcelas
+        }
+    }
+    
+    // Vamos efetivar a transacao;
+    [STNTransactionProvider sendTransaction:transaction withBlock:^(BOOL succeeded, NSError *error) {
+        [self.overlayView removeFromSuperview];
+        if (succeeded) {
+            NSLog(@"Transacao realizada com sucesso.");
+            self.feedback.text = @"Transação OK";
+        } else {
+            self.feedback.text = error.description;
+            NSLog(@"Ocorreu uma falha na transacao. [%@]", error);
+        }
+     }];
+}
+
+
+- (IBAction)onOrOff:(id)sender {
+    if (self.rateSwitch.on) {
+        NSLog(@"Com Juros");
+        self.rate.text = @"Com Juros";
+    } else {
+        NSLog(@"Sem Juros");
+        self.rate.text = @"Sem Juros";
+    }
+}
+
+- (IBAction)changeType:(id)sender {
+    switch (self.transactionType.selectedSegmentIndex) {
+        case 0:
+            NSLog(@"Débito");
+            _instalmentPicker.hidden = YES;
+            self.rate.hidden = YES;
+            [self.rateSwitch setEnabled:NO];
+            break;
+        case 1:
+            NSLog(@"Crédito");
+            _instalmentPicker.hidden = NO;
+            self.rate.hidden = NO;
+            [self.rateSwitch setEnabled:YES];
+            break;
+    }
+}
+
+// Converte o número para float, trata a questão da vírgula e/ou do ponto como separador para decimal.
+
+- (float)convertToFloat:(NSString*)fromFormatedString {
+    NSMutableString *textFieldStrValue = [NSMutableString stringWithString:fromFormatedString];
+    
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [numberFormatter setMaximumFractionDigits:2];
+    [numberFormatter setMinimumFractionDigits:2];
+    
+    [textFieldStrValue replaceOccurrencesOfString:numberFormatter.groupingSeparator
+                                       withString:@""
+                                          options:NSLiteralSearch
+                                            range:NSMakeRange(0, [textFieldStrValue length])];
+    
+    // Muda o separador decimal para ponto caso esteja numa localidade que use vírgula.
+    [textFieldStrValue replaceOccurrencesOfString:numberFormatter.decimalSeparator
+                                       withString:@"."
+                                          options:NSLiteralSearch
+                                            range:NSMakeRange(0, [textFieldStrValue length])];
+    
+    float textFieldNum = [[NSDecimalNumber decimalNumberWithString:textFieldStrValue] floatValue];
+    
+    return textFieldNum;
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return self.pickerMenu.count;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return self.pickerMenu[row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    rowNumber = row;
+}
+
+- (BOOL)textField:(UITextField*)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)string {
+    NSInteger MAX_DIGITS = 13; // 999,999.99
+    
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [numberFormatter setMaximumFractionDigits:2];
+    [numberFormatter setMinimumFractionDigits:2];
+    
+    NSString *stringMaybeChanged = [NSString stringWithString:string];
+    if (stringMaybeChanged.length > 1) {
+        NSMutableString *stringPasted = [NSMutableString stringWithString:stringMaybeChanged];
+        
+        [stringPasted replaceOccurrencesOfString:numberFormatter.currencySymbol
+                                      withString:@""
+                                         options:NSLiteralSearch
+                                           range:NSMakeRange(0, [stringPasted length])];
+        
+        [stringPasted replaceOccurrencesOfString:numberFormatter.groupingSeparator
+                                      withString:@""
+                                         options:NSLiteralSearch
+                                           range:NSMakeRange(0, [stringPasted length])];
+        
+        NSDecimalNumber *numberPasted = [NSDecimalNumber decimalNumberWithString:stringPasted];
+        stringMaybeChanged = [numberFormatter stringFromNumber:numberPasted];
+    }
+    
+    UITextRange *selectedRange = [textField selectedTextRange];
+    UITextPosition *start = textField.beginningOfDocument;
+    NSInteger cursorOffset = [textField offsetFromPosition:start toPosition:selectedRange.start];
+    NSMutableString *textFieldTextStr = [NSMutableString stringWithString:textField.text];
+    NSUInteger textFieldTextStrLength = textFieldTextStr.length;
+    
+    [textFieldTextStr replaceCharactersInRange:range withString:stringMaybeChanged];
+    
+    [textFieldTextStr replaceOccurrencesOfString:numberFormatter.currencySymbol
+                                      withString:@""
+                                         options:NSLiteralSearch
+                                           range:NSMakeRange(0, [textFieldTextStr length])];
+    
+    [textFieldTextStr replaceOccurrencesOfString:numberFormatter.groupingSeparator
+                                      withString:@""
+                                         options:NSLiteralSearch
+                                           range:NSMakeRange(0, [textFieldTextStr length])];
+    
+    [textFieldTextStr replaceOccurrencesOfString:numberFormatter.decimalSeparator
+                                      withString:@""
+                                         options:NSLiteralSearch
+                                           range:NSMakeRange(0, [textFieldTextStr length])];
+    
+    if (textFieldTextStr.length <= MAX_DIGITS) {
+        NSDecimalNumber *textFieldTextNum = [NSDecimalNumber decimalNumberWithString:textFieldTextStr];
+        NSDecimalNumber *divideByNum = [[[NSDecimalNumber alloc] initWithInt:10] decimalNumberByRaisingToPower:numberFormatter.maximumFractionDigits];
+        NSDecimalNumber *textFieldTextNewNum = [textFieldTextNum decimalNumberByDividingBy:divideByNum];
+        NSString *textFieldTextNewStr = [numberFormatter stringFromNumber:textFieldTextNewNum];
+        
+        textField.text = textFieldTextNewStr;
+        
+        if (cursorOffset != textFieldTextStrLength) {
+            NSInteger lengthDelta = textFieldTextNewStr.length - textFieldTextStrLength;
+            NSInteger newCursorOffset = MAX(0, MIN(textFieldTextNewStr.length, cursorOffset + lengthDelta));
+            UITextPosition* newPosition = [textField positionFromPosition:textField.beginningOfDocument offset:newCursorOffset];
+            UITextRange* newRange = [textField textRangeFromPosition:newPosition toPosition:newPosition];
+            [textField setSelectedTextRange:newRange];
+        }
+    }
+    
+    return NO;
+}
+
+@end

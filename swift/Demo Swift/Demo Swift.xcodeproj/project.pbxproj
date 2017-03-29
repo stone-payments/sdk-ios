@@ -1,0 +1,421 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		41076C071E79B38A00624602 /* ConnectPinpadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41076C061E79B38A00624602 /* ConnectPinpadViewController.swift */; };
+		41076C091E79C29100624602 /* ActivationStoneCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41076C081E79C29100624602 /* ActivationStoneCodeViewController.swift */; };
+		41076C0B1E79CD9800624602 /* DownloadTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41076C0A1E79CD9800624602 /* DownloadTableViewController.swift */; };
+		41076C0D1E79D89900624602 /* RefreshTablesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41076C0C1E79D89900624602 /* RefreshTablesViewController.swift */; };
+		41076C0F1E79E50500624602 /* PerformTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41076C0E1E79E50500624602 /* PerformTransactionViewController.swift */; };
+		415E79801E7C72F900697355 /* ListTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415E797F1E7C72F900697355 /* ListTransactionViewController.swift */; };
+		415E79821E7C762300697355 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415E79811E7C762300697355 /* TransactionTableViewCell.swift */; };
+		419B4E461E804D17009940EA /* ListMerchantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419B4E451E804D17009940EA /* ListMerchantViewController.swift */; };
+		419B4E481E8053A8009940EA /* MerchantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419B4E471E8053A8009940EA /* MerchantTableViewCell.swift */; };
+		419B4E4A1E8065F9009940EA /* CancelTransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419B4E491E8065F9009940EA /* CancelTransactionTableViewCell.swift */; };
+		419B4E4C1E806658009940EA /* CancelListTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419B4E4B1E806658009940EA /* CancelListTransactionViewController.swift */; };
+		41C36BA61E8179A80035FB56 /* SendingVoucherEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C36BA51E8179A80035FB56 /* SendingVoucherEmailViewController.swift */; };
+		41C36BA81E81991F0035FB56 /* TestValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C36BA71E81991F0035FB56 /* TestValidationViewController.swift */; };
+		41C36BAA1E81ADE90035FB56 /* CapturePanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C36BA91E81ADE90035FB56 /* CapturePanViewController.swift */; };
+		41C36BAC1E81B33C0035FB56 /* ScreenDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C36BAB1E81B33C0035FB56 /* ScreenDisplayViewController.swift */; };
+		41DD17901E789128008449B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD178F1E789128008449B1 /* AppDelegate.swift */; };
+		41DD17921E789128008449B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD17911E789128008449B1 /* ViewController.swift */; };
+		41DD17951E789128008449B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41DD17931E789128008449B1 /* Main.storyboard */; };
+		41DD17981E789128008449B1 /* Demo_Swift.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41DD17961E789128008449B1 /* Demo_Swift.xcdatamodeld */; };
+		41DD179A1E789128008449B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41DD17991E789128008449B1 /* Assets.xcassets */; };
+		41DD179D1E789128008449B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41DD179B1E789128008449B1 /* LaunchScreen.storyboard */; };
+		41DD17A51E789624008449B1 /* StoneSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DD17A41E789624008449B1 /* StoneSDK.framework */; };
+		41DD17A61E7898F8008449B1 /* StoneSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DD17A41E789624008449B1 /* StoneSDK.framework */; };
+		41DD17A71E7898F8008449B1 /* StoneSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 41DD17A41E789624008449B1 /* StoneSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		41EFCC6D1E80828A00F0D4C3 /* CancelationTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EFCC6C1E80828A00F0D4C3 /* CancelationTransactionViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		41DD17A81E7898F8008449B1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				41DD17A71E7898F8008449B1 /* StoneSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		41076C061E79B38A00624602 /* ConnectPinpadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectPinpadViewController.swift; sourceTree = "<group>"; };
+		41076C081E79C29100624602 /* ActivationStoneCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivationStoneCodeViewController.swift; sourceTree = "<group>"; };
+		41076C0A1E79CD9800624602 /* DownloadTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTableViewController.swift; sourceTree = "<group>"; };
+		41076C0C1E79D89900624602 /* RefreshTablesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTablesViewController.swift; sourceTree = "<group>"; };
+		41076C0E1E79E50500624602 /* PerformTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformTransactionViewController.swift; sourceTree = "<group>"; };
+		415E797F1E7C72F900697355 /* ListTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTransactionViewController.swift; sourceTree = "<group>"; };
+		415E79811E7C762300697355 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
+		419B4E451E804D17009940EA /* ListMerchantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListMerchantViewController.swift; sourceTree = "<group>"; };
+		419B4E471E8053A8009940EA /* MerchantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MerchantTableViewCell.swift; sourceTree = "<group>"; };
+		419B4E491E8065F9009940EA /* CancelTransactionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelTransactionTableViewCell.swift; sourceTree = "<group>"; };
+		419B4E4B1E806658009940EA /* CancelListTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelListTransactionViewController.swift; sourceTree = "<group>"; };
+		41C36BA51E8179A80035FB56 /* SendingVoucherEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendingVoucherEmailViewController.swift; sourceTree = "<group>"; };
+		41C36BA71E81991F0035FB56 /* TestValidationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestValidationViewController.swift; sourceTree = "<group>"; };
+		41C36BA91E81ADE90035FB56 /* CapturePanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturePanViewController.swift; sourceTree = "<group>"; };
+		41C36BAB1E81B33C0035FB56 /* ScreenDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenDisplayViewController.swift; sourceTree = "<group>"; };
+		41DD178C1E789128008449B1 /* Demo Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		41DD178F1E789128008449B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		41DD17911E789128008449B1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		41DD17941E789128008449B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		41DD17971E789128008449B1 /* Demo_Swift.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo_Swift.xcdatamodel; sourceTree = "<group>"; };
+		41DD17991E789128008449B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		41DD179C1E789128008449B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		41DD179E1E789128008449B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41DD17A41E789624008449B1 /* StoneSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StoneSDK.framework; sourceTree = "<group>"; };
+		41EFCC6C1E80828A00F0D4C3 /* CancelationTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelationTransactionViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		41DD17891E789128008449B1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41DD17A51E789624008449B1 /* StoneSDK.framework in Frameworks */,
+				41DD17A61E7898F8008449B1 /* StoneSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		41DD17831E789128008449B1 = {
+			isa = PBXGroup;
+			children = (
+				41DD17A41E789624008449B1 /* StoneSDK.framework */,
+				41DD178E1E789128008449B1 /* Demo Swift */,
+				41DD178D1E789128008449B1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		41DD178D1E789128008449B1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				41DD178C1E789128008449B1 /* Demo Swift.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		41DD178E1E789128008449B1 /* Demo Swift */ = {
+			isa = PBXGroup;
+			children = (
+				41DD178F1E789128008449B1 /* AppDelegate.swift */,
+				41DD17911E789128008449B1 /* ViewController.swift */,
+				41076C061E79B38A00624602 /* ConnectPinpadViewController.swift */,
+				41076C081E79C29100624602 /* ActivationStoneCodeViewController.swift */,
+				41076C0A1E79CD9800624602 /* DownloadTableViewController.swift */,
+				41076C0C1E79D89900624602 /* RefreshTablesViewController.swift */,
+				41076C0E1E79E50500624602 /* PerformTransactionViewController.swift */,
+				415E797F1E7C72F900697355 /* ListTransactionViewController.swift */,
+				415E79811E7C762300697355 /* TransactionTableViewCell.swift */,
+				419B4E451E804D17009940EA /* ListMerchantViewController.swift */,
+				419B4E471E8053A8009940EA /* MerchantTableViewCell.swift */,
+				419B4E491E8065F9009940EA /* CancelTransactionTableViewCell.swift */,
+				419B4E4B1E806658009940EA /* CancelListTransactionViewController.swift */,
+				41EFCC6C1E80828A00F0D4C3 /* CancelationTransactionViewController.swift */,
+				41C36BA51E8179A80035FB56 /* SendingVoucherEmailViewController.swift */,
+				41C36BA71E81991F0035FB56 /* TestValidationViewController.swift */,
+				41C36BA91E81ADE90035FB56 /* CapturePanViewController.swift */,
+				41C36BAB1E81B33C0035FB56 /* ScreenDisplayViewController.swift */,
+				41DD17931E789128008449B1 /* Main.storyboard */,
+				41DD17991E789128008449B1 /* Assets.xcassets */,
+				41DD179B1E789128008449B1 /* LaunchScreen.storyboard */,
+				41DD179E1E789128008449B1 /* Info.plist */,
+				41DD17961E789128008449B1 /* Demo_Swift.xcdatamodeld */,
+			);
+			path = "Demo Swift";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		41DD178B1E789128008449B1 /* Demo Swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 41DD17A11E789128008449B1 /* Build configuration list for PBXNativeTarget "Demo Swift" */;
+			buildPhases = (
+				41DD17881E789128008449B1 /* Sources */,
+				41DD17891E789128008449B1 /* Frameworks */,
+				41DD178A1E789128008449B1 /* Resources */,
+				41DD17A81E7898F8008449B1 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Demo Swift";
+			productName = "Demo Swift";
+			productReference = 41DD178C1E789128008449B1 /* Demo Swift.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		41DD17841E789128008449B1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Eduardo Mello de Macedo | Stone";
+				TargetAttributes = {
+					41DD178B1E789128008449B1 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 63B4YTL6GY;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 41DD17871E789128008449B1 /* Build configuration list for PBXProject "Demo Swift" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 41DD17831E789128008449B1;
+			productRefGroup = 41DD178D1E789128008449B1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				41DD178B1E789128008449B1 /* Demo Swift */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		41DD178A1E789128008449B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41DD179D1E789128008449B1 /* LaunchScreen.storyboard in Resources */,
+				41DD179A1E789128008449B1 /* Assets.xcassets in Resources */,
+				41DD17951E789128008449B1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		41DD17881E789128008449B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41076C0D1E79D89900624602 /* RefreshTablesViewController.swift in Sources */,
+				41076C0F1E79E50500624602 /* PerformTransactionViewController.swift in Sources */,
+				41EFCC6D1E80828A00F0D4C3 /* CancelationTransactionViewController.swift in Sources */,
+				419B4E4C1E806658009940EA /* CancelListTransactionViewController.swift in Sources */,
+				41DD17981E789128008449B1 /* Demo_Swift.xcdatamodeld in Sources */,
+				41C36BAA1E81ADE90035FB56 /* CapturePanViewController.swift in Sources */,
+				419B4E4A1E8065F9009940EA /* CancelTransactionTableViewCell.swift in Sources */,
+				415E79801E7C72F900697355 /* ListTransactionViewController.swift in Sources */,
+				41076C0B1E79CD9800624602 /* DownloadTableViewController.swift in Sources */,
+				41C36BA81E81991F0035FB56 /* TestValidationViewController.swift in Sources */,
+				41DD17921E789128008449B1 /* ViewController.swift in Sources */,
+				415E79821E7C762300697355 /* TransactionTableViewCell.swift in Sources */,
+				419B4E481E8053A8009940EA /* MerchantTableViewCell.swift in Sources */,
+				41C36BAC1E81B33C0035FB56 /* ScreenDisplayViewController.swift in Sources */,
+				41DD17901E789128008449B1 /* AppDelegate.swift in Sources */,
+				41076C091E79C29100624602 /* ActivationStoneCodeViewController.swift in Sources */,
+				41C36BA61E8179A80035FB56 /* SendingVoucherEmailViewController.swift in Sources */,
+				419B4E461E804D17009940EA /* ListMerchantViewController.swift in Sources */,
+				41076C071E79B38A00624602 /* ConnectPinpadViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		41DD17931E789128008449B1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				41DD17941E789128008449B1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		41DD179B1E789128008449B1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				41DD179C1E789128008449B1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		41DD179F1E789128008449B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		41DD17A01E789128008449B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		41DD17A21E789128008449B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 63B4YTL6GY;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "Demo Swift/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.stone.Demo-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		41DD17A31E789128008449B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 63B4YTL6GY;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "Demo Swift/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.stone.Demo-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		41DD17871E789128008449B1 /* Build configuration list for PBXProject "Demo Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				41DD179F1E789128008449B1 /* Debug */,
+				41DD17A01E789128008449B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		41DD17A11E789128008449B1 /* Build configuration list for PBXNativeTarget "Demo Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				41DD17A21E789128008449B1 /* Debug */,
+				41DD17A31E789128008449B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		41DD17961E789128008449B1 /* Demo_Swift.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				41DD17971E789128008449B1 /* Demo_Swift.xcdatamodel */,
+			);
+			currentVersion = 41DD17971E789128008449B1 /* Demo_Swift.xcdatamodel */;
+			path = Demo_Swift.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 41DD17841E789128008449B1 /* Project object */;
+}
