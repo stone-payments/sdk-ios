@@ -73,8 +73,6 @@ static int rowNumber;
     // Propriedade Obrigatória, deve conter o valor da transação em centavos. (EX. R$ 56,45 = 5645);
     transaction.amount = [NSNumber numberWithInteger:justCents];
     
-    // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros ou pagamento a vista;
-    transaction.instalmentType = STNInstalmentTypeNone;
     
     // Verifica se é DÉBITO ou CRÉDITO.
     if (self.transactionType.selectedSegmentIndex == 0) { // é Débito
@@ -85,11 +83,23 @@ static int rowNumber;
         // Propriedade Obrigatória, define o tipo de transação, se é débito ou crédito;
         transaction.type = STNTransactionTypeSimplifiedDebit;
         
+        // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros ou pagamento a vista;
+        transaction.instalmentType = STNInstalmentTypeNone;
+        
     } else { // é Crédito
         
         // Propriedade Obrigatória, define o tipo de transação, se é débito ou crédito;
         transaction.type = STNTransactionTypeSimplifiedCredit;
         
+        if (_rateSwitch.isOn) {
+            // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros ou pagamento a vista;
+            transaction.instalmentType = STNInstalmentTypeIssuer;
+        }
+        else {
+            // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros ou pagamento a vista;
+            transaction.instalmentType = STNInstalmentTypeMerchant;
+        }
+
         // Propriedade Obrigatória, define o número de parcelas da transação;
         switch (rowNumber) {
             case 0: transaction.instalmentAmount = STNTransactionInstalmentAmountOne; break; // 1 parcela ou à vista;
