@@ -82,8 +82,7 @@ class PerformTransactionViewController: UIViewController, UIPickerViewDelegate, 
             transaction.amount = NSNumber.init(value: justCents)
         }
         
-        // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros, pagamento a vista;
-        transaction.instalmentType = STNInstalmentTypeNone
+       
 
         if self.transactionTypeSegmented.selectedSegmentIndex == 0 { // É Débito
             
@@ -93,10 +92,21 @@ class PerformTransactionViewController: UIViewController, UIPickerViewDelegate, 
             // Propriedade Obrigatória, define o número de parcelas da transação;
             transaction.instalmentAmount = STNTransactionInstalmentAmountOne
             
+            // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros, pagamento a vista;
+            transaction.instalmentType = STNInstalmentTypeNone
+            
         } else { // É Crédito
             
             // Propriedade Obrigatória, define o tipo de transação, se é débito ou crédito;
             transaction.type = STNTransactionTypeSimplifiedCredit
+            
+            // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros, pagamento a vista;
+            if rateSwitch.isOn {
+                transaction.instalmentType = STNInstalmentTypeIssuer
+            }
+            else {
+                transaction.instalmentType = STNInstalmentTypeMerchant
+            }
             
             // Propriedade Obrigatória, define o número de parcelas da transação;
             switch self.rowNumber {

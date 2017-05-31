@@ -3,6 +3,9 @@
 .DS_Store
 
 # Ignore user data
-"objc/Demo Objc.xcodeproj/project.xcworkspace/xcuserdata/"
-"objc/Demo Objc.xcodeproj/xcuserdata/"
-"objc/Demo Objc.xcworkspace/xcuserdata/"
+objc/Demo Objc.xcodeproj/project.xcworkspace/xcuserdata/
+objc/Demo Objc.xcodeproj/xcuserdata/
+objc/Demo Objc.xcworkspace/xcuserdata/
+swift/Demo Swift.xcodeproj/project.xcworkspace/xcuserdata/
+swift/Demo Swift.xcodeproj/xcuserdata/
+swift/Demo Swift.xcworkspace/xcuserdata/
