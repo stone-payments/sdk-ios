@@ -51,7 +51,8 @@ Para realizar qualquer comunicação com o pinpad é necessario que se crie uma 
 > Antes de qualquer comunicação entre o aplicativo e o pinpad, uma sessão deve ser estabelecida.
 
 ```objective-c
-    [STNPinPadConnectionProvider connectToPinpad:^(BOOL succeeded, NSError *error) {
+    [STNPinPadConnectionProvider connectToPinpad:^(BOOL succeeded, NSError *error)
+    {
         if (succeeded) // verifica se a requisição ocorreu com sucesso
         {
             // executa alguma coisa
@@ -544,6 +545,7 @@ O model `STNTransactionModel` disponibiliza, em suas propriedades, informações
 
 - amount (**NSNumber**) - valor da transação no formato de centavos (ex: 10,00 vai ser 1000. Basta multiplicar por 0.01 para obter o valor real.)
 - instalmentAmount (**STNTransactionInstalmentAmount**) - número de parcelas da transação
+- balance (**NSNumber**) - saldo do voucher (ex.: Ticket, Sodexo)
 - instalmentType (**STNInstalmentType**) - tipo de parcelamento da transação
 - aid (**NSString**) - Código AID da transação
 - arqc (**NSString**) - código ARQC da transação
