@@ -4,7 +4,7 @@
 
 Integration SDK for iOS.
 
-> The last releases can downloaded in [releases](https://github.com/stone-pagamentos/sdk-ios-v2/releases).
+> The last releases can be downloaded in [releases](https://github.com/stone-pagamentos/sdk-ios-v2/releases).
 
 ## Features
 
@@ -25,8 +25,6 @@ Integration SDK for iOS.
 In case you have any problem open an [issue](https://github.com/stone-payments/sdk-ios-v2/issues).
 
 ## Installation
-
-Antes de começar a usar o StoneSDK é necessario seguir alguns procedimentos.
 
 Add the `StoneSDK.framework` as embedded binaries.
 
