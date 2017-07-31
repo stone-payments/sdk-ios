@@ -69,6 +69,10 @@ rm "$FRAMEWORK_EXECUTABLE_PATH"
 mv "$FRAMEWORK_EXECUTABLE_PATH-merged" "$FRAMEWORK_EXECUTABLE_PATH"
 ```
 
+## Homologation environment
+
+If you want to use the homologation environment add the key `Stone Homologation` type `Boolean` on project's `Info.plist`. Use `YES` or `NO` to turn it on or off.
+
 ## Available providers
 
 - [STNPinPadConnectionProvider](#establish-session-with-pinpad) - Establish session between application and pinpad

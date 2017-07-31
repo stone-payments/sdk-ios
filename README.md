@@ -78,6 +78,9 @@ O mesmo deverá ficar como na imagem abaixo:
 
 ![info.plist](https://cloud.githubusercontent.com/assets/2567823/13082778/3ce6afbc-d4b9-11e5-9cdf-0764a8970f73.png)
 
+## Ambiente de homologação
+
+Para usar o ambiente de homologação, adicione a key `Stone Homologation` como tipo `Boolean` no `Info.plist` do projeto. Use `YES` ou `NO` para ligar ou desligar.
 
 ## Exemplos de Código
 
