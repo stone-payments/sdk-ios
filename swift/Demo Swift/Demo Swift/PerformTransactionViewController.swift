@@ -71,7 +71,6 @@ class PerformTransactionViewController: UIViewController, UIPickerViewDelegate, 
 
     @IBAction func performTransaction(_ sender: Any) {
         
-        NotificationCenter.default.addObserver(self, selector: Selector(("handNotification")), name: NSNotification.Name(rawValue: PINPAD_MESSAGE), object: nil)
 
         let valueString = String(describing: valueTextField.text)
         let justCents = Int(valueString.components(separatedBy: CharacterSet(charactersIn: "0123456789").inverted).joined())
