@@ -3,4 +3,6 @@ git commit -m "$1"
 git push -u origin master
 
 
-echo ~~~ PUBLISH DONE ~~~
+echo **********************
+echo *** DEMO PUBLISHED ***
+echo **********************
