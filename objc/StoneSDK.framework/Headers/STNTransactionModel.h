@@ -27,6 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, retain) NSString *typeString;
 @property (nonatomic, retain) NSString *dateString;
 @property (nonatomic, assign) STNTransactionCapture capture;
+@property (nonatomic, assign) STNCardBrand cardBrand;
+@property (nonatomic, retain) NSString *cardBrandString;
+@property (nonatomic, assign) STNTransactionEntryMode entryMode;
 
 -(STNAccountType)getAccountType;
 

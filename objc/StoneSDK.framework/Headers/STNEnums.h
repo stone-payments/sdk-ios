@@ -27,6 +27,13 @@ typedef enum _STNContentType
     
 } STNContentType;
 
+typedef enum _STNAcquirer
+{
+    STNAcquirerInvalid = -1,
+    STNAcquirerElavon = 5,
+    STNAcquirerStone = 8
+} STNAcquirer;
+
 typedef enum _STNAuthenticationMethodCode
 {
     STNAuthenticationMethodCodeBypass,
@@ -297,7 +304,8 @@ typedef enum _STNTransactionStatus
     STNTransactionStatusInvalid,
     STNTransactionStatusTimeout,
     STNTransactionStatusFailed,
-    STNTransactionStatusAborted
+    STNTransactionStatusAborted,
+    STNTransactionStatusDeclinedByCard
     
 } STNTransactionStatus;
 
@@ -342,8 +350,50 @@ typedef enum _STNTransactionCapture
     
 } STNTransactionCapture;
 
+typedef enum _STNTransactionEntryMode {
+    STNTransactionEntryModeUnknown,
+    STNTransactionEntryModeMagneticStripe,
+    STNTransactionEntryModeChipNPin
+    
+} STNTransactionEntryMode;
 
+typedef enum _STNCardBrand
+{
+    STNCardBrandMasterCard,
+    STNCardBrandVisa,
+    STNCardBrandTicket,
+    STNCardBrandVR,
+    STNCardBrandElo,
+    STNCardBrandSodexo,
+    STNCardBrandAlelo,
+    STNCardBrandUnknown
+    
+} STNCardBrand;
 
+typedef enum STNTransactionMessage
+{
+    STNTransactionMessageInvalid,
+    STNTransactionMessageDeclined,
+    STNTransactionMessageProcessing,
+    STNTransactionMessageDeclinedCard,
+    STNTransactionMessageDeclinedIssuer,
+    STNTransactionMessageApproved,
+    STNTransactionMessageCancelled,
+    STNTransactionMessageTimeout,
+    STNTransactionMessageFailed,
+    STNTransactionMessageCardRemoved,
+    STNTransactionMessageEMVCard,
+    STNTransactionMessageInvalidCard,
+    STNTransactionMessageIccProblem
+    
+} STNTransactionMessage;
 
+typedef enum STNCentralState
+{
+    STNCentralStateUnknown,
+    STNCentralStateOn,
+    STNCentralStateOff
+    
+} STNCentralState;
 
 

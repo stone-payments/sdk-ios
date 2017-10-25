@@ -12,6 +12,10 @@
 		<data>
 		Uk8XQYiSjJjMUoc/rHHOUjjp1nM=
 		</data>
+		<key>Headers/STNBluetoothConnectionDelegate.h</key>
+		<data>
+		kYL8ausVhZ434iIfqDeze1dPaJU=
+		</data>
 		<key>Headers/STNCancellationProvider.h</key>
 		<data>
 		wJX8HIrAEAx0TRXEACEcgBTkuCE=
@@ -20,13 +24,17 @@
 		<data>
 		K0SFTGAlWz9oX0inbDuvZv+XuGU=
 		</data>
+		<key>Headers/STNConfig.h</key>
+		<data>
+		KDw/Y71PT2Uq/RjyLdOQ0NBhY1M=
+		</data>
 		<key>Headers/STNDisplayProvider.h</key>
 		<data>
 		W1JR6bxTfAXLHvS6CELSlFgq7Go=
 		</data>
 		<key>Headers/STNEnums.h</key>
 		<data>
-		mQFk93o0md3DwGZDFUwf5gpSlCg=
+		7v3/9bkvNMTa3mgXq/EYyCWOw1I=
 		</data>
 		<key>Headers/STNEnums_old.h</key>
 		<data>
@@ -50,7 +58,11 @@
 		</data>
 		<key>Headers/STNPinPadConnectionProvider.h</key>
 		<data>
-		e4jeuIFy5lM0igvg4pq4sbhZdiI=
+		BIbY/6j8pIrVxpsGxAMd8foQ81U=
+		</data>
+		<key>Headers/STNPinpad.h</key>
+		<data>
+		SkaXQfpnBIVN5+lFWvvG4176SdI=
 		</data>
 		<key>Headers/STNPinpadModel+CoreDataProperties.h</key>
 		<data>
@@ -72,29 +84,21 @@
 		<data>
 		3Duxf2Svhh7Cgg0RnNGADCMsYOg=
 		</data>
-		<key>Headers/STNTransactionInfoProvider.h</key>
-		<data>
-		QrAA1RjmkZbxWeXUOnNTKf1cxTo=
-		</data>
 		<key>Headers/STNTransactionListProvider.h</key>
 		<data>
 		EMl2/jxXbS8qjO1Dna5qXL4uCc4=
 		</data>
 		<key>Headers/STNTransactionModel+CoreDataProperties.h</key>
 		<data>
-		vfDEjE4Jgip4seTRkyopaAoxmjw=
+		16uE4FlGQlLANrqVgUpwxygNmus=
 		</data>
 		<key>Headers/STNTransactionModel.h</key>
 		<data>
-		tGXjf9uTVgLSfpn5GaWqHXtNhMM=
+		uzyOJ/h/YhanQnWbX0n39R7RhJ8=
 		</data>
 		<key>Headers/STNTransactionProvider.h</key>
 		<data>
-		vXVWiZyAukLjD7HPDIiXEuv0LxY=
-		</data>
-		<key>Headers/STNUserInfoProvider.h</key>
-		<data>
-		NwzTpe8skCLuh+VMHLFvSD5vZMI=
+		2gzX0y/TxMxJzWs2NiVCq6zc4i0=
 		</data>
 		<key>Headers/STNValidationProvider.h</key>
 		<data>
@@ -102,11 +106,11 @@
 		</data>
 		<key>Headers/StoneSDK.h</key>
 		<data>
-		pyUxj7c6fXck3nO2AgnhGql4jY4=
+		wL80zJf3NvwC6ruepcMnQblDKsI=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		P2/RzejZr+zVQYl9D8MhoeKzjpI=
+		xdtFOwkx0cKa5zPTTyEa6eESUuw=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -114,11 +118,11 @@
 		</data>
 		<key>StoneSDK.momd/StoneSDK.mom</key>
 		<data>
-		2kkLCmcbz9B5rz21qOpLCmmOtHE=
+		hi9txqqhT7gIKm+y5hMoRa26l8E=
 		</data>
 		<key>StoneSDK.momd/VersionInfo.plist</key>
 		<data>
-		uPtpUy7aS3zrLew37hxdpZrTfCI=
+		IDcIl05K1CDfAWXXwsNYH1h2rBA=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -145,6 +149,17 @@
 			uQns9XRgUuVUy+ZEYTSWrLcbDGwBDyxpMkeovpMEQdQ=
 			</data>
 		</dict>
+		<key>Headers/STNBluetoothConnectionDelegate.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			kYL8ausVhZ434iIfqDeze1dPaJU=
+			</data>
+			<key>hash2</key>
+			<data>
+			kdNqbiyA4j645S8J6gTvi7EaxxZTIwjGfmhjtHqLo8s=
+			</data>
+		</dict>
 		<key>Headers/STNCancellationProvider.h</key>
 		<dict>
 			<key>hash</key>
@@ -167,6 +182,17 @@
 			dWmxtna6bo4YT3hlY1FfnBUgIl8+uRGFFEZu9scwobg=
 			</data>
 		</dict>
+		<key>Headers/STNConfig.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			KDw/Y71PT2Uq/RjyLdOQ0NBhY1M=
+			</data>
+			<key>hash2</key>
+			<data>
+			yrRF37OIHGeRbgXq9tyD3tYYcDVYfmqkolVAttp4LeQ=
+			</data>
+		</dict>
 		<key>Headers/STNDisplayProvider.h</key>
 		<dict>
 			<key>hash</key>
@@ -182,11 +208,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			mQFk93o0md3DwGZDFUwf5gpSlCg=
+			7v3/9bkvNMTa3mgXq/EYyCWOw1I=
 			</data>
 			<key>hash2</key>
 			<data>
-			YZmOYcPR9X677w+uKnLTUAfJizcoVNjYm3dNlZW8BfI=
+			ILuf0XKqPrZtfmPymFQn7mlT8MEvNYuYRZVUdSgGc8Q=
 			</data>
 		</dict>
 		<key>Headers/STNEnums_old.h</key>
@@ -248,11 +274,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			e4jeuIFy5lM0igvg4pq4sbhZdiI=
+			BIbY/6j8pIrVxpsGxAMd8foQ81U=
 			</data>
 			<key>hash2</key>
 			<data>
-			QMQcns+s8aVYf2kYlq6wliIIxfI9Vp0Cevs+giZvD8M=
+			e7aH57yShUoIDX972ctFmkmhe0KO7QiqQPVEOKjurcw=
+			</data>
+		</dict>
+		<key>Headers/STNPinpad.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			SkaXQfpnBIVN5+lFWvvG4176SdI=
+			</data>
+			<key>hash2</key>
+			<data>
+			7qDC0r8x4blw/wpo1TZCn8PuYqGLjxmZ9neRFPWBvKo=
 			</data>
 		</dict>
 		<key>Headers/STNPinpadModel+CoreDataProperties.h</key>
@@ -310,17 +347,6 @@
 			obN35mvwIw1zb8+P3zuVgE7qEKRpz63AURZtClA2mI8=
 			</data>
 		</dict>
-		<key>Headers/STNTransactionInfoProvider.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			QrAA1RjmkZbxWeXUOnNTKf1cxTo=
-			</data>
-			<key>hash2</key>
-			<data>
-			mZjCr0dZG/4BQw3biP4sALzfoYfZhHkiZyPno13LzWM=
-			</data>
-		</dict>
 		<key>Headers/STNTransactionListProvider.h</key>
 		<dict>
 			<key>hash</key>
@@ -336,44 +362,33 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			vfDEjE4Jgip4seTRkyopaAoxmjw=
+			16uE4FlGQlLANrqVgUpwxygNmus=
 			</data>
 			<key>hash2</key>
 			<data>
-			QvMztL4fvX9e1VcWPgOJbWWg5w6kefIhMBc3UDX4+4U=
+			J+TWjKl4kCImyOlPz92wsf7FhkWDYNQjbyzwLD91G40=
 			</data>
 		</dict>
 		<key>Headers/STNTransactionModel.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			tGXjf9uTVgLSfpn5GaWqHXtNhMM=
+			uzyOJ/h/YhanQnWbX0n39R7RhJ8=
 			</data>
 			<key>hash2</key>
 			<data>
-			5sMs/YmQ0v+dWQHHTMTJrc94kM3HhzqK9darHOHJ7og=
+			+ewqioMI96unKuB3fGFe92gnKnM/i5ibOMHjpW4ChKA=
 			</data>
 		</dict>
 		<key>Headers/STNTransactionProvider.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			vXVWiZyAukLjD7HPDIiXEuv0LxY=
+			2gzX0y/TxMxJzWs2NiVCq6zc4i0=
 			</data>
 			<key>hash2</key>
 			<data>
-			4mx+a+m+9Dy+67A64kM9Ui7aWD9owb6hS4HBNLxsGfs=
-			</data>
-		</dict>
-		<key>Headers/STNUserInfoProvider.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			NwzTpe8skCLuh+VMHLFvSD5vZMI=
-			</data>
-			<key>hash2</key>
-			<data>
-			N53nEA75eZMrUWYMiyIxJ6tnRWvrCsFu2PVzHHmu9OU=
+			nEE9Kqgc1EdIrQ+HKi5VrW5oSLUryzftLmz97gkRF7A=
 			</data>
 		</dict>
 		<key>Headers/STNValidationProvider.h</key>
@@ -391,11 +406,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			pyUxj7c6fXck3nO2AgnhGql4jY4=
+			wL80zJf3NvwC6ruepcMnQblDKsI=
 			</data>
 			<key>hash2</key>
 			<data>
-			jgb9kjHUvwWFVu483XUWdTP2xs0nkMgwLe3itZtuem8=
+			N7iuQioSYgHFKfbakoJf6zs2fJYbYSmswKruuK1FEmo=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -413,22 +428,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			2kkLCmcbz9B5rz21qOpLCmmOtHE=
+			hi9txqqhT7gIKm+y5hMoRa26l8E=
 			</data>
 			<key>hash2</key>
 			<data>
-			jx5yHRS7eyZeO2dI3zrLOeHG/lVl5hMqPVvyFPGjYwI=
+			dxgtj7mF+Ey8girADwVLN0hqprqJHW84uhHLG0a4mpc=
 			</data>
 		</dict>
 		<key>StoneSDK.momd/VersionInfo.plist</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			uPtpUy7aS3zrLew37hxdpZrTfCI=
+			IDcIl05K1CDfAWXXwsNYH1h2rBA=
 			</data>
 			<key>hash2</key>
 			<data>
-			4Iufk5PRxL4xwt6g8up7t2cqszlMvBArwnLUES3ZZeE=
+			YywVEhczk3aLpmj9pFJCYYD8yu7F79xGOFs/I1c9L94=
 			</data>
 		</dict>
 	</dict>
