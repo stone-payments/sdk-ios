@@ -39,6 +39,7 @@ static int rowNumber;
     self.instalmentPicker.hidden = YES;
     self.rate.hidden = YES;
     self.rateSwitch.enabled = NO;
+    self.rateSwitch.on = NO;
     
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
     
@@ -97,7 +98,7 @@ static int rowNumber;
         }
         else {
             // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros ou pagamento a vista;
-            transaction.instalmentType = STNInstalmentTypeMerchant;
+            transaction.instalmentType = STNInstalmentTypeNone;
         }
 
         // Propriedade Obrigatória, define o número de parcelas da transação;

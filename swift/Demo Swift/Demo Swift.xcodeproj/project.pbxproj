@@ -28,10 +28,11 @@
 		41DD17981E789128008449B1 /* Demo_Swift.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41DD17961E789128008449B1 /* Demo_Swift.xcdatamodeld */; };
 		41DD179A1E789128008449B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41DD17991E789128008449B1 /* Assets.xcassets */; };
 		41DD179D1E789128008449B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41DD179B1E789128008449B1 /* LaunchScreen.storyboard */; };
-		41DD17A51E789624008449B1 /* StoneSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DD17A41E789624008449B1 /* StoneSDK.framework */; };
-		41DD17A61E7898F8008449B1 /* StoneSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DD17A41E789624008449B1 /* StoneSDK.framework */; };
-		41DD17A71E7898F8008449B1 /* StoneSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 41DD17A41E789624008449B1 /* StoneSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		41EFCC6D1E80828A00F0D4C3 /* CancelationTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EFCC6C1E80828A00F0D4C3 /* CancelationTransactionViewController.swift */; };
+		97A56BB21F4647210029988C /* SearchLowEnergyDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A56BB11F4647210029988C /* SearchLowEnergyDevicesTableViewController.swift */; };
+		97A56BB61F467A3C0029988C /* StoneSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DD17A41E789624008449B1 /* StoneSDK.framework */; };
+		97A56BB71F467A3C0029988C /* StoneSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 41DD17A41E789624008449B1 /* StoneSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97A56BC61F468A700029988C /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97A56BC21F4684AA0029988C /* CoreBluetooth.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,7 +42,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				41DD17A71E7898F8008449B1 /* StoneSDK.framework in Embed Frameworks */,
+				97A56BB71F467A3C0029988C /* StoneSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,6 +75,8 @@
 		41DD179E1E789128008449B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41DD17A41E789624008449B1 /* StoneSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StoneSDK.framework; sourceTree = "<group>"; };
 		41EFCC6C1E80828A00F0D4C3 /* CancelationTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelationTransactionViewController.swift; sourceTree = "<group>"; };
+		97A56BB11F4647210029988C /* SearchLowEnergyDevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLowEnergyDevicesTableViewController.swift; sourceTree = "<group>"; };
+		97A56BC21F4684AA0029988C /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,8 +84,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41DD17A51E789624008449B1 /* StoneSDK.framework in Frameworks */,
-				41DD17A61E7898F8008449B1 /* StoneSDK.framework in Frameworks */,
+				97A56BC61F468A700029988C /* CoreBluetooth.framework in Frameworks */,
+				97A56BB61F467A3C0029988C /* StoneSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +98,7 @@
 				41DD17A41E789624008449B1 /* StoneSDK.framework */,
 				41DD178E1E789128008449B1 /* Demo Swift */,
 				41DD178D1E789128008449B1 /* Products */,
+				97A56BC11F4684AA0029988C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,8 +136,17 @@
 				41DD179B1E789128008449B1 /* LaunchScreen.storyboard */,
 				41DD179E1E789128008449B1 /* Info.plist */,
 				41DD17961E789128008449B1 /* Demo_Swift.xcdatamodeld */,
+				97A56BB11F4647210029988C /* SearchLowEnergyDevicesTableViewController.swift */,
 			);
 			path = "Demo Swift";
+			sourceTree = "<group>";
+		};
+		97A56BC11F4684AA0029988C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				97A56BC21F4684AA0029988C /* CoreBluetooth.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,11 +178,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = "Eduardo Mello de Macedo | Stone";
+				ORGANIZATIONNAME = "Stone Pagamentos";
 				TargetAttributes = {
 					41DD178B1E789128008449B1 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 8Q54VRJ624;
+						DevelopmentTeam = WL8G2WFXFF;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -220,6 +233,7 @@
 				415E79801E7C72F900697355 /* ListTransactionViewController.swift in Sources */,
 				41076C0B1E79CD9800624602 /* DownloadTableViewController.swift in Sources */,
 				41C36BA81E81991F0035FB56 /* TestValidationViewController.swift in Sources */,
+				97A56BB21F4647210029988C /* SearchLowEnergyDevicesTableViewController.swift in Sources */,
 				41DD17921E789128008449B1 /* ViewController.swift in Sources */,
 				415E79821E7C762300697355 /* TransactionTableViewCell.swift in Sources */,
 				419B4E481E8053A8009940EA /* MerchantTableViewCell.swift in Sources */,
@@ -349,15 +363,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8Q54VRJ624;
+				DEVELOPMENT_TEAM = WL8G2WFXFF;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Demo Swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "br.com.stone.Demo-Swift";
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.stone.Demo-Swift-2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -367,15 +382,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8Q54VRJ624;
+				DEVELOPMENT_TEAM = WL8G2WFXFF;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Demo Swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "br.com.stone.Demo-Swift";
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.stone.Demo-Swift-2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
