@@ -19,6 +19,9 @@ NSTimer* timer;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [STNConfig setAcquirer:STNAcquirerStone];
+    
     return YES;
 }
 

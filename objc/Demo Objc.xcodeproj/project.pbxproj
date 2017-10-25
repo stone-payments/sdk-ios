@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4104232C1F9FB590003DCDFF /* ConnectBLEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4104232B1F9FB590003DCDFF /* ConnectBLEViewController.m */; };
 		4108B6A61E77011000B3A734 /* CapturePanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4108B6A51E77011000B3A734 /* CapturePanViewController.m */; };
 		4108B6A91E7710BC00B3A734 /* ScreenDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4108B6A81E7710BC00B3A734 /* ScreenDisplayViewController.m */; };
 		411629BE1E69B7E300F6A4FB /* ActivationOfStoneCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 411629BD1E69B7E300F6A4FB /* ActivationOfStoneCodeViewController.m */; };
@@ -48,6 +49,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4104232A1F9FB58F003DCDFF /* ConnectBLEViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectBLEViewController.h; sourceTree = "<group>"; };
+		4104232B1F9FB590003DCDFF /* ConnectBLEViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectBLEViewController.m; sourceTree = "<group>"; };
 		4108B6A41E77011000B3A734 /* CapturePanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapturePanViewController.h; sourceTree = "<group>"; };
 		4108B6A51E77011000B3A734 /* CapturePanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapturePanViewController.m; sourceTree = "<group>"; };
 		4108B6A71E7710BC00B3A734 /* ScreenDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenDisplayViewController.h; sourceTree = "<group>"; };
@@ -125,6 +128,8 @@
 		41D21DC21E5F300D00F2ECBF /* Demo Objc */ = {
 			isa = PBXGroup;
 			children = (
+				4104232A1F9FB58F003DCDFF /* ConnectBLEViewController.h */,
+				4104232B1F9FB590003DCDFF /* ConnectBLEViewController.m */,
 				41FB49801E68A5160010495B /* ConnectPinpadViewController.h */,
 				41FB49811E68A5160010495B /* ConnectPinpadViewController.m */,
 				418B0D8E1E7042C500748B23 /* TransactionCell.h */,
@@ -210,7 +215,6 @@
 				TargetAttributes = {
 					41D21DBF1E5F300D00F2ECBF = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 63B4YTL6GY;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -264,6 +268,7 @@
 				418B0D961E708B9800748B23 /* MerchantCell.m in Sources */,
 				418B0D931E70792000748B23 /* ListMerchantViewController.m in Sources */,
 				4108B6A61E77011000B3A734 /* CapturePanViewController.m in Sources */,
+				4104232C1F9FB590003DCDFF /* ConnectBLEViewController.m in Sources */,
 				4144BD6B1E70A5D100A6A2D7 /* CancelListTransactionTableViewController.m in Sources */,
 				414EB83D1E73116800472A3B /* CancellationCell.m in Sources */,
 				41FB49741E6863D30010495B /* RefreshTablesViewController.m in Sources */,
@@ -387,7 +392,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 63B4YTL6GY;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -405,7 +410,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 63B4YTL6GY;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
