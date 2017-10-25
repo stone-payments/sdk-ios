@@ -1,4 +1,4 @@
-## Lista de providers disponiveis
+## Lista de providers disponíveis
 
 - [STNPinPadConnectionProvider](#criação-de-sessão-com-o-pinpad) - Estabelece sessão entre o aplicativo e o pinpad
 
@@ -24,7 +24,7 @@
 
 - [STNDisplayProvider](#exibição-no-display-do-pinpad) - Exibe mensagem de até 32 caracteres no vizor do pinpad
 
-## Lista de models disponiveis
+## Lista de models disponíveis
 
 - [STNTransactionModel](#transação) - Model com propriedades da transação
 
@@ -33,6 +33,12 @@
 - [STNPinpadModel](#pinpad) - Model com propriedades do pinpad
 
 - [STNAddressModel](#endereço) - Model com propriedades de endereço do lojista
+
+## Outras classes disponíveis
+
+- [STNConfig](#configurações) - Configurações gerais
+
+- [STNPinpad]() - Objeto que representa o pinpad
 
 ## Utilização
 
@@ -44,7 +50,22 @@ Para acessar todas as classes do SDK basta importar o StoneSDK.
 #import <StoneSDK/StoneSDK.h>
 ```
 
-### Criação de sessão com o pinpad
+### Configurações
+
+Para customizar as mensagens mostradas na tela do pinpad, passe um `NSDictionary` contendo os valores requeridos com chave e valor do tipo `{STNTransactionMessage: @"NSString"}`.
+Por exemplo, o valor a seguir irá substituir a mensagem para Transaction Declined:
+```objective-c
+  @{@(STNTransactionMessageDeclined) : @"TRANSACAO       XYZ"}
+```
+> Lembre-se que o display pode mostrar apenas 32 digitos, sendo 16 para cada linha.
+
+Para trocar entre chaves Elavon e Stone, deve-se definir o STNAcquirer no STNConfig.
+```objective-c
+  [STNConfig setAcquirer:STNAcquirerStone];
+```
+
+
+### Criação de sessão com o pinpad Bluetooth (dispositivo MFi)
 
 Para realizar qualquer comunicação com o pinpad é necessario que se crie uma sessão. Lembrando que a conexão com o dispositivo bluetooth deve ser feita no menu de *Ajustes* do *iOS*.
 
@@ -69,6 +90,125 @@ Para realizar qualquer comunicação com o pinpad é necessario que se crie uma 
 
 [303](#códigos-de-erro)
 
+### Conexão com pinpad Bluetooth Low Energy (BLE)
+
+Para conectar-se com um pinpad Bluetooth Low Energy, deve-se primeiro implementar o delegate `STNPinPadConnectionDelegate` e inicializar  o central manager presente no `STNPinpadConnectionProvider`.
+
+```objective-c
+// ViewController.h
+
+#import <UIKit/UIKit.h>
+#import "StoneSDK/StoneSDK.h"
+
+@interface ViewController : UIViewController <STNPinPadConnectionDelegate>
+@end
+
+// Viewcontroller.m
+
+@implementation ViewController
+STNPinpadConnectionProvider* connection;
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    connection = [[STNPinPadConnectionProvider alloc] init];
+
+    // Define o delegate
+    connection.delegate = self;
+
+    // Inicializa o Central Manager
+    [connection startCentral];
+}
+@end
+```
+
+Para encontrar os pinpads BLE próximos, inicie o escaneamento. Quando um pinpad BLE for encontrado, ele retornará no método `didFindPinpad` do delegate. Com este objeto STNPinpad é possível conectar-se a ele. Ao conectar-se ao pinpad desejado, é indicado parar o escaneamento.
+
+```objective-c
+- (void)startScanning
+{
+  // Inicia o escaneamento de pinpads próximos
+  [connection startScan];
+}
+
+-(void)pinpadConnectionProvider:(STNPinPadConnectionProvider*)provider didStartScanning:(BOOL)success error:(NSError*)error
+{
+  // Verifica se o escaneamento foi inicializado com sucesso
+}
+
+-(void)pinpadConnectionProvider:(STNPinPadConnectionProvider*)provider didFindPinpad:(STNPinpad*)pinpad
+{
+  if([pinpad.name isEqualToString: @"ID_DO_PINPAD"])
+  {
+    [connection connectToPinpad:pinpad];
+    [connection stopScan];
+  }
+}
+
+-(void)pinpadConnectionProvider:(STNPinPadConnectionProvider*)provider didConnectPinpad:(STNPinpad*)pinpad error:(NSError* _ Nullable)error
+{
+  // Confirma a conexão com um STNPinpad
+}
+
+-(void)pinpadConnectionProvider:(STNPinPadConnectionProvider*)provider didChangeCentralState:(CBManagerState)state
+{
+  // Atualiza de acordo com mudanças no stado do Central manager
+  // 0 - Unknown
+  // 1 - Resetting
+  // 2 - Unsupported
+  // 3 - Unauthorized
+  // 4 - Powered off
+  // 5 - Powered on
+}
+```
+
+Para desconectar, chame `disconnectPinpad`
+
+```objective-c
+- (void)disconnectAllPinpad
+{
+  // Lista todos os pinpads conectados, BLE ou clássico
+    NSArray<STNPinpad*>* connectedPinpads = [connection listConnectedPinpads];
+
+    for (STNPinpad* pinpad in connectedPinpads) {
+      // Desconecta o pinpad
+        [connection disconnectPinpad:pinpad];
+    }
+}
+
+-(void)pinpadConnectionProvider:(STNPinPadConnectionProvider*)provider didDisconnectPinpad:(STNPinpad*)pinpad
+{
+  // Confirma a desconexão com um STNPinpad
+}
+```
+
+É possível conectar mais de um BLE, e selecionar o que vai ser usado.
+
+```objective-c
+  [connection selectPinpad:pinpad];
+```
+
+O provider também fornece algumas consultas:
+
+```objective-c
+
+  // Indica se o escaneamento de BLE está em execução
+  BOOL isScanning = [connection isScanning];
+
+  // Informa o estado do Central Manager
+  STNCentralState centralState = [connection centralState];
+
+  // Verifica se o pinpad do tipo STNPinpad está conectado
+  BOOL isConnected = [connection isPinpadConnected:pinpad];
+
+  // Retorna o pinpad selecionado
+  STNPinpad* selected = [connection selectedPinpad];
+
+  // Retorna uma lista de pinpads com identificadores conhecidos
+  NSArray<STNPinpad*> *pinpadList = [connection listPinpadsWithIdentifiers:@[@"ID1", @"ID2"]];
+```
+
 ### Ativação do Stone Code
 
 O provider `STNStoneCodeActivationProvider` é responsavel por ativar e desativar o lojista e possui os métodos `activateStoneCode:withblock:`, `deactivateMerchant:` e `deactivateMerchantWithStoneCode`.
@@ -80,7 +220,7 @@ Para ativar o lojista no aplicativo deve ser usado o método `activateStoneCode:
 ```objective-c
 NSString *stoneCode = @"999999999"; // Stone Code do lojista
 
-[STNStoneCodeActivationProvider activateStoneCode:stoneCode withBlock:^(BOOL succeeded, NSError *error)
+[STNStoneCodeActivationProvider activateStoneCode:stoneCode withBlock:^(BOOL succeeded, NSError* error)
 {
     if (succeeded) // verifica se a requisição ocorreu com sucesso
     {
@@ -124,7 +264,7 @@ O provider `STNTableDownloaderProvider` possui o método `downloadTables` que fa
 > As tabelas AID e CAPK são necessarias para fazer transações EMV.
 
 ```objective-c
-[STNTableDownloaderProvider downLoadTables:^(BOOL succeeded, NSError *error)
+[STNTableDownloaderProvider downLoadTables:^(BOOL succeeded, NSError* error)
 {
     if (succeeded) // verifica se a requisição ocorreu com sucesso
     {
@@ -148,7 +288,7 @@ O provider `STNTableDownloaderProvider` possui o método `downloadTables` que fa
 O provider `STNTableLoaderProvider` possui o método `loadTables` que faz o update das tabelas baixadas no dispositivo iOS para o pinpad.
 
 ```objective-c
-[STNTableLoaderProvider loadTables:^(BOOL succeeded, NSError *error)
+[STNTableLoaderProvider loadTables:^(BOOL succeeded, NSError* error)
 {
     if (succeeded) // verifica se a requisição ocorreu com sucesso
     {
@@ -175,7 +315,7 @@ O método `sendTransaction:withBlock:` deve receber um objeto `STNTransactionMod
 
 #### amount (NSNumber)
 
-Propriedade obrigatoria. É o valor da transação e deve ser passado no formato de centavos. Por exemplo: caso queira enviar uma transação no valor de `R$ 56,45`, deve ser passado um `NSNumber` contendo o valor de `5645`. Uma transação no valor de R$ 0,05 deve ser passada como `5`.
+Propriedade obrigatória. É o valor da transação e deve ser passado no formato de centavos. Por exemplo: caso queira enviar uma transação no valor de `R$ 56,45`, deve ser passado um `NSNumber` contendo o valor de `5645`. Uma transação no valor de R$ 0,05 deve ser passada como `5`.
 
 #### type (STNTransactionTypeSimplified)
 
@@ -232,7 +372,7 @@ transaction.instalmentType = STNInstalmentTypeNone; // tipo de parcelamento: nen
 transaction.shortName = @"Minha Loja"; // nome customizado na fatura
 transaction.initiatorTransactionKey = @"9999999999999"; // ITK customizado
 
-[STNTransactionProvider sendTransaction:transaction withBlock:^(BOOL succeeded, NSError *error) {
+[STNTransactionProvider sendTransaction:transaction withBlock:^(BOOL succeeded, NSError* error) {
 		if (succeeded) // verifica se a requisição ocorreu com sucesso
 		{
 				// em caso de sucesso,
@@ -257,14 +397,14 @@ Durante a execução de uma transação o pinpad pode envar mensagens de notific
 		// o SDK provê o define 'PINPAD_MESSAGE' que possui o nome que a notificação deverá ter
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:PINPAD_MESSAGE object:nil];
 
-    STNTransactionModel *transaction = [[STNTransactionModel alloc] init];
+    STNTransactionModel* transaction = [[STNTransactionModel alloc] init];
 
     transaction.amount = [NSNumber numberWithInt:1000];
     transaction.type = STNTransactionTypeSimplifiedCredit;
     transaction.instalmentAmount = STNTransactionInstalmentAmountOne;
     transaction.instalmentType = STNInstalmentTypeNone;
 
-    [STNTransactionProvider sendTransaction:transaction withBlock:^(BOOL succeeded, NSError *error) {
+    [STNTransactionProvider sendTransaction:transaction withBlock:^(BOOL succeeded, NSError* error) {
 
 			  if (succeeded) // verifica se a requisição ocorreu com sucesso
 			  {
@@ -281,10 +421,10 @@ Durante a execução de uma transação o pinpad pode envar mensagens de notific
     }];
 }
 
-- (void)handleNotification:(NSNotification *) notification
+- (void)handleNotification:(NSNotification*) notification
 {
     // converte a notificação para string
-    NSString *notificationString = [notification object];
+    NSString* notificationString = [notification object];
     // imprime a string recebida
     NSLog(@"Mensagem do pinpad: %@", notificationString);
 }
@@ -304,7 +444,7 @@ O método `listTransactions:` retorna um `NSArray` com as transações (`STNTran
 // Array de transações
 NSArray *transactionsList = [STNTransactionListProvider listTransactions];
 
-for (STNTransactionModel *transaction in transactionsList)
+for (STNTransactionModel* transaction in transactionsList)
 {
     NSLog(@"Valor da transação em centavos: %@", transaction.amount);
     NSLog(@"Status da transação: %@", transaction.statusString);
@@ -316,7 +456,7 @@ Para obter as transações filtrando por um cartão especifico, o método `listT
 
 ```objective-c
 
-[STNTransactionListProvider listTransactionsByPan:^(BOOL succeeded, NSArray *transactionsList, NSError *error)
+[STNTransactionListProvider listTransactionsByPan:^(BOOL succeeded, NSArray* transactionsList, NSError* error)
 {
     if (succeeded) // verifica se a requisição ocorreu com sucesso
     {
@@ -346,7 +486,7 @@ O provider `STNMerchantListProvider` possui o método `listMerchants:` que retor
 // Array de transações
 NSArray *merchantsList = [STNMerchantListProvider listMerchants];
 
-for (STNMerchantModel *merchant in merchantsList)
+for (STNMerchantModel* merchant in merchantsList)
 {
     NSLog(@"Nome do lojista: %@", merchantsList.merchantName);
     NSLog(@"CPF ou CNPJ do lojista: %@", merchantsList.documentNumber);
@@ -360,7 +500,7 @@ for (STNMerchantModel *merchant in merchantsList)
 
 ### Cancelamento de transações
 
-O responsavel pelo cancelamento das transações é método `cancelTransaction` do provider `STNCancellationProvider`, que recebe, como parâmetro, o objeto de transação `STNTransactionModel`.
+O responsável pelo cancelamento das transações é o método `cancelTransaction` do provider `STNCancellationProvider`, que recebe como parâmetro o objeto de transação `STNTransactionModel`.
 
 ```objective-c
 // preenche array com lista de transações
@@ -370,7 +510,6 @@ NSArray *transactionsList = [STNTransactionListProvider listTransactions];
 STNTransactionModel *transaction = transactionsList[0];
 
 // executa o cancelamento
-[STNCancellationProvider cancelTransaction:transaction withBlock:^(BOOL succeeded, NSError *error)
 {
 		if (succeeded) // verifica se a requisição ocorreu com sucesso
 		{
@@ -420,13 +559,13 @@ NSArray *transactions = [STNTransactionListProvider listTransactions];
 NSString *destination = @"fulano@destino.com.br";
 
 // envia email com comprovante da última transação realizada
-[STNMailProvider sendReceiptViaEmail:STNMailTemplateTransaction transaction:transactions[0] toDestination:destination displayCompanyInformation:YES withBlock:^(BOOL succeeded, NSError *error)
+[STNMailProvider sendReceiptViaEmail:STNMailTemplateTransaction transaction:transactions[0] toDestination:destination displayCompanyInformation:YES withBlock:^(BOOL succeeded, NSError* error)
 {
 		if (succeeded) // verifica se a requisição ocorreu com sucesso
 		{
 				// em caso de sucesso,
-				// executa alguma coisa
-		} else
+				// executa alguma cois
+ 		} else
 		{
 				// em caso de erro,
 				// trata o erro
@@ -490,7 +629,7 @@ if ([STNValidationProvider validateConnectionToNetWork] == YES)
 Para capturar o PAN (4 últimos dígitos do cartão) deve ser usado o método `getCardPan:` do provider `SNTCardProvider`.
 
 ```objective-c
-[STNCardProvider getCardPan:^(BOOL succeeded, NSString *pan, NSError *error)
+[STNCardProvider getCardPan:^(BOOL succeeded, NSString* pan, NSError* error)
 {
 		if (succeeded) // verifica se a requisição ocorreu com sucesso
 		{
@@ -513,7 +652,7 @@ Para capturar o PAN (4 últimos dígitos do cartão) deve ser usado o método `g
 Para exibir uma mensagem no display do pinpad pode ser usado o método `displayMessage:withBlock:` do provider `STNDisplayProvider` que recebe uma mensagem no formato de string. A string enviada deve conter no máximo 16 caracteres.
 
 ```objective-c
-[STNDisplayProvider displayMessage:@"MINHA MENSAGEM" withBlock:^(BOOL succeeded, NSError *error)
+[STNDisplayProvider displayMessage:@"MINHA MENSAGEM" withBlock:^(BOOL succeeded, NSError* error)
 {
 		if (succeeded) // verifica se a requisição ocorreu com sucesso
 		{
@@ -602,6 +741,20 @@ O model `STNAddressModel` disponibiliza, em suas propriedades, informações de 
 - complement (**NSString**) - complemento
 - zipCode (**NSString**) - CEP
 - merchant (**STNMerchantModel**) - lojista que possui esse endereço
+
+
+## Outros
+
+### Pinpad
+
+O `STNPinpad` é um objeto representativo do pinpad.
+
+#### Lista de propriedades
+
+- name (**NSString**) - nome do dispositivo
+- identifier (**NSString**) - o UUID de dispositivos BLE, ou o connection ID de dispositivos Bluetooth
+- alias (**NSString**): nome customizado do dispositivo
+- device (**id**): guarda o objeto CBPeripheral (BLE) ou EAAccessory (Bluetooth)
 
 ### Códigos de erro
 
