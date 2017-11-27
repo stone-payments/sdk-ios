@@ -23,9 +23,9 @@
 #import "STNMerchantModel.h"
 #import "STNAddressModel.h"
 #import "STNPinpadModel.h"
+#import "STNConfig.h"
+#import "STNPinpad.h"
 
-#import "STNUserInfoProvider.h"
-#import "STNTransactionInfoProvider.h"
 
 //! Project version number for StoneSDK.
 FOUNDATION_EXPORT double StoneSDKVersionNumber;

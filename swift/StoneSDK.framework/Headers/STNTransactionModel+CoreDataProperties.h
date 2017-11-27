@@ -17,21 +17,26 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, retain) NSString *aid;
 @property (nullable, nonatomic, retain) NSNumber *amount;
+@property (nullable, nonatomic, retain) NSNumber *balance;
 @property (nullable, nonatomic, retain) NSString *arqc;
 @property (nullable, nonatomic, retain) NSString *authorisationCode;
 @property (nullable, nonatomic, retain) NSString *cardHolderName;
 @property (nullable, nonatomic, retain) NSDate *date;
-@property (nullable, nonatomic, retain) NSString *cardBrand;
 @property (nullable, nonatomic, retain) NSString *initiatorTransactionKey;
 @property (nullable, nonatomic, retain) NSString *pan;
 @property (nullable, nonatomic, retain) NSNumber *rawInstalmentAmount;
 @property (nullable, nonatomic, retain) NSNumber *rawInstalmentType;
+@property (nullable, nonatomic, retain) NSNumber *rawCardBrand;
 @property (nullable, nonatomic, retain) NSNumber *rawStatus;
 @property (nullable, nonatomic, retain) NSNumber *rawType;
 @property (nullable, nonatomic, retain) NSNumber *rawCapture;
 @property (nullable, nonatomic, retain) NSString *receiptTransactionKey;
 @property (nullable, nonatomic, retain) NSString *reference;
 @property (nullable, nonatomic, retain) NSString *shortName;
+@property (nullable, nonatomic, retain) NSData *signature;
+@property (nullable, nonatomic, copy) NSNumber *rawEntryMode;
+@property (nullable, nonatomic, retain) NSString *cvm;
+@property (nullable, nonatomic, retain) NSString *serviceCode;
 @property (nullable, nonatomic, retain) STNMerchantModel *merchant;
 @property (nullable, nonatomic, retain) STNPinpadModel *pinpad;
 
