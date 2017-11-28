@@ -366,7 +366,9 @@ typedef enum _STNCardBrand
     STNCardBrandElo,
     STNCardBrandSodexo,
     STNCardBrandAlelo,
-    STNCardBrandUnknown
+    STNCardBrandUnknown,
+    STNCardBrandHipercard,
+    STNCardBrandHiper
     
 } STNCardBrand;
 
@@ -395,5 +397,3 @@ typedef enum STNCentralState
     STNCentralStateOff
     
 } STNCentralState;
-
-
