@@ -7,8 +7,11 @@
 //
 
 #import "ScreenDisplayViewController.h"
+#import "NSString+Utils.h"
 
 @interface ScreenDisplayViewController ()
+@property (strong, nonatomic) IBOutlet UILabel *instructionLabel;
+@property (strong, nonatomic) IBOutlet UIButton *sendButton;
 
 @end
 
@@ -18,7 +21,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.navigationItem.title = @"Exibe mensagem no display";
+    self.navigationItem.title = [kTitleDisplay localize];
+    self.instructionLabel.text = [kInstructionDisplay localize];
+    [self.sendButton setTitle:[kButtonSend localize] forState:UIControlStateNormal];
     
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
@@ -44,8 +49,8 @@
     [STNDisplayProvider displayMessage:mensagem withBlock:^(BOOL succeeded, NSError *error) {
         [self.overlayView removeFromSuperview];
         if (succeeded) {
-            NSLog(@"Mensagem enviada para pinpad.");
-            self.feedback.text = @"Mensagem enviada ao pinpad.";
+            NSLog(@"%@", [kLogMessageSent localize]);
+            self.feedback.text = [kLogMessageSent localize];
         } else {
             NSLog(@"%@", error.description);
             self.feedback.text = error.description;

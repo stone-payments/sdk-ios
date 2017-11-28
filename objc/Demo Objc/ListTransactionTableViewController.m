@@ -7,9 +7,12 @@
 //
 
 #import "ListTransactionTableViewController.h"
+#import "NSString+Utils.h"
 
 
 @interface ListTransactionTableViewController ()
+
+@property (strong, nonatomic) IBOutlet UIButton *listButton;
 
 @property (weak, nonatomic) IBOutlet UITableView *transactionTableView;
 @property (strong, nonatomic) NSArray *transactions;
@@ -29,12 +32,15 @@ static NSArray *exemploTransacao;
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    self.navigationItem.title = @"Lista de Transações";
+    self.navigationItem.title = [kTitleTransactions localize];
     
     /*
         Requisição de listagem de transações;
      */
     self.transactions = [STNTransactionListProvider listTransactions];
+    [self.listButton setTitle:[kButtonList localize] forState:UIControlStateNormal];
+    [self.typeTransaction setTitle:[kGeneralAll localize] forSegmentAtIndex:0];
+    [self.typeTransaction setTitle:[kGeneralByCard localize] forSegmentAtIndex:1];
     
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
@@ -49,8 +55,8 @@ static NSArray *exemploTransacao;
 }
 - (IBAction)changeTypeTransaction:(id)sender {
     switch (self.typeTransaction.selectedSegmentIndex) {
-        case 0: NSLog(@"Listar todas as transações."); break;
-        case 1: NSLog(@"Listar todas as transações de um cartão."); break;
+        case 0: NSLog(@"%@", [kLogListAllTransactions localize]); break;
+        case 1: NSLog(@"%@", [kLogListTransactionsByCard localize]); break;
     }
 }
 
@@ -62,19 +68,18 @@ static NSArray *exemploTransacao;
     
     switch (self.typeTransaction.selectedSegmentIndex) {
         case 0:
-            NSLog(@"Listar todas as transações.");
+            NSLog(@"%@",  [kLogListAllTransactions localize]);
             self.transactions = [STNTransactionListProvider listTransactions];
             [self.overlayView removeFromSuperview];
             [self.transactionTableView reloadData];
             break;
         case 1:
-            NSLog(@"Listar todas as transações de um cartão.");
+            NSLog(@"%@", [kLogListTransactionsByCard localize]);
             [STNTransactionListProvider listTransactionsByPan:^(BOOL succeeded, NSArray *transactionsList, NSError *error) {
                 [self.overlayView removeFromSuperview];
                 if (succeeded) {
                     self.transactions = transactionsList;
                     [self.transactionTableView reloadData];
-                    NSLog(@"Atualizou a tabela");
                 } else {
                     NSLog(@"%@", error.description);
                 }
@@ -107,9 +112,9 @@ static NSArray *exemploTransacao;
     // Tratamento do status.
     NSString *shortStatus;
     if ([transactionInfoProvider.statusString isEqual: @"Transação Aprovada"]) {
-        shortStatus = @"Aprovada";
+        shortStatus = [kGeneralApproved localize];
     } else if ([transactionInfoProvider.statusString isEqual:@"Transação Cancelada"]) {
-        shortStatus = @"Cancelada";
+        shortStatus = [kGeneralCancelled localize];
     } else {
         shortStatus = transactionInfoProvider.statusString;
     }

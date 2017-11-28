@@ -7,8 +7,12 @@
 //
 
 #import "CancellationViewController.h"
+#import "NSString+Utils.h"
 
 @interface CancellationViewController ()
+
+@property (strong, nonatomic) IBOutlet UILabel *instructionLabel;
+@property (strong, nonatomic) IBOutlet UIButton *confirmationButton;
 
 @end
 
@@ -17,7 +21,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    self.navigationItem.title = @"Cancelar Transação";
+    self.navigationItem.title = [kTitleRefund localize];
+    [self.confirmationButton setTitle:[kGeneralYes localize] forState:UIControlStateNormal];
     
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
@@ -34,9 +39,9 @@
     // Tratamento do status;
     NSString *shortStatus;
     if ([self.transaction.statusString isEqual: @"Transação Aprovada"]) {
-        shortStatus = @"Aprovada";
+        shortStatus = [kGeneralApproved localize];
     } else if ([self.transaction.statusString isEqual:@"Transação Cancelada"]) {
-        shortStatus = @"Cancelada";
+        shortStatus = [kGeneralCancelled localize];
     } else {
         shortStatus = self.transaction.statusString;
     }
@@ -60,8 +65,8 @@
     [STNCancellationProvider cancelTransaction:self.transaction withBlock:^(BOOL succeeded, NSError *error) {
         [self.overlayView removeFromSuperview];
         if (succeeded) {
-            NSLog(@"Transação cancelada.");
-            self.feedback.text = @"Transação cancelada.";
+            NSLog(@"%@", [kLogTransactionCancelled localize]);
+            self.feedback.text = [kLogTransactionCancelled localize];
         } else {
             NSLog(@"%@", error.description);
             self.feedback.text = error.description;

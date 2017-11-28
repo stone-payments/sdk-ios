@@ -7,9 +7,14 @@
 //
 
 #import "ConnectBLEViewController.h"
+#import "NSString+Utils.h"
 
 
 @interface ConnectBLEViewController ()
+
+@property (strong, nonatomic) IBOutlet UILabel *instructionLabel;
+@property (strong, nonatomic) IBOutlet UIButton *scanButton;
+@property (strong, nonatomic) IBOutlet UIButton *disconnectButton;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UILabel *feedback;
@@ -33,26 +38,19 @@ STNPinPadConnectionProvider *connection;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    self.navigationItem.title = @"Conexão com BLE";
+    self.navigationItem.title = [kTitleBLE localize];
+    self.instructionLabel.text = [kInstructionBLE localize];
+    [self.scanButton setTitle:[kButtonScan localize] forState:UIControlStateNormal];
+    [self.disconnectButton setTitle:[kButtonDisconnect localize] forState:UIControlStateNormal];
     
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.activityIndicator.center = self.overlayView.center;
-    
-    if ([STNValidationProvider validatePinpadConnection] == NO) {
-        NSLog(@"Pinpad não conectado.");
-        self.feedback.text = @"Desconectado";
-    } else {
-        NSLog(@"Pinpad conectado.");
-        self.feedback.text = @"Conectado";
-    }
 
     connection = [[STNPinPadConnectionProvider alloc] init];
     connection.delegate = self;
     [connection startCentral];
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -101,8 +99,8 @@ STNPinPadConnectionProvider *connection;
 
 -(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider didStartScanning:(BOOL)success error:(NSError *)error
 {
-    NSLog(@"$Did start scanning: %@", success ? @"true" : @"false");
-    [self setFeedbackMessage:@"Começou a escanear"];
+    NSLog(@"%@: %@", [kLogStartScan localize], success ? [kGeneralYes localize] : [kGeneralNo localize]);
+    [self setFeedbackMessage:[kLogStartScan localize]];
 }
 
 -(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider didFindPinpad:(STNPinpad *)pinpad
@@ -112,7 +110,7 @@ STNPinPadConnectionProvider *connection;
     }
     
     if(![peripherals containsObject:pinpad]) {
-        NSLog(@"$Did find pinpad: %@", pinpad.name);
+        NSLog(@"%@: %@", [kLogFind localize], pinpad.name);
         [peripherals addObject:pinpad];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -122,8 +120,8 @@ STNPinPadConnectionProvider *connection;
 
 -(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider didConnectPinpad:(STNPinpad *)pinpad error:(NSError * _Nullable)error
 {
-    NSLog(@"$Did connect to pinpad: %@", pinpad.name);
-    [self setFeedbackMessage:@"Conectou ao pinpad"];
+    NSLog(@"%@: %@", [kLogConnect localize], pinpad.name);
+    [self setFeedbackMessage:[kLogConnect localize]];
     //[connection disconnectPinpad:pinpad];
     
     [connection selectPinpad:pinpad];
@@ -131,8 +129,8 @@ STNPinPadConnectionProvider *connection;
 
 -(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider didDisconnectPinpad:(STNPinpad *)pinpad
 {
-    NSLog(@"$Did disconnect from pinpad: %@", pinpad.name);
-    [self setFeedbackMessage:@"Desconectou do pinpad"];
+    NSLog(@"%@: %@", [kLogDisconnect localize], pinpad.name);
+    [self setFeedbackMessage: [kLogDisconnect localize]];
 }
 
 -(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider didChangeCentralState:(CBManagerState)state
@@ -150,7 +148,7 @@ STNPinPadConnectionProvider *connection;
             break;
     }
     
-    NSLog(@"$Did change central state: %@", stateString);
+    NSLog(@"%@: %@", [kLogCentralState localize], stateString);
 }
 
 -(void)setFeedbackMessage:(NSString*)message

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "StoneSDK/StoneSDK.h"
 
-@interface ActivationOfStoneCodeViewController : UIViewController
+@interface ActivationOfStoneCodeViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (strong, nonatomic) UIView *overlayView;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;

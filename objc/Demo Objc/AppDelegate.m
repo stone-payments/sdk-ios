@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "NSString+Utils.h"
 
 @interface AppDelegate ()
 
@@ -39,7 +40,7 @@ NSTimer* timer;
                                            selector: @selector(keepConnectionAlive)
                                            userInfo: nil
                                             repeats: YES];
-    UIBackgroundTaskIdentifier bgTask;
+    UIBackgroundTaskIdentifier bgTask = 0;
     UIApplication *app = [UIApplication sharedApplication];
     bgTask = [app beginBackgroundTaskWithExpirationHandler:^
     {
@@ -54,7 +55,7 @@ NSTimer* timer;
         
         if (succeeded)
         {
-            NSLog(@"Pinpad connectado.");
+            NSLog(@"%@", [kGeneralConnected localize]);
         } else
         {
             
@@ -82,11 +83,11 @@ NSTimer* timer;
 - (void)showErrorMessage:(NSString *)error{
     
     UIAlertController *errorAlert = [UIAlertController
-                                     alertControllerWithTitle:@"Erro!"
+                                     alertControllerWithTitle:[kGeneralErrorTitle localize]
                                      message:error
                                      preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"OK"
+    UIAlertAction *okButton = [UIAlertAction actionWithTitle:[kGeneralOk localize]
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction * action)
                                {

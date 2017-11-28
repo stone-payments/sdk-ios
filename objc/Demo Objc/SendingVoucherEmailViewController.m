@@ -7,8 +7,12 @@
 //
 
 #import "SendingVoucherEmailViewController.h"
+#import "NSString+Utils.h"
 
 @interface SendingVoucherEmailViewController ()
+
+@property (strong, nonatomic) IBOutlet UILabel *instructionLabel;
+@property (strong, nonatomic) IBOutlet UIButton *sendButton;
 
 @end
 
@@ -17,7 +21,9 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    self.navigationItem.title = @"Enviar Comprovante";
+    self.navigationItem.title = [kTitleReceipt localize];
+    self.instructionLabel.text = [kInstructionDestinationEmail localize];
+    [self.sendButton setTitle:[kButtonSend localize] forState:UIControlStateNormal];
     
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
     
@@ -49,8 +55,8 @@
         [STNMailProvider sendReceiptViaEmail:STNMailTemplateTransaction transaction:transactions[0] toDestination:destination displayCompanyInformation:YES withBlock:^(BOOL succeeded, NSError *error) {
             [self.overlayView removeFromSuperview];
             if (succeeded) {
-                NSLog(@"E-mail enviado com sucesso.");
-                self.feedback.text = @"E-mail enviado com sucesso.";
+                NSLog(@"%@", [kLogEmailSuccess localize]);
+                self.feedback.text = [kLogEmailSuccess localize];
             } else {
                 NSLog(@"%@", error.description);
                 self.feedback.text = error.description;
@@ -58,7 +64,7 @@
         }];
     } else
     {
-        self.feedback.text = @"Efetue ao menos uma transação.";
+        self.feedback.text = [kLogNeedTransaction localize];
     }
     
     

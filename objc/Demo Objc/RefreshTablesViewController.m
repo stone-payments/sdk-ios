@@ -7,9 +7,11 @@
 //
 
 #import "RefreshTablesViewController.h"
+#import "NSString+Utils.h"
 
 @interface RefreshTablesViewController ()
 
+@property (strong, nonatomic) IBOutlet UIButton *uploadButton;
 @property (weak, nonatomic) IBOutlet UILabel *feedback;
 
 
@@ -20,7 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Carregamento das Tabelas";
+    self.navigationItem.title = [kTitleUpdateTable localize];
+    [self.uploadButton setTitle:[kButtonUpload localize] forState:UIControlStateNormal];
     
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
@@ -48,12 +51,12 @@
     [STNPinPadConnectionProvider connectToPinpad:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             // Pinpad conectado com sucesso;
-            NSLog(@"Pinpad conectado com sucesso.");
+            NSLog(@"%@", [kGeneralConnected localize]);
             
         } else {
             // Erro ao conectar com o pinpad;
-            NSLog(@"Erro ao conectar com pinpad. [%@]", error.description);
-            self.feedback.text = @"Erro ao conectar com pinpad";
+            NSLog(@"%@. [%@]", [kGeneralErrorMessage localize], error.description);
+            self.feedback.text = [kGeneralErrorMessage localize];
         }
     }];
     
@@ -61,12 +64,12 @@
     [STNTableLoaderProvider loadTables:^(BOOL succeeded, NSError *error) {
         [self.overlayView removeFromSuperview];
         if (succeeded) {
-            NSLog(@"Tabelas atualizadas.");
-            self.feedback.text = @"Tabelas atualizadas!";
+            NSLog(@"%@", [kLogTablesUpdated localize]);
+            self.feedback.text = [kLogTablesUpdated localize];
         } else {
-            NSLog(@"Ocorreu um erro.");
+            NSLog(@"%@", [kGeneralErrorMessage localize]);
             NSLog(@"%@", error.description);
-            self.feedback.text = @"Ocorreu um erro.";
+            self.feedback.text = [kGeneralErrorMessage localize];
         }
     }];
 }

@@ -7,8 +7,11 @@
 //
 
 #import "ListMerchantViewController.h"
+#import "NSString+Utils.h"
 
 @interface ListMerchantViewController ()
+
+@property (strong, nonatomic) IBOutlet UIButton *listButton;
 
 @property (weak, nonatomic) IBOutlet UITableView *merchantTableView;
 @property (strong, nonatomic) NSArray *merchants;
@@ -19,7 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Lista de Lojistas";
+    self.navigationItem.title = [kTitleMerchants localize];
+    [self.listButton setTitle:[kButtonList localize] forState:UIControlStateNormal];
     
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];

@@ -7,11 +7,16 @@
 //
 
 #import "PerformTransactionViewController.h"
+#import "NSString+Utils.h"
 
 @interface PerformTransactionViewController ()
 
 @property (strong, nonatomic) NSArray *pickerMenu;
 @property (weak, nonatomic) NSString *instalmentString;
+
+@property (strong, nonatomic) IBOutlet UILabel *instructionLabel;
+@property (strong, nonatomic) IBOutlet UILabel *interestLabel;
+@property (strong, nonatomic) IBOutlet UIButton *sendButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *feedback;
 @property (weak, nonatomic) IBOutlet UITextField *transactionValue;
@@ -32,9 +37,14 @@ static int rowNumber;
     self.transactionValue.delegate = self;
     self.navigationItem.hidesBackButton = NO;
     
-    self.navigationItem.title = @"Realizar Transação";
+    self.navigationItem.title = [kTitleSendTransaction localize];
+    self.instructionLabel.text = [kInstructionAmount localize];
+    self.interestLabel.text = [kGeneralInterestFree localize];
+    [self.sendButton setTitle:[kButtonSend localize] forState:UIControlStateNormal];
+    [self.transactionType setTitle:[kGeneralDebit localize] forSegmentAtIndex:0];
+    [self.transactionType setTitle:[kGeneralCredit localize] forSegmentAtIndex:1];
     
-    self.pickerMenu = @[@"À vista", @"2 parcelas", @"3 parcelas", @"4 parcelas", @"5 parcelas", @"6 parcelas", @"7 parcelas", @"8 parcelas", @"9 parcelas", @"10 parcelas", @"11 parcelas", @"12 parcelas"];
+    self.pickerMenu = @[@"1x", @"2x", @"3x", @"4x", @"5x", @"6x", @"7x", @"8x", @"9x", @"10x", @"11x", @"12x"];
     
     self.instalmentPicker.hidden = YES;
     self.rate.hidden = YES;
@@ -122,11 +132,11 @@ static int rowNumber;
     [STNTransactionProvider sendTransaction:transaction withBlock:^(BOOL succeeded, NSError *error) {
         [self.overlayView removeFromSuperview];
         if (succeeded) {
-            NSLog(@"Transacao realizada com sucesso.");
-            self.feedback.text = @"Transação OK";
+            NSLog(@"%@", [kLogTransactionSuccess localize]);
+            self.feedback.text = [kLogTransactionSuccess localize];
         } else {
             self.feedback.text = error.description;
-            NSLog(@"Ocorreu uma falha na transacao. [%@]", error);
+            NSLog(@"%@. [%@]", [kGeneralErrorMessage localize], error);
         }
      }];
 }
@@ -134,24 +144,24 @@ static int rowNumber;
 
 - (IBAction)onOrOff:(id)sender {
     if (self.rateSwitch.on) {
-        NSLog(@"Com Juros");
-        self.rate.text = @"Com Juros";
+        NSLog(@"%@", [kGeneralWithInterest localize]);
+        self.rate.text = [kGeneralWithInterest localize];
     } else {
-        NSLog(@"Sem Juros");
-        self.rate.text = @"Sem Juros";
+        NSLog(@"%@",  [kGeneralInterestFree localize]);
+        self.rate.text = [kGeneralInterestFree localize];
     }
 }
 
 - (IBAction)changeType:(id)sender {
     switch (self.transactionType.selectedSegmentIndex) {
         case 0:
-            NSLog(@"Débito");
+            NSLog(@"%@", [kGeneralDebit localize]);
             _instalmentPicker.hidden = YES;
             self.rate.hidden = YES;
             [self.rateSwitch setEnabled:NO];
             break;
         case 1:
-            NSLog(@"Crédito");
+            NSLog(@"%@", [kGeneralCredit localize]);
             _instalmentPicker.hidden = NO;
             self.rate.hidden = NO;
             [self.rateSwitch setEnabled:YES];

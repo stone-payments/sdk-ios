@@ -22,6 +22,8 @@
 		418B0D961E708B9800748B23 /* MerchantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 418B0D951E708B9800748B23 /* MerchantCell.m */; };
 		4198132C1E6E06000054EBA7 /* ListTransactionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4198132B1E6E06000054EBA7 /* ListTransactionTableViewController.m */; };
 		41B2590C1E607E28001668AA /* PerformTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B2590B1E607E28001668AA /* PerformTransactionViewController.m */; };
+		41C528E91FCCC36300BCF378 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41C528EB1FCCC36300BCF378 /* Localizable.strings */; };
+		41C528EF1FCCC7A000BCF378 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C528EE1FCCC7A000BCF378 /* NSString+Utils.m */; };
 		41D21DC51E5F300D00F2ECBF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D21DC41E5F300D00F2ECBF /* main.m */; };
 		41D21DC81E5F300D00F2ECBF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D21DC71E5F300D00F2ECBF /* AppDelegate.m */; };
 		41D21DCB1E5F300D00F2ECBF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D21DCA1E5F300D00F2ECBF /* ViewController.m */; };
@@ -31,7 +33,7 @@
 		41FB49741E6863D30010495B /* RefreshTablesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FB49731E6863D30010495B /* RefreshTablesViewController.m */; };
 		41FB49761E6865310010495B /* StoneSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41FB49751E6865310010495B /* StoneSDK.framework */; };
 		41FB49771E6865310010495B /* StoneSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 41FB49751E6865310010495B /* StoneSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		41FB49831E68A5160010495B /* ConnectPinpadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FB49811E68A5160010495B /* ConnectPinpadViewController.m */; };
+		41FB49831E68A5160010495B /* SelectPinpadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FB49811E68A5160010495B /* SelectPinpadViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -69,6 +71,7 @@
 		414EB8431E734D0400472A3B /* SendingVoucherEmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendingVoucherEmailViewController.m; sourceTree = "<group>"; };
 		414EB8451E7352EA00472A3B /* TestValidationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestValidationViewController.h; sourceTree = "<group>"; };
 		414EB8461E7352EA00472A3B /* TestValidationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestValidationViewController.m; sourceTree = "<group>"; };
+		416F0B8D1FCCCF8F00C0060A /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		418B0D8E1E7042C500748B23 /* TransactionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionCell.h; sourceTree = "<group>"; };
 		418B0D8F1E7042C500748B23 /* TransactionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionCell.m; sourceTree = "<group>"; };
 		418B0D911E70792000748B23 /* ListMerchantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListMerchantViewController.h; sourceTree = "<group>"; };
@@ -79,6 +82,9 @@
 		4198132B1E6E06000054EBA7 /* ListTransactionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTransactionTableViewController.m; sourceTree = "<group>"; };
 		41B2590A1E607E28001668AA /* PerformTransactionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerformTransactionViewController.h; sourceTree = "<group>"; };
 		41B2590B1E607E28001668AA /* PerformTransactionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformTransactionViewController.m; sourceTree = "<group>"; };
+		41C528EA1FCCC36300BCF378 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		41C528ED1FCCC7A000BCF378 /* NSString+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
+		41C528EE1FCCC7A000BCF378 /* NSString+Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
 		41D21DC01E5F300D00F2ECBF /* Demo Objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo Objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41D21DC41E5F300D00F2ECBF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		41D21DC61E5F300D00F2ECBF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -92,8 +98,8 @@
 		41FB49721E6863D30010495B /* RefreshTablesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshTablesViewController.h; sourceTree = "<group>"; };
 		41FB49731E6863D30010495B /* RefreshTablesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshTablesViewController.m; sourceTree = "<group>"; };
 		41FB49751E6865310010495B /* StoneSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StoneSDK.framework; sourceTree = "<group>"; };
-		41FB49801E68A5160010495B /* ConnectPinpadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectPinpadViewController.h; sourceTree = "<group>"; };
-		41FB49811E68A5160010495B /* ConnectPinpadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectPinpadViewController.m; sourceTree = "<group>"; };
+		41FB49801E68A5160010495B /* SelectPinpadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPinpadViewController.h; sourceTree = "<group>"; };
+		41FB49811E68A5160010495B /* SelectPinpadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPinpadViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +119,7 @@
 			children = (
 				41FB49751E6865310010495B /* StoneSDK.framework */,
 				41D21DC21E5F300D00F2ECBF /* Demo Objc */,
+				41D21DC31E5F300D00F2ECBF /* Supporting Files */,
 				41D21DC11E5F300D00F2ECBF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -130,8 +137,8 @@
 			children = (
 				4104232A1F9FB58F003DCDFF /* ConnectBLEViewController.h */,
 				4104232B1F9FB590003DCDFF /* ConnectBLEViewController.m */,
-				41FB49801E68A5160010495B /* ConnectPinpadViewController.h */,
-				41FB49811E68A5160010495B /* ConnectPinpadViewController.m */,
+				41FB49801E68A5160010495B /* SelectPinpadViewController.h */,
+				41FB49811E68A5160010495B /* SelectPinpadViewController.m */,
 				418B0D8E1E7042C500748B23 /* TransactionCell.h */,
 				418B0D8F1E7042C500748B23 /* TransactionCell.m */,
 				418B0D911E70792000748B23 /* ListMerchantViewController.h */,
@@ -160,7 +167,6 @@
 				41D21DCF1E5F300D00F2ECBF /* Assets.xcassets */,
 				41D21DD11E5F300D00F2ECBF /* LaunchScreen.storyboard */,
 				41D21DD41E5F300D00F2ECBF /* Info.plist */,
-				41D21DC31E5F300D00F2ECBF /* Supporting Files */,
 				414EB83E1E73266D00472A3B /* CancellationViewController.h */,
 				414EB83F1E73266D00472A3B /* CancellationViewController.m */,
 				414EB8421E734D0400472A3B /* SendingVoucherEmailViewController.h */,
@@ -179,8 +185,12 @@
 			isa = PBXGroup;
 			children = (
 				41D21DC41E5F300D00F2ECBF /* main.m */,
+				41C528ED1FCCC7A000BCF378 /* NSString+Utils.h */,
+				41C528EE1FCCC7A000BCF378 /* NSString+Utils.m */,
+				41C528EB1FCCC36300BCF378 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
+			path = "Demo Objc";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +225,7 @@
 				TargetAttributes = {
 					41D21DBF1E5F300D00F2ECBF = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 8Q54VRJ624;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -226,6 +237,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"pt-BR",
 			);
 			mainGroup = 41D21DB71E5F300D00F2ECBF;
 			productRefGroup = 41D21DC11E5F300D00F2ECBF /* Products */;
@@ -243,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41D21DD31E5F300D00F2ECBF /* LaunchScreen.storyboard in Resources */,
+				41C528E91FCCC36300BCF378 /* Localizable.strings in Resources */,
 				41D21DD01E5F300D00F2ECBF /* Assets.xcassets in Resources */,
 				41D21DCE1E5F300D00F2ECBF /* Main.storyboard in Resources */,
 			);
@@ -262,12 +275,13 @@
 				414EB8401E73266D00472A3B /* CancellationViewController.m in Sources */,
 				41D21DCB1E5F300D00F2ECBF /* ViewController.m in Sources */,
 				41D21DC81E5F300D00F2ECBF /* AppDelegate.m in Sources */,
-				41FB49831E68A5160010495B /* ConnectPinpadViewController.m in Sources */,
+				41FB49831E68A5160010495B /* SelectPinpadViewController.m in Sources */,
 				4108B6A91E7710BC00B3A734 /* ScreenDisplayViewController.m in Sources */,
 				41D21DC51E5F300D00F2ECBF /* main.m in Sources */,
 				418B0D961E708B9800748B23 /* MerchantCell.m in Sources */,
 				418B0D931E70792000748B23 /* ListMerchantViewController.m in Sources */,
 				4108B6A61E77011000B3A734 /* CapturePanViewController.m in Sources */,
+				41C528EF1FCCC7A000BCF378 /* NSString+Utils.m in Sources */,
 				4104232C1F9FB590003DCDFF /* ConnectBLEViewController.m in Sources */,
 				4144BD6B1E70A5D100A6A2D7 /* CancelListTransactionTableViewController.m in Sources */,
 				414EB83D1E73116800472A3B /* CancellationCell.m in Sources */,
@@ -281,6 +295,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		41C528EB1FCCC36300BCF378 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				41C528EA1FCCC36300BCF378 /* en */,
+				416F0B8D1FCCCF8F00C0060A /* pt-BR */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		41D21DCC1E5F300D00F2ECBF /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -304,6 +327,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -351,6 +375,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -392,7 +417,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8Q54VRJ624;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -410,7 +435,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8Q54VRJ624;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

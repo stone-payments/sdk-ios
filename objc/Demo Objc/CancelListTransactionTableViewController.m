@@ -7,6 +7,7 @@
 //
 
 #import "CancelListTransactionTableViewController.h"
+#import "NSString+Utils.h"
 
 @interface CancelListTransactionTableViewController ()
 
@@ -17,7 +18,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    self.navigationItem.title = @"Cancelamento de Transações";
+    self.navigationItem.title = [kTitleRefundList localize];
     
     /*
         Requisição de listagem de transações;
@@ -49,9 +50,9 @@
     // Tratamento do status.
     NSString *shortStatus;
     if ([transaction.statusString isEqual: @"Transação Aprovada"]) {
-        shortStatus = @"Aprovada";
+        shortStatus = [kGeneralApproved localize];
     } else if ([transaction.statusString isEqual:@"Transação Cancelada"]) {
-        shortStatus = @"Cancelada";
+        shortStatus = [kGeneralCancelled localize];
     } else {
         shortStatus = transaction.statusString;
     }

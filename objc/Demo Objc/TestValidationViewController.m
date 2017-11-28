@@ -7,8 +7,14 @@
 //
 
 #import "TestValidationViewController.h"
+#import "NSString+Utils.h"
 
 @interface TestValidationViewController ()
+
+@property (strong, nonatomic) IBOutlet UIButton *activationButton;
+@property (strong, nonatomic) IBOutlet UIButton *pinpadConnectionButton;
+@property (strong, nonatomic) IBOutlet UIButton *tableDownloadButton;
+@property (strong, nonatomic) IBOutlet UIButton *internetConnectionButton;
 
 @end
 
@@ -16,7 +22,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Teste Validações";
+    self.navigationItem.title = [kTitleValidation localize];
+    [self.activationButton setTitle:[kButtonActivation localize] forState:UIControlStateNormal];
+    [self.pinpadConnectionButton setTitle:[kButtonPinpadConnection localize] forState:UIControlStateNormal];
+    [self.tableDownloadButton setTitle:[kButtonTableDownload localize] forState:UIControlStateNormal];
+    [self.internetConnectionButton setTitle:[kButtonInternetConnection localize] forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,41 +35,41 @@
 
 - (IBAction)performActivation:(id)sender {
     if ([STNValidationProvider validateActivation] == YES) {
-        NSLog(@"Stone Code está ativado!");
-        self.feedback.text = @"Stone Code está ativado.";
+        NSLog(@"%@", [kLogIsActivated localize]);
+        self.feedback.text = [kLogIsActivated localize];
     } else {
-        NSLog(@"Stone Code não ativado.");
-        self.feedback.text = @"Stone Code não ativado.";
+        NSLog(@"%@", [kLogNotActivated localize]);
+        self.feedback.text = [kLogNotActivated localize];
     }
 }
 
 - (IBAction)performPinpadConnection:(id)sender {
     if ([STNValidationProvider validatePinpadConnection] == YES) {
-        NSLog(@"O pinpad está pareado com o dispositivo iOS!");
-        self.feedback.text = @"O pinpad está pareado com o dispositivo iOS!";
+        NSLog(@"%@", [kLogPinpadConnected localize]);
+        self.feedback.text = [kLogPinpadConnected localize];
     } else {
-        NSLog(@"O pinpad não pareado com o dispositivo iOS!");
-        self.feedback.text = @"O pinpad não pareado com o dispositivo iOS!";
+        NSLog(@"%@", [kLogPinpadNotConnected localize]);
+        self.feedback.text = [kLogPinpadNotConnected localize];
     }
 }
 
 - (IBAction)PerfomTablesDownloaded:(id)sender {
     if ([STNValidationProvider validateTablesDownloaded] == YES) {
-        NSLog(@"As tabelas já foram baixadas para o dispositivo iOS!");
-        self.feedback.text = @"As tabelas já foram baixadas para o dispositivo iOS!";
+        NSLog(@"%@", [kLogTablesDownloaded localize]);
+        self.feedback.text = [kLogTablesDownloaded localize];
     } else {
-        NSLog(@"As tabelas ainda não foram baixadas para o dispositivo iOS!");
-        self.feedback.text = @"As tabelas ainda não foram baixadas para o dispositivo iOS!";
+        NSLog(@"%@", [kLogTablesNotDownloaded localize]);
+        self.feedback.text = [kLogTablesNotDownloaded localize];
     }
 }
 
 - (IBAction)performConnectionNetwork:(id)sender {
     if ([STNValidationProvider validateConnectionToNetWork] == YES) {
-        NSLog(@"A conexão com a internet está ativa!");
-        self.feedback.text = @"A conexão com a internet está ativa!";
+        NSLog(@"%@", [kLogInternetConnection localize]);
+        self.feedback.text = [kLogInternetConnection localize];
     } else {
-        NSLog(@"A conexão com a internet está inativa!");
-        self.feedback.text = @"A conexão com a internet está inativa!";
+        NSLog(@"%@", [kLogNoInternetConnection localize]);
+        self.feedback.text = [kLogNoInternetConnection localize];
     }
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "NSString+Utils.h"
 
 @interface ViewController ()
 
@@ -24,31 +25,30 @@ static NSString *cellIdentifier;
     
     self.navigationItem.title = @"Stone Demo";
     
-    self.optionsList = @[@"Estabelece Sessão Com Pinpad",
-                         @"Conecta com BLE",
-                         @"Ativação do Stone Code",
-                         @"Download das Tabelas",
-                         @"Carregamento das Tabelas",
-                         @"Realizar Transação",
-                         @"Listar Transações",
-                         @"Listar Lojistas",
-                         @"Cancelar Transações",
-                         @"Envio de comprovante por email",
-                         @"Testando Validações",
-                         @"Captura de PAN",
-                         @"Exibe Mensagem no Display"];
-    
+    self.optionsList = @[[kTitleSelection localize],
+                         [kTitleBLE localize],
+                         [kTitleActivation localize],
+                         [kTitleTableDownload localize],
+                         [kTitleUpdateTable localize],
+                         [kTitleSendTransaction localize],
+                         [kTitleTransactions localize],
+                         [kTitleMerchants localize],
+                         [kTitleRefundList localize],
+                         [kTitleReceipt localize],
+                         [kTitleValidation localize],
+                         [kTitlePan localize],
+                         [kTitleDisplay localize]];
     
     // Verificamos se já foi definido um Stone Code;
     if ([STNValidationProvider validateActivation] == NO) {
-        NSLog(@"Sem Stone Code Definido.");
+        NSLog(@"No stonecode was found.");
     } else {
         // Abre a sessão com o pinpad.
         [STNPinPadConnectionProvider connectToPinpad:^(BOOL succeeded, NSError *error) {
              if (succeeded) {
-                 NSLog(@"Pinpad conectado.");
+                 NSLog(@"%@", [kGeneralConnected localize]);
              } else {
-                 NSLog(@"Pinpad não conectado.");
+                 NSLog(@"%@", [kGeneralNotConnected localize]);
              }
          }];
     }
@@ -83,7 +83,7 @@ static NSString *cellIdentifier;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     switch (indexPath.row) {
-        case 0: { [self performSegueWithIdentifier:@"ConnectPinpad" sender:nil]; break; }
+        case 0: { [self performSegueWithIdentifier:@"SelectPinpad" sender:nil]; break; }
         case 1: { [self performSegueWithIdentifier:@"ConnectBLE" sender:nil]; break; }
         case 2: { [self performSegueWithIdentifier:@"ActivationOfStoneCode" sender:nil]; break; }
         case 3: { [self performSegueWithIdentifier:@"DownloadTable" sender:nil]; break; }

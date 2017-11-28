@@ -7,9 +7,11 @@
 //
 
 #import "CapturePanViewController.h"
+#import "NSString+Utils.h"
 
 @interface CapturePanViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *feedback;
+@property (strong, nonatomic) IBOutlet UIButton *getPanButton;
 
 @end
 
@@ -17,7 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Captura de PAN";
+    self.navigationItem.title = [kTitlePan localize];
+    [self.getPanButton setTitle:[kButtonGetPan localize] forState:UIControlStateNormal];
     
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
@@ -43,7 +46,7 @@
         // verifica se a requisição ocorreu com sucesso
         if (succeeded) {
             NSLog(@"**** **** **** %@", pan);
-            self.feedback.text =  [NSString stringWithFormat:@"Os 4 ultimos digitos são: %@", pan];
+            self.feedback.text =  [NSString stringWithFormat:@"**** **** **** %@", pan];
         } else {
             NSLog(@"%@", error.description);
             self.feedback.text = error.description;

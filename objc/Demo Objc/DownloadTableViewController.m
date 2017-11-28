@@ -7,8 +7,11 @@
 //
 
 #import "DownloadTableViewController.h"
+#import "NSString+Utils.h"
 
 @interface DownloadTableViewController ()
+
+@property (strong, nonatomic) IBOutlet UIButton *downloadButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *feedback;
 
@@ -18,7 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Download de Tabelas";
+    self.navigationItem.title = [kTitleTableDownload localize];
+    [self.downloadButton setTitle:[kButtonDownload localize] forState:UIControlStateNormal];
     
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
@@ -37,7 +41,7 @@
     [self.activityIndicator startAnimating];
     [self.navigationController.view addSubview:self.overlayView];
     
-    NSLog(@"Solicitou Download de Tabelas.");
+    NSLog(@"%@", [kLogAskDownload localize]);
     
     /*
         Efetuando o download das tabelas.
@@ -45,8 +49,8 @@
     [STNTableDownloaderProvider downLoadTables:^(BOOL succeeded, NSError *error) {
         [self.overlayView removeFromSuperview];
         if (succeeded) {
-             NSLog(@"Download Realizado.");
-             self.feedback.text = @"Download realizado.";
+             NSLog(@"%@", [kLogDownloadSuccess localize]);
+            self.feedback.text = [kLogDownloadSuccess localize];
              
          } else {
              self.feedback.text = error.description;
