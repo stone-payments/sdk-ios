@@ -6,28 +6,116 @@
   Copyright © 2017 Eduardo Mello de Macedo | Stone. All rights reserved.
 */
 
+// PORTUGUÊS
 
 /* Navigation Title */
-"Title_BLE" = "BLE connection";
-"Title_Selection" = "Pinpad selection";
-"Title_Merchants" = "Merchant list";
-"Title_Refund_List" = "Transactions refund";
-"Title_Transactions" = "Transactions list";
-"Title_Table_Download" = "Tables download";
-"Title_Activation" = "Activate Stone Code";
-"Title_Send_Transaction" = "Send transaction";
-"Title_Update_Table" = "Table upload";
-"Title_Refund" = "Refund transaction";
-"Title_Receipt" = "Send receipt";
-"Title_Validation" = "Validations";
-"Title_Pan" = "Get card PAN";
-"Title_Display" = "Display message";
+"Title_BLE" = "Conexão com BLE";
+"Title_Selection" = "Seleção de pinpad";
+"Title_Merchants" = "Lista de Lojistas";
+"Title_Refund_List" = "Cancelamento de Transações";
+"Title_Transactions" = "Lista de Transações";
+"Title_Table_Download" = "Download de Tabelas";
+"Title_Activation" = "Ativar Stone Code";
+"Title_Send_Transaction" = "Realizar Transação";
+"Title_Update_Table" = "Carregamento das Tabelas";
+"Title_Refund" = "Cancelar Transação";
+"Title_Receipt" = "Enviar Comprovante";
+"Title_Validation" = "Teste Validações";
+"Title_Pan" = "Captura de PAN";
+"Title_Display" = "Exibe mensagem no display";
 
 /* Buttons */
+"Button_Scan" = "Escanear";
+"Button_Disconnect" = "Desconectar todos";
+"Button_Refresh" = "Atualizar lista";
+"Button_Activate" = "Ativar";
+"Button_Deactivate" = "Desativar";
+"Button_Send" = "Enviar";
+"Button_List" = "Listar";
+"Button_Download" = "Download";
+"Button_Upload" = "Carregar tabelas para o pinpad";
+"Button_Activation" = "Ativação stonecode";
+"Button_Pinpad_Connection" = "Conexão pinpad";
+"Button_Table_Download" = "Download tabela";
+"Button_Internet_Connection" = "Conexão internet";
+"Button_Get_Pan" = "Capturar PAN";
 
-/* Connect BLE View Controller */
-"StartScan" = "Did start scanning";
-"Find" = "Did find pinpad";
-"Connect" = "Did connect to pinpad";
-"Disconnect" = "Did disconnect from pinpad";
-"Central_State" = "Did change central state";
+/* Instructions */
+"Instruction_BLE" = "Selecione um pinpad (Bluetooth Low Energy) para conectar";
+"Instruction_Selection" = "Selecione um pinpad para utilizá-lo";
+"Instruction_Activation" = "Informe o Stone Code";
+"Instruction_Amount" = "Digite o valor:";
+"Instruction_Cancel_Confirmation" = "Tem certeza que deseja cancelar essa transação?";
+"Instruction_Destination_Email" = "Informe o email do destinatário";
+"Instruction_Display" = "Digite o texto que deseja ver no Pinpad";
+
+/* Environment */
+"Production" = "Produção";
+"Internal_Homolog" = "Homologação interna";
+"Sandbox" = "Sandbox";
+"Staging" = "Staging";
+
+/* Log - Connect BLE View Controller */
+"Log_Start_Scan" = "Começou a escanear";
+"Log_Find" = "Encontrou pinpad";
+"Log_Connect" = "Conectou a pinpad";
+"Log_Disconnect" = "Desconectou de pinpad";
+"Log_Central_State" = "Central Manager mudou de estado";
+
+/* Log - List Transaction View Controller */
+"Log_List_All_Transactions" = "Listar todas as transações";
+"Log_List_Transactions_By_Card" = "Listar todas as transações por cartão";
+
+/* Log - Download Table View Controller */
+"Log_Download_Success" = "Download efetuado com sucesso";
+"Log_Ask_Download" = "Requisitou o download de tabelas";
+
+/* Log - Activation View Controller */
+"Log_Certification" = "Certificação";
+"Log_Activating" = "Ativando Stone Code";
+"Log_Activated" = "Stone code ativado com sucesso";
+"Log_Deactivating" = "Desativando stone code";
+"Log_Deactivated" = "Stonecode desativado com sucesso";
+
+/* Log - Perform Transaction View Controller */
+"Log_Transaction_Success" = "Transação realizada com sucesso";
+
+/* Log - Refresh Tables View Controller */
+"Log_Tables_Updated" = "Tabelas atualizadas";
+
+/* Log - Cancellation View Controller */
+"Log_Transaction_Cancelled" = "Transação cancelada com sucesso";
+
+/* Log - Sending Email View Controller */
+"Log_Email_Success" = "Comprovante enviado por email com sucesso";
+"Log_Need_Transaction" = "At least one transaction is needed";
+
+/* Log - Validation View Controller */
+"Log_Is_Activated" = "Stonecode está ativado";
+"Log_Not_Activated" = "Stonecode não ativado";
+"Log_Pinpad_Connected" = "Pinpad está pareado com dispositivo";
+"Log_Pinpad_Not_Connected" = "Pinpad não está pareado com dispositivo";
+"Log_Tables_Downloaded" = "As tabelas já foram baixadas para o dispositivo";
+"Log_Tables_Not_Downloaded" = "As tabelas ainda não foram baixadas para o dispositivo";
+"Log_Intert_Connection" = "A conexão com a internet está ativa";
+"Log_No_Internet_Connection" = "A conexão com a internet está inativa";
+
+/* Log - Screen Display View Controller */
+"Log_Message_Sent" = "Mensagem enviada para pinpad";
+
+/* General */
+"YES" = "Sim";
+"NO" = "Não";
+"Error_Title" = "Erro";
+"Error_Message" = "Ocorreu um erro";
+"Ok" = "Ok";
+"Connected" = "Pinpad conectado";
+"Not_connected" = "Pinpad não conectado";
+"Debit" = "Débito";
+"Credit" = "Crédito";
+"With_Interest" = "Com juros";
+"Interest_Free" = "Sem juros";
+"Approved" = "Aprovada";
+"Cancelled" = "Cancelada";
+"All" = "Todos";
+"By_Card" = "Por cartão";

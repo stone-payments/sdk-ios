@@ -5,3 +5,117 @@
   Created by Tatiana Magdalena on 27/11/17.
   Copyright © 2017 Eduardo Mello de Macedo | Stone. All rights reserved.
 */
+
+// ENGLISH
+
+/* Navigation Title */
+"Title_BLE" = "BLE connection";
+"Title_Selection" = "Pinpad selection";
+"Title_Merchants" = "Merchant list";
+"Title_Refund_List" = "Transactions refund";
+"Title_Transactions" = "Transactions list";
+"Title_Table_Download" = "Tables download";
+"Title_Activation" = "Activate Stone Code";
+"Title_Send_Transaction" = "Send transaction";
+"Title_Update_Table" = "Table upload";
+"Title_Refund" = "Refund transaction";
+"Title_Receipt" = "Send receipt";
+"Title_Validation" = "Validations";
+"Title_Pan" = "Get card PAN";
+"Title_Display" = "Display message";
+
+/* Buttons */
+"Button_Scan" = "Scan";
+"Button_Disconnect" = "Disconnect all";
+"Button_Refresh" = "Refresh";
+"Button_Activate" = "Activate";
+"Button_Deactivate" = "Deactivate";
+"Button_Send" = "Send";
+"Button_List" = "List";
+"Button_Download" = "Download";
+"Button_Upload" = "Updload tables to pinpad";
+"Button_Activation" = "Stonecode activation";
+"Button_Pinpad_Connection" = "Pinpad connection";
+"Button_Table_Download" = "Table download";
+"Button_Internet_Connection" = "Internet connection";
+"Button_Get_Pan" = "Get card PAN";
+
+/* Instructions */
+"Instruction_BLE" = "Select a BLE pinpad to connect to";
+"Instruction_Selection" = "Select a pinpad to use it";
+"Instruction_Activation" = "Enter the Stone Code";
+"Instruction_Amount" = "Enter the amount:";
+"Instruction_Cancel_Confirmation" = "Are you sure you want to cancel this transaction?";
+"Instruction_Destination_Email" = "Enter the receipt destination email";
+"Instruction_Display" = "Enter the text you want to send to the pinpad screen";
+
+/* Environment */
+"Production" = "Production";
+"Internal_Homolog" = "Internal_Homolog";
+"Sandbox" = "Sandbox";
+"Staging" = "Staging";
+"Certification" = "Certification";
+
+/* Log - Connect BLE View Controller */
+"Log_Start_Scan" = "Did start scanning";
+"Log_Find" = "Did find pinpad";
+"Log_Connect" = "Did connect to pinpad";
+"Log_Disconnect" = "Did disconnect from pinpad";
+"Log_Central_State" = "Did change central state";
+
+/* Log - List Transaction View Controller */
+"Log_List_All_Transactions" = "List all transactions";
+"Log_List_Transactions_By_Card" = "List all transactions by card";
+
+/* Log - Download Table View Controller */
+"Log_Download_Success" = "Download successfull";
+"Log_Ask_Download" = "Ask for tables download";
+
+/* Log - Activation View Controller */
+"Log_Activating" = "Activating Stone Code";
+"Log_Activated" = "Stone code successfully activated";
+"Log_Deactivating" = "Deactivating Stone Code";
+"Log_Deactivated" = "Stone Code successfully deactivated";
+
+/* Log - Perform Transaction View Controller */
+"Log_Transaction_Success" = "Successfull transaction";
+
+/* Log - Refresh Tables View Controller */
+"Log_Tables_Updated" = "Tables updated";
+
+/* Log - Cancellation View Controller */
+"Log_Transaction_Cancelled" = "Transaction successfully cancelled";
+
+/* Log - Sending Email View Controller */
+"Log_Email_Success" = "Receipt successfully sent via email";
+"Log_Need_Transaction" = "At least one transaction is needed";
+
+/* Log - Validation View Controller */
+"Log_Is_Activated" = "Stonecode is activated";
+"Log_Not_Activated" = "Stonecode is not activated";
+"Log_Pinpad_Connected" = "Pinpad is connected";
+"Log_Pinpad_Not_Connected" = "Pinpad is not connected";
+"Log_Tables_Downloaded" = "Tables were already downloaded";
+"Log_Tables_Not_Downloaded" = "Tables were not downloded yet";
+"Log_Intert_Connection" = "There is an internet connection";
+"Log_No_Internet_Connection" = "This is no internet connection";
+
+/* Log - Screen Display View Controller */
+"Log_Message_Sent" = "Message successfully sent to pinpad";
+
+/* General */
+"YES" = "Yes";
+"NO" = "No";
+"Error_Title" = "Error";
+"Error_Message" = "An error has occurred";
+"Ok" = "Ok";
+"Connected" = "Pinpad connected";
+"Not_connected" = "Pinpad not connected";
+"Debit" = "Debit";
+"Credit" = "Credit";
+"With_Interest" = "With interest";
+"Interest_Free" = "Interest-free";
+"Approved" = "Approved";
+"Cancelled" = "Cancelled";
+"All" = "All";
+"By_Card" = "By card";
