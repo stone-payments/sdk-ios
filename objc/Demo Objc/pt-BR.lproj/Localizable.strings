@@ -1,0 +1,33 @@
+/* 
+  Localizable.strings
+  Demo Objc
+
+  Created by Tatiana Magdalena on 27/11/17.
+  Copyright © 2017 Eduardo Mello de Macedo | Stone. All rights reserved.
+*/
+
+
+/* Navigation Title */
+"Title_BLE" = "BLE connection";
+"Title_Selection" = "Pinpad selection";
+"Title_Merchants" = "Merchant list";
+"Title_Refund_List" = "Transactions refund";
+"Title_Transactions" = "Transactions list";
+"Title_Table_Download" = "Tables download";
+"Title_Activation" = "Activate Stone Code";
+"Title_Send_Transaction" = "Send transaction";
+"Title_Update_Table" = "Table upload";
+"Title_Refund" = "Refund transaction";
+"Title_Receipt" = "Send receipt";
+"Title_Validation" = "Validations";
+"Title_Pan" = "Get card PAN";
+"Title_Display" = "Display message";
+
+/* Buttons */
+
+/* Connect BLE View Controller */
+"StartScan" = "Did start scanning";
+"Find" = "Did find pinpad";
+"Connect" = "Did connect to pinpad";
+"Disconnect" = "Did disconnect from pinpad";
+"Central_State" = "Did change central state";

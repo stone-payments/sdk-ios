@@ -1,0 +1,138 @@
+
+/* Class = "UIButton"; normalTitle = "Send"; ObjectID = "1aV-fm-V2W"; */
+"1aV-fm-V2W.normalTitle" = "Send";
+
+/* Class = "UIButton"; normalTitle = "Upload tables to pinpad"; ObjectID = "2El-KK-eKl"; */
+"2El-KK-eKl.normalTitle" = "Upload tables to pinpad";
+
+/* Class = "UIButton"; normalTitle = "Activate"; ObjectID = "48a-rj-VSR"; */
+"48a-rj-VSR.normalTitle" = "Activate";
+
+/* Class = "UILabel"; text = "Select a pinpad to use it"; ObjectID = "4Dw-Lj-QOd"; */
+"4Dw-Lj-QOd.text" = "Select a pinpad to use it";
+
+/* Class = "UILabel"; text = "Enter the amount:"; ObjectID = "5rW-JY-Cre"; */
+"5rW-JY-Cre.text" = "Enter the amount:";
+
+/* Class = "UIButton"; normalTitle = "Send e-mail"; ObjectID = "8ce-f8-6lC"; */
+"8ce-f8-6lC.normalTitle" = "Send e-mail";
+
+/* Class = "UISegmentedControl"; 9b6-1b-syZ.segmentTitles[0] = "All"; ObjectID = "9b6-1b-syZ"; */
+"9b6-1b-syZ.segmentTitles[0]" = "All";
+
+/* Class = "UISegmentedControl"; 9b6-1b-syZ.segmentTitles[1] = "By card"; ObjectID = "9b6-1b-syZ"; */
+"9b6-1b-syZ.segmentTitles[1]" = "By card";
+
+/* Class = "UIButton"; normalTitle = "Deactivate"; ObjectID = "C2G-z3-0ww"; */
+"C2G-z3-0ww.normalTitle" = "Deactivate";
+
+/* Class = "UILabel"; text = "Tem certeza que deseja cancelar essa transação?"; ObjectID = "H3X-Ut-uQ9"; */
+"H3X-Ut-uQ9.text" = "Tem certeza que deseja cancelar essa transação?";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "JtW-NL-h4N"; */
+"JtW-NL-h4N.text" = "Label";
+
+/* Class = "UILabel"; text = "With interest"; ObjectID = "LNT-X4-G54"; */
+"LNT-X4-G54.text" = "With interest";
+
+/* Class = "UIButton"; normalTitle = "Disconnect all"; ObjectID = "M3p-SE-fE4"; */
+"M3p-SE-fE4.normalTitle" = "Disconnect all";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "OHK-YU-Ql6"; */
+"OHK-YU-Ql6.text" = "Label";
+
+/* Class = "UIBarButtonItem"; title = "Pinpad"; ObjectID = "QVm-Q1-4wM"; */
+"QVm-Q1-4wM.title" = "Pinpad";
+
+/* Class = "UILabel"; text = "Enter the text you want to send to the pinpad screen"; ObjectID = "QVr-PW-dbu"; */
+"QVr-PW-dbu.text" = "Enter the text you want to send to the pinpad screen";
+
+/* Class = "UIButton"; normalTitle = "Refresh"; ObjectID = "REq-t6-P57"; */
+"REq-t6-P57.normalTitle" = "Refresh";
+
+/* Class = "UIButton"; normalTitle = "Scan"; ObjectID = "Sba-ay-OHc"; */
+"Sba-ay-OHc.normalTitle" = "Scan";
+
+/* Class = "UIButton"; normalTitle = "Cancelar"; ObjectID = "T0B-PP-Tjd"; */
+"T0B-PP-Tjd.normalTitle" = "Cancelar";
+
+/* Class = "UITextField"; text = "R$ 0.00"; ObjectID = "T1L-qW-bul"; */
+"T1L-qW-bul.text" = "R$ 0.00";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "T82-35-Wm5"; */
+"T82-35-Wm5.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Send"; ObjectID = "TM1-6a-Sck"; */
+"TM1-6a-Sck.normalTitle" = "Send";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Thg-xJ-KFE"; */
+"Thg-xJ-KFE.text" = "Label";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "UlZ-SA-h9y"; */
+"UlZ-SA-h9y.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Get card PAN"; ObjectID = "VBu-Nd-FI2"; */
+"VBu-Nd-FI2.normalTitle" = "Get card PAN";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "VLd-Rp-baN"; */
+"VLd-Rp-baN.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Pinpad connection"; ObjectID = "Vr7-cF-TVB"; */
+"Vr7-cF-TVB.normalTitle" = "Pinpad connection";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "XF1-2V-whB"; */
+"XF1-2V-whB.text" = "Label";
+
+/* Class = "UILabel"; text = "Transação"; ObjectID = "ZfZ-WC-85I"; */
+"ZfZ-WC-85I.text" = "Transação";
+
+/* Class = "UIButton"; normalTitle = "List merchants"; ObjectID = "aar-Kb-Rch"; */
+"aar-Kb-Rch.normalTitle" = "List merchants";
+
+/* Class = "UIButton"; normalTitle = "Stone Code activation"; ObjectID = "alt-Kj-CoX"; */
+"alt-Kj-CoX.normalTitle" = "Stone Code activation";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "cqx-Yn-M36"; */
+"cqx-Yn-M36.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "List transactions"; ObjectID = "eG0-ff-xcq"; */
+"eG0-ff-xcq.normalTitle" = "List transactions";
+
+/* Class = "UIButton"; normalTitle = "Download tables"; ObjectID = "gwN-sE-qif"; */
+"gwN-sE-qif.normalTitle" = "Download tables";
+
+/* Class = "UILabel"; text = "Enter the receipt destination email"; ObjectID = "jHx-Jl-bgT"; */
+"jHx-Jl-bgT.text" = "Enter the receipt destination email";
+
+/* Class = "UISegmentedControl"; kVv-Kj-Pat.segmentTitles[0] = "Debit"; ObjectID = "kVv-Kj-Pat"; */
+"kVv-Kj-Pat.segmentTitles[0]" = "Debit";
+
+/* Class = "UISegmentedControl"; kVv-Kj-Pat.segmentTitles[1] = "Credit"; ObjectID = "kVv-Kj-Pat"; */
+"kVv-Kj-Pat.segmentTitles[1]" = "Credit";
+
+/* Class = "UIButton"; normalTitle = "Internet connection"; ObjectID = "lXR-05-uzg"; */
+"lXR-05-uzg.normalTitle" = "Internet connection";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "mfF-Ys-x7U"; */
+"mfF-Ys-x7U.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "nil-aV-UNH"; */
+"nil-aV-UNH.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Table download"; ObjectID = "qJu-3Q-nLd"; */
+"qJu-3Q-nLd.normalTitle" = "Table download";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "r0t-lE-GU1"; */
+"r0t-lE-GU1.text" = "Label";
+
+/* Class = "UILabel"; text = "Enter the Stone Code"; ObjectID = "rrA-6O-AAS"; */
+"rrA-6O-AAS.text" = "Enter the Stone Code";
+
+/* Class = "UILabel"; text = "Select a BLE pinpad to connect to"; ObjectID = "upS-Kz-9mF"; */
+"upS-Kz-9mF.text" = "Select a BLE pinpad to connect to";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "x8O-iq-edX"; */
+"x8O-iq-edX.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "xe2-A5-T6m"; */
+"xe2-A5-T6m.text" = "Label";
