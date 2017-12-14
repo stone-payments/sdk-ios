@@ -4,14 +4,14 @@
 
 Integration SDK for iOS.
 
-> The last releases can be downloaded in [releases](https://github.com/stone-pagamentos/sdk-ios-v2/releases).
+> The latest releases can be downloaded in [releases](https://github.com/stone-pagamentos/sdk-ios-v2/releases).
 
 ## Features
 
 - Merchant activation
 - Pinpad communication
 - Download/load AID and CAPK tables
-- Transaction
+- Perform transaction
 - Transaction cancellation
 - Transaction list
 - Transaction receipt via email
@@ -28,26 +28,26 @@ In case you have any problem open an [issue](https://github.com/stone-payments/s
 
 Add the `StoneSDK.framework` as embedded binaries.
 
-In the `Info.plist` for the project add the property `Supported external accessory protocols` in the `Custom iOS Target Properties` containing the protocols for the pinpad that is going to be used in the app.
+In the `Info.plist` of the project add the property `Supported external accessory protocols` in the `Custom iOS Target Properties` containing the protocols for the pinpad that is going to be used in the app.
 
 Still in the `Info.plist` it is necessary to add support for TLS v1.2 to be able to connect to our servers. Simply add the following code to your `Info.plist` file.
 
 ```xml
 <key>NSAppTransportSecurity</key>
+<dict>
+	<key>NSExceptionDomains</key>
 	<dict>
-		<key>NSExceptionDomains</key>
+		<key>stone.com.br</key>
 		<dict>
-			<key>stone.com.br</key>
-			<dict>
-				<key>NSExceptionMinimumTLSVersion</key>
-				<string>TLSV1.2</string>
-				<key>NSExceptionRequiresForwardSecrecy</key>
-				<false/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-			</dict>
+			<key>NSExceptionMinimumTLSVersion</key>
+			<string>TLSV1.2</string>
+			<key>NSExceptionRequiresForwardSecrecy</key>
+			<false/>
+			<key>NSIncludesSubdomains</key>
+			<true/>
 		</dict>
 	</dict>
+</dict>
 ```
 
 In the `Build Settings` select `No` for `Enable Bitcode`. You can find it in the section `Build Options`.
@@ -69,13 +69,13 @@ rm "$FRAMEWORK_EXECUTABLE_PATH"
 mv "$FRAMEWORK_EXECUTABLE_PATH-merged" "$FRAMEWORK_EXECUTABLE_PATH"
 ```
 
-## Homologation environment
+<!-- ## Homologation environment
 
-If you want to use the homologation environment add the key `Stone Homologation` type `Boolean` on project's `Info.plist`. Use `YES` or `NO` to turn it on or off.
+If you want to use the homologation environment add the key `Stone Homologation` type `Boolean` on project's `Info.plist`. Use `YES` or `NO` to turn it on or off. -->
 
 ## Available providers
 
-- [STNPinPadConnectionProvider](#establish-session-with-pinpad) - Establish session between application and pinpad
+- [STNPinPadConnectionProvider](#connecting-to-pinpads) - Establish session between application and pinpad
 
 - [STNStoneCodeActivationProvider](#stone-code-activation) - Activate merchant's Stone Code
 
@@ -109,6 +109,14 @@ If you want to use the homologation environment add the key `Stone Homologation`
 
 - [STNAddressModel](#address) - Merchant's address properties
 
+- [STNReceiptModel](#receipt) - Transaction receipt properties
+
+## Other available objects
+
+- [STNConfig](#configurations) - General configurations
+
+- [STNPinpad]() - Pinpad object representation
+
 ## Usage
 
 ### Import SDK
@@ -119,7 +127,58 @@ Import the StoneSDK where you need to use it.
 #import <StoneSDK/StoneSDK.h>
 ```
 
-### Establish session with pinpad
+### Configurations
+
+The class `STNConfig` provide you some useful configurations, as described below.
+
+#### Acquirer
+
+You can change between Stone and Elavon acquirer key, setting the value of `acquirer` property at `STNConfig`.
+
+This can be done on the `AppDelegate`, for example:
+```objective-c
+- (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions {
+    // Override point for customization after application launch.
+
+    [STNConfig setAcquirer: STNAcquirerStone];
+
+    return YES;
+}
+```
+
+#### Environment
+
+You can change the environment in which transactions are being processed at runtime.
+
+First, set the environment at `STNConfig` property `environment`. This should be done before stone code activation, so that it has the same environment for activation, table download and sending transactions.
+
+For example, if you want to use the production environment:
+```objective-c
+[STNConfig setEnvironment: STNEnvironmentProduction];
+```
+
+You can choose between the following values:
+```objective-c
+STNEnvironmentProduction
+STNEnvironmentInternalHomolog
+STNEnvironmentSandbox
+STNEnvironmentStaging
+STNEnvironmentCertification
+```
+
+#### Pinpad messages
+
+It is possible to customize the messages shown in the pinpad screen with `setTransactionMessages`.
+To do so, pass in a `NSDictionary` containing the values you want with key and value as `{STNTransactionMessage: @"NSString"}`.
+
+For example, the next value will replace the message for Transaction Declined:
+`@{@(STNTransactionMessageDeclined) : @"TRANSACAO       XYZ"}`
+
+> Remember that the display can only print 32 digits which is 16 for each line.
+
+### Connecting to pinpads
+<!-- ### Establish session with pinpad -->
+
 
 To communicate with the pinpad it is required to establish a session. Connect to the bluetooth device through *iOS Settings* before establishing this session.
 

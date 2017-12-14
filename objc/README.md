@@ -34,6 +34,8 @@
 
 - [STNAddressModel](#endereço) - Model com propriedades de endereço do lojista
 
+- [STNReceiptModel](#receipt) - Model com propriedades do recibo de uma transação
+
 ## Outras classes disponíveis
 
 - [STNConfig](#configurações) - Configurações gerais
@@ -52,17 +54,52 @@ Para acessar todas as classes do SDK basta importar o StoneSDK.
 
 ### Configurações
 
-Para customizar as mensagens mostradas na tela do pinpad, passe um `NSDictionary` contendo os valores requeridos com chave e valor do tipo `{STNTransactionMessage: @"NSString"}`.
+A classe `STNConfig` fornece algumas configurações úteis, como descritas abaixo.
+
+#### Adquirente
+
+É possível trocar entre chaves Stone e Elavon, definindo o valor da propriedade `acquirer` em `STNConfig`.
+
+Isso pode ser feito em `AppDelegate`, por exemplo:
+```objective-c
+- (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions {
+    // Override point for customization after application launch.
+
+    [STNConfig setAcquirer: STNAcquirerStone];
+
+    return YES;
+}
+```
+
+#### Ambiente
+
+O ambiente no qual as transações são processadas pode ser trocado em tempo de execução.
+
+A propriedade `environment` em `STNConfig` deve ser definida antes da ativação do stonecode, para que o mesmo ambiente seja utilizado para a ativação, download de tabelas e envio de transações.
+
+Por exemplo, para usar o ambiente de produção:
+```objective-c
+[STNConfig setEnvironment: STNEnvironmentProduction];
+```
+
+É possível escolher entre os seguintes ambientes:
+```objective-c
+STNEnvironmentProduction
+STNEnvironmentInternalHomolog
+STNEnvironmentSandbox
+STNEnvironmentStaging
+STNEnvironmentCertification
+```
+
+#### Mensagens do pinpad
+
+É possível customizar as mensagens mostradas na tela do pinpad com `setTransactionMessages` em `STNConfig`.
+Para customizar as mensagens mostradas na tela do pinpad, passe um `NSDictionary` contendo os valores requeridos com chave e valor do tipo `{STNTransactionMessage: @"NSString"}`.s
 Por exemplo, o valor a seguir irá substituir a mensagem para Transaction Declined:
 ```objective-c
   @{@(STNTransactionMessageDeclined) : @"TRANSACAO       XYZ"}
 ```
 > Lembre-se que o display pode mostrar apenas 32 digitos, sendo 16 para cada linha.
-
-Para trocar entre chaves Elavon e Stone, deve-se definir o STNAcquirer no STNConfig.
-```objective-c
-  [STNConfig setAcquirer:STNAcquirerStone];
-```
 
 
 ### Criação de sessão com o pinpad Bluetooth (dispositivo MFi)
