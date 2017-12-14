@@ -177,13 +177,17 @@ For example, the next value will replace the message for Transaction Declined:
 > Remember that the display can only print 32 digits which is 16 for each line.
 
 ### Connecting to pinpads
-<!-- ### Establish session with pinpad -->
 
+You can connect with pinpads with Bluetooth Low Energy (BLE) and 'Classic' Bluetooth (MFi) technologies, but they are handled a bit different.
+
+#### Old connection to a single Classic BT (MFi)
+
+> This method is still available if you want to connect to a single non-BLE pinpad.
 
 To communicate with the pinpad it is required to establish a session. Connect to the bluetooth device through *iOS Settings* before establishing this session.
 
 ```objective-c
-    [STNPinPadConnectionProvider connectToPinpad:^(BOOL succeeded, NSError *error)
+    [STNPinPadConnectionProvider connectToPinpad:^(BOOL succeeded, NSError* error)
     {
         if (succeeded) // check for success
         {
@@ -198,9 +202,150 @@ To communicate with the pinpad it is required to establish a session. Connect to
 
 > We recomend this method to run this method every **3 minutes** (even if the application in in background) in case the pinpad being used is the `Gertec MOBI PIN 10`. This device has problems if no communication is made for a while.
 
-#### Possible error code
+##### Possible error code
 
 [303](#error-codes)
+
+#### Multiple pinpad connection
+
+_First step: connecting to pinpad_
+
+- For `classic Bluetooth`: first you have to connect the bluetooth on your _iOS settings_.
+
+- For `Bluetooth Low Energy`:
+   - First thing to do is to set the delegate `STNPinpadConnectionDelegate` and initialize the central manager on `STNPinpadConnectionProvider`.
+   - Then you have to `startScan` for devices. In the `didFindPinpad` delegate method, you will get the devices supported by the StoneSDK, as a `STNPinpad`. Once you find the one(s) you want, you pass the `STNPinpad` as a parameter to `connectToPinpad:(STNPinpad*)pinpad`.  You should call `stopScan` at this point.
+
+```objective-c
+// Connecting to BLE pinpads
+
+// ViewController.h
+
+#import <UIKit/UIKit.h>
+#import "StoneSDK/StoneSDK.h"
+
+@interface ViewController : UIViewController <STNPinPadConnectionDelegate>
+@end
+
+// ViewController.m
+
+@implementation ViewController
+
+STNPinPadConnectionProvider* connection;
+
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	connection = [[STNPinPadConnectionProvider alloc] init];
+
+	// Sets the delegate
+	connection.delegate = self;
+
+	// Start the BLE central before trying to start scanning
+	[connection startCentral];
+}
+
+- (void)startScanning
+{
+	// Start scanning for BLE pinpads
+  [connection startScan];
+}
+
+// Delegate method
+-(void)pinpadConnectionProvider:(STNPinPadConnectionProvider*)provider didStartScanning:(BOOL)success error:(NSError*)error
+{
+	// Checks whether the scan was successfully initialized
+}
+
+// Delegate method, called whenever a supported BLE pinpad is found
+-(void)pinpadConnectionProvider:(STNPinPadConnectionProvider*)provider didFindPinpad:(STNPinpad*)pinpad
+{
+  // Find supported pinpads as STNPinpad
+
+	// Check if it is the wanted pinpad
+  if([pinpad.name isEqualToString: @"ID_DO_PINPAD"])
+  {
+    // Connect to pinpad
+    [connection connectToPinpad:pinpad];
+    // There's no need to keep scanning
+    [connection stopScan];
+  }
+}
+
+// Delegate method
+-(void)pinpadConnectionProvider:(STNPinPadConnectionProvider*)provider didConnectPinpad:(STNPinpad*)pinpad error:(NSError* _ Nullable)error
+{
+  // Confirms pinpad connection
+}
+
+// Delegate method
+-(void)pinpadConnectionProvider:(STNPinPadConnectionProvider*)provider didChangeCentralState:(CBManagerState)state
+{
+  // Updates whenever there's a change in the Central Manager state
+  // 0 - Unknown
+  // 1 - Resetting
+  // 2 - Unsupported
+  // 3 - Unauthorized
+  // 4 - Powered off
+  // 5 - Powered on
+}
+
+@end
+```
+
+_Second step: selecting wanted pinpad:_
+
+After those first steps, for both kind of bluetooth, the devices connected will return on `listConnectedPinpads` as an array of `STNPinpad`, and they will continue to appear in this list unless you call `disconnectPinpad:(STNPinpad*)pinpad;` for BLE or disconnect the BT classic on the iOS settings (or if you close the app).
+Once you find the one you want to use, you can select it passing it as a parameter to `selectPinpad:`.
+
+```objective-c
+STNPinPadConnectionProvider *connection = [[STNPinPadConnectionProvider alloc] init];
+NSArray <STNPinpad*> *connectedPinpads = [connection listConnectedPinpads];
+STNPinpad *wantedPinpad = connectedPinpads[0];
+[connection selectPinpad:wantedPinpad];
+```
+
+_Ending a connection_
+
+To disconnect, call `disconnectPinpad`
+
+```objective-c
+- (void)disconnectAllPinpad
+{
+  // Lists all connected pinpads, classic or BLE
+    NSArray<STNPinpad*>* connectedPinpads = [connection listConnectedPinpads];
+
+    for (STNPinpad* pinpad in connectedPinpads) {
+      // Disconnect pinpad
+        [connection disconnectPinpad:pinpad];
+    }
+}
+
+-(void)pinpadConnectionProvider:(STNPinPadConnectionProvider*)provider didDisconnectPinpad:(STNPinpad*)pinpad
+{
+  // Confirms STNPinpad disconnection
+}
+```
+
+_Other available pinpad connection information_
+
+```objective-c
+
+  // Indicates whether the BLE scanning is running
+  BOOL isScanning = [connection isScanning];
+
+  // Indicates the BLE Central Manager state
+  STNCentralState centralState = [connection centralState];
+
+  // Verifies if a pinpad of type STNPinpad is connected
+  BOOL isConnected = [connection isPinpadConnected:pinpad];
+
+  // Gets the currently selected pinpad
+  STNPinpad* selected = [connection selectedPinpad];
+
+  // Gets a list of pinpads with known identifiers
+  NSArray<STNPinpad*> *pinpadList = [connection listPinpadsWithIdentifiers:@[@"ID1", @"ID2"]];
+```
 
 ### Stone Code Activation
 
@@ -213,7 +358,7 @@ The method `activateStoneCode:withblock:` is used to activate the merchant. Pass
 ```objective-c
 NSString *stoneCode = @"999999999"; // Merchant's Stone Code
 
-[STNStoneCodeActivationProvider activateStoneCode:stoneCode withBlock:^(BOOL succeeded, NSError *error)
+[STNStoneCodeActivationProvider activateStoneCode:stoneCode withBlock:^(BOOL succeeded, NSError* error)
 {
     if (succeeded) // check for success
     {

@@ -1,6 +1,6 @@
 ## Lista de providers disponíveis
 
-- [STNPinPadConnectionProvider](#criação-de-sessão-com-o-pinpad) - Estabelece sessão entre o aplicativo e o pinpad
+- [STNPinPadConnectionProvider](#conectando-a-pinpads) - Estabelece sessão entre o aplicativo e o pinpad
 
 - [STNStoneCodeActivationProvider](#ativação-do-stone-code) - Ativa o Stone Code do lojista
 
@@ -102,14 +102,20 @@ Por exemplo, o valor a seguir irá substituir a mensagem para Transaction Declin
 > Lembre-se que o display pode mostrar apenas 32 digitos, sendo 16 para cada linha.
 
 
-### Criação de sessão com o pinpad Bluetooth (dispositivo MFi)
+### Conectando a pinpads
 
-Para realizar qualquer comunicação com o pinpad é necessario que se crie uma sessão. Lembrando que a conexão com o dispositivo bluetooth deve ser feita no menu de *Ajustes* do *iOS*.
+Você pode conectar a pinpads de tecnologia de Bluetooth 'Clássico' ou Bluetooth Low Energy (BLE), com uma pequena diferença na forma de conexão.
+
+#### Antiga forma de criação de sessão com o pinpad Bluetooth Clássico (dispositivo MFi)
+
+> Este método foi mantido para os casos em que se deseja conectar a um único pinpad que não seja BLE, e apenas este.
+
+Para realizar qualquer comunicação com o pinpad é necessário que se crie uma sessão. Lembrando que a conexão com o dispositivo bluetooth deve ser feita no menu de *Ajustes* do *iOS*.
 
 > Antes de qualquer comunicação entre o aplicativo e o pinpad, uma sessão deve ser estabelecida.
 
 ```objective-c
-    [STNPinPadConnectionProvider connectToPinpad:^(BOOL succeeded, NSError *error)
+    [STNPinPadConnectionProvider connectToPinpad:^(BOOL succeeded, NSError* error)
     {
         if (succeeded) // verifica se a requisição ocorreu com sucesso
         {
@@ -124,15 +130,24 @@ Para realizar qualquer comunicação com o pinpad é necessario que se crie uma 
 
 > Recomendamos que esse método seja executado a cada **3 minutos** quando o aplicativo estiver em background caso usem o pinpad `Gertec MOBI PIN 10`. O dispositivo em questão apresentou problemas ao ficar muito tempo sem comunicação.
 
-#### Possivel código de erro
+##### Possivel código de erro
 
 [303](#códigos-de-erro)
 
-### Conexão com pinpad Bluetooth Low Energy (BLE)
+#### Conexão com múltiplos pinpads (BLE e MFi)
 
-Para conectar-se com um pinpad Bluetooth Low Energy, deve-se primeiro implementar o delegate `STNPinPadConnectionDelegate` e inicializar  o central manager presente no `STNPinpadConnectionProvider`.
+_Primeiros passos: conectando ao pinpad_
+
+- Para `bluetooth clássico`: a conexão com o dispositivo bluetooth deve ser feita no menu de *Ajustes* do *iOS*.
+
+- Para `Bluetooth Low Energy`:
+
+   - Deve-se primeiro implementar o delegate `STNPinPadConnectionDelegate` e inicializar  o central manager presente no `STNPinpadConnectionProvider`.
+   - Depois deve-se começar a escanear por dispositivos com `startScan`. No método `didFindPinpad` do delegate, serão fornecidos os dispositivos suportados pela StoneSDK como um `STNPinpad`. Ao encontrar o pinpad que se quer conectar, passe-o como parâmetro para `connectToPinpad:(STNPinpad*)pinpad`. É aconselhado parar o escaneamento com `stopScan` neste momento.
 
 ```objective-c
+// Conectando com pinpads BLE
+
 // ViewController.h
 
 #import <UIKit/UIKit.h>
@@ -144,51 +159,55 @@ Para conectar-se com um pinpad Bluetooth Low Energy, deve-se primeiro implementa
 // Viewcontroller.m
 
 @implementation ViewController
+
 STNPinpadConnectionProvider* connection;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     connection = [[STNPinPadConnectionProvider alloc] init];
 
     // Define o delegate
     connection.delegate = self;
 
-    // Inicializa o Central Manager
+    // Inicializa a central do BLE antes de começar a escanear
     [connection startCentral];
 }
-@end
-```
 
-Para encontrar os pinpads BLE próximos, inicie o escaneamento. Quando um pinpad BLE for encontrado, ele retornará no método `didFindPinpad` do delegate. Com este objeto STNPinpad é possível conectar-se a ele. Ao conectar-se ao pinpad desejado, é indicado parar o escaneamento.
-
-```objective-c
 - (void)startScanning
 {
-  // Inicia o escaneamento de pinpads próximos
+  // Inicia o escaneamento de pinpads BLE próximos
   [connection startScan];
 }
 
+// Método do delegate
 -(void)pinpadConnectionProvider:(STNPinPadConnectionProvider*)provider didStartScanning:(BOOL)success error:(NSError*)error
 {
   // Verifica se o escaneamento foi inicializado com sucesso
 }
 
+// Método do delegate
 -(void)pinpadConnectionProvider:(STNPinPadConnectionProvider*)provider didFindPinpad:(STNPinpad*)pinpad
 {
+  // Encontra pinpads suportados como STNPinpad
+
+  // Verifica se é o pinpad que se espera
   if([pinpad.name isEqualToString: @"ID_DO_PINPAD"])
   {
+    // Conecta ao pinpad
     [connection connectToPinpad:pinpad];
+    // Não é mais necessário continuar escaneando
     [connection stopScan];
   }
 }
 
+// Método do delegate
 -(void)pinpadConnectionProvider:(STNPinPadConnectionProvider*)provider didConnectPinpad:(STNPinpad*)pinpad error:(NSError* _ Nullable)error
 {
   // Confirma a conexão com um STNPinpad
 }
 
+// Método do delegate
 -(void)pinpadConnectionProvider:(STNPinPadConnectionProvider*)provider didChangeCentralState:(CBManagerState)state
 {
   // Atualiza de acordo com mudanças no stado do Central manager
@@ -199,7 +218,23 @@ Para encontrar os pinpads BLE próximos, inicie o escaneamento. Quando um pinpad
   // 4 - Powered off
   // 5 - Powered on
 }
+
+@end
 ```
+
+_Segundo passo: selecionar o pinpad desejado para utilização_
+
+Após esses passos anteriores, para ambos os tipos de bluetooth, os dispositivos irão aparecer ao se chamar `listConnectedPinpads` como um array de `STNPinpad`, e continuarão a ser listados ali a não ser que `disconnectPinpad:(STNPinpad*)pinpad;` seja chamado (no caso de BLE) ou que o dispositivo seja desconectado nos *Ajustes do iOS* (no caso de bluetooth clássico).
+Uma vez tendo encontrado o pinpad que se deseja utilizar, basta passá-lo como parâmetro para `selectPinpad:`.
+
+```objective-c
+STNPinPadConnectionProvider *connection = [[STNPinPadConnectionProvider alloc] init];
+NSArray <STNPinpad*> *connectedPinpads = [connection listConnectedPinpads];
+STNPinpad *wantedPinpad = connectedPinpads[0];
+[connection selectPinpad:wantedPinpad];
+```
+
+_Finalizando uma conexão_
 
 Para desconectar, chame `disconnectPinpad`
 
@@ -221,13 +256,7 @@ Para desconectar, chame `disconnectPinpad`
 }
 ```
 
-É possível conectar mais de um BLE, e selecionar o que vai ser usado.
-
-```objective-c
-  [connection selectPinpad:pinpad];
-```
-
-O provider também fornece algumas consultas:
+_Outras informações sobre conexão de pinpad disponíveis_
 
 ```objective-c
 
