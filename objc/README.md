@@ -304,8 +304,6 @@ NSString *stoneCode = @"999999999"; // Stone Code do lojista
 
 Uma das opções para desativar o lojista no aplicativo é o método `deactivateMerchant:`, que recebe o lojista a ser desativado (um objeto do tipo `STNMerchantModel`) como parâmetro.
 
-> Esse método excluirá o lojista do applicativo junto de todas as transações realizadas pelo mesmo.
-
 ```objective-c
 STNMerchantModel *merchant = [STNMerchantListProvider listMerchants][0]; // Primeiro lojista da lista
 
@@ -319,6 +317,8 @@ NSString *stoneCode = @"999999999"; // Stone Code do lojista
 
 [STNStoneCodeActivationProvider deactivateMerchantWithStoneCode:stoneCode];
 ```
+
+> ⚠️ Ambos os métodos de desativação irão excluir o lojista do applicativo junto de todas as transações realizadas pelo mesmo.
 
 #### Possíveis códigos de erro
 
@@ -386,11 +386,11 @@ Propriedade obrigatória. É o valor da transação e deve ser passado no format
 
 #### type (STNTransactionTypeSimplified)
 
-Propriedade obrigatoria. Essa propriedade deve ser definida com o tipo da transação (débito ou crédito). Para isso podem ser usados os enums `STNTransactionTypeSimplifiedCredit` para crédito ou `STNTransactionTypeSimplifiedDebit` para débito.
+Propriedade obrigatória. Essa propriedade deve ser definida com o tipo da transação (débito ou crédito). Para isso podem ser usados os enums `STNTransactionTypeSimplifiedCredit` para crédito ou `STNTransactionTypeSimplifiedDebit` para débito.
 
 #### instalmentAmount (STNTransactionInstalmentAmount)
 
-Propriedade obrigatoria. Propriedade que define o número de parcelas da transação. Um dos seguintes enums devem ser usados:
+Propriedade obrigatória. Propriedade que define o número de parcelas da transação. Um dos seguintes valores de enumerador devem ser usados:
 
 - `STNTransactionInstalmentAmountOne` - para 1x (à vista)
 - `STNTransactionInstalmentAmountTwo` - para 2x
@@ -407,7 +407,7 @@ Propriedade obrigatoria. Propriedade que define o número de parcelas da transa�
 
 #### instalmentType (STNInstalmentType)
 
-Propriedade obrigatoria. Define o tipo de parcelamento que será efetuado. Um dos seguintes enums devem ser usados:
+Propriedade obrigatória. Define o tipo de parcelamento que será efetuado. Um dos seguintes valores de enumerador devem ser usados:
 
 - `STNInstalmentTypeNone` - nenhum parcelamento, deve ser usado para transações à vista
 - `STNInstalmentTypeMerchant` - parcelamento com o adquirente (sem juros)
@@ -505,7 +505,7 @@ Durante a execução de uma transação o pinpad pode envar mensagens de notific
 
 O provider `STNTransactionListProvider` possui os métodos, `listTransactions:` e `listTransactionsByPan:`.
 
-O método `listTransactions:` retorna um `NSArray` com as transações (`STNTransactionModel`) passadas no aplicativo. A ultima transação passada será sempre a primeira no array.
+O método `listTransactions:` retorna um `NSArray` com as transações (`STNTransactionModel`) passadas no aplicativo. A última transação passada será sempre a primeira no array.
 
 ```objective-c
 // Array de transações
@@ -596,6 +596,38 @@ STNTransactionModel *transaction = transactionsList[0];
 [101, 210, 601](#códigos-de-erro)
 
 ### Envio de comprovante por email
+
+Para enviar comprovantes de transações por email basta usar o método `sendReceiptViaEmail:` do provider `STNMailProvider`.
+
+O método `sendReceiptViaEmail:` recebe os parâmetros:
+
+#### receipt (STNReceiptModel)
+
+Parâmetro **obrigatório**.
+
+Representa o modelo do recibo. Contém as seguintes propriedades:
+- `type`: se é a via do estabelecimento (`STNReceiptTypeMerchant`) ou do cliente (`STNReceiptTypeCustomer`) .
+-  `transaction`: a transação à qual o comprovante se aplica.
+- `displayCompanyInformation`: um valor booleano, indicando se o comprovante deve exibir dados de endereço do estabelecimento.
+
+#### from (STNContactModel)
+
+Parâmetro **opcional**. Se não for passado, ou se o email não estiver definito, será definido como um email noreply da Stone.
+
+É o contato que identifica quem está enviando o email, com nome (opcional) e endereço de email.
+
+#### destination (STNContactModel)
+
+Parâmetro **obrigatório**.
+
+É o contato que identifica o destinatário do comprovante, com nome (opcional) e endereço de email (obrigatório).
+
+
+### Envio de comprovante por email (versões antigas)
+
+> ⚠️ Este método será removido na próxima versão. Utilizar a nova forma de [envio de comprovante por email](#envio-de-comprovante-por-email).
+
+> Só irá enviar comprovantes do tipo Via Cliente.
 
 Para enviar comprovantes de transações por email basta usar o método `sendReceiptViaEmail:` do provider `STNMailProvider`.
 

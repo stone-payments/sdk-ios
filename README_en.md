@@ -351,7 +351,7 @@ _Other available pinpad connection information_
 
 The provider `STNStoneCodeActivationProvider` is responsible for activating and deactivating the merchant and has the methods `activateStoneCode:withblock:`, `deactivateMerchant:` and `deactivateMerchantWithStoneCode`.
 
-> Stone Code activation is required in order to execute any operation on Stone SDK.
+> Stone Code activation is required in order to execute any operation on the Stone SDK.
 
 The method `activateStoneCode:withblock:` is used to activate the merchant. Pass a NSString in as parameter containing the merchant's Stone Code.
 
@@ -373,8 +373,6 @@ NSString *stoneCode = @"999999999"; // Merchant's Stone Code
 
 One option to deactivate the merchant in the application is the `deactivateMerchant:` method in which is passed the merchant (`STNMerchantModel` object) to be deactivated as parameter.
 
-> This method will delete the merchant from the application with all its transaction history.
-
 ```objective-c
 STNMerchantModel *merchant = [STNMerchantListProvider listMerchants][0]; // Find first merchant in the list
 
@@ -389,6 +387,8 @@ NSString *stoneCode = @"999999999"; // Merchant's Stone Code
 [STNStoneCodeActivationProvider deactivateMerchantWithStoneCode:stoneCode];
 ```
 
+> ⚠️  Both this deactivating methods will delete the merchant from the application with all its transaction history.
+
 #### Possible error codes
 
 [101, 202, 209](#error-codes)
@@ -400,7 +400,7 @@ The provider `STNTableDownloaderProvider` has the method `downloadTables` that c
 > The AID and CAPK tables are necessary for transactions EMV.
 
 ```objective-c
-[STNTableDownloaderProvider downLoadTables:^(BOOL succeeded, NSError *error)
+[STNTableDownloaderProvider downLoadTables:^(BOOL succeeded, NSError* error)
 {
     if (succeeded) // check for success
     {
@@ -422,7 +422,7 @@ The provider `STNTableDownloaderProvider` has the method `downloadTables` that c
 The provider `STNTableLoaderProvider` has the method `loadTables` that loads the downloaded tables to the pinpad.
 
 ```objective-c
-[STNTableLoaderProvider loadTables:^(BOOL succeeded, NSError *error)
+[STNTableLoaderProvider loadTables:^(BOOL succeeded, NSError* error)
 {
     if (succeeded) // check for success
     {
@@ -447,7 +447,7 @@ The parameter `STNTransactionModel` needs to be passed in the method and needs t
 
 #### amount (NSNumber)
 
-Required Property. It is the value and can not contain decimal separator. For example: In case the transaction has a value of `R$ 56.45` the amount will be a `NSNumber` containing the value `5645`.
+Required Property. It is the value and can not contain decimal separator. For example: in case the transaction has a value of `R$ 56.45` the amount will be a `NSNumber` containing the value `5645`.
 
 #### type (STNTransactionTypeSimplified)
 
@@ -504,7 +504,7 @@ transaction.instalmentType = STNInstalmentTypeNone; // instalment type: none
 transaction.shortName = @"Minha Loja"; // custom name for the invoice
 transaction.initiatorTransactionKey = @"9999999999999"; // custom ITK
 
-[STNTransactionProvider sendTransaction:transaction withBlock:^(BOOL succeeded, NSError *error) {
+[STNTransactionProvider sendTransaction:transaction withBlock:^(BOOL succeeded, NSError* error) {
     if (succeeded) // check for success
     {
       // do something
@@ -518,7 +518,7 @@ transaction.initiatorTransactionKey = @"9999999999999"; // custom ITK
 
 #### Notification messages
 
-Durring transactions the pinpad can send notification messages via NSNotificationCenter. These messages are displayed on pinpad's screen and can also be accessed by using a observer on NSNotificationCenter. Simply add the observer before starting the transaction and wait for a string as the example below:
+During transactions the pinpad can send notification messages via `NSNotificationCenter`. These messages are displayed on pinpad's screen and can also be accessed by using a observer on NSNotificationCenter. Simply add the observer before starting the transaction and wait for a string as the example below:
 
 ```objective-c
 - (void)sendTransaction
@@ -527,14 +527,14 @@ Durring transactions the pinpad can send notification messages via NSNotificatio
 		// the SDK provides the define 'PINPAD_MESSAGE' containing the notification's name
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:PINPAD_MESSAGE object:nil];
 
-    STNTransactionModel *transaction = [[STNTransactionModel alloc] init];
+    STNTransactionModel* transaction = [[STNTransactionModel alloc] init];
 
     transaction.amount = [NSNumber numberWithInt:1000];
     transaction.type = STNTransactionTypeSimplifiedCredit;
     transaction.instalmentAmount = STNTransactionInstalmentAmountOne;
     transaction.instalmentType = STNInstalmentTypeNone;
 
-    [STNTransactionProvider sendTransaction:transaction withBlock:^(BOOL succeeded, NSError *error) {
+    [STNTransactionProvider sendTransaction:transaction withBlock:^(BOOL succeeded, NSError* error) {
 
         if (succeeded) // check for success
         {
@@ -549,10 +549,10 @@ Durring transactions the pinpad can send notification messages via NSNotificatio
     }];
 }
 
-- (void)handleNotification:(NSNotification *) notification
+- (void)handleNotification:(NSNotification*) notification
 {
     // converts notification to string
-    NSString *notificationString = [notification object];
+    NSString* notificationString = [notification object];
     // prints it
     NSLog(@"Pinpad's message: %@", notificationString);
 }
@@ -572,7 +572,7 @@ The method `listTransactions:` returns a `NSArray` containing the past transacti
 // Transaction array
 NSArray *transactionsList = [STNTransactionListProvider listTransactions];
 
-for (STNTransactionModel *transaction in transactionsList)
+for (STNTransactionModel* transaction in transactionsList)
 {
     NSLog(@"Transaction value: %@", transaction.amount);
     NSLog(@"Transaction status: %@", transaction.statusString);
@@ -584,7 +584,7 @@ The method `listTransactionsByPan:` will filter transactions by credit card (it 
 
 ```objective-c
 
-[STNTransactionListProvider listTransactionsByPan:^(BOOL succeeded, NSArray *transactionsList, NSError *error)
+[STNTransactionListProvider listTransactionsByPan:^(BOOL succeeded, NSArray* transactionsList, NSError* error)
 {
     if (succeeded) // check for success
     {
@@ -614,7 +614,7 @@ The provider `STNMerchantListProvider` has the method `listMerchants:` that retu
 // Merchant list
 NSArray *merchantsList = [STNMerchantListProvider listMerchants];
 
-for (STNMerchantModel *merchant in merchantsList)
+for (STNMerchantModel* merchant in merchantsList)
 {
     NSLog(@"Merchant name: %@", merchantsList.merchantName);
     NSLog(@"Merchant document number: %@", merchantsList.documentNumber);
@@ -638,7 +638,7 @@ NSArray *transactionsList = [STNTransactionListProvider listTransactions];
 STNTransactionModel *transaction = transactionsList[0];
 
 // cancel transaction
-[STNCancellationProvider cancelTransaction:transaction withBlock:^(BOOL succeeded, NSError *error)
+[STNCancellationProvider cancelTransaction:transaction withBlock:^(BOOL succeeded, NSError* error)
 {
     if (succeeded) // check for success
     {
@@ -656,6 +656,41 @@ STNTransactionModel *transaction = transactionsList[0];
 [101, 210, 601](#error-codes)
 
 ### Send receipt via email
+
+The method `sendReceiptViaEmail:` in the provider `STNMailProvider` can be used to send receipts via email.
+
+Use the following parameters:
+
+#### receipt (STNReceiptModel)
+
+**Required** parameter.
+
+This parameter represents the receipt model. It contains the following properties:
+- `type`: whether it is destined to Merchant (`STNReceiptTypeMerchant`) or Customer (`STNReceiptTypeCustomer`) .
+-  `transaction`: the transaction model which will provide the information to the receipt.
+- `displayCompanyInformation`: a boolean value indicating if the receipt must have address information of the merchant.
+
+#### from (STNContactModel)
+
+**Optional** parameter. If nil, or if it's address isn't set, a Stone noreply email will be set.
+
+A contact identifying the sender with name (optional) and email address (required).
+
+#### destination (STNContactModel)
+
+**Required** parameter.
+
+A contact identifying the recipient with name (optional) and email address (required).
+
+#### Possible error codes
+
+[102, 103, 601](#error-codes)
+
+### Send receipt via email (older versions)
+
+> ⚠️ This method will be removed in the next SDK version. Use the new method to [send receipt via email](#send-receipt-via-email).
+
+> It will only send Customer Type receipts.
 
 The method `sendReceiptViaEmail:` in the provider `STNMailProvider` can be used to send receipts via email.
 
@@ -686,7 +721,7 @@ NSArray *transactions = [STNTransactionListProvider listTransactions];
 NSString *destination = @"john@detination.com";
 
 // send email containing the last transaction receipt
-[STNMailProvider sendReceiptViaEmail:STNMailTemplateTransaction transaction:transactions[0] toDestination:destination displayCompanyInformation:YES withBlock:^(BOOL succeeded, NSError *error)
+[STNMailProvider sendReceiptViaEmail:STNMailTemplateTransaction transaction:transactions[0] toDestination:destination displayCompanyInformation:YES withBlock:^(BOOL succeeded, NSError* error)
 {
     if (succeeded) // check for success
     {
@@ -701,7 +736,7 @@ NSString *destination = @"john@detination.com";
 
 #### Possible error codes
 
-[103, 601](#error-codes)
+[102, 103, 601](#error-codes)
 
 ### Validations
 
