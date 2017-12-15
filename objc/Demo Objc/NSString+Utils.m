@@ -106,6 +106,8 @@ NSString *const kGeneralApproved = @"Approved";
 NSString *const kGeneralCancelled = @"Cancelled";
 NSString *const kGeneralAll = @"All";
 NSString *const kGeneralByCard = @"By_Card";
+NSString *const kGeneralMerchant = @"Merchant";
+NSString *const kGeneralCustomer = @"Customer";
 
 -(NSString*)localize
 {

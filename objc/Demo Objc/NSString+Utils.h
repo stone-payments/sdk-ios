@@ -106,6 +106,8 @@ extern NSString *const kGeneralApproved;
 extern NSString *const kGeneralCancelled;
 extern NSString *const kGeneralAll;
 extern NSString *const kGeneralByCard;
+extern NSString *const kGeneralMerchant;
+extern NSString *const kGeneralCustomer;
 
 -(NSString*)localize;
 
