@@ -24,19 +24,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface STNMerchantModel (CoreDataGeneratedAccessors)
-
-- (void)insertObject:(STNTransactionModel *)value inTransactionsAtIndex:(NSUInteger)idx;
-- (void)removeObjectFromTransactionsAtIndex:(NSUInteger)idx;
-- (void)insertTransactions:(NSArray<STNTransactionModel *> *)value atIndexes:(NSIndexSet *)indexes;
-- (void)removeTransactionsAtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectInTransactionsAtIndex:(NSUInteger)idx withObject:(STNTransactionModel *)value;
-- (void)replaceTransactionsAtIndexes:(NSIndexSet *)indexes withTransactions:(NSArray<STNTransactionModel *> *)values;
-- (void)addTransactionsObject:(STNTransactionModel *)value;
-- (void)removeTransactionsObject:(STNTransactionModel *)value;
-- (void)addTransactions:(NSOrderedSet<STNTransactionModel *> *)values;
-- (void)removeTransactions:(NSOrderedSet<STNTransactionModel *> *)values;
-
-@end
-
 NS_ASSUME_NONNULL_END

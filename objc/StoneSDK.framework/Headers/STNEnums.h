@@ -13,8 +13,15 @@ typedef enum _STNMailTemplate
     STNMailTemplateDefault,
     STNMailTemplateTransaction,
     STNMailTemplateVoidTransaction
+    
+} STNMailTemplate DEPRECATED_MSG_ATTRIBUTE("Deprecated in version 2.3.0. Use STNReceiptType instead. Will be removed in the next version.");
 
-} STNMailTemplate;
+typedef enum _STNReceiptType
+{
+    STNReceiptTypeMerchant,
+    STNReceiptTypeCustomer,
+
+} STNReceiptType;
 
 typedef enum _STNContentType
 {
@@ -33,6 +40,50 @@ typedef enum _STNAcquirer
     STNAcquirerElavon = 5,
     STNAcquirerStone = 8
 } STNAcquirer;
+
+typedef enum _STNEnvironment
+{
+    STNEnvironmentProduction,
+    STNEnvironmentInternalHomolog,
+    STNEnvironmentSandbox,
+    STNEnvironmentStaging,
+    STNEnvironmentCertification
+    
+} STNEnvironment;
+
+typedef enum _STNErrorCode {
+    
+    STNErrorCodeGenericError = 101,
+    STNErrorCodeMissingParameter = 102,
+    STNErrorCodeEmailMessageError = 103,
+    STNErrorCodeNumberOfCharactersExceeded = 105,
+    STNErrorCodeNumberOfCharactersExceededForShortName = 106,
+    STNErrorCodeFncCommandError = 110,
+    
+    STNErrorCodeMissingStonecodeActivation = 201,
+    STNErrorCodeStonecodeAlreadyActivated = 202,
+    
+    STNErrorCodeInvalidAmount = 203,
+    STNErrorCodeTransactionAutoCancel = 204,
+    STNErrorCodeInvalidTransaction = 205,
+    STNErrorCodeTransactionFailed = 206,
+    STNErrorCodeTransactionTimeout = 207,
+    STNErrorCodeUnknownStoneCode = 209,
+    STNErrorCodeTransactionAlreadyCancelled = 210,
+    STNErrorCodeTransactionRejected = 211,
+    STNErrorCodeOperationCancelledByUser = 214,
+    STNErrorCardRemovedByUser = 215,
+    
+    STNErrorCodePinpadConnectionNotFound = 303,
+    STNErrorCodeTablesNotFound = 304,
+    STNErrorCodeLoadingTablesError = 305,
+    STNErrorCodeNullResponse = 306,
+    
+    STNErrorBluetoothNotReady = 401,
+    
+    STNErrorCodeNotConnectedToNetwork = 601
+    
+} STNErrorCode;
 
 typedef enum _STNAuthenticationMethodCode
 {
@@ -228,6 +279,7 @@ typedef enum _STNPartyType
 
 typedef enum _STNInitiatingPartyType
 {
+    STNInitiatingPartyTypeInvalid,
     STNInitiatingPartyTypeOriginatingPOI,
     STNInitiatingPartyTypeMerchant,
     STNInitiatingPartyTypeAcceptor,
@@ -240,6 +292,7 @@ typedef enum _STNInitiatingPartyType
 
 typedef enum _STNInitiatingPartyIssuer
 {
+    STNInitiatingPartyIssuerInvalid,
     STNInitiatingPartyIssuerOriginatingPOI,
     STNInitiatingPartyIssuerMerchant,
     STNInitiatingPartyIssuerAcceptor,
