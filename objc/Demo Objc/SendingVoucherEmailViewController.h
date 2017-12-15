@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "StoneSDK/StoneSDK.h"
 
-@interface SendingVoucherEmailViewController : UIViewController
+@interface SendingVoucherEmailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UILabel *feedback;

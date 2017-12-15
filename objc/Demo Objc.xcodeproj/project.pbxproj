@@ -163,10 +163,6 @@
 				41D21DC71E5F300D00F2ECBF /* AppDelegate.m */,
 				41D21DC91E5F300D00F2ECBF /* ViewController.h */,
 				41D21DCA1E5F300D00F2ECBF /* ViewController.m */,
-				41D21DCC1E5F300D00F2ECBF /* Main.storyboard */,
-				41D21DCF1E5F300D00F2ECBF /* Assets.xcassets */,
-				41D21DD11E5F300D00F2ECBF /* LaunchScreen.storyboard */,
-				41D21DD41E5F300D00F2ECBF /* Info.plist */,
 				414EB83E1E73266D00472A3B /* CancellationViewController.h */,
 				414EB83F1E73266D00472A3B /* CancellationViewController.m */,
 				414EB8421E734D0400472A3B /* SendingVoucherEmailViewController.h */,
@@ -184,6 +180,10 @@
 		41D21DC31E5F300D00F2ECBF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				41D21DCC1E5F300D00F2ECBF /* Main.storyboard */,
+				41D21DCF1E5F300D00F2ECBF /* Assets.xcassets */,
+				41D21DD11E5F300D00F2ECBF /* LaunchScreen.storyboard */,
+				41D21DD41E5F300D00F2ECBF /* Info.plist */,
 				41D21DC41E5F300D00F2ECBF /* main.m */,
 				41C528ED1FCCC7A000BCF378 /* NSString+Utils.h */,
 				41C528EE1FCCC7A000BCF378 /* NSString+Utils.m */,
