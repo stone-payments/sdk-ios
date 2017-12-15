@@ -66,7 +66,7 @@ static NSString *cellIdentifier;
     static NSString *cellIdentifier;
     UITableViewCell *cell;
     
-    cellIdentifier = @"simpleTableCell";
+    cellIdentifier = @"cell";
     cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (cell == nil) {

@@ -101,26 +101,26 @@ static NSArray *exemploTransacao;
     cellIdentifier = @"TransCell";
     TransactionCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    STNTransactionModel *transactionInfoProvider = [self.transactions objectAtIndex:indexPath.row];
+    STNTransactionModel *transactionModel = [self.transactions objectAtIndex:indexPath.row];
     
     // Tratamento do amount somente para exibição.
-    int centsValue = [transactionInfoProvider.amount intValue];
+    int centsValue = [transactionModel.amount intValue];
     float realValue = centsValue*0.01;
     NSString *amount = [NSString stringWithFormat:@"%.02f", realValue];
     cell.amountLabel.text = [NSString stringWithFormat:@"%@ %@", @"R$", amount];
     
     // Tratamento do status.
     NSString *shortStatus;
-    if ([transactionInfoProvider.statusString isEqual: @"Transação Aprovada"]) {
+    if ([transactionModel.statusString isEqual: @"Transação Aprovada"]) {
         shortStatus = [kGeneralApproved localize];
-    } else if ([transactionInfoProvider.statusString isEqual:@"Transação Cancelada"]) {
+    } else if ([transactionModel.statusString isEqual:@"Transação Cancelada"]) {
         shortStatus = [kGeneralCancelled localize];
     } else {
-        shortStatus = transactionInfoProvider.statusString;
+        shortStatus = transactionModel.statusString;
     }
     
     cell.statusLabel.text = shortStatus;
-    cell.dateLabel.text = transactionInfoProvider.dateString;
+    cell.dateLabel.text = transactionModel.dateString;
     return cell;
 }
 
