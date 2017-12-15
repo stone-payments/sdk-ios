@@ -785,7 +785,7 @@ if ([STNValidationProvider validateConnectionToNetWork] == YES)
 The method `getCardPan:` in the provider `SNTCardProvider` can be used to fetch the last 4 digits of the PAN.
 
 ```objective-c
-[STNCardProvider getCardPan:^(BOOL succeeded, NSString *pan, NSError *error)
+[STNCardProvider getCardPan:^(BOOL succeeded, NSString* pan, NSError* error)
 {
     if (succeeded) // check for success
     {
@@ -807,7 +807,7 @@ The method `getCardPan:` in the provider `SNTCardProvider` can be used to fetch 
 The provider `STNDisplayProvider` has the method `displayMessage:withBlock:` that is used to display a message on the pinpad. The string must contain up to 16 characters.
 
 ```objective-c
-[STNDisplayProvider displayMessage:@"MY MENSSAGE" withBlock:^(BOOL succeeded, NSError *error)
+[STNDisplayProvider displayMessage:@"MY MENSSAGE" withBlock:^(BOOL succeeded, NSError* error)
 {
     if (succeeded) // check for success
     {
@@ -856,6 +856,10 @@ The `STNTransactionModel` has all the informations about the transaction.
 - shortName (**NSString**) - custom name for the customer's invoice
 - merchant (**STNMerchantModel**) - merchant used in the transaction
 - pinpad (**STNPinpadModel**) - pinpad used in the transaction
+- entryMode (**STNTransactionEntryMode**): whether the transaction was made by magnetic stripe (`STNTransactionEntryModeMagneticStripe`) or chip and pin (`STNTransactionEntryModeChipNPin`)
+- signature (**NSData**): allows to store a binary image of the cardholder signature
+- cvm (**NSString**): the cardholder verification method, as a string representing the hex value sent by the pinpad (only for EMV chip transactions)
+- serviceCode (**NSString**): indicates what types of charges can be accepted, saved as a string representing the hex value sent by the pinpad (gathered on both EMV and magnetic stripe transactions)
 
 ### Merchant
 
@@ -879,6 +883,7 @@ Pinpad informations.
 - name (**NSString**) - name
 - model (**NSString**) - model
 - serialNumber (**NSString**) - serial number
+- transaction (**STNTransactionModel**) - transaction sent by this pinpad
 
 ### Address
 
@@ -895,26 +900,46 @@ Address information.
 - zipCode (**NSString**) - zip code
 - merchant (**STNMerchantModel**) - the merchant in which this address belongs to
 
+
+## Others
+
+### Pinpad
+
+`STNPinpad`  is an object representing the pinpad.
+
+#### Properties list
+
+- name (**NSString**) - device name
+- identifier (**NSString**) - the UUID of BLE devices, or the connection ID of Bluetooth devices
+- alias (**NSString**): custom name
+- device (**id**): it stores the CBPeripheral (BLE) or the EAAccessory (Bluetooth) object.
+
+
 ### Error code
 
-- 101 - generic error
-- 103 - error sending email
-- 105 - exceeded the maximum number of characters
-- 106 - exceeded the maximum number of characters for the property `shortName`
-- 110 - error on the command FNC
-- 201 - no merchant activated
-- 202 - merchant already activated
-- 203 - invalid amount for transaction
-- 204 - transaction cancelled during transaction
-- 205 - invalid transaction
-- 206 - transaction failed
-- 207 - transaction timeout
-- 209 - Wrong Stone code
-- 210 - transaction already cancelled
-- 211 - transaction denied
-- 214 - operation cancelled by user
-- 303 - no session with pinpad found
-- 304 - no AID and CAPK tables found
-- 305 - error loading tables to pinpad
-- 306 - request error
-- 601 - no internet connection
+You can check error code by value or by it's enumaration. Possible values:
+
+- 101 - generic error (**STNErrorCodeGenericError**)
+- 102 - missing parameter (**STNErrorCodeMissingParameter**)
+- 103 - error sending email (**STNErrorCodeEmailMessageError**)
+- 105 - exceeded the maximum number of characters (**STNErrorCodeNumberOfCharactersExceeded**)
+- 106 - exceeded the maximum number of characters for the property `shortName` (**STNErrorCodeNumberOfCharactersExceededForShortName**)
+- 110 - error on the command FNC (**STNErrorCodeMissingStonecodeActivation**)
+- 201 - no merchant activated (**STNErrorCodeMissingStonecodeActivation**)
+- 202 - merchant already activated (**STNErrorCodeStonecodeAlreadyActivated**)
+- 203 - invalid amount for transaction (**STNErrorCodeInvalidAmount**)
+- 204 - transaction cancelled during transaction (**STNErrorCodeTransactionAutoCancel**)
+- 205 - invalid transaction (**STNErrorCodeTransactionFailed**)
+- 206 - transaction failed (**STNErrorCodeTransactionFailed**)
+- 207 - transaction timeout (**STNErrorCodeTransactionTimeout**)
+- 209 - Wrong Stone code (**STNErrorCodeTransactionAlreadyCancelled**)
+- 210 - transaction already cancelled (**STNErrorCodeTransactionAlreadyCancelled**)
+- 211 - transaction denied (**STNErrorCodeTransactionRejected**)
+- 214 - operation cancelled by user (**STNErrorCodeOperationCancelledByUser**)
+- 215 - card removed by user (**STNErrorCardRemovedByUser**)
+- 303 - no session with pinpad found (**STNErrorCodePinpadConnectionNotFound**)
+- 304 - no AID and CAPK tables found (**STNErrorCodeTablesNotFound**)
+- 305 - error loading tables to pinpad  (**STNErrorCodeNullResponse**)
+- 306 - request error (**STNErrorCodeNullResponse**)
+- 401 - bluetooth not ready (**STNErrorBluetoothNotReady**)
+- 601 - no internet connection (**STNErrorCodeNotConnectedToNetwork**)

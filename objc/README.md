@@ -802,6 +802,10 @@ O model `STNTransactionModel` disponibiliza, em suas propriedades, informações
 - shortName (**NSString**) - nome customizado exibido na fatura (se não for definido será `nil`)
 - merchant (**STNMerchantModel**) - lojista que passou a transação
 - pinpad (**STNPinpadModel**) - pinpad que passou a transação
+- entryMode (**STNTransactionEntryMode**): indica se a transação foi feita por tarja magnética (`STNTransactionEntryModeMagneticStripe`) ou por chip e senha (`STNTransactionEntryModeChipNPin`)
+- signature (**NSData**): permite armazenar uma imagem binária da assinatura do portador do cartão
+- cvm (**NSString**): cardholder verification method, armazenado como uma string que representa o valor hex enviado pelo pinpad (apenas para transações EMV de chip)
+- serviceCode (**NSString**): indica quais tipos de cobranças podem ser aceitas, armazenado como uma string que representa o valor hex enviado pelo pinpad (tanto em transações EMV de chip quanto em transações de tarja)
 
 ### Lojista
 
@@ -858,24 +862,27 @@ O `STNPinpad` é um objeto representativo do pinpad.
 
 ### Códigos de erro
 
-- 101 - erro genérico
-- 103 - falha no envio de email
-- 105 - número de caracteres acima do permitido
-- 106 - número de caracteres acima do permitido para a propriedade `shortName`
-- 110 - erro no comando FNC
-- 201 - falta ativar o Stone Code
-- 202 - Stone Code informado já foi ativado
-- 203 - valor informado para transação é inválido
-- 204 - transação cancelada durante operação
-- 205 - transação inválida
-- 206 - falha na transação
-- 207 - tempo da transação expirado
-- 209 - Stone Code desconhecido
-- 210 - Transação já foi cancelada
-- 211 - transação negada
-- 214 - operação cancelada pelo usuario
-- 303 - conexão com o pinpad não encontrada
-- 304 - tabelas AID e CAPK não encontradas
-- 305 - erro ao carregar tabelas para o pinpad
-- 306 - erro no request
-- 601 - erro na conexão com a internet
+- 101 - erro genérico (**STNErrorCodeGenericError**)
+- 102 - falta parâmetro (**STNErrorCodeMissingParameter**)
+- 103 - falha no envio de email (**STNErrorCodeEmailMessageError**)
+- 105 - número de caracteres acima do permitido (**STNErrorCodeNumberOfCharactersExceeded**)
+- 106 - número de caracteres acima do permitido para a propriedade `shortName` (**STNErrorCodeNumberOfCharactersExceededForShortName**)
+- 110 - erro no comando FNC (**STNErrorCodeMissingStonecodeActivation**)
+- 201 - falta ativar o Stone Code (**STNErrorCodeMissingStonecodeActivation**)
+- 202 - Stone Code informado já foi ativado (**STNErrorCodeStonecodeAlreadyActivated**)
+- 203 - valor informado para transação é inválido (**STNErrorCodeInvalidAmount**)
+- 204 - transação cancelada durante operação (**STNErrorCodeTransactionAutoCancel**)
+- 205 - transação inválida (**STNErrorCodeTransactionFailed**)
+- 206 - falha na transação (**STNErrorCodeTransactionFailed**)
+- 207 - tempo da transação expirado (**STNErrorCodeTransactionTimeout**)
+- 209 - Stone Code desconhecido (**STNErrorCodeTransactionAlreadyCancelled**)
+- 210 - Transação já foi cancelada (**STNErrorCodeTransactionAlreadyCancelled**)
+- 211 - transação negada (**STNErrorCodeTransactionRejected**)
+- 214 - operação cancelada pelo usuario (**STNErrorCodeOperationCancelledByUser**)
+- 215 - cartão removido pelo usuário (**STNErrorCardRemovedByUser**)
+- 303 - conexão com o pinpad não encontrada (**STNErrorCodePinpadConnectionNotFound**)
+- 304 - tabelas AID e CAPK não encontradas (**STNErrorCodeTablesNotFound**)
+- 305 - erro ao carregar tabelas para o pinpad (**STNErrorCodeNullResponse**)
+- 306 - erro no request (**STNErrorCodeNullResponse**)
+- 401 - bluetooth não disponível (**STNErrorBluetoothNotReady**)
+- 601 - erro na conexão com a internet (**STNErrorCodeNotConnectedToNetwork**)
