@@ -97,7 +97,7 @@
 "Log_Pinpad_Not_Connected" = "Pinpad is not connected";
 "Log_Tables_Downloaded" = "Tables were already downloaded";
 "Log_Tables_Not_Downloaded" = "Tables were not downloded yet";
-"Log_Intert_Connection" = "There is an internet connection";
+"Log_Internet_Connection" = "There is an internet connection";
 "Log_No_Internet_Connection" = "This is no internet connection";
 
 /* Log - Screen Display View Controller */

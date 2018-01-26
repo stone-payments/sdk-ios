@@ -97,7 +97,7 @@
 "Log_Pinpad_Not_Connected" = "Pinpad não está pareado com dispositivo";
 "Log_Tables_Downloaded" = "As tabelas já foram baixadas para o dispositivo";
 "Log_Tables_Not_Downloaded" = "As tabelas ainda não foram baixadas para o dispositivo";
-"Log_Intert_Connection" = "A conexão com a internet está ativa";
+"Log_Internet_Connection" = "A conexão com a internet está ativa";
 "Log_No_Internet_Connection" = "A conexão com a internet está inativa";
 
 /* Log - Screen Display View Controller */
