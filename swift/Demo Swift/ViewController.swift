@@ -20,6 +20,7 @@ class ViewController: UITableViewController {
         self.navigationItem.title = "Stone"
         
         self.optionsList.append("Estabelece Sessão com Pinpad")
+        self.optionsList.append("Buscar dispositivos low energy")
         self.optionsList.append("Ativação do Stone Code")
         self.optionsList.append("Download das Tabelas")
         self.optionsList.append("Carregamento das Tabelas")
@@ -31,7 +32,6 @@ class ViewController: UITableViewController {
         self.optionsList.append("Testando Validações")
         self.optionsList.append("Captura de PAN")
         self.optionsList.append("Exibe Mensagem no Display")
-        self.optionsList.append("Buscar dispositivos low energy")
         
         // Verificamos se já foi definido um Stone Code;
         if STNValidationProvider.validateActivation() == false {
@@ -71,7 +71,7 @@ class ViewController: UITableViewController {
             performSegue(withIdentifier: "segueConnectPinpad", sender: nil)
             break
         case 1:
-            performSegue(withIdentifier: "segueActivationStoneCode", sender: nil)
+            performSegue(withIdentifier: "segueSearchLowEnergyDevices", sender: nil)
             break
         case 2:
             performSegue(withIdentifier: "segueDownloadTable", sender: nil)
@@ -103,7 +103,7 @@ class ViewController: UITableViewController {
         case 11:
             performSegue(withIdentifier: "segueScreenDisplay", sender: nil)
         case 12:
-            performSegue(withIdentifier: "segueSearchLowEnergyDevices", sender: nil)
+            performSegue(withIdentifier: "segueActivationStoneCode", sender: nil)
         default:
             break
         
