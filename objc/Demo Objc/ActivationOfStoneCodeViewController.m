@@ -8,6 +8,7 @@
 
 #import "ActivationOfStoneCodeViewController.h"
 #import "NSString+Utils.h"
+#import "DemoPreferences.h"
 
 @interface ActivationOfStoneCodeViewController ()
 {
@@ -30,22 +31,37 @@
     [super viewDidLoad];
     self.navigationItem.title = [kTitleActivation localize];
     self.informationLabel.text = [kInstructionActivation localize];
-    [self.activateButton setTitle:[kButtonActivate localize] forState:UIControlStateNormal];
-    [self.deactivateButton setTitle:[kButtonDeactivate localize] forState:UIControlStateNormal];
+    [self.activateButton setTitle:[kButtonActivate localize]
+                         forState:UIControlStateNormal];
+    [self.deactivateButton setTitle:[kButtonDeactivate localize]
+                           forState:UIControlStateNormal];
     
-    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
+    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc]
+                                     initWithTarget:self.view
+                                     action:@selector(endEditing:)]];
     
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    self.overlayView.backgroundColor = [UIColor colorWithRed:0
+                                                       green:0
+                                                        blue:0
+                                                       alpha:0.5];
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.activityIndicator.center = self.overlayView.center;
 
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
     
-    environments = @[[kEnvironmentProduction localize], [kEnvironmentInternalHomolog localize], [kEnvironmentSandbox localize], [kEnvironmentStaging localize], [kEnvironmentCertification localize]];
+    environments = @[[kEnvironmentProduction localize],
+                     [kEnvironmentInternalHomolog localize],
+                     [kEnvironmentSandbox localize],
+                     [kEnvironmentStaging localize],
+                     [kEnvironmentCertification localize]];
     
-    [self.pickerView selectRow:[STNConfig environment] inComponent:0 animated:NO];
+    STNEnvironment env = [DemoPreferences readEnvironment];
+    
+    [self.pickerView selectRow:(int)env
+                   inComponent:0
+                      animated:NO];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -108,16 +124,25 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
+    STNEnvironment environment;
     switch (row) {
-        case 0: [STNConfig setEnvironment:STNEnvironmentProduction]; break;
-        case 1: [STNConfig setEnvironment:STNEnvironmentInternalHomolog]; break;
-        case 2: [STNConfig setEnvironment:STNEnvironmentSandbox]; break;
-        case 3: [STNConfig setEnvironment:STNEnvironmentStaging]; break;
-        case 4: [STNConfig setEnvironment:STNEnvironmentCertification]; break;
-            
+        case 0:
+            environment = STNEnvironmentProduction;
+        case 1:
+            environment = STNEnvironmentInternalHomolog;
+            break;
+        case 2:
         default:
+            environment = STNEnvironmentSandbox;
+            break;
+        case 3:
+            environment = STNEnvironmentStaging;
+            break;
+        case 4:
+            environment = STNEnvironmentCertification;
             break;
     }
+    [DemoPreferences writeEnvironment:environment];
 }
 
 @end
