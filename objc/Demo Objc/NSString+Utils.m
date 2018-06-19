@@ -108,6 +108,9 @@ NSString *const kGeneralAll = @"All";
 NSString *const kGeneralByCard = @"By_Card";
 NSString *const kGeneralMerchant = @"Merchant";
 NSString *const kGeneralCustomer = @"Customer";
+NSString *const kGeneralInterest = @"Interest";
+NSString *const kGeneralNone = @"None";
+NSString *const kGeneralIssuer = @"Issuer";
 
 -(NSString*)localize
 {

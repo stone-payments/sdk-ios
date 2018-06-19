@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "NSString+Utils.h"
+#import "DemoPreferences.h"
 
 @interface AppDelegate ()
 
@@ -21,7 +22,11 @@ NSTimer* timer;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    // Set Stone as Acquirer
     [STNConfig setAcquirer:STNAcquirerStone];
+   
+    // Set the Stone environment
+    [STNConfig setEnvironment:[DemoPreferences readEnvironment]];
     
     return YES;
 }
@@ -32,33 +37,35 @@ NSTimer* timer;
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
 }
 
-
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-
-    timer = [NSTimer scheduledTimerWithTimeInterval:60 * 3
-                                            target: self
-                                           selector: @selector(keepConnectionAlive)
-                                           userInfo: nil
-                                            repeats: YES];
-    UIBackgroundTaskIdentifier bgTask = 0;
-    UIApplication *app = [UIApplication sharedApplication];
-    bgTask = [app beginBackgroundTaskWithExpirationHandler:^
+    if (timer == nil)
     {
-        [app endBackgroundTask:bgTask];
-    }];
+        timer = [NSTimer scheduledTimerWithTimeInterval: 60 * 3
+                                                 target: self
+                                               selector: @selector(keepConnectionAlive)
+                                               userInfo: nil
+                                                repeats: YES];
+        __block UIBackgroundTaskIdentifier bgTask = 0;
+        __block UIApplication *app = [UIApplication sharedApplication];
+        bgTask = [app beginBackgroundTaskWithExpirationHandler:^
+        {
+          [app endBackgroundTask:bgTask];
+        }];
+    }
 }
 
 // Para manter a conexão ativa.
 - (void)keepConnectionAlive
 {
+    NSLog(@"keepConnectionAlive called");
     [STNPinPadConnectionProvider connectToPinpad:^(BOOL succeeded, NSError *error) {
-        
+
         if (succeeded)
         {
-            NSLog(@"%@", [kGeneralConnected localize]);
+            NSLog(@"keepConnectionAlive succeeded %@", [kGeneralConnected localize]);
         } else
         {
-            
+            NSLog(@"keepConnectionAlive failed %@", [error localizedDescription]);
             [self showErrorMessage:[error localizedDescription]];
         }
     }];
@@ -96,6 +103,14 @@ NSTimer* timer;
     
     [errorAlert addAction:okButton];
     [self.window.rootViewController presentViewController:errorAlert animated:YES completion:nil];
+    
+//    if presentedViewController == nil {
+//        self.presentViewController(alertController, animated: true, completion: nil)
+//    } else{
+//        self.dismissViewControllerAnimated(false) { () -> Void in
+//            self.presentViewController(alertController, animated: true, completion: nil)
+//        }
+//    }
 }
 
 // Converte o número para float, trata a questão da vírgula e/ou do ponto como separador para decimal.
