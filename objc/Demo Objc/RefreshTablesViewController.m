@@ -47,22 +47,21 @@
     
     /* Antes de efetivar o carregamento das tabelas é necessário
      que seja efetivado a conexão com o pinpad. */
-    
-    [STNPinPadConnectionProvider connectToPinpad:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            // Pinpad conectado com sucesso;
-            NSLog(@"%@", [kGeneralConnected localize]);
-            
-        } else {
-            // Erro ao conectar com o pinpad;
-            NSLog(@"%@. [%@]", [kGeneralErrorMessage localize], error.description);
-            self.feedback.text = [kGeneralErrorMessage localize];
-        }
-    }];
+//    
+//    [STNPinPadConnectionProvider connectToPinpad:^(BOOL succeeded, NSError *error) {
+//        if (succeeded) {
+//            // Pinpad conectado com sucesso;
+//            NSLog(@"%@", [kGeneralConnected localize]);
+//            
+//        } else {
+//            // Erro ao conectar com o pinpad;
+//            NSLog(@"%@. [%@]", [kGeneralErrorMessage localize], error.description);
+//            self.feedback.text = [kGeneralErrorMessage localize];
+//        }
+//    }];
     
     // Agora vamos fazer o carregamento das tabelas;
     [STNTableLoaderProvider loadTables:^(BOOL succeeded, NSError *error) {
-        [self.overlayView removeFromSuperview];
         if (succeeded) {
             NSLog(@"%@", [kLogTablesUpdated localize]);
             self.feedback.text = [kLogTablesUpdated localize];
@@ -71,6 +70,7 @@
             NSLog(@"%@", error.description);
             self.feedback.text = [kGeneralErrorMessage localize];
         }
+        [self.overlayView removeFromSuperview];
     }];
 }
 

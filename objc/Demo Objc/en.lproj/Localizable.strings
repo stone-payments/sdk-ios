@@ -121,3 +121,6 @@
 "By_Card" = "By card";
 "Merchant" = "Merchant";
 "Customer" = "Customer";
+"Interest" = "Interest";
+"None" = "None";
+"Issuer" = "Issuer";

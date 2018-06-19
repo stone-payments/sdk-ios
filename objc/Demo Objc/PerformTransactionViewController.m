@@ -8,6 +8,7 @@
 
 #import "PerformTransactionViewController.h"
 #import "NSString+Utils.h"
+#import "DemoPreferences.h"
 
 @interface PerformTransactionViewController ()
 
@@ -102,33 +103,51 @@ static int rowNumber;
         // Propriedade Obrigatória, define o tipo de transação, se é débito ou crédito;
         transaction.type = STNTransactionTypeSimplifiedCredit;
         
-        if (_rateSwitch.isOn) {
-            // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros ou pagamento a vista;
-            transaction.instalmentType = STNInstalmentTypeIssuer;
-        }
-        else {
-            // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros ou pagamento a vista;
-            transaction.instalmentType = STNInstalmentTypeNone;
+        transaction.instalmentType = STNInstalmentTypeNone;
+        if (_rateSwitch.isEnabled && rowNumber > 0){
+            if (_rateSwitch.isOn) {
+                // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros ou pagamento a vista;
+                transaction.instalmentType = STNInstalmentTypeIssuer;
+            }
+            else {
+                // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros ou pagamento a vista;
+                transaction.instalmentType = STNInstalmentTypeMerchant;
+            }
         }
 
         // Propriedade Obrigatória, define o número de parcelas da transação;
         switch (rowNumber) {
-            case 0: transaction.instalmentAmount = STNTransactionInstalmentAmountOne; break; // 1 parcela ou à vista;
+            case 0: transaction.instalmentAmount = STNTransactionInstalmentAmountOne;
+                transaction.instalmentType = STNInstalmentTypeNone;
+                break; // 1 parcela ou à vista;
             case 1: transaction.instalmentAmount = STNTransactionInstalmentAmountTwo; break; // 2 parcelas
-            case 3: transaction.instalmentAmount = STNTransactionInstalmentAmountThree; break; // ...
-            case 4: transaction.instalmentAmount = STNTransactionInstalmentAmountFour; break;
-            case 5: transaction.instalmentAmount = STNTransactionInstalmentAmountFive; break;
-            case 6: transaction.instalmentAmount = STNTransactionInstalmentAmountSix; break;
-            case 7: transaction.instalmentAmount = STNTransactionInstalmentAmountSeven; break;
-            case 8: transaction.instalmentAmount = STNTransactionInstalmentAmountEight; break;
-            case 9: transaction.instalmentAmount = STNTransactionInstalmentAmountNine; break;
-            case 10: transaction.instalmentAmount = STNTransactionInstalmentAmountTen; break;
-            case 11: transaction.instalmentAmount = STNTransactionInstalmentAmountEleven; break; // ...
-            case 12: transaction.instalmentAmount = STNTransactionInstalmentAmountTwelve; break;  // 12 parcelas
+            case 2: transaction.instalmentAmount = STNTransactionInstalmentAmountThree; break; // ...
+            case 3: transaction.instalmentAmount = STNTransactionInstalmentAmountFour; break;
+            case 4: transaction.instalmentAmount = STNTransactionInstalmentAmountFive; break;
+            case 5: transaction.instalmentAmount = STNTransactionInstalmentAmountSix; break;
+            case 6: transaction.instalmentAmount = STNTransactionInstalmentAmountSeven; break;
+            case 7: transaction.instalmentAmount = STNTransactionInstalmentAmountEight; break;
+            case 8: transaction.instalmentAmount = STNTransactionInstalmentAmountNine; break;
+            case 9: transaction.instalmentAmount = STNTransactionInstalmentAmountTen; break;
+            case 10: transaction.instalmentAmount = STNTransactionInstalmentAmountEleven; break; // ...
+            case 11: transaction.instalmentAmount = STNTransactionInstalmentAmountTwelve; break;  // 12 parcelas
         }
+        
+        NSLog(@"transaction.instalmentAmount: %d", (int)transaction.instalmentAmount);
+    }
+//    transaction.capture = STNTransactionCaptureNo;
+//    transaction.capture = STNTransactionCaptureYes;
+    // Vamos efetivar a transacao;
+    
+    NSArray *merchants;
+    merchants = [STNMerchantListProvider listMerchants];
+    if ([merchants count]>0) {
+        STNMerchantModel *merchant = [merchants objectAtIndex:0];
+        transaction.merchant = merchant;
     }
     
-    // Vamos efetivar a transacao;
+//    [STNConfig setEnvironment:STNEnvironmentInternalHomolog];
+
     [STNTransactionProvider sendTransaction:transaction withBlock:^(BOOL succeeded, NSError *error) {
         [self.overlayView removeFromSuperview];
         if (succeeded) {

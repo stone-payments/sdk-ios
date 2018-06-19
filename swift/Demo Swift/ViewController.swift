@@ -35,15 +35,18 @@ class ViewController: UITableViewController {
         
         // Verificamos se já foi definido um Stone Code;
         if STNValidationProvider.validateActivation() == false {
-            NSLog("Sem Stone Code definido.")
+            print("Sem Stone Code definido.")
+        }
+        else
+        {
+            print("Stone Code ativado")
         }
         
         STNPinPadConnectionProvider.connect { (succeeded, error) in
             if succeeded {
-                NSLog("Pinpad connectado");
+                print("Pinpad connectado");
             }
         }
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,41 +77,52 @@ class ViewController: UITableViewController {
             performSegue(withIdentifier: "segueSearchLowEnergyDevices", sender: nil)
             break
         case 2:
-            performSegue(withIdentifier: "segueDownloadTable", sender: nil)
+            performSegue(withIdentifier: "segueActivationStoneCode", sender: nil)
             break
         case 3:
-            performSegue(withIdentifier: "segueRefreshTables", sender: nil)
+            performSegue(withIdentifier: "segueDownloadTable", sender: nil)
             break
         case 4:
-            performSegue(withIdentifier: "seguePerformTransaction", sender: nil)
+            performSegue(withIdentifier: "segueRefreshTables", sender: nil)
             break
         case 5:
-            performSegue(withIdentifier: "segueListTransaction", sender: nil)
+            performSegue(withIdentifier: "seguePerformTransaction", sender: nil)
             break
         case 6:
-            performSegue(withIdentifier: "segueListMerchant", sender: nil)
+            performSegue(withIdentifier: "segueListTransaction", sender: nil)
             break
         case 7:
-            performSegue(withIdentifier: "segueCancelTransaction", sender: nil)
+            performSegue(withIdentifier: "segueListMerchant", sender: nil)
             break
         case 8:
-            performSegue(withIdentifier: "segueSendingVoucherEmail", sender: nil)
+            performSegue(withIdentifier: "segueCancelTransaction", sender: nil)
             break
         case 9:
-            performSegue(withIdentifier: "segueTesteValidation", sender: nil)
+            performSegue(withIdentifier: "segueSendingVoucherEmail", sender: nil)
             break
         case 10:
-            performSegue(withIdentifier: "segueCapturePan", sender: nil)
+            performSegue(withIdentifier: "segueTesteValidation", sender: nil)
             break;
         case 11:
-            performSegue(withIdentifier: "segueScreenDisplay", sender: nil)
+            performSegue(withIdentifier: "segueCapturePan", sender: nil)
         case 12:
-            performSegue(withIdentifier: "segueActivationStoneCode", sender: nil)
+            performSegue(withIdentifier: "segueScreenDisplay", sender: nil)
         default:
             break
         
         }
     }
-    
 }
 
+// Resign first response
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}

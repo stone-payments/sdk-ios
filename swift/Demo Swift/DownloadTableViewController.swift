@@ -13,9 +13,14 @@ class DownloadTableViewController: UIViewController {
 
     @IBOutlet weak var feedbackLabel: UILabel!
     
+    var loadingView: LoadingView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-      self.navigationItem.title = "Download de Tabelas"
+        self.navigationItem.title = "Download de Tabelas"
+        
+        self.loadingView = LoadingView.init(frame: UIScreen.main.bounds)
+        self.navigationController?.view.addSubview(self.loadingView!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,18 +28,23 @@ class DownloadTableViewController: UIViewController {
     }
     
     @IBAction func performDownload(_ sender: Any) {
-        NSLog("Efetuando Download das Tabelas")
         /*
             Efetuando o download das tabelas
          */
         feedbackLabel.text = "Carregando..."
+        self.loadingView.show()
+        
         STNTableDownloaderProvider.downLoadTables { (succeeded, error) in
-            if succeeded {
-                NSLog("Download realizado com sucesso.")
-                self.feedbackLabel.text = "Download Realizado"
-            } else {
-                NSLog(error.debugDescription)
-                self.feedbackLabel.text = error.debugDescription
+            DispatchQueue.main.async {
+                if succeeded
+                {
+                    self.feedbackLabel.text = "Download Realizado"
+                }
+                else
+                {
+                    self.feedbackLabel.text = error.debugDescription
+                }
+                self.loadingView.hide()
             }
         }
     }

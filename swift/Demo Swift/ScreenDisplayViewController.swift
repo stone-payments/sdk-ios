@@ -14,9 +14,14 @@ class ScreenDisplayViewController: UIViewController {
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var feedbackLabel: UILabel!
     
+    var loadingView: LoadingView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Exibe mensagem no display"
+        
+        self.loadingView = LoadingView.init(frame: UIScreen.main.bounds)
+        self.navigationController?.view.addSubview(self.loadingView!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,14 +29,22 @@ class ScreenDisplayViewController: UIViewController {
     }
 
     @IBAction func performDisplayMessage(_ sender: Any) {
+        self.loadingView.show()
         let message = self.messageTextField.text
-        STNDisplayProvider.displayMessage(message) { (succeeded, error) in
-            if succeeded {
-                NSLog("Mensagem enviada para o PinPad")
-                self.feedbackLabel.text = "Mensagem enviada ao Pinpad"
-            } else {
-                NSLog(error.debugDescription)
-                self.feedbackLabel.text = error.debugDescription
+        STNDisplayProvider.displayMessage(message)
+        { (succeeded, error) in
+            // UI Manipulation code
+            DispatchQueue.main.async
+            {
+                if succeeded
+                {
+                    self.feedbackLabel.text = "Mensagem enviada ao Pinpad"
+                }
+                else
+                {
+                    self.feedbackLabel.text = error.debugDescription
+                }
+                self.loadingView.hide()
             }
         }
     }

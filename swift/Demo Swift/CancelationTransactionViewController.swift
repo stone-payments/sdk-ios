@@ -16,12 +16,17 @@ class CancelationTransactionViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var feedback: UILabel!
     
+    var loadingView: LoadingView!
     var transaction: STNTransactionModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.title = "Cancelar Transação"
+        
+        //Set loading overlay view
+        self.loadingView = LoadingView.init(frame: UIScreen.main.bounds)
+        self.navigationController?.view.addSubview(self.loadingView)
         
         // Tratando o valor do Amount;
         let centsValue: Int = (transaction.amount?.intValue)!
@@ -51,18 +56,23 @@ class CancelationTransactionViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func performCancelation(_ sender: Any) {
-        STNCancellationProvider.cancelTransaction(self.transaction) { (succeeded, error) in
-            DispatchQueue.main.async {
-                if succeeded {
-                    NSLog("Transação cancelada")
+    @IBAction func performCancelation(_ sender: Any)
+    {
+        self.loadingView.show()
+        STNCancellationProvider.cancelTransaction(self.transaction)
+        { (succeeded, error) in
+            DispatchQueue.main.async
+            {
+                if succeeded
+                {
                     self.feedback.text = "Transação cancelada"
-                } else {
-                    NSLog("%@", error.debugDescription)
+                }
+                else
+                {
                     self.feedback.text = error.debugDescription
                 }
+                self.loadingView.hide()
             }
         }
-        
     }
 }
