@@ -13,9 +13,14 @@ class RefreshTablesViewController: UIViewController {
     
     @IBOutlet weak var feedbackLabel: UILabel!
     
+    var loadingView: LoadingView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Carregamento das Tabelas"
+        
+        self.loadingView = LoadingView.init(frame: UIScreen.main.bounds)
+        self.navigationController?.view.addSubview(self.loadingView!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,18 +28,25 @@ class RefreshTablesViewController: UIViewController {
     }
 
     @IBAction func performRefreshTables(_ sender: Any) {
-        NSLog("Efetuando Atualização das Tabelas")
         /*
             Atualizamos as tabelas
          */
         feedbackLabel.text = "Carregando..."
-        STNTableLoaderProvider.loadTables { (succeeded, error) in
-            if succeeded {
-                NSLog("Tabelas atualizadas")
-                self.feedbackLabel.text = "Tabelas atualizadas"
-            } else {
-                NSLog(error.debugDescription)
-                self.feedbackLabel.text = error.debugDescription
+        self.loadingView.show()
+        
+        STNTableLoaderProvider.loadTables
+        { (succeeded, error) in
+            DispatchQueue.main.async()
+            {
+                if succeeded
+                {
+                    self.feedbackLabel.text = "Tabelas atualizadas"
+                }
+                else
+                {
+                    self.feedbackLabel.text = error.debugDescription
+                }
+                self.loadingView.hide()
             }
         }
     }

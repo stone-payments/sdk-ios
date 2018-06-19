@@ -124,5 +124,14 @@ static NSArray *exemploTransacao;
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    STNTransactionModel *transaction = [self.transactions objectAtIndex:indexPath.row];
+    
+    NSLog(@"date: %@",transaction.dateString);
+    NSLog(@"Amount: %@",transaction.amount);
+    NSLog(@"cvm: %@",transaction.cvm);
+    NSLog(@"balance: %@",transaction.balance);
+}
 
 @end

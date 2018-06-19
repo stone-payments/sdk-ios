@@ -13,8 +13,15 @@ typedef enum _STNMailTemplate
     STNMailTemplateDefault,
     STNMailTemplateTransaction,
     STNMailTemplateVoidTransaction
+    
+} STNMailTemplate DEPRECATED_MSG_ATTRIBUTE("Deprecated in version 2.3.0. Use STNReceiptType instead. Will be removed in the next version.");
 
-} STNMailTemplate;
+typedef enum _STNReceiptType
+{
+    STNReceiptTypeMerchant,
+    STNReceiptTypeCustomer,
+
+} STNReceiptType;
 
 typedef enum _STNContentType
 {
@@ -31,8 +38,57 @@ typedef enum _STNAcquirer
 {
     STNAcquirerInvalid = -1,
     STNAcquirerElavon = 5,
-    STNAcquirerStone = 8
+    STNAcquirerStone = 16
 } STNAcquirer;
+
+typedef enum _STNEnvironment
+{
+    STNEnvironmentProduction,
+    STNEnvironmentInternalHomolog,
+    STNEnvironmentSandbox,
+    STNEnvironmentStaging,
+    STNEnvironmentCertification
+    
+} STNEnvironment;
+
+typedef enum _STNErrorCode {
+    
+    STNErrorCodeGenericError = 101,
+    STNErrorCodeMissingParameter = 102,
+    STNErrorCodeEmailMessageError = 103,
+    STNErrorCodeNumberOfCharactersExceeded = 105,
+    STNErrorCodeNumberOfCharactersExceededForShortName = 106,
+    STNErrorCodeFncCommandError = 110,
+    
+    STNErrorCodeMissingStonecodeActivation = 201,
+    STNErrorCodeStonecodeAlreadyActivated = 202,
+    
+    STNErrorCodeInvalidParameter = 202,
+    STNErrorCodeInvalidAmount = 203,
+    STNErrorCodeTransactionAutoCancel = 204,
+    STNErrorCodeInvalidTransaction = 205,
+    STNErrorCodeTransactionFailed = 206,
+    STNErrorCodeTransactionTimeout = 207,
+    STNErrorCodeUnknownStoneCode = 209,
+    STNErrorCodeTransactionAlreadyCancelled = 210,
+    STNErrorCodeTransactionRejected = 211,
+    STNErrorCodeOperationCancelledByUser = 214,
+    STNErrorCodeCardRemovedByUser = 215,
+    STNErrorCodeMissingTableContent = 220,
+    STNErrorCodeInvalidCardApplication = 221,
+    
+    STNErrorCodePinpadConnectionNotFound = 303,
+    STNErrorCodeTablesNotFound = 304,
+    STNErrorCodeLoadingTablesError = 305,
+    STNErrorCodeNullResponse = 306,
+    STNErrorCodeTableVersionNotFound = 307,
+    STNErrorCodePinpadCommunicationFailed = 308,
+    
+    STNErrorCodeBluetoothNotReady = 401,
+    
+    STNErrorCodeNotConnectedToNetwork = 601
+    
+} STNErrorCode;
 
 typedef enum _STNAuthenticationMethodCode
 {
@@ -228,6 +284,7 @@ typedef enum _STNPartyType
 
 typedef enum _STNInitiatingPartyType
 {
+    STNInitiatingPartyTypeInvalid,
     STNInitiatingPartyTypeOriginatingPOI,
     STNInitiatingPartyTypeMerchant,
     STNInitiatingPartyTypeAcceptor,
@@ -240,6 +297,7 @@ typedef enum _STNInitiatingPartyType
 
 typedef enum _STNInitiatingPartyIssuer
 {
+    STNInitiatingPartyIssuerInvalid,
     STNInitiatingPartyIssuerOriginatingPOI,
     STNInitiatingPartyIssuerMerchant,
     STNInitiatingPartyIssuerAcceptor,
@@ -328,6 +386,7 @@ typedef enum _STNTransactionType
 
 typedef enum _STNTransactionInstalmentAmount
 {
+    STNTransactionInstalmentAmountInvalid = 0,
     STNTransactionInstalmentAmountOne = 1,
     STNTransactionInstalmentAmountTwo = 2,
     STNTransactionInstalmentAmountThree = 3,
@@ -350,7 +409,8 @@ typedef enum _STNTransactionCapture
     
 } STNTransactionCapture;
 
-typedef enum _STNTransactionEntryMode {
+typedef enum _STNTransactionEntryMode 
+{
     STNTransactionEntryModeUnknown,
     STNTransactionEntryModeMagneticStripe,
     STNTransactionEntryModeChipNPin
@@ -368,7 +428,8 @@ typedef enum _STNCardBrand
     STNCardBrandAlelo,
     STNCardBrandUnknown,
     STNCardBrandHipercard,
-    STNCardBrandHiper
+    STNCardBrandHiper,
+    STNCardBrandAmex
     
 } STNCardBrand;
 
@@ -386,7 +447,8 @@ typedef enum STNTransactionMessage
     STNTransactionMessageCardRemoved,
     STNTransactionMessageEMVCard,
     STNTransactionMessageInvalidCard,
-    STNTransactionMessageIccProblem
+    STNTransactionMessageIccProblem,
+    STNTransactionMessageTableNotFound
     
 } STNTransactionMessage;
 
@@ -397,3 +459,9 @@ typedef enum STNCentralState
     STNCentralStateOff
     
 } STNCentralState;
+
+typedef enum STNStreamReadingState{
+    STNStreamReadingStateIdle,
+    STNStreamReadingStateBytesAvailable,
+    STNStreamReadingStateBusy
+} STNStreamReadingState;

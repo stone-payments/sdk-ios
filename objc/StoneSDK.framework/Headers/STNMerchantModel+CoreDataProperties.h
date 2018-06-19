@@ -21,6 +21,22 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *stonecode;
 @property (nullable, nonatomic, retain) STNAddressModel *address;
 @property (nullable, nonatomic, retain) NSOrderedSet<STNTransactionModel *> *transactions;
+@property (nullable, nonatomic, retain) STNTableVersionModel *tableVersion;
+
+@end
+
+@interface STNMerchantModel (CoreDataGeneratedAccessors)
+
+- (void)insertObject:(STNTransactionModel *)value inTransactionsAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromTransactionsAtIndex:(NSUInteger)idx;
+- (void)insertTransactions:(NSArray<STNTransactionModel *> *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeTransactionsAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInTransactionsAtIndex:(NSUInteger)idx withObject:(STNTransactionModel *)value;
+- (void)replaceTransactionsAtIndexes:(NSIndexSet *)indexes withTransactions:(NSArray<STNTransactionModel *> *)values;
+- (void)addTransactionsObject:(STNTransactionModel *)value;
+- (void)removeTransactionsObject:(STNTransactionModel *)value;
+- (void)addTransactions:(NSOrderedSet<STNTransactionModel *> *)values;
+- (void)removeTransactions:(NSOrderedSet<STNTransactionModel *> *)values;
 
 @end
 

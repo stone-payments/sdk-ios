@@ -121,3 +121,6 @@
 "By_Card" = "Por cartão";
 "Merchant" = "Estabelecimento";
 "Customer" = "Cliente";
+"Interest" = "Juros";
+"None" = "Nenhum";
+"Issuer" = "Emissor";

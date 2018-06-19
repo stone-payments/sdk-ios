@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "StoneSDK/StoneSDK.h"
 
-@interface PerformTransactionViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
+@interface PerformTransactionViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (strong, nonatomic) UIView *overlayView;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;

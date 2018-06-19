@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *stonecode;
 @property (nullable, nonatomic, retain) STNAddressModel *address;
 @property (nullable, nonatomic, retain) NSOrderedSet<STNTransactionModel *> *transactions;
+@property (nullable, nonatomic, retain) STNTableVersionModel *tableVersion;
 
 @end
 
