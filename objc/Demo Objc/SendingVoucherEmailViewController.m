@@ -13,6 +13,7 @@
 @interface SendingVoucherEmailViewController ()
 
 @property (strong, nonatomic) IBOutlet UILabel *instructionLabel;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (strong, nonatomic) IBOutlet UIButton *sendButton;
 @property (strong, nonatomic) IBOutlet UITableView *transactionsTableView;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
@@ -28,10 +29,12 @@ STNTransactionModel *selectedTransaction;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+    [self.emailTextField setDelegate:self];
     [self setTexts];
     [self activityIndicatorConfig];
-    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
+    
+//    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
     
     self.transactions = [STNTransactionListProvider listTransactions];
     if (self.transactions > 0) {
@@ -178,4 +181,12 @@ STNTransactionModel *selectedTransaction;
     return 85;
 }
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.emailTextField resignFirstResponder];
+    return YES;
+}
 @end
