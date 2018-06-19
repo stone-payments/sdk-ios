@@ -34,6 +34,7 @@
 		41FB49761E6865310010495B /* StoneSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41FB49751E6865310010495B /* StoneSDK.framework */; };
 		41FB49771E6865310010495B /* StoneSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 41FB49751E6865310010495B /* StoneSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		41FB49831E68A5160010495B /* SelectPinpadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FB49811E68A5160010495B /* SelectPinpadViewController.m */; };
+		6C645FFF208FC4E80098C051 /* DemoPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C645FFE208FC4E70098C051 /* DemoPreferences.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -100,6 +101,8 @@
 		41FB49751E6865310010495B /* StoneSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StoneSDK.framework; sourceTree = "<group>"; };
 		41FB49801E68A5160010495B /* SelectPinpadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPinpadViewController.h; sourceTree = "<group>"; };
 		41FB49811E68A5160010495B /* SelectPinpadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPinpadViewController.m; sourceTree = "<group>"; };
+		6C645FFD208F9EB70098C051 /* DemoPreferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoPreferences.h; sourceTree = "<group>"; };
+		6C645FFE208FC4E70098C051 /* DemoPreferences.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoPreferences.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +158,8 @@
 				411629C01E69EB4C00F6A4FB /* DownloadTableViewController.m */,
 				411629BC1E69B7E300F6A4FB /* ActivationOfStoneCodeViewController.h */,
 				411629BD1E69B7E300F6A4FB /* ActivationOfStoneCodeViewController.m */,
+				6C645FFD208F9EB70098C051 /* DemoPreferences.h */,
+				6C645FFE208FC4E70098C051 /* DemoPreferences.m */,
 				41B2590A1E607E28001668AA /* PerformTransactionViewController.h */,
 				41B2590B1E607E28001668AA /* PerformTransactionViewController.m */,
 				41FB49721E6863D30010495B /* RefreshTablesViewController.h */,
@@ -226,7 +231,12 @@
 					41D21DBF1E5F300D00F2ECBF = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 8Q54VRJ624;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -275,6 +285,7 @@
 				414EB8401E73266D00472A3B /* CancellationViewController.m in Sources */,
 				41D21DCB1E5F300D00F2ECBF /* ViewController.m in Sources */,
 				41D21DC81E5F300D00F2ECBF /* AppDelegate.m in Sources */,
+				6C645FFF208FC4E80098C051 /* DemoPreferences.m in Sources */,
 				41FB49831E68A5160010495B /* SelectPinpadViewController.m in Sources */,
 				4108B6A91E7710BC00B3A734 /* ScreenDisplayViewController.m in Sources */,
 				41D21DC51E5F300D00F2ECBF /* main.m in Sources */,
@@ -417,6 +428,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8Q54VRJ624;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -426,8 +439,10 @@
 				INFOPLIST_FILE = "Demo Objc/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "br.com.stone.Demo-Objc";
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.stone.sdk.mobile.Demo-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "2a151117-523d-4b6e-adf1-a41030399e37";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development br.com.stone.sdk.mobile.*";
 			};
 			name = Debug;
 		};
@@ -435,6 +450,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8Q54VRJ624;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -444,8 +461,10 @@
 				INFOPLIST_FILE = "Demo Objc/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "br.com.stone.Demo-Objc";
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.stone.sdk.mobile.Demo-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "2a151117-523d-4b6e-adf1-a41030399e37";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development br.com.stone.sdk.mobile.*";
 			};
 			name = Release;
 		};
