@@ -75,8 +75,15 @@ NSArray <STNPinpad*> *connectedPinpads;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [[STNPinPadConnectionProvider new] selectPinpad:connectedPinpads[indexPath.row]];
-    self.feedback.text = [NSString stringWithFormat:@"Selected pinpad %@", connectedPinpads[indexPath.row].name];
+    BOOL hasConnected = [[STNPinPadConnectionProvider new] selectPinpad:connectedPinpads[indexPath.row]];
+    if (hasConnected)
+    {
+        self.feedback.text = [NSString stringWithFormat:@"Valid pinpad %@", connectedPinpads[indexPath.row].name];
+    }else{
+        self.feedback.text = [NSString stringWithFormat:@"Invalid pinpad %@", connectedPinpads[indexPath.row].name];
+    }
+    STNPinpad *pinpad = [[STNPinPadConnectionProvider new] selectedPinpad];
+    NSLog(@"Selected pinpad %@", pinpad);
 }
 
 @end
