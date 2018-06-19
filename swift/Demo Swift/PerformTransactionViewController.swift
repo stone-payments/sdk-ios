@@ -20,6 +20,7 @@ class PerformTransactionViewController: UIViewController, UIPickerViewDelegate, 
     
     var pickerMenu: [String] = []
     var rowNumber: Int = 0
+    var loadingView: LoadingView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,10 @@ class PerformTransactionViewController: UIViewController, UIPickerViewDelegate, 
         self.rateSwitch.isHidden = true
         self.rateLabel.isHidden = true
         self.valueTextField.delegate = self
+        
+        //Set loading overlay view
+        self.loadingView = LoadingView.init(frame: UIScreen.main.bounds)
+        self.navigationController?.view.addSubview(self.loadingView)
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,10 +46,8 @@ class PerformTransactionViewController: UIViewController, UIPickerViewDelegate, 
     
     @IBAction func onOrOff(_ sender: Any) {
         if self.rateSwitch.isOn {
-            NSLog("Com Juros")
             self.rateLabel.text = "Com Juros"
         } else {
-            NSLog("Sem Juros")
             self.rateLabel.text = "Sem Juros"
         }
     }
@@ -52,13 +55,13 @@ class PerformTransactionViewController: UIViewController, UIPickerViewDelegate, 
     @IBAction func changeType(_ sender: Any) {
         switch self.transactionTypeSegmented.selectedSegmentIndex {
         case 0:
-            NSLog("Débito")
+//          Débito
             self.instalmentPicker.isHidden = true
             self.rateSwitch.isHidden = true
             self.rateLabel.isHidden = true
             break
         case 1:
-            NSLog("Crédito")
+//          Crédito
             self.instalmentPicker.isHidden = false
             self.rateSwitch.isHidden = false
             self.rateLabel.isHidden = false
@@ -83,7 +86,8 @@ class PerformTransactionViewController: UIViewController, UIPickerViewDelegate, 
         
        
 
-        if self.transactionTypeSegmented.selectedSegmentIndex == 0 { // É Débito
+        if self.transactionTypeSegmented.selectedSegmentIndex == 0
+        { // É Débito
             
             // Propriedade Obrigatória, define o tipo de transação, se é débito ou crédito;
             transaction.type = STNTransactionTypeSimplifiedDebit
@@ -94,21 +98,26 @@ class PerformTransactionViewController: UIViewController, UIPickerViewDelegate, 
             // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros, pagamento a vista;
             transaction.instalmentType = STNInstalmentTypeNone
             
-        } else { // É Crédito
+        }
+        else
+        { // É Crédito
             
             // Propriedade Obrigatória, define o tipo de transação, se é débito ou crédito;
             transaction.type = STNTransactionTypeSimplifiedCredit
             
             // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros, pagamento a vista;
-            if rateSwitch.isOn {
+            if rateSwitch.isOn
+            {
                 transaction.instalmentType = STNInstalmentTypeIssuer
             }
-            else {
+            else
+            {
                 transaction.instalmentType = STNInstalmentTypeMerchant
             }
             
             // Propriedade Obrigatória, define o número de parcelas da transação;
-            switch self.rowNumber {
+            switch self.rowNumber
+            {
                 case 0: transaction.instalmentAmount = STNTransactionInstalmentAmountOne; break
                 case 1: transaction.instalmentAmount = STNTransactionInstalmentAmountTwo; break
                 case 2: transaction.instalmentAmount = STNTransactionInstalmentAmountThree; break
@@ -125,17 +134,23 @@ class PerformTransactionViewController: UIViewController, UIPickerViewDelegate, 
                 break
             }
         }
+        self.loadingView.show()
         
-        // Vamos efetivar a transação;
-        STNTransactionProvider.sendTransaction(transaction) { (succeeded, error) in
-            if succeeded {
-                NSLog("Transação realizada com sucesso.")
-                self.feedbackLabel.text = "Transação OK"
-            } else {
-                NSLog(error.debugDescription)
-                self.feedbackLabel.text = error.debugDescription
+        STNTransactionProvider.sendTransaction(transaction)
+        { (succeeded, error) in
+            DispatchQueue.main.async()
+            {
+                if succeeded
+                {
+                    self.feedbackLabel.text = "Transação realizada com sucesso."
+                }
+                else
+                {
+                    self.feedbackLabel.text = error.debugDescription
+                }
+                NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: PINPAD_MESSAGE), object: nil)
+                self.loadingView.hide()
             }
-            NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: PINPAD_MESSAGE), object: nil)
         }
     }
     
@@ -184,14 +199,14 @@ class PerformTransactionViewController: UIViewController, UIPickerViewDelegate, 
             let textFieldTextNum = NSDecimalNumber.init(string: textFieldTextStr as String)
             let divideByNum = NSDecimalNumber.init(value: 10).raising(toPower: numberFormatter.maximumFractionDigits)
             let textFieldTextNewNum = textFieldTextNum.dividing(by: divideByNum)
-            var textFieldTextNewStr = numberFormatter.string(from: textFieldTextNewNum)
+            let textFieldTextNewStr = numberFormatter.string(from: textFieldTextNewNum)
             
             textField.text = textFieldTextNewStr
             
             if cursorOffset != textFieldTextStrLength {
                 
-                let lengthDelta = (textFieldTextNewStr?.characters.count)! - textFieldTextStrLength
-                let newCursosOffset = max(0, min((textFieldTextNewStr?.characters.count)!, cursorOffset + lengthDelta))
+                let lengthDelta = (textFieldTextNewStr?.count)! - textFieldTextStrLength
+                let newCursosOffset = max(0, min((textFieldTextNewStr?.count)!, cursorOffset + lengthDelta))
                 let newPosition = textField.position(from: textField.beginningOfDocument, offset: newCursosOffset)
                 
                 let newRange = textField.textRange(from: newPosition!, to: newPosition!)
@@ -218,7 +233,4 @@ class PerformTransactionViewController: UIViewController, UIPickerViewDelegate, 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.rowNumber = row
     }
-    
-    
-    
 }

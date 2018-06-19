@@ -13,24 +13,37 @@ class CapturePanViewController: UIViewController {
 
     @IBOutlet weak var feedbackLabel: UILabel!
     
+    var loadingView: LoadingView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Captura de PAN"
+        
+        self.loadingView = LoadingView.init(frame: UIScreen.main.bounds)
+        self.navigationController?.view.addSubview(self.loadingView!)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func performCapture(_ sender: Any) {
-        STNCardProvider.getCardPan { (succeeded, pan, error) in
-            if (succeeded) {
-                NSLog("**** **** **** \(pan)")
-                self.feedbackLabel.text = "Os 4 ultimos digitos são:\(pan)"
-            } else {
-                NSLog(error.debugDescription)
-                self.feedbackLabel.text = error.debugDescription
+    @IBAction func performCapture(_ sender: Any)
+    {
+        self.loadingView.show()
+        STNCardProvider.getCardPan(
+        { (succeeded, pan, error) in
+            DispatchQueue.main.async
+            {
+                if succeeded
+                {
+                    self.feedbackLabel.text = "**** **** **** \(pan ?? "erro")"
+                }
+                else
+                {
+                    self.feedbackLabel.text = error.debugDescription
+                }
+                self.loadingView.hide()
             }
-        }
+        })
     }
 }
