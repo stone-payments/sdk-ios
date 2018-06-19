@@ -12,8 +12,9 @@
 @interface STNConfig : NSObject
 
 @property (class, nonatomic, assign) STNAcquirer acquirer;
+@property (class, nonatomic, assign) STNEnvironment environment;
 @property (class, nonatomic, strong) NSDictionary *transactionMessages;
 
-//+ (void)initStone;
+@property (class, nonatomic, readonly) NSString *stoneSdkVersion;
 
 @end

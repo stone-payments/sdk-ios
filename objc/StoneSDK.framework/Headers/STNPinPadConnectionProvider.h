@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) STNCentralState centralState;
 
 /**
- Estabilishes session when connected to Pinpad. Use for single connection to non-BLE pinpads.
+ Estabilishes session when connected to Pinpad. Use it for single connection to non-BLE pinpads.
 
  @param block Callback with connection result. If connection is successfull, succeeded will be `YES` and error will be nil. If not, succeded will be `NO` and error will contain the error information.
  */
@@ -83,12 +83,27 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)selectPinpad:(STNPinpad *)pinpad;
 
 /**
+ Check if pinpad device has a valid KEY.
+ 
+ @return `YES` if a Stone key index was found 
+ */
+- (BOOL)isValid;
+/**
  List connected BLE pinpads that matches the given UUIDs identifiers.
 
- @param identifiers An array of NSString representing the UUIDs of the BLE pinpads.
+ @param identifiers An array of NSUUID representing the UUIDs of the BLE pinpads.
  @return A list of connected STNPinpad with UUIDs matching the ones passed.
  */
-- (NSArray <STNPinpad *> *)listPinpadsWithIdentifiers:(NSArray <NSString *> *)identifiers;
+- (NSArray <STNPinpad *> *)listPinpadsWithIdentifiers:(NSArray <NSUUID *> *)identifiers;
+
+
+/**
+ Creates or get a pinpad instance that matches the provided identifier.
+
+ @param identifier The UUID for BLE pinpad or the serial number for Classic Bluetooth pinpads.
+ @return The STNPinpad object representing the pinpad with the provided identifier. If this identifier doesn't have a corresponding connected device, only the identifier property will be filled. This object can be used further for connection.
+ */
+- (STNPinpad *)pinpadWithIdentifier:(NSString*)identifier;
 
 /**
  Get the currently selected pinpad.

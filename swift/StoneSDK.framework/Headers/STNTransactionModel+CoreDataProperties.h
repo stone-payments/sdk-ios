@@ -15,30 +15,57 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface STNTransactionModel (CoreDataProperties)
 
+/// AID code.
 @property (nullable, nonatomic, retain) NSString *aid;
+/// Transaction value without decimal separators (eg.: for R$ 10.00 it will be 1000).
 @property (nullable, nonatomic, retain) NSNumber *amount;
+/// Balance amount for vouchers (eg.: Ticket, Sodexo).
 @property (nullable, nonatomic, retain) NSNumber *balance;
+/// ARQC code.
 @property (nullable, nonatomic, retain) NSString *arqc;
+/// Stone ID.
 @property (nullable, nonatomic, retain) NSString *authorisationCode;
+/// Card holder name.
 @property (nullable, nonatomic, retain) NSString *cardHolderName;
-@property (nullable, nonatomic, retain) NSDate *date;
-@property (nullable, nonatomic, retain) NSString *initiatorTransactionKey;
+/// Masked pan number, with format `123456*******1234`.
+@property (nullable, nonatomic, retain) NSString *cardHolderNumber;
+/// 4 last digits of the card used in the transaction.
 @property (nullable, nonatomic, retain) NSString *pan;
+/// The date the transaction was sent.
+@property (nullable, nonatomic, retain) NSDate *date;
+/// ID thant can be set by user.
+@property (nullable, nonatomic, retain) NSString *initiatorTransactionKey;
+/// Transaction ID.
+@property (nullable, nonatomic, retain) NSString *receiptTransactionKey;
+/// Transaction reference number.
+@property (nullable, nonatomic, retain) NSString *reference;
+/// Custom name for the customer's invoice.
+@property (nullable, nonatomic, retain) NSString *shortName;
+/// Binary image of the cardholder signature
+@property (nullable, nonatomic, retain) NSData *signature;
+/// The cardholder verification method, as a string representing the hex value sent by the pinpad (only for EMV chip transactions)
+@property (nullable, nonatomic, retain) NSString *cvm;
+/// Indicates what types of charges can be accepted, saved as a string representing the hex value sent by the pinpad (gathered on both EMV and magnetic stripe transactions)
+@property (nullable, nonatomic, retain) NSString *serviceCode;
+/// ICC related data.
+@property (nullable, nonatomic, retain) NSString *iccRelatedData;
+/// Merchant used in the transaction.
+@property (nullable, nonatomic, retain) STNMerchantModel *merchant;
+/// Pinpad used in the transaction.
+@property (nullable, nonatomic, retain) STNPinpadModel *pinpad;
+/// Authorization response code.
+@property (nullable, nonatomic, retain) NSString *actionCode;
+@property (nullable, nonatomic, retain) NSString *subMerchantCategoryCode;
+@property (nullable, nonatomic, retain) NSString *subMerchantAddress;
+
+
 @property (nullable, nonatomic, retain) NSNumber *rawInstalmentAmount;
 @property (nullable, nonatomic, retain) NSNumber *rawInstalmentType;
 @property (nullable, nonatomic, retain) NSNumber *rawCardBrand;
 @property (nullable, nonatomic, retain) NSNumber *rawStatus;
 @property (nullable, nonatomic, retain) NSNumber *rawType;
 @property (nullable, nonatomic, retain) NSNumber *rawCapture;
-@property (nullable, nonatomic, retain) NSString *receiptTransactionKey;
-@property (nullable, nonatomic, retain) NSString *reference;
-@property (nullable, nonatomic, retain) NSString *shortName;
-@property (nullable, nonatomic, retain) NSData *signature;
-@property (nullable, nonatomic, copy) NSNumber *rawEntryMode;
-@property (nullable, nonatomic, retain) NSString *cvm;
-@property (nullable, nonatomic, retain) NSString *serviceCode;
-@property (nullable, nonatomic, retain) STNMerchantModel *merchant;
-@property (nullable, nonatomic, retain) STNPinpadModel *pinpad;
+@property (nullable, nonatomic, retain) NSNumber *rawEntryMode;
 
 @end
 

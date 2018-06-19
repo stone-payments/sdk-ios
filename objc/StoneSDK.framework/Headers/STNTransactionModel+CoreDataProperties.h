@@ -27,12 +27,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *authorisationCode;
 /// Card holder name.
 @property (nullable, nonatomic, retain) NSString *cardHolderName;
+/// Masked pan number, with format `123456*******1234`.
+@property (nullable, nonatomic, retain) NSString *cardHolderNumber;
+/// 4 last digits of the card used in the transaction.
+@property (nullable, nonatomic, retain) NSString *pan;
 /// The date the transaction was sent.
 @property (nullable, nonatomic, retain) NSDate *date;
 /// ID thant can be set by user.
 @property (nullable, nonatomic, retain) NSString *initiatorTransactionKey;
-/// 4 last digits of the card used in the transaction.
-@property (nullable, nonatomic, retain) NSString *pan;
 /// Transaction ID.
 @property (nullable, nonatomic, retain) NSString *receiptTransactionKey;
 /// Transaction reference number.
@@ -43,12 +45,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSData *signature;
 /// The cardholder verification method, as a string representing the hex value sent by the pinpad (only for EMV chip transactions)
 @property (nullable, nonatomic, retain) NSString *cvm;
-/// Idicates what types of charges can be accepted, saved as a string representing the hex value sent by the pinpad (gathered on both EMV and magnetic stripe transactions)
+/// Indicates what types of charges can be accepted, saved as a string representing the hex value sent by the pinpad (gathered on both EMV and magnetic stripe transactions)
 @property (nullable, nonatomic, retain) NSString *serviceCode;
+/// ICC related data.
+@property (nullable, nonatomic, retain) NSString *iccRelatedData;
 /// Merchant used in the transaction.
 @property (nullable, nonatomic, retain) STNMerchantModel *merchant;
 /// Pinpad used in the transaction.
 @property (nullable, nonatomic, retain) STNPinpadModel *pinpad;
+/// Authorization response code.
+@property (nullable, nonatomic, retain) NSString *actionCode;
+@property (nullable, nonatomic, retain) NSString *subMerchantCategoryCode;
+@property (nullable, nonatomic, retain) NSString *subMerchantAddress;
+
 
 @property (nullable, nonatomic, retain) NSNumber *rawInstalmentAmount;
 @property (nullable, nonatomic, retain) NSNumber *rawInstalmentType;

@@ -38,7 +38,7 @@ typedef enum _STNAcquirer
 {
     STNAcquirerInvalid = -1,
     STNAcquirerElavon = 5,
-    STNAcquirerStone = 8
+    STNAcquirerStone = 16
 } STNAcquirer;
 
 typedef enum _STNEnvironment
@@ -63,6 +63,7 @@ typedef enum _STNErrorCode {
     STNErrorCodeMissingStonecodeActivation = 201,
     STNErrorCodeStonecodeAlreadyActivated = 202,
     
+    STNErrorCodeInvalidParameter = 202,
     STNErrorCodeInvalidAmount = 203,
     STNErrorCodeTransactionAutoCancel = 204,
     STNErrorCodeInvalidTransaction = 205,
@@ -72,14 +73,18 @@ typedef enum _STNErrorCode {
     STNErrorCodeTransactionAlreadyCancelled = 210,
     STNErrorCodeTransactionRejected = 211,
     STNErrorCodeOperationCancelledByUser = 214,
-    STNErrorCardRemovedByUser = 215,
+    STNErrorCodeCardRemovedByUser = 215,
+    STNErrorCodeMissingTableContent = 220,
+    STNErrorCodeInvalidCardApplication = 221,
     
     STNErrorCodePinpadConnectionNotFound = 303,
     STNErrorCodeTablesNotFound = 304,
     STNErrorCodeLoadingTablesError = 305,
     STNErrorCodeNullResponse = 306,
+    STNErrorCodeTableVersionNotFound = 307,
+    STNErrorCodePinpadCommunicationFailed = 308,
     
-    STNErrorBluetoothNotReady = 401,
+    STNErrorCodeBluetoothNotReady = 401,
     
     STNErrorCodeNotConnectedToNetwork = 601
     
@@ -381,6 +386,7 @@ typedef enum _STNTransactionType
 
 typedef enum _STNTransactionInstalmentAmount
 {
+    STNTransactionInstalmentAmountInvalid = 0,
     STNTransactionInstalmentAmountOne = 1,
     STNTransactionInstalmentAmountTwo = 2,
     STNTransactionInstalmentAmountThree = 3,
@@ -403,7 +409,8 @@ typedef enum _STNTransactionCapture
     
 } STNTransactionCapture;
 
-typedef enum _STNTransactionEntryMode {
+typedef enum _STNTransactionEntryMode 
+{
     STNTransactionEntryModeUnknown,
     STNTransactionEntryModeMagneticStripe,
     STNTransactionEntryModeChipNPin
@@ -421,7 +428,8 @@ typedef enum _STNCardBrand
     STNCardBrandAlelo,
     STNCardBrandUnknown,
     STNCardBrandHipercard,
-    STNCardBrandHiper
+    STNCardBrandHiper,
+    STNCardBrandAmex
     
 } STNCardBrand;
 
@@ -439,7 +447,8 @@ typedef enum STNTransactionMessage
     STNTransactionMessageCardRemoved,
     STNTransactionMessageEMVCard,
     STNTransactionMessageInvalidCard,
-    STNTransactionMessageIccProblem
+    STNTransactionMessageIccProblem,
+    STNTransactionMessageTableNotFound
     
 } STNTransactionMessage;
 
@@ -450,3 +459,9 @@ typedef enum STNCentralState
     STNCentralStateOff
     
 } STNCentralState;
+
+typedef enum STNStreamReadingState{
+    STNStreamReadingStateIdle,
+    STNStreamReadingStateBytesAvailable,
+    STNStreamReadingStateBusy
+} STNStreamReadingState;

@@ -25,6 +25,7 @@
 #import "STNPinpadModel.h"
 #import "STNConfig.h"
 #import "STNPinpad.h"
+#import "STNLoggerProvider.h"
 
 
 //! Project version number for StoneSDK.
