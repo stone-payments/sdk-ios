@@ -141,20 +141,40 @@
 		41D21DC21E5F300D00F2ECBF /* Demo Objc */ = {
 			isa = PBXGroup;
 			children = (
+				41D21DC61E5F300D00F2ECBF /* AppDelegate.h */,
+				41D21DC71E5F300D00F2ECBF /* AppDelegate.m */,
+				6C46BC3420DA9D8B0090888E /* View */,
+				6C46BC3320DA9D5C0090888E /* Controller */,
+				6C46BC3620DA9DC70090888E /* Utils */,
+			);
+			path = "Demo Objc";
+			sourceTree = "<group>";
+		};
+		41D21DC31E5F300D00F2ECBF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				41D21DC41E5F300D00F2ECBF /* main.m */,
+				41D21DCF1E5F300D00F2ECBF /* Assets.xcassets */,
+				41D21DD41E5F300D00F2ECBF /* Info.plist */,
+				41C528EB1FCCC36300BCF378 /* Localizable.strings */,
+			);
+			name = "Supporting Files";
+			path = "Demo Objc";
+			sourceTree = "<group>";
+		};
+		6C46BC3320DA9D5C0090888E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				41D21DC91E5F300D00F2ECBF /* ViewController.h */,
+				41D21DCA1E5F300D00F2ECBF /* ViewController.m */,
 				4104232A1F9FB58F003DCDFF /* ConnectBLEViewController.h */,
 				4104232B1F9FB590003DCDFF /* ConnectBLEViewController.m */,
 				41FB49801E68A5160010495B /* SelectPinpadViewController.h */,
 				41FB49811E68A5160010495B /* SelectPinpadViewController.m */,
-				418B0D8E1E7042C500748B23 /* TransactionCell.h */,
-				418B0D8F1E7042C500748B23 /* TransactionCell.m */,
 				418B0D911E70792000748B23 /* ListMerchantViewController.h */,
 				418B0D921E70792000748B23 /* ListMerchantViewController.m */,
-				418B0D941E708B9800748B23 /* MerchantCell.h */,
-				418B0D951E708B9800748B23 /* MerchantCell.m */,
 				4144BD691E70A5D100A6A2D7 /* CancelListTransactionTableViewController.h */,
 				4144BD6A1E70A5D100A6A2D7 /* CancelListTransactionTableViewController.m */,
-				414EB83B1E73116800472A3B /* CancellationCell.h */,
-				414EB83C1E73116800472A3B /* CancellationCell.m */,
 				4198132A1E6E06000054EBA7 /* ListTransactionTableViewController.h */,
 				4198132B1E6E06000054EBA7 /* ListTransactionTableViewController.m */,
 				411629BF1E69EB4C00F6A4FB /* DownloadTableViewController.h */,
@@ -169,10 +189,6 @@
 				41B2590B1E607E28001668AA /* PerformTransactionViewController.m */,
 				41FB49721E6863D30010495B /* RefreshTablesViewController.h */,
 				41FB49731E6863D30010495B /* RefreshTablesViewController.m */,
-				41D21DC61E5F300D00F2ECBF /* AppDelegate.h */,
-				41D21DC71E5F300D00F2ECBF /* AppDelegate.m */,
-				41D21DC91E5F300D00F2ECBF /* ViewController.h */,
-				41D21DCA1E5F300D00F2ECBF /* ViewController.m */,
 				414EB83E1E73266D00472A3B /* CancellationViewController.h */,
 				414EB83F1E73266D00472A3B /* CancellationViewController.m */,
 				414EB8421E734D0400472A3B /* SendingVoucherEmailViewController.h */,
@@ -184,23 +200,41 @@
 				4108B6A71E7710BC00B3A734 /* ScreenDisplayViewController.h */,
 				4108B6A81E7710BC00B3A734 /* ScreenDisplayViewController.m */,
 			);
-			path = "Demo Objc";
+			path = Controller;
 			sourceTree = "<group>";
 		};
-		41D21DC31E5F300D00F2ECBF /* Supporting Files */ = {
+		6C46BC3420DA9D8B0090888E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6C46BC3720DA9E220090888E /* Storyboards */,
+				418B0D8E1E7042C500748B23 /* TransactionCell.h */,
+				418B0D8F1E7042C500748B23 /* TransactionCell.m */,
+				418B0D941E708B9800748B23 /* MerchantCell.h */,
+				418B0D951E708B9800748B23 /* MerchantCell.m */,
+				414EB83B1E73116800472A3B /* CancellationCell.h */,
+				414EB83C1E73116800472A3B /* CancellationCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6C46BC3620DA9DC70090888E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6C645FFD208F9EB70098C051 /* DemoPreferences.h */,
+				6C645FFE208FC4E70098C051 /* DemoPreferences.m */,
+				41C528ED1FCCC7A000BCF378 /* NSString+Utils.h */,
+				41C528EE1FCCC7A000BCF378 /* NSString+Utils.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		6C46BC3720DA9E220090888E /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				41D21DCC1E5F300D00F2ECBF /* Main.storyboard */,
-				41D21DCF1E5F300D00F2ECBF /* Assets.xcassets */,
 				41D21DD11E5F300D00F2ECBF /* LaunchScreen.storyboard */,
-				41D21DD41E5F300D00F2ECBF /* Info.plist */,
-				41D21DC41E5F300D00F2ECBF /* main.m */,
-				41C528ED1FCCC7A000BCF378 /* NSString+Utils.h */,
-				41C528EE1FCCC7A000BCF378 /* NSString+Utils.m */,
-				41C528EB1FCCC36300BCF378 /* Localizable.strings */,
 			);
-			name = "Supporting Files";
-			path = "Demo Objc";
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,7 +264,7 @@
 		41D21DB81E5F300D00F2ECBF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Eduardo Mello de Macedo | Stone";
 				TargetAttributes = {
 					41D21DBF1E5F300D00F2ECBF = {
@@ -350,15 +384,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -398,15 +440,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
