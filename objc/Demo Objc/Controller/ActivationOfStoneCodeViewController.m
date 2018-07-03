@@ -128,11 +128,11 @@
     switch (row) {
         case 0:
             environment = STNEnvironmentProduction;
+            break;
         case 1:
             environment = STNEnvironmentInternalHomolog;
             break;
         case 2:
-        default:
             environment = STNEnvironmentSandbox;
             break;
         case 3:
@@ -140,6 +140,9 @@
             break;
         case 4:
             environment = STNEnvironmentCertification;
+            break;
+        default:
+            environment = STNEnvironmentSandbox;
             break;
     }
     [DemoPreferences writeEnvironment:environment];
