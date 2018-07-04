@@ -40,7 +40,6 @@
                         <segue destination="1lP-3X-EMr" kind="show" identifier="RefreshTables" id="MbF-sH-3pL"/>
                         <segue destination="B9X-LN-GJG" kind="show" identifier="PerformTransaction" id="2pr-yT-ssc"/>
                         <segue destination="m7Y-jc-i92" kind="show" identifier="SelectPinpad" id="yrU-hk-UkI"/>
-                        <segue destination="gCZ-1d-ufx" kind="show" identifier="ActivationOfStoneCode" id="sET-eZ-dc6"/>
                         <segue destination="dma-iG-EHF" kind="show" identifier="DownloadTable" id="HRU-od-eR0"/>
                         <segue destination="voD-TE-Org" kind="show" identifier="ListTransaction" id="Ma1-qw-xrO"/>
                         <segue destination="I9B-6U-UrP" kind="show" identifier="MerchantList" id="xaF-v8-ru1"/>
@@ -50,6 +49,7 @@
                         <segue destination="ama-Xh-orV" kind="show" identifier="CapturePan" id="830-bv-Rqb"/>
                         <segue destination="7sM-pm-DeO" kind="show" identifier="ScreenDisplay" id="Ama-7F-OSQ"/>
                         <segue destination="AjC-eG-jVz" kind="show" identifier="ConnectBLE" id="UuO-Z4-vMy"/>
+                        <segue destination="PA4-fW-JVq" kind="show" identifier="ListStoneCodes" id="ZT2-gP-Oq6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pE0-Jh-23A" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1063,7 +1063,104 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JZy-yQ-aLC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-705" y="1692.5"/>
+            <point key="canvasLocation" x="-703" y="2444"/>
+        </scene>
+        <!--List Stone Codes-->
+        <scene sceneID="5C6-Rp-BT2">
+            <objects>
+                <viewController id="PA4-fW-JVq" customClass="ListStoneCodesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vZf-le-pJ3"/>
+                        <viewControllerLayoutGuide type="bottom" id="KU3-qu-HNX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Yy3-wN-xZu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Hj-xf-MTu">
+                                <rect key="frame" x="0.0" y="110" width="375" height="394"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StoneCodeCell" id="wjK-uk-X7C">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wjK-uk-X7C" id="4nm-7X-aYK">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="PA4-fW-JVq" id="Gqm-Z5-K2Y"/>
+                                    <outlet property="delegate" destination="PA4-fW-JVq" id="Caw-cN-M2T"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a Stone code to use" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EdF-Gk-Sw0">
+                                <rect key="frame" x="10" y="74" width="355" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16z-LG-P7s">
+                                <rect key="frame" x="16" y="567" width="343" height="70"/>
+                                <color key="backgroundColor" red="0.93759113549999995" green="0.91400462390000003" blue="0.93442934749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="1W3-TY-pun"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m09-Lc-iOy">
+                                <rect key="frame" x="25" y="519" width="325" height="40"/>
+                                <color key="backgroundColor" red="0.66340815360000005" green="0.079010573769999995" blue="0.053212504450000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Wn4-hu-oSI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Deactivate">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="deactivateStoneCode:" destination="PA4-fW-JVq" eventType="touchUpInside" id="I4r-g0-dql"/>
+                                    <action selector="performDesactivation:" destination="gCZ-1d-ufx" eventType="touchUpInside" id="qvi-AV-kBN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="KU3-qu-HNX" firstAttribute="top" secondItem="16z-LG-P7s" secondAttribute="bottom" constant="30" id="10t-hE-Zd6"/>
+                            <constraint firstAttribute="trailing" secondItem="EdF-Gk-Sw0" secondAttribute="trailing" constant="10" id="2ie-89-eau"/>
+                            <constraint firstItem="16z-LG-P7s" firstAttribute="trailing" secondItem="Yy3-wN-xZu" secondAttribute="trailingMargin" id="5Wc-ba-cf4"/>
+                            <constraint firstItem="EdF-Gk-Sw0" firstAttribute="top" secondItem="vZf-le-pJ3" secondAttribute="bottom" constant="10" id="IeJ-Vu-iOH"/>
+                            <constraint firstItem="m09-Lc-iOy" firstAttribute="leading" secondItem="Yy3-wN-xZu" secondAttribute="leading" constant="25" id="O8B-PM-QwA"/>
+                            <constraint firstItem="16z-LG-P7s" firstAttribute="top" secondItem="m09-Lc-iOy" secondAttribute="bottom" constant="8" id="PF9-6e-ZbU"/>
+                            <constraint firstItem="5Hj-xf-MTu" firstAttribute="top" secondItem="EdF-Gk-Sw0" secondAttribute="bottom" constant="15" id="Snc-0m-mBk"/>
+                            <constraint firstItem="16z-LG-P7s" firstAttribute="top" secondItem="m09-Lc-iOy" secondAttribute="bottom" constant="8" id="Vb2-3z-dp0"/>
+                            <constraint firstAttribute="trailing" secondItem="m09-Lc-iOy" secondAttribute="trailing" constant="25" id="b63-ub-Q8q"/>
+                            <constraint firstAttribute="trailing" secondItem="5Hj-xf-MTu" secondAttribute="trailing" id="bCz-FB-HAT"/>
+                            <constraint firstItem="5Hj-xf-MTu" firstAttribute="leading" secondItem="Yy3-wN-xZu" secondAttribute="leading" id="bcV-7o-BtF"/>
+                            <constraint firstItem="16z-LG-P7s" firstAttribute="leading" secondItem="Yy3-wN-xZu" secondAttribute="leadingMargin" id="qGW-XW-fN0"/>
+                            <constraint firstItem="m09-Lc-iOy" firstAttribute="top" secondItem="5Hj-xf-MTu" secondAttribute="bottom" constant="15" id="tUN-Gg-URT"/>
+                            <constraint firstItem="EdF-Gk-Sw0" firstAttribute="leading" secondItem="Yy3-wN-xZu" secondAttribute="leading" constant="10" id="vQY-5F-jLd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="List Stone Codes" id="jCc-JN-o9H">
+                        <barButtonItem key="rightBarButtonItem" title="Activate" id="Mns-No-5sM">
+                            <connections>
+                                <segue destination="gCZ-1d-ufx" kind="show" id="H2E-as-rqf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="deactivateButton" destination="m09-Lc-iOy" id="NPt-ZD-TdS"/>
+                        <outlet property="feedbackLabel" destination="16z-LG-P7s" id="WlZ-Ig-3iw"/>
+                        <outlet property="stoneCodesTableView" destination="5Hj-xf-MTu" id="thQ-hu-iCb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bIg-bj-zMn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-703" y="1692"/>
         </scene>
         <!--Download Table View Controller-->
         <scene sceneID="ZTW-sK-Nbo">
@@ -1120,7 +1217,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2YZ-7j-7HR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-58.399999999999999" y="1692.5037481259371"/>
+            <point key="canvasLocation" x="-50" y="1693"/>
         </scene>
         <!--Select Pinpad View Controller-->
         <scene sceneID="Lnd-KA-EYz">
@@ -1209,7 +1306,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J9W-p1-2kv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1366" y="1693"/>
+            <point key="canvasLocation" x="-1366" y="1692"/>
         </scene>
         <!--Refresh Tables View Controller-->
         <scene sceneID="E70-eL-di1">
@@ -1389,10 +1486,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4nZ-eO-ozJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2146.4000000000001" y="1692.5037481259371"/>
+            <point key="canvasLocation" x="-2031" y="1693"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="JJk-ZS-Pfj"/>
+        <segue reference="yrU-hk-UkI"/>
     </inferredMetricsTieBreakers>
 </document>

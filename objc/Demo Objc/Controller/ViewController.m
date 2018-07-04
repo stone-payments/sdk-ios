@@ -27,7 +27,7 @@ static NSString *cellIdentifier;
     
     self.optionsList = @[[kTitleSelection localize],
                          [kTitleBLE localize],
-                         [kTitleActivation localize],
+                         [kTitleListStoneCodes localize],
                          [kTitleTableDownload localize],
                          [kTitleUpdateTable localize],
                          [kTitleSendTransaction localize],
@@ -85,7 +85,7 @@ static NSString *cellIdentifier;
     switch (indexPath.row) {
         case 0: { [self performSegueWithIdentifier:@"SelectPinpad" sender:nil]; break; }
         case 1: { [self performSegueWithIdentifier:@"ConnectBLE" sender:nil]; break; }
-        case 2: { [self performSegueWithIdentifier:@"ActivationOfStoneCode" sender:nil]; break; }
+        case 2: { [self performSegueWithIdentifier:@"ListStoneCodes" sender:nil]; break; }
         case 3: { [self performSegueWithIdentifier:@"DownloadTable" sender:nil]; break; }
         case 4: { [self performSegueWithIdentifier:@"RefreshTables" sender:nil]; break; }
         case 5: { [self performSegueWithIdentifier:@"PerformTransaction" sender:nil]; break; }
