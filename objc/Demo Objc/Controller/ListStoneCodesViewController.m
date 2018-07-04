@@ -11,21 +11,26 @@
 @import StoneSDK.STNMerchantModel;
 
 @interface ListStoneCodesViewController ()
+
 @property (weak, nonatomic) IBOutlet UITableView *stoneCodesTableView;
 @property (weak, nonatomic) IBOutlet UILabel *feedbackLabel;
 @property (weak, nonatomic) IBOutlet UIButton *deactivateButton;
+// Array with all activated merchants
 @property (strong, nonatomic) NSArray *merchants;
+
 @end
 
 @implementation ListStoneCodesViewController
+
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    // Update activated merchants
     self.merchants = [STNMerchantListProvider listMerchants];
     [self.stoneCodesTableView reloadData];
-    NSLog(@"Number of merchants: %d", (int)self.merchants.count);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,6 +39,8 @@
 }
 
 #pragma mark - UITableViewDataSource
+
+// Set a cell for merchant from list
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView
                  cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"StoneCodeCell";
@@ -48,14 +55,17 @@
     return cell;
 }
 
+// Set number of rows based on the numbers of activated merchants
 - (NSInteger)tableView:(nonnull UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section {
     return [self.merchants count];
 }
 
 #pragma mark - UITableViewDelegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"did select");
+
+// Select merchant from table view
+- (void)tableView:(UITableView *)tableView
+    didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (_merchants.count > indexPath.row) {
         STNMerchantModel *merchant = [_merchants objectAtIndex:indexPath.row];
         NSString *merchantText = [NSString stringWithFormat:@"%@ (%@)",merchant.stonecode, merchant.merchantName];
@@ -64,6 +74,8 @@
 }
 
 #pragma mark - UIButton
+
+// Deactivate selected Stone Code
 - (IBAction)deactivateStoneCode:(id)sender {
 }
 
