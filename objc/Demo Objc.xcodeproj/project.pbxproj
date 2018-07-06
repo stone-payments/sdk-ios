@@ -34,7 +34,7 @@
 		41FB49761E6865310010495B /* StoneSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41FB49751E6865310010495B /* StoneSDK.framework */; };
 		41FB49771E6865310010495B /* StoneSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 41FB49751E6865310010495B /* StoneSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		41FB49831E68A5160010495B /* SelectPinpadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FB49811E68A5160010495B /* SelectPinpadViewController.m */; };
-		6C251D6F20EC066E0002B862 /* ListStoneCodesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C251D6E20EC066E0002B862 /* ListStoneCodesViewController.m */; };
+		6C251D6F20EC066E0002B862 /* ManageStoneCodesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C251D6E20EC066E0002B862 /* ManageStoneCodesViewController.m */; };
 		6C645FFF208FC4E80098C051 /* DemoPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C645FFE208FC4E70098C051 /* DemoPreferences.m */; };
 /* End PBXBuildFile section */
 
@@ -102,8 +102,8 @@
 		41FB49751E6865310010495B /* StoneSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StoneSDK.framework; sourceTree = "<group>"; };
 		41FB49801E68A5160010495B /* SelectPinpadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPinpadViewController.h; sourceTree = "<group>"; };
 		41FB49811E68A5160010495B /* SelectPinpadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPinpadViewController.m; sourceTree = "<group>"; };
-		6C251D6D20EC066E0002B862 /* ListStoneCodesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListStoneCodesViewController.h; sourceTree = "<group>"; };
-		6C251D6E20EC066E0002B862 /* ListStoneCodesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListStoneCodesViewController.m; sourceTree = "<group>"; };
+		6C251D6D20EC066E0002B862 /* ManageStoneCodesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManageStoneCodesViewController.h; sourceTree = "<group>"; };
+		6C251D6E20EC066E0002B862 /* ManageStoneCodesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManageStoneCodesViewController.m; sourceTree = "<group>"; };
 		6C645FFD208F9EB70098C051 /* DemoPreferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoPreferences.h; sourceTree = "<group>"; };
 		6C645FFE208FC4E70098C051 /* DemoPreferences.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoPreferences.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -173,6 +173,8 @@
 				4104232B1F9FB590003DCDFF /* ConnectBLEViewController.m */,
 				41FB49801E68A5160010495B /* SelectPinpadViewController.h */,
 				41FB49811E68A5160010495B /* SelectPinpadViewController.m */,
+				6C251D6D20EC066E0002B862 /* ManageStoneCodesViewController.h */,
+				6C251D6E20EC066E0002B862 /* ManageStoneCodesViewController.m */,
 				418B0D911E70792000748B23 /* ListMerchantViewController.h */,
 				418B0D921E70792000748B23 /* ListMerchantViewController.m */,
 				4144BD691E70A5D100A6A2D7 /* CancelListTransactionTableViewController.h */,
@@ -334,7 +336,7 @@
 				4144BD6B1E70A5D100A6A2D7 /* CancelListTransactionTableViewController.m in Sources */,
 				414EB83D1E73116800472A3B /* CancellationCell.m in Sources */,
 				41FB49741E6863D30010495B /* RefreshTablesViewController.m in Sources */,
-				6C251D6F20EC066E0002B862 /* ListStoneCodesViewController.m in Sources */,
+				6C251D6F20EC066E0002B862 /* ManageStoneCodesViewController.m in Sources */,
 				411629C11E69EB4C00F6A4FB /* DownloadTableViewController.m in Sources */,
 				4198132C1E6E06000054EBA7 /* ListTransactionTableViewController.m in Sources */,
 				414EB8471E7352EA00472A3B /* TestValidationViewController.m in Sources */,

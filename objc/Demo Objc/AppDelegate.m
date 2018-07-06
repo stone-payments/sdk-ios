@@ -26,7 +26,7 @@ NSTimer* timer;
     [STNConfig setAcquirer:STNAcquirerStone];
    
     // Set the Stone environment
-    [STNConfig setEnvironment:[DemoPreferences readEnvironment]];
+    [STNConfig setEnvironment:[DemoPreferences lastSelectedEnvironment]];
     
     return YES;
 }

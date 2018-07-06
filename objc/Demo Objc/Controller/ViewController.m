@@ -27,7 +27,8 @@ static NSString *cellIdentifier;
     
     self.optionsList = @[[kTitleSelection localize],
                          [kTitleBLE localize],
-                         [kTitleListStoneCodes localize],
+                         [kTitleActivation localize],
+                         [kTitleManageStoneCodes localize],
                          [kTitleTableDownload localize],
                          [kTitleUpdateTable localize],
                          [kTitleSendTransaction localize],
@@ -85,17 +86,18 @@ static NSString *cellIdentifier;
     switch (indexPath.row) {
         case 0: { [self performSegueWithIdentifier:@"SelectPinpad" sender:nil]; break; }
         case 1: { [self performSegueWithIdentifier:@"ConnectBLE" sender:nil]; break; }
-        case 2: { [self performSegueWithIdentifier:@"ListStoneCodes" sender:nil]; break; }
-        case 3: { [self performSegueWithIdentifier:@"DownloadTable" sender:nil]; break; }
-        case 4: { [self performSegueWithIdentifier:@"RefreshTables" sender:nil]; break; }
-        case 5: { [self performSegueWithIdentifier:@"PerformTransaction" sender:nil]; break; }
-        case 6: { [self performSegueWithIdentifier:@"ListTransaction" sender:nil]; break; }
-        case 7: { [self performSegueWithIdentifier:@"MerchantList" sender:nil]; break; }
-        case 8: { [self performSegueWithIdentifier:@"CancelTransaction" sender:nil]; break; }
-        case 9: { [self performSegueWithIdentifier:@"SendingVoucherEmail" sender:nil]; break; }
-        case 10: { [self performSegueWithIdentifier:@"testValidation" sender:nil]; break; }
-        case 11: { [self performSegueWithIdentifier:@"CapturePan" sender:nil]; break; }
-        case 12: { [self performSegueWithIdentifier:@"ScreenDisplay" sender:nil]; break; }
+        case 2: { [self performSegueWithIdentifier:@"ActivateStoneCode" sender:nil]; break; }
+        case 3: { [self performSegueWithIdentifier:@"ManageStoneCodes" sender:nil]; break; }
+        case 4: { [self performSegueWithIdentifier:@"DownloadTable" sender:nil]; break; }
+        case 5: { [self performSegueWithIdentifier:@"RefreshTables" sender:nil]; break; }
+        case 6: { [self performSegueWithIdentifier:@"PerformTransaction" sender:nil]; break; }
+        case 7: { [self performSegueWithIdentifier:@"ListTransaction" sender:nil]; break; }
+        case 8: { [self performSegueWithIdentifier:@"MerchantList" sender:nil]; break; }
+        case 9: { [self performSegueWithIdentifier:@"CancelTransaction" sender:nil]; break; }
+        case 10: { [self performSegueWithIdentifier:@"SendingVoucherEmail" sender:nil]; break; }
+        case 11: { [self performSegueWithIdentifier:@"testValidation" sender:nil]; break; }
+        case 12: { [self performSegueWithIdentifier:@"CapturePan" sender:nil]; break; }
+        case 13: { [self performSegueWithIdentifier:@"ScreenDisplay" sender:nil]; break; }
     }
 }
 

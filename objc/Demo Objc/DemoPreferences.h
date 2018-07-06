@@ -10,7 +10,7 @@
 
 @interface DemoPreferences : NSObject
 
-+ (BOOL)writeEnvironment:(STNEnvironment)environment;
-+ (STNEnvironment)readEnvironment;
++ (BOOL)updateEnvironment:(STNEnvironment)environment;
++ (STNEnvironment)lastSelectedEnvironment;
 
 @end

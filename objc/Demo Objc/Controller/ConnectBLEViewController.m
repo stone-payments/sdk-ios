@@ -18,15 +18,14 @@
 @property (strong, nonatomic) IBOutlet UILabel *feedback;
 @property (strong, nonatomic) UIView *overlayView;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
+// Array with all Low Energy pinpad devices found
+@property (strong, nonatomic) NSMutableArray <STNPinpad *> *peripherals;
+// Pinpad Central Manager
+@property (strong, nonatomic) STNPinPadConnectionProvider *connection;
 
 @end
 
 @implementation ConnectBLEViewController
-
-// Array with all Low Energy pinpad devices found
-NSMutableArray <STNPinpad *> *peripherals;
-// Pinpad Central Manager
-STNPinPadConnectionProvider *connection;
 
 #pragma mark - Lifecycle
 
@@ -35,30 +34,30 @@ STNPinPadConnectionProvider *connection;
     [self setupView];
     
     // Initialize the Central Manager
-    connection = [[STNPinPadConnectionProvider alloc] init];
+    _connection = [[STNPinPadConnectionProvider alloc] init];
     // Set delegate for BLE session implementation
-    connection.delegate = self;
-    [connection startCentral];
+    _connection.delegate = self;
+    [_connection startCentral];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - Buttons actions
+#pragma mark - UIButton actions
 
 // Start scanning BLE devices
 - (IBAction)startScanning:(id)sender {
-    [connection startScan];
+    [_connection startScan];
 }
 
 // Disconnect all Bluetooth Low Energy pinpads
 - (IBAction)disconnectAllBLE:(id)sender {
     // Fetch all connected pinpads
-    NSArray<STNPinpad*>* connectedPinpads = [connection listConnectedPinpads];
+    NSArray<STNPinpad*>* connectedPinpads = [_connection listConnectedPinpads];
     for (STNPinpad* pinpad in connectedPinpads) {
         // Disconnect each one
-        [connection disconnectPinpad:pinpad];
+        [_connection disconnectPinpad:pinpad];
     }
 }
 
@@ -67,7 +66,7 @@ STNPinPadConnectionProvider *connection;
 // Set number of rows based on the numbers of available peripherals
 -(NSInteger)tableView:(UITableView *)tableView
     numberOfRowsInSection:(NSInteger)section {
-    return peripherals.count;
+    return _peripherals.count;
 }
 
 // Set a cell for peripheral from list
@@ -75,9 +74,10 @@ STNPinPadConnectionProvider *connection;
         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Set cell
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"peripheralCell" forIndexPath:indexPath];
-    if ([peripherals count] > indexPath.row) {
-        cell.textLabel.text = peripherals[indexPath.row].name;
+    if ([_peripherals count] > indexPath.row) {
+        cell.textLabel.text = _peripherals[indexPath.row].name;
     }
+    cell.textLabel.text = _peripherals[indexPath.row].name;
     return cell;
 }
 
@@ -87,9 +87,9 @@ STNPinPadConnectionProvider *connection;
 -(void)tableView:(UITableView *)tableView
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Stabilish connection with selected pinpad
-    [connection connectToPinpad:peripherals[indexPath.row]];
+    [_connection connectToPinpad:_peripherals[indexPath.row]];
     // Stop scanning
-    [connection stopScan];
+    [_connection stopScan];
 }
 
 #pragma mark - STNPinPadConnectionDelegate Delegate
@@ -112,15 +112,15 @@ STNPinPadConnectionProvider *connection;
 -(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider
                   didFindPinpad:(STNPinpad *)pinpad {
     // Initialize peripherals if needed
-    if(peripherals == nil) {
-        peripherals = [[NSMutableArray alloc] init];
+    if(_peripherals == nil) {
+        _peripherals = [[NSMutableArray alloc] init];
     }
     // If the peripherals did not contains the found pinpad, make the inclusion
-    if(![peripherals containsObject:pinpad]) {
+    if(![_peripherals containsObject:pinpad]) {
         // You can access the pinpad data
         NSLog(@"%@: %@", [kLogFind localize], pinpad.name);
         // Add the new pinpad to the peripherals list
-        [peripherals addObject:pinpad];
+        [_peripherals addObject:pinpad];
         // Refresh table view content
         [self refreshTableViewContent];
     }
@@ -134,8 +134,10 @@ STNPinPadConnectionProvider *connection;
     NSLog(@"%@: %@", [kLogConnect localize], pinpad.name);
     //  Refresh label data
     [self setFeedbackMessage:[kLogConnect localize]];
+    //[connection disconnectPinpad:pinpad];
+    
     //  Use this specific pinpad in the future transactions
-    [connection selectPinpad:pinpad];
+    [_connection selectPinpad:pinpad];
 }
 
 // Did disconnect pinpad
@@ -147,7 +149,7 @@ STNPinPadConnectionProvider *connection;
     [self setFeedbackMessage: [kLogDisconnect localize]];
 }
 
-// Access the current central state
+// Access the actually central state
 -(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider
           didChangeCentralState:(CBManagerState)state {
     
@@ -174,21 +176,21 @@ STNPinPadConnectionProvider *connection;
 - (void)setupView {
     [super viewDidLoad];
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
     self.navigationItem.title = [kTitleBLE localize];
-    self.instructionLabel.text = [kInstructionBLE localize];
-    [self.scanButton setTitle:[kButtonScan localize]
+    _instructionLabel.text = [kInstructionBLE localize];
+    [_scanButton setTitle:[kButtonScan localize]
                      forState:UIControlStateNormal];
-    [self.disconnectButton setTitle:[kButtonDisconnect localize]
+    [_disconnectButton setTitle:[kButtonDisconnect localize]
                            forState:UIControlStateNormal];
-    self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.overlayView.backgroundColor = [UIColor colorWithRed:0
+    _overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    _overlayView.backgroundColor = [UIColor colorWithRed:0
                                                        green:0
                                                         blue:0
                                                        alpha:0.5];
-    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    self.activityIndicator.center = self.overlayView.center;
+    _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    _activityIndicator.center = _overlayView.center;
 }
 
 // Update UI Element
