@@ -993,30 +993,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2G-z3-0ww">
-                                <rect key="frame" x="25" y="338" width="325" height="40"/>
-                                <color key="backgroundColor" red="0.66340815355329941" green="0.079010573772773804" blue="0.053212504454376801" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="cXG-t7-l2F"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Deactivate">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="performDesactivation:" destination="gCZ-1d-ufx" eventType="touchUpInside" id="zqx-Ur-XaG"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ri9-t4-9SL">
-                                <rect key="frame" x="16" y="396" width="343" height="70"/>
-                                <color key="backgroundColor" red="0.93603267766497467" green="0.91230204272367821" blue="0.93328132922295615" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="vZX-O7-mzT"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XhT-9Q-1kU">
                                 <rect key="frame" x="0.0" y="142" width="375" height="140"/>
                                 <constraints>
@@ -1027,6 +1003,16 @@
                                     <outlet property="delegate" destination="gCZ-1d-ufx" id="LNF-G3-mag"/>
                                 </connections>
                             </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ri9-t4-9SL">
+                                <rect key="frame" x="16" y="338" width="343" height="70"/>
+                                <color key="backgroundColor" red="0.93603267766497467" green="0.91230204272367821" blue="0.93328132922295615" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="vZX-O7-mzT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1034,28 +1020,23 @@
                             <constraint firstItem="XhT-9Q-1kU" firstAttribute="top" secondItem="NcS-If-j7A" secondAttribute="bottom" constant="8" id="45H-sX-aUf"/>
                             <constraint firstItem="ri9-t4-9SL" firstAttribute="trailing" secondItem="Gcr-Ly-xW4" secondAttribute="trailingMargin" id="ELi-Eq-P7m"/>
                             <constraint firstItem="XhT-9Q-1kU" firstAttribute="leading" secondItem="Gcr-Ly-xW4" secondAttribute="leading" id="F3h-Z3-ltc"/>
-                            <constraint firstItem="C2G-z3-0ww" firstAttribute="leading" secondItem="Gcr-Ly-xW4" secondAttribute="leading" constant="25" id="F6m-8m-ZwZ"/>
                             <constraint firstItem="48a-rj-VSR" firstAttribute="leading" secondItem="Gcr-Ly-xW4" secondAttribute="leading" constant="25" id="IlF-fU-NJQ"/>
                             <constraint firstAttribute="trailing" secondItem="XhT-9Q-1kU" secondAttribute="trailing" id="Khp-4r-7II"/>
                             <constraint firstAttribute="trailing" secondItem="NcS-If-j7A" secondAttribute="trailing" constant="50" id="Lzr-zO-2nM"/>
                             <constraint firstItem="rrA-6O-AAS" firstAttribute="top" secondItem="2h5-LH-RDp" secondAttribute="bottom" constant="8" id="N2y-dC-qGj"/>
                             <constraint firstItem="48a-rj-VSR" firstAttribute="centerX" secondItem="Gcr-Ly-xW4" secondAttribute="centerX" id="OsW-DF-NqQ"/>
                             <constraint firstItem="NcS-If-j7A" firstAttribute="top" secondItem="rrA-6O-AAS" secondAttribute="bottom" constant="8" id="QEf-h7-sB9"/>
-                            <constraint firstAttribute="trailing" secondItem="C2G-z3-0ww" secondAttribute="trailing" constant="25" id="VFq-gk-mnW"/>
-                            <constraint firstItem="C2G-z3-0ww" firstAttribute="centerX" secondItem="Gcr-Ly-xW4" secondAttribute="centerX" id="Vcy-Aw-0Y6"/>
                             <constraint firstItem="rrA-6O-AAS" firstAttribute="leading" secondItem="Gcr-Ly-xW4" secondAttribute="leadingMargin" id="d37-Eh-WUP"/>
                             <constraint firstItem="NcS-If-j7A" firstAttribute="leading" secondItem="Gcr-Ly-xW4" secondAttribute="leading" constant="50" id="hj8-Gc-JAK"/>
-                            <constraint firstItem="C2G-z3-0ww" firstAttribute="top" secondItem="48a-rj-VSR" secondAttribute="bottom" constant="8" id="lIJ-YS-INU"/>
+                            <constraint firstItem="ri9-t4-9SL" firstAttribute="top" secondItem="48a-rj-VSR" secondAttribute="bottom" constant="8" id="k2l-mz-CRC"/>
                             <constraint firstItem="NcS-If-j7A" firstAttribute="centerX" secondItem="Gcr-Ly-xW4" secondAttribute="centerX" id="meF-Qa-kF7"/>
                             <constraint firstItem="rrA-6O-AAS" firstAttribute="trailing" secondItem="Gcr-Ly-xW4" secondAttribute="trailingMargin" id="omd-Rc-HM8"/>
-                            <constraint firstItem="ri9-t4-9SL" firstAttribute="top" secondItem="C2G-z3-0ww" secondAttribute="bottom" constant="18" id="r43-IH-Win"/>
                             <constraint firstAttribute="trailing" secondItem="48a-rj-VSR" secondAttribute="trailing" constant="25" id="uHX-eH-4OI"/>
                             <constraint firstItem="48a-rj-VSR" firstAttribute="top" secondItem="XhT-9Q-1kU" secondAttribute="bottom" constant="8" id="vwp-Qc-o0l"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activateButton" destination="48a-rj-VSR" id="Pvc-Vc-iLs"/>
-                        <outlet property="deactivateButton" destination="C2G-z3-0ww" id="pce-sv-tis"/>
                         <outlet property="feedback" destination="ri9-t4-9SL" id="hmc-JO-anR"/>
                         <outlet property="informationLabel" destination="rrA-6O-AAS" id="JgE-7D-6TS"/>
                         <outlet property="pickerView" destination="XhT-9Q-1kU" id="t6o-q2-dkB"/>
@@ -1492,6 +1473,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="yrU-hk-UkI"/>
-        <segue reference="DhG-A2-tmH"/>
+        <segue reference="H2E-as-rqf"/>
     </inferredMetricsTieBreakers>
 </document>

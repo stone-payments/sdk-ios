@@ -11,118 +11,84 @@
 #import "DemoPreferences.h"
 
 @interface ActivationOfStoneCodeViewController ()
-{
-    NSArray *environments;
-}
 
 @property (strong, nonatomic) IBOutlet UILabel *informationLabel;
 @property (strong, nonatomic) IBOutlet UIButton *activateButton;
-@property (strong, nonatomic) IBOutlet UIButton *deactivateButton;
-
-@property (weak, nonatomic) IBOutlet UITextField *txtStoneCode;
-@property (weak, nonatomic) IBOutlet UILabel *feedback;
+@property (strong, nonatomic) IBOutlet UITextField *txtStoneCode;
+@property (strong, nonatomic) IBOutlet UILabel *feedback;
 @property (strong, nonatomic) IBOutlet UIPickerView *pickerView;
+//List with all available environments
+@property (strong, nonatomic) NSArray *environments;
 
 @end
 
 @implementation ActivationOfStoneCodeViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.navigationItem.title = [kTitleActivation localize];
-    self.informationLabel.text = [kInstructionActivation localize];
-    [self.activateButton setTitle:[kButtonActivate localize]
-                         forState:UIControlStateNormal];
-    [self.deactivateButton setTitle:[kButtonDeactivate localize]
-                           forState:UIControlStateNormal];
-    
-    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc]
-                                     initWithTarget:self.view
-                                     action:@selector(endEditing:)]];
-    
-    self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.overlayView.backgroundColor = [UIColor colorWithRed:0
-                                                       green:0
-                                                        blue:0
-                                                       alpha:0.5];
-    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    self.activityIndicator.center = self.overlayView.center;
+#pragma mark - Lifecycle
 
-    self.pickerView.delegate = self;
-    self.pickerView.dataSource = self;
-    
-    environments = @[[kEnvironmentProduction localize],
-                     [kEnvironmentInternalHomolog localize],
-                     [kEnvironmentSandbox localize],
-                     [kEnvironmentStaging localize],
-                     [kEnvironmentCertification localize]];
-    
-    STNEnvironment env = [DemoPreferences lastSelectedEnvironment];
-    
-    [self.pickerView selectRow:(int)env
-                   inComponent:0
-                      animated:NO];
+- (void)viewDidLoad {
+    // Setup UI components
+    [self setupView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-/*
-    Veja aqui exemplo de desativação do Stone Code;
- */
-- (IBAction)performDesactivation:(id)sender {
-    NSString *stoneCode = self.txtStoneCode.text;
-    NSLog(@"%@", [kLogDeactivating localize]);
-    @try {
-        [STNStoneCodeActivationProvider deactivateMerchantWithStoneCode:stoneCode];
-        self.feedback.text = [kLogDeactivated localize];
-        NSLog(@"%@", [kLogDeactivated localize]);
-    } @catch (NSError *error) {
-        NSLog(@"%@", error.description);
-        self.feedback.text =[kGeneralErrorMessage localize];
-    }
-}
 
-/*
-    Veja aqui o exemplo de ativação de Stone Code;
- */
+#pragma mark - UIButton actions
 
+// Activate Stone Code
 - (IBAction)performActivation:(id)sender {
+    [_overlayView addSubview:_activityIndicator];
+    [_activityIndicator startAnimating];
+    [self.navigationController.view addSubview:_overlayView];
     
-    [self.overlayView addSubview:self.activityIndicator];
-    [self.activityIndicator startAnimating];
-    [self.navigationController.view addSubview:self.overlayView];
-    
-    // Recebendo o Stone Code do textField;
-    NSString *stoneCode = self.txtStoneCode.text;
+    // Get Stone Code from text field
+    NSString *stoneCode = _txtStoneCode.text;
     NSLog(@"%@", [kLogActivating localize]);
 
-    // Ativando o Stone Code;
+    // Activate Stone Code
     [STNStoneCodeActivationProvider activateStoneCode:stoneCode withBlock:^(BOOL succeeded, NSError *error) {
+        // Remove overlay
         [self.overlayView removeFromSuperview];
+        // Check activation
         if (succeeded) {
             NSLog(@"%@", [kLogActivated localize]);
+            // Refresh label data
             self.feedback.text = [kLogActivated localize];
         } else {
             NSLog(@"%@", error.description);
+            // Refresh label data
             self.feedback.text = error.description;
         }
     }];
 }
 
+#pragma mark - UIPickerViewDataSource
+
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return environments.count;
+// Set number of rows based on the numbers of available environment
+- (NSInteger)pickerView:(UIPickerView *)pickerView
+numberOfRowsInComponent:(NSInteger)component {
+    return _environments.count;
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return environments[row];
+// Set a title per environment from list
+- (NSString *)pickerView:(UIPickerView *)pickerView
+             titleForRow:(NSInteger)row
+            forComponent:(NSInteger)component {
+    return _environments[row];
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+#pragma mark - UIPickerViewDelegate
+
+// Select environment
+- (void)pickerView:(UIPickerView *)pickerView
+      didSelectRow:(NSInteger)row
+       inComponent:(NSInteger)component {
     
     STNEnvironment environment;
     switch (row) {
@@ -148,4 +114,41 @@
     [DemoPreferences updateEnvironment:environment];
 }
 
+#pragma mark - UI Update
+
+// Setup view
+- (void)setupView {
+    [super viewDidLoad];
+    self.navigationItem.title = [kTitleActivation localize];
+    _informationLabel.text = [kInstructionActivation localize];
+    [_activateButton setTitle:[kButtonActivate localize]
+                         forState:UIControlStateNormal];
+    
+    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc]
+                                     initWithTarget:self.view
+                                     action:@selector(endEditing:)]];
+    
+    _overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    _overlayView.backgroundColor = [UIColor colorWithRed:0
+                                                       green:0
+                                                        blue:0
+                                                       alpha:0.5];
+    _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    _activityIndicator.center = _overlayView.center;
+    
+    _pickerView.delegate = self;
+    _pickerView.dataSource = self;
+    
+    _environments = @[[kEnvironmentProduction localize],
+                      [kEnvironmentInternalHomolog localize],
+                      [kEnvironmentSandbox localize],
+                      [kEnvironmentStaging localize],
+                      [kEnvironmentCertification localize]];
+    
+    STNEnvironment env = [DemoPreferences lastSelectedEnvironment];
+    
+    [_pickerView selectRow:(int)env
+                   inComponent:0
+                      animated:NO];
+}
 @end
