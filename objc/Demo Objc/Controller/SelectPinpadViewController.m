@@ -13,7 +13,6 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *instructionLabel;
 @property (strong, nonatomic) IBOutlet UIButton *refreshButton;
-
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 // Array with all paired pinpad devices
 @property (strong, nonatomic) NSArray <STNPinpad*> *connectedPinpads;
@@ -24,28 +23,21 @@
 #pragma mark - Lifecycle
 
 - (void)viewDidLoad {
+    // Setup UI components
+    [self setupView];
     
-    [super viewDidLoad];
-    self.navigationItem.title = [kTitleSelection localize];
-    self.instructionLabel.text = [kInstructionSelection localize];
-    [self.refreshButton setTitle:[kButtonRefresh localize] forState:UIControlStateNormal];
-    
-    self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    self.activityIndicator.center = self.overlayView.center;
-    [self.tableView setAllowsMultipleSelection:NO];
-    
+    // Update connectedPinpads
     [self findConnectedPinpads];
     
+    // Get the currently selected pinpad.
     STNPinpad *selectedPinpad = [[STNPinPadConnectionProvider new] selectedPinpad];
     
     // if the selected pinpad exists update the selected row at table view
     if (selectedPinpad != nil && [_connectedPinpads containsObject:selectedPinpad]) {
         int i = (int)[_connectedPinpads indexOfObject:selectedPinpad];
         [_tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]
-                                    animated:false
-                              scrollPosition:UITableViewScrollPositionTop];
+                                animated:false
+                          scrollPosition:UITableViewScrollPositionTop];
         
         // Update label text with the name of selected pinpad
         _feedback.text = [NSString stringWithFormat:@"Selected pinpad %@", selectedPinpad.name];
@@ -56,10 +48,13 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark -Buttons actions
+// Action to find connected pinpads
 - (IBAction)refresh:(id)sender {
     [self findConnectedPinpads];
 }
 
+// Update connected pinpads list and refresh table view content
 -(void)findConnectedPinpads {
     _connectedPinpads = [[STNPinPadConnectionProvider new] listConnectedPinpads];
     for (STNPinpad *pinpad in _connectedPinpads) {
@@ -71,11 +66,13 @@
 #pragma mark - UITableViewDataSource
 
 // Set number of rows based on the numbers of available connected pinpads
-- (NSInteger) tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger) tableView:(nonnull UITableView *)tableView
+  numberOfRowsInSection:(NSInteger)section {
     return _connectedPinpads.count;
 }
 
-- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+// Set a cell for pinpad from list
+- (nonnull UITableViewCell *) tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"pinpadCell" forIndexPath:indexPath];
     STNPinpad *pinpad = _connectedPinpads[indexPath.row];
     cell.textLabel.text = pinpad.name;
