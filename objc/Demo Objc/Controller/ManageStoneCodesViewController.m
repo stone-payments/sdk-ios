@@ -70,7 +70,7 @@
 
 #pragma mark - UITableViewDataSource
 
-// Set a cell for merchant from list
+// Set a cell per merchant from list
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView
                  cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     // Get reusable cell
@@ -126,7 +126,7 @@
     });
 }
 
-//
+// Load merchants and reload table view
 -(void)refreshStoneCodesTableView {
     dispatch_async(dispatch_get_main_queue(), ^{
         // Get the list of all available merchants
