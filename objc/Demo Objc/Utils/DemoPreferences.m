@@ -10,24 +10,51 @@
 
 @implementation DemoPreferences
 
-+ (BOOL)writeEnvironment:(STNEnvironment)environment
-{
+// NSUserDefaults write environment
++ (BOOL)updateEnvironment:(STNEnvironment)environment {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:(int)environment forKey:@"DemoEnvironment"];
     [defaults synchronize];
-    BOOL written = ([DemoPreferences readEnvironment] == environment);
-    if (written)
-    {
+    if ([DemoPreferences lastSelectedEnvironment] == environment) {
         [STNConfig setEnvironment:environment];
         return YES;
     }
     return NO;
 }
 
-+ (STNEnvironment)readEnvironment
-{
+// NSUserDefaults read environment
++ (STNEnvironment)lastSelectedEnvironment {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     return (STNEnvironment)[defaults integerForKey:@"DemoEnvironment"];
 }
 
+// NSUserDefaults write selected device
++ (BOOL)updateLastSelectedDevice:(NSString *)deviceId {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:deviceId forKey:@"DemoLastSelectedDevice"];
+    [defaults synchronize];
+    
+    return ([DemoPreferences lastSelectedDevice] == deviceId);
+}
+
+// NSUserDefaults read last selected device
++ (NSString *)lastSelectedDevice {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults stringForKey:@"DemoLastSelectedDevice"];
+}
+
+// NSUserDefaults write last selected merchant
++ (BOOL)updateLastSelectedStoneCode:(NSString *)stoneCode {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:stoneCode forKey:@"DemoLastSelectedStoneCode"];
+    [defaults synchronize];
+    
+    return ([DemoPreferences lastSelectedStoneCode] == stoneCode);
+}
+
+// NSUserDefaults read last selected merchant
++ (NSString *)lastSelectedStoneCode {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults stringForKey:@"DemoLastSelectedStoneCode"];
+}
 @end

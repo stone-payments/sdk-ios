@@ -57,7 +57,7 @@
                      [kEnvironmentStaging localize],
                      [kEnvironmentCertification localize]];
     
-    STNEnvironment env = [DemoPreferences readEnvironment];
+    STNEnvironment env = [DemoPreferences lastSelectedEnvironment];
     
     [self.pickerView selectRow:(int)env
                    inComponent:0
@@ -145,7 +145,7 @@
             environment = STNEnvironmentSandbox;
             break;
     }
-    [DemoPreferences writeEnvironment:environment];
+    [DemoPreferences updateEnvironment:environment];
 }
 
 @end
