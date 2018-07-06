@@ -49,6 +49,7 @@
 }
 
 #pragma mark -Buttons actions
+
 // Action to find connected pinpads
 - (IBAction)refresh:(id)sender {
     [self findConnectedPinpads];
@@ -57,9 +58,6 @@
 // Update connected pinpads list and refresh table view content
 -(void)findConnectedPinpads {
     _connectedPinpads = [[STNPinPadConnectionProvider new] listConnectedPinpads];
-    for (STNPinpad *pinpad in _connectedPinpads) {
-        NSLog(@"\nPinpad name: %@\nPinpad identifier: %@", pinpad.name, pinpad.identifier);
-    }
     [self.tableView reloadData];
 }
 

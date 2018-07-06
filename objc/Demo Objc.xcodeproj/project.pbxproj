@@ -102,11 +102,8 @@
 		41FB49751E6865310010495B /* StoneSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StoneSDK.framework; sourceTree = "<group>"; };
 		41FB49801E68A5160010495B /* SelectPinpadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPinpadViewController.h; sourceTree = "<group>"; };
 		41FB49811E68A5160010495B /* SelectPinpadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPinpadViewController.m; sourceTree = "<group>"; };
-<<<<<<< Updated upstream
-=======
 		6C251D6D20EC066E0002B862 /* ManageStoneCodesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManageStoneCodesViewController.h; sourceTree = "<group>"; };
 		6C251D6E20EC066E0002B862 /* ManageStoneCodesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManageStoneCodesViewController.m; sourceTree = "<group>"; };
->>>>>>> Stashed changes
 		6C645FFD208F9EB70098C051 /* DemoPreferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoPreferences.h; sourceTree = "<group>"; };
 		6C645FFE208FC4E70098C051 /* DemoPreferences.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoPreferences.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -168,6 +165,8 @@
 		6C46BC3320DA9D5C0090888E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6C251D6D20EC066E0002B862 /* ListStoneCodesViewController.h */,
+				6C251D6E20EC066E0002B862 /* ListStoneCodesViewController.m */,
 				41D21DC91E5F300D00F2ECBF /* ViewController.h */,
 				41D21DCA1E5F300D00F2ECBF /* ViewController.m */,
 				4104232A1F9FB58F003DCDFF /* ConnectBLEViewController.h */,
@@ -186,8 +185,6 @@
 				411629C01E69EB4C00F6A4FB /* DownloadTableViewController.m */,
 				411629BC1E69B7E300F6A4FB /* ActivationOfStoneCodeViewController.h */,
 				411629BD1E69B7E300F6A4FB /* ActivationOfStoneCodeViewController.m */,
-				6C645FFD208F9EB70098C051 /* DemoPreferences.h */,
-				6C645FFE208FC4E70098C051 /* DemoPreferences.m */,
 				41B2590A1E607E28001668AA /* PerformTransactionViewController.h */,
 				41B2590B1E607E28001668AA /* PerformTransactionViewController.m */,
 				41FB49721E6863D30010495B /* RefreshTablesViewController.h */,
@@ -339,10 +336,7 @@
 				4144BD6B1E70A5D100A6A2D7 /* CancelListTransactionTableViewController.m in Sources */,
 				414EB83D1E73116800472A3B /* CancellationCell.m in Sources */,
 				41FB49741E6863D30010495B /* RefreshTablesViewController.m in Sources */,
-<<<<<<< Updated upstream
-=======
 				6C251D6F20EC066E0002B862 /* ManageStoneCodesViewController.m in Sources */,
->>>>>>> Stashed changes
 				411629C11E69EB4C00F6A4FB /* DownloadTableViewController.m in Sources */,
 				4198132C1E6E06000054EBA7 /* ListTransactionTableViewController.m in Sources */,
 				414EB8471E7352EA00472A3B /* TestValidationViewController.m in Sources */,
