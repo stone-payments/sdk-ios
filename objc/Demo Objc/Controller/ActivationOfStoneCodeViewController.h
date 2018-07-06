@@ -6,8 +6,8 @@
 //  Copyright © 2017 Eduardo Mello de Macedo | Stone. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "StoneSDK/StoneSDK.h"
+@import UIKit;
+@import StoneSDK;
 
 @interface ActivationOfStoneCodeViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
