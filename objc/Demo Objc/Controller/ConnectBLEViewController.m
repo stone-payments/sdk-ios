@@ -29,8 +29,7 @@
 
 #pragma mark - Lifecycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     // Setup UI components
     [self setupView];
     

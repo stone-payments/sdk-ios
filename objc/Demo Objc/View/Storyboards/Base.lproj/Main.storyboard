@@ -1199,7 +1199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2YZ-7j-7HR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-58.399999999999999" y="1692.5037481259371"/>
+            <point key="canvasLocation" x="-50" y="1693"/>
         </scene>
         <!--Select Pinpad View Controller-->
         <scene sceneID="Lnd-KA-EYz">
@@ -1288,7 +1288,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J9W-p1-2kv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1366" y="1693"/>
+            <point key="canvasLocation" x="-1366" y="1692"/>
         </scene>
         <!--Refresh Tables View Controller-->
         <scene sceneID="E70-eL-di1">
@@ -1468,7 +1468,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4nZ-eO-ozJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2146.4000000000001" y="1692.5037481259371"/>
+            <point key="canvasLocation" x="-2031" y="1693"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
