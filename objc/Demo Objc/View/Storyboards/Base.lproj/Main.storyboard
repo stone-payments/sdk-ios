@@ -40,7 +40,6 @@
                         <segue destination="1lP-3X-EMr" kind="show" identifier="RefreshTables" id="MbF-sH-3pL"/>
                         <segue destination="B9X-LN-GJG" kind="show" identifier="PerformTransaction" id="2pr-yT-ssc"/>
                         <segue destination="m7Y-jc-i92" kind="show" identifier="SelectPinpad" id="yrU-hk-UkI"/>
-                        <segue destination="gCZ-1d-ufx" kind="show" identifier="ActivationOfStoneCode" id="sET-eZ-dc6"/>
                         <segue destination="dma-iG-EHF" kind="show" identifier="DownloadTable" id="HRU-od-eR0"/>
                         <segue destination="voD-TE-Org" kind="show" identifier="ListTransaction" id="Ma1-qw-xrO"/>
                         <segue destination="I9B-6U-UrP" kind="show" identifier="MerchantList" id="xaF-v8-ru1"/>
@@ -1065,10 +1064,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JZy-yQ-aLC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-<<<<<<< Updated upstream
-            <point key="canvasLocation" x="-705" y="1692.5"/>
-=======
-            <point key="canvasLocation" x="-703" y="2445"/>
+            <point key="canvasLocation" x="-703" y="2455"/>
         </scene>
         <!--List Stone Codes-->
         <scene sceneID="5C6-Rp-BT2">
@@ -1166,7 +1162,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bIg-bj-zMn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-703" y="1692"/>
->>>>>>> Stashed changes
         </scene>
         <!--Download Table View Controller-->
         <scene sceneID="ZTW-sK-Nbo">
@@ -1496,11 +1491,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-<<<<<<< Updated upstream
-        <segue reference="JJk-ZS-Pfj"/>
-=======
         <segue reference="yrU-hk-UkI"/>
-        <segue reference="H2E-as-rqf"/>
->>>>>>> Stashed changes
+        <segue reference="DhG-A2-tmH"/>
     </inferredMetricsTieBreakers>
 </document>
