@@ -21,36 +21,26 @@
 
 @property (strong, nonatomic) UIView *overlayView;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
+// Array with all Low Energy pinpad devices found
+@property (strong, nonatomic) NSMutableArray <STNPinpad *> *peripherals;
+// Pinpad Central Manager
+@property (strong, nonatomic) STNPinPadConnectionProvider *connection;
 
 @end
 
 @implementation ConnectBLEViewController
 
-NSMutableArray <STNPinpad *> *peripherals;
-STNPinPadConnectionProvider *connection;
-
 #pragma mark - Lifecycle
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [self setupView];
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    
-    self.navigationItem.title = [kTitleBLE localize];
-    self.instructionLabel.text = [kInstructionBLE localize];
-    [self.scanButton setTitle:[kButtonScan localize] forState:UIControlStateNormal];
-    [self.disconnectButton setTitle:[kButtonDisconnect localize] forState:UIControlStateNormal];
-    
-    self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    self.activityIndicator.center = self.overlayView.center;
-
-    connection = [[STNPinPadConnectionProvider alloc] init];
-    connection.delegate = self;
-    [connection startCentral];
+    // Initialize the Central Manager
+    _connection = [[STNPinPadConnectionProvider alloc] init];
+    // Set delegate for BLE session implementation
+    _connection.delegate = self;
+    [_connection startCentral];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,73 +48,90 @@ STNPinPadConnectionProvider *connection;
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Buttons actions
+#pragma mark - UIButton actions
 
-- (IBAction)startScanning:(id)sender
-{
-    [connection startScan];
+// Start scanning BLE devices
+- (IBAction)startScanning:(id)sender {
+    [_connection startScan];
 }
 
-- (IBAction)disconnectAllBLE:(id)sender
-{
-    NSArray<STNPinpad*>* connectedPinpads = [connection listConnectedPinpads];
-    
+// Disconnect all Bluetooth Low Energy pinpads
+- (IBAction)disconnectAllBLE:(id)sender {
+    // Fetch all connected pinpads
+    NSArray<STNPinpad*>* connectedPinpads = [_connection listConnectedPinpads];
     for (STNPinpad* pinpad in connectedPinpads) {
-        [connection disconnectPinpad:pinpad];
+        // Disconnect each one
+        [_connection disconnectPinpad:pinpad];
     }
 }
 
 #pragma mark - Tableview
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return peripherals.count;
+// Set number of rows based on the numbers of available peripherals
+-(NSInteger)tableView:(UITableView *)tableView
+    numberOfRowsInSection:(NSInteger)section {
+    return _peripherals.count;
 }
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"peripheralCell" forIndexPath:indexPath];
-    cell.textLabel.text = peripherals[indexPath.row].name;
+    if ([_peripherals count] > indexPath.row) {
+        cell.textLabel.text = _peripherals[indexPath.row].name;
+    }
+    cell.textLabel.text = _peripherals[indexPath.row].name;
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [connection connectToPinpad:peripherals[indexPath.row]];
-    [connection stopScan];
+#pragma mark - UITableViewDataDelegate
+
+// Connect to the selected pinpad and stop scanning
+-(void)tableView:(UITableView *)tableView
+    didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Stabilish connection with selected pinpad
+    [_connection connectToPinpad:_peripherals[indexPath.row]];
+    // Stop scanning
+    [_connection stopScan];
 }
 
 #pragma mark - Pinpad Connection Delegate
 
--(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider didStartScanning:(BOOL)success error:(NSError *)error
+-(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider
+               didStartScanning:(BOOL)success error:(NSError *)error
 {
     NSLog(@"%@: %@", [kLogStartScan localize], success ? [kGeneralYes localize] : [kGeneralNo localize]);
     [self setFeedbackMessage:[kLogStartScan localize]];
 }
 
--(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider didFindPinpad:(STNPinpad *)pinpad
-{
-    if(peripherals == nil) {
-        peripherals = [[NSMutableArray alloc] init];
+// Did find pinpad
+-(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider
+                  didFindPinpad:(STNPinpad *)pinpad {
+    // Initialize peripherals if needed
+    if(_peripherals == nil) {
+        _peripherals = [[NSMutableArray alloc] init];
     }
-    
-    if(![peripherals containsObject:pinpad]) {
+    // If the peripherals did not contains the found pinpad, make the inclusion
+    if(![_peripherals containsObject:pinpad]) {
+        // You can access the pinpad data
         NSLog(@"%@: %@", [kLogFind localize], pinpad.name);
-        [peripherals addObject:pinpad];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
+        // Add the new pinpad to the peripherals list
+        [_peripherals addObject:pinpad];
+        // Refresh table view content
+        [self refreshTableViewContent];
     }
 }
 
--(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider didConnectPinpad:(STNPinpad *)pinpad error:(NSError * _Nullable)error
+-(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider
+               didConnectPinpad:(STNPinpad *)pinpad
+                          error:(NSError * _Nullable)error
 {
     NSLog(@"%@: %@", [kLogConnect localize], pinpad.name);
     [self setFeedbackMessage:[kLogConnect localize]];
     //[connection disconnectPinpad:pinpad];
     
-    [connection selectPinpad:pinpad];
+    //  Use this specific pinpad in the future transactions
+    [_connection selectPinpad:pinpad];
 }
 
 -(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider didDisconnectPinpad:(STNPinpad *)pinpad
@@ -151,11 +158,38 @@ STNPinPadConnectionProvider *connection;
     NSLog(@"%@: %@", [kLogCentralState localize], stateString);
 }
 
--(void)setFeedbackMessage:(NSString*)message
-{
+#pragma mark - UI Update
+
+// Setup view
+- (void)setupView {
+    [super viewDidLoad];
+    
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    self.navigationItem.title = [kTitleBLE localize];
+    _instructionLabel.text = [kInstructionBLE localize];
+    [_scanButton setTitle:[kButtonScan localize]
+                     forState:UIControlStateNormal];
+    [_disconnectButton setTitle:[kButtonDisconnect localize]
+                           forState:UIControlStateNormal];
+    _overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    _overlayView.backgroundColor = [UIColor colorWithRed:0
+                                                       green:0
+                                                        blue:0
+                                                       alpha:0.5];
+    _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    _activityIndicator.center = _overlayView.center;
+}
+
+// Update UI Element
+-(void)setFeedbackMessage:(NSString*)message {
     dispatch_async(dispatch_get_main_queue(), ^{
         self.feedback.text = message;
     });
+}
+
+-(void)refreshTableViewContent {
+    
 }
 
 @end
