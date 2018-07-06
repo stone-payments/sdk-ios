@@ -9,16 +9,13 @@
 #import "ConnectBLEViewController.h"
 #import "NSString+Utils.h"
 
-
 @interface ConnectBLEViewController ()
 
 @property (strong, nonatomic) IBOutlet UILabel *instructionLabel;
 @property (strong, nonatomic) IBOutlet UIButton *scanButton;
 @property (strong, nonatomic) IBOutlet UIButton *disconnectButton;
-
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UILabel *feedback;
-
 @property (strong, nonatomic) UIView *overlayView;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
 // Array with all Low Energy pinpad devices found
@@ -34,6 +31,7 @@
 
 - (void)viewDidLoad
 {
+    // Setup UI components
     [self setupView];
     
     // Initialize the Central Manager
@@ -45,7 +43,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - UIButton actions
@@ -65,7 +62,7 @@
     }
 }
 
-#pragma mark - Tableview
+#pragma mark - UITableViewDataSource
 
 // Set number of rows based on the numbers of available peripherals
 -(NSInteger)tableView:(UITableView *)tableView
@@ -73,9 +70,10 @@
     return _peripherals.count;
 }
 
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+// Set a cell for peripheral from list
+-(UITableViewCell *)tableView:(UITableView *)tableView
+        cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Set cell
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"peripheralCell" forIndexPath:indexPath];
     if ([_peripherals count] > indexPath.row) {
         cell.textLabel.text = _peripherals[indexPath.row].name;
@@ -95,12 +93,19 @@
     [_connection stopScan];
 }
 
-#pragma mark - Pinpad Connection Delegate
+#pragma mark - STNPinPadConnectionDelegate Delegate
 
+// Start scanning
 -(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider
-               didStartScanning:(BOOL)success error:(NSError *)error
-{
+               didStartScanning:(BOOL)success
+                          error:(NSError *)error {
+    // The param success informs if its actually scanning
     NSLog(@"%@: %@", [kLogStartScan localize], success ? [kGeneralYes localize] : [kGeneralNo localize]);
+    // You could check and treat the error
+    if (error) {
+        NSLog(@"Error: %@", error.description);
+    }
+    // Refresh label data
     [self setFeedbackMessage:[kLogStartScan localize]];
 }
 
@@ -122,11 +127,13 @@
     }
 }
 
+// Did connect pinpad
 -(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider
                didConnectPinpad:(STNPinpad *)pinpad
-                          error:(NSError * _Nullable)error
-{
+                          error:(NSError * _Nullable)error {
+    //  You can access the pinpad data
     NSLog(@"%@: %@", [kLogConnect localize], pinpad.name);
+    //  Refresh label data
     [self setFeedbackMessage:[kLogConnect localize]];
     //[connection disconnectPinpad:pinpad];
     
@@ -134,16 +141,22 @@
     [_connection selectPinpad:pinpad];
 }
 
--(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider didDisconnectPinpad:(STNPinpad *)pinpad
-{
+// Did disconnect pinpad
+-(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider
+            didDisconnectPinpad:(STNPinpad *)pinpad {
+    //  You can access the pinpad data
     NSLog(@"%@: %@", [kLogDisconnect localize], pinpad.name);
+    //  Refresh label data
     [self setFeedbackMessage: [kLogDisconnect localize]];
 }
 
--(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider didChangeCentralState:(CBManagerState)state
-{
+// Access the actually central state
+-(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider
+          didChangeCentralState:(CBManagerState)state {
+    
     NSString *stateString = @"";
     
+    // Central states
     switch (state) {
         case 0: stateString = @"Unknown"; break;
         case 1: stateString = @"Resetting"; break;
@@ -188,8 +201,10 @@
     });
 }
 
--(void)refreshTableViewContent {
-    
+// Refresh Table View
+-(void) refreshTableViewContent {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 }
-
 @end
