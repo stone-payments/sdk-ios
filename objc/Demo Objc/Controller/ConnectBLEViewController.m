@@ -9,22 +9,6 @@
 #import "ConnectBLEViewController.h"
 #import "NSString+Utils.h"
 
-@interface ConnectBLEViewController ()
-
-@property (strong, nonatomic) IBOutlet UILabel *instructionLabel;
-@property (strong, nonatomic) IBOutlet UIButton *scanButton;
-@property (strong, nonatomic) IBOutlet UIButton *disconnectButton;
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) IBOutlet UILabel *feedback;
-@property (strong, nonatomic) UIView *overlayView;
-@property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
-// Array with all Low Energy pinpad devices found
-@property (strong, nonatomic) NSMutableArray <STNPinpad *> *peripherals;
-// Pinpad Central Manager
-@property (strong, nonatomic) STNPinPadConnectionProvider *connection;
-
-@end
-
 @implementation ConnectBLEViewController
 
 #pragma mark - Lifecycle
