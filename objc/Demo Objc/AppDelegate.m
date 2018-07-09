@@ -10,16 +10,13 @@
 #import "NSString+Utils.h"
 #import "DemoPreferences.h"
 
-@interface AppDelegate ()
-
-@end
-
 @implementation AppDelegate
 
 NSTimer* timer;
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application
+    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
     // Set Stone as Acquirer
@@ -38,18 +35,19 @@ NSTimer* timer;
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    if (timer == nil)
-    {
+    // Check timer
+    if (timer == nil) {
+        // schedule timer to call the keepConnectionSlive every 3 minutes
         timer = [NSTimer scheduledTimerWithTimeInterval: 60 * 3
                                                  target: self
                                                selector: @selector(keepConnectionAlive)
                                                userInfo: nil
                                                 repeats: YES];
-        __block UIBackgroundTaskIdentifier bgTask = 0;
         __block UIApplication *app = [UIApplication sharedApplication];
-        bgTask = [app beginBackgroundTaskWithExpirationHandler:^
-        {
-          [app endBackgroundTask:bgTask];
+        UIBackgroundTaskIdentifier bgTask = 0;
+
+        bgTask = [app beginBackgroundTaskWithExpirationHandler:^ {
+            [app endBackgroundTask:bgTask];
         }];
     }
 }
@@ -57,19 +55,14 @@ NSTimer* timer;
 // Para manter a conexão ativa.
 - (void)keepConnectionAlive
 {
-    NSLog(@"keepConnectionAlive called");
     [STNPinPadConnectionProvider connectToPinpad:^(BOOL succeeded, NSError *error) {
-
-        if (succeeded)
-        {
-            NSLog(@"keepConnectionAlive succeeded %@", [kGeneralConnected localize]);
-        } else
-        {
-            NSLog(@"keepConnectionAlive failed %@", [error localizedDescription]);
+        if (succeeded) {
+            NSLog(@"Device connected %@", [kGeneralConnected localize]);
+        } else {
+            NSLog(@"Error: Device not connected. %@", [error localizedDescription]);
             [self showErrorMessage:[error localizedDescription]];
         }
     }];
-    
 }
 
 
