@@ -93,7 +93,7 @@
     [_connection stopScan];
 }
 
-#pragma mark - STNPinPadConnectionDelegate Delegate
+#pragma mark - STNPinPadConnectionDelegate
 
 // Start scanning
 -(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider
