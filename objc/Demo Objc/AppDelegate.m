@@ -14,7 +14,6 @@
 
 NSTimer* timer;
 
-
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -22,43 +21,49 @@ NSTimer* timer;
     // Set Stone as Acquirer
     [STNConfig setAcquirer:STNAcquirerStone];
    
-    // Set the Stone environment
+    // Set the environment, it will impact the kind of requests for activation and authorization of transactions
     [STNConfig setEnvironment:[DemoPreferences lastSelectedEnvironment]];
     
     return YES;
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
 }
 
+// Example code for connection maintenance
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Check timer
+    // Check that timer is already set
     if (timer == nil) {
         // schedule timer to call the keepConnectionSlive every 3 minutes
-        timer = [NSTimer scheduledTimerWithTimeInterval: 60 * 3
+        timer = [NSTimer scheduledTimerWithTimeInterval: 5
                                                  target: self
                                                selector: @selector(keepConnectionAlive)
                                                userInfo: nil
                                                 repeats: YES];
+        // Get the singleton app instance
         __block UIApplication *app = [UIApplication sharedApplication];
+        // Initiate the Task identifier
         UIBackgroundTaskIdentifier bgTask = 0;
 
+        // Get the current background task identifier with a expiration handler to end the task
         bgTask = [app beginBackgroundTaskWithExpirationHandler:^ {
+            // End the background task at expiration
             [app endBackgroundTask:bgTask];
         }];
     }
 }
 
-// Para manter a conexão ativa.
-- (void)keepConnectionAlive
-{
+// Keep the connection alive
+- (void)keepConnectionAlive {
+    // Try to connect and maintain the connection alive
     [STNPinPadConnectionProvider connectToPinpad:^(BOOL succeeded, NSError *error) {
+        // You can use the succeeded param to check the connection status
         if (succeeded) {
             NSLog(@"Device connected %@", [kGeneralConnected localize]);
         } else {
+            // You can use the error param to identify the reason of the failure
             NSLog(@"Error: Device not connected. %@", [error localizedDescription]);
             [self showErrorMessage:[error localizedDescription]];
         }
@@ -80,7 +85,7 @@ NSTimer* timer;
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (void)showErrorMessage:(NSString *)error{
+- (void)showErrorMessage:(NSString *)error {
     
     UIAlertController *errorAlert = [UIAlertController
                                      alertControllerWithTitle:[kGeneralErrorTitle localize]
@@ -91,22 +96,14 @@ NSTimer* timer;
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction * action)
                                {
-                                   [errorAlert dismissViewControllerAnimated:YES completion:nil];
+                                   [errorAlert dismissViewControllerAnimated:YES
+                                                                  completion:nil];
                                }];
     
     [errorAlert addAction:okButton];
-    [self.window.rootViewController presentViewController:errorAlert animated:YES completion:nil];
-    
-//    if presentedViewController == nil {
-//        self.presentViewController(alertController, animated: true, completion: nil)
-//    } else{
-//        self.dismissViewControllerAnimated(false) { () -> Void in
-//            self.presentViewController(alertController, animated: true, completion: nil)
-//        }
-//    }
+    [self.window.rootViewController presentViewController:errorAlert
+                                                 animated:YES
+                                               completion:nil];
 }
-
-// Converte o número para float, trata a questão da vírgula e/ou do ponto como separador para decimal.
-
 
 @end
