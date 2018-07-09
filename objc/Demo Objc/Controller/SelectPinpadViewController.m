@@ -9,15 +9,6 @@
 #import "SelectPinpadViewController.h"
 #import "NSString+Utils.h"
 
-@interface SelectPinpadViewController ()
-
-@property (strong, nonatomic) IBOutlet UILabel *instructionLabel;
-@property (strong, nonatomic) IBOutlet UIButton *refreshButton;
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
-// Array with all paired pinpad devices
-@property (strong, nonatomic) NSArray <STNPinpad*> *connectedPinpads;
-@end
-
 @implementation SelectPinpadViewController
 
 #pragma mark - Lifecycle
@@ -49,6 +40,7 @@
 }
 
 #pragma mark -Buttons actions
+
 // Action to find connected pinpads
 - (IBAction)refresh:(id)sender {
     [self findConnectedPinpads];
@@ -57,9 +49,6 @@
 // Update connected pinpads list and refresh table view content
 -(void)findConnectedPinpads {
     _connectedPinpads = [[STNPinPadConnectionProvider new] listConnectedPinpads];
-    for (STNPinpad *pinpad in _connectedPinpads) {
-        NSLog(@"\nPinpad name: %@\nPinpad identifier: %@", pinpad.name, pinpad.identifier);
-    }
     [self.tableView reloadData];
 }
 

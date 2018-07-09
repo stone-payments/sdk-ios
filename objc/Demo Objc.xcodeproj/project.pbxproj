@@ -165,6 +165,8 @@
 		6C46BC3320DA9D5C0090888E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6C251D6D20EC066E0002B862 /* ListStoneCodesViewController.h */,
+				6C251D6E20EC066E0002B862 /* ListStoneCodesViewController.m */,
 				41D21DC91E5F300D00F2ECBF /* ViewController.h */,
 				41D21DCA1E5F300D00F2ECBF /* ViewController.m */,
 				4104232A1F9FB58F003DCDFF /* ConnectBLEViewController.h */,
@@ -183,8 +185,6 @@
 				411629C01E69EB4C00F6A4FB /* DownloadTableViewController.m */,
 				411629BC1E69B7E300F6A4FB /* ActivationOfStoneCodeViewController.h */,
 				411629BD1E69B7E300F6A4FB /* ActivationOfStoneCodeViewController.m */,
-				6C645FFD208F9EB70098C051 /* DemoPreferences.h */,
-				6C645FFE208FC4E70098C051 /* DemoPreferences.m */,
 				41B2590A1E607E28001668AA /* PerformTransactionViewController.h */,
 				41B2590B1E607E28001668AA /* PerformTransactionViewController.m */,
 				41FB49721E6863D30010495B /* RefreshTablesViewController.h */,
