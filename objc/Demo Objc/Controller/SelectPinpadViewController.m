@@ -9,15 +9,6 @@
 #import "SelectPinpadViewController.h"
 #import "NSString+Utils.h"
 
-@interface SelectPinpadViewController ()
-
-@property (strong, nonatomic) IBOutlet UILabel *instructionLabel;
-@property (strong, nonatomic) IBOutlet UIButton *refreshButton;
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
-// Array with all paired pinpad devices
-@property (strong, nonatomic) NSArray <STNPinpad*> *connectedPinpads;
-@end
-
 @implementation SelectPinpadViewController
 
 #pragma mark - Lifecycle
