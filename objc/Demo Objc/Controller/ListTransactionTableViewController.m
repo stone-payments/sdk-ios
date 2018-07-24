@@ -132,6 +132,11 @@ static NSArray *exemploTransacao;
     NSLog(@"Amount: %@",transaction.amount);
     NSLog(@"cvm: %@",transaction.cvm);
     NSLog(@"balance: %@",transaction.balance);
+    NSLog(@"instalmentAmount: %u",transaction.instalmentAmount);
+    NSLog(@"type: %u",transaction.type);
+    NSLog(@"instalmentType: %u",transaction.instalmentType);
+    NSLog(@"initiatorTransactionKey: %@",transaction.initiatorTransactionKey);
+    NSLog(@"receiptTransactionKey: %@",transaction.receiptTransactionKey);
 }
 
 @end
