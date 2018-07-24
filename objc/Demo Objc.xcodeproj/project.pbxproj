@@ -165,6 +165,8 @@
 		6C46BC3320DA9D5C0090888E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6C251D6D20EC066E0002B862 /* ListStoneCodesViewController.h */,
+				6C251D6E20EC066E0002B862 /* ListStoneCodesViewController.m */,
 				41D21DC91E5F300D00F2ECBF /* ViewController.h */,
 				41D21DCA1E5F300D00F2ECBF /* ViewController.m */,
 				4104232A1F9FB58F003DCDFF /* ConnectBLEViewController.h */,
