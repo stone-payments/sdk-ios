@@ -37,7 +37,7 @@ NSTimer* timer;
     // Check that timer is already set
     if (timer == nil) {
         // schedule timer to call the keepConnectionSlive every 3 minutes
-        timer = [NSTimer scheduledTimerWithTimeInterval: 5
+        timer = [NSTimer scheduledTimerWithTimeInterval: 60 * 3
                                                  target: self
                                                selector: @selector(keepConnectionAlive)
                                                userInfo: nil
