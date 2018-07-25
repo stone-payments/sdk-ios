@@ -80,8 +80,10 @@
         BOOL hasConnected = [[STNPinPadConnectionProvider new] selectPinpad:_connectedPinpads[indexPath.row]];
         NSString *labelContent = [NSString stringWithFormat:@"pinpad %@", _connectedPinpads[indexPath.row].name];
         if (hasConnected) {
+            //The pinpad device is selected an available for transactions
             labelContent = [@"Valid " stringByAppendingString:labelContent];
         } else {
+            //The pinpad device is not available for transactions
             labelContent = [@"Invalid " stringByAppendingString:labelContent];
         }
         // Refresh label data
