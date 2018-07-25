@@ -11,6 +11,7 @@
 
 @interface ViewController : UITableViewController
 
+@property (strong, nonatomic) NSArray <STNPinpad*> *connectedPinpads;
 
 @end
 
