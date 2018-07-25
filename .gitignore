@@ -1,7 +1,7 @@
 
 # Ignore system files
 .DS_Store
-
+.idea
 # Ignore user data
 objc/Demo Objc.xcodeproj/project.xcworkspace/xcuserdata/
 objc/Demo Objc.xcodeproj/xcuserdata/
