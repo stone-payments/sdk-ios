@@ -83,9 +83,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         NSString *labelContent = [NSString stringWithFormat:@"pinpad %@", _connectedPinpads[indexPath.row].name];
         if (hasConnected) {
             //The pinpad device is selected an available for transactions
-            if (![((STNPinpad *) _connectedPinpads[indexPath.row]).name containsString:@"PAX D200"]) {
-                [DemoPreferences updateLastSelectedDevice:((STNPinpad *) _connectedPinpads[indexPath.row]).name];
-            }
+            [DemoPreferences updateLastSelectedDevice:((STNPinpad *) _connectedPinpads[indexPath.row]).identifier];
             labelContent = [@"Valid " stringByAppendingString:labelContent];
         } else {
             //The pinpad device is not available for transactions

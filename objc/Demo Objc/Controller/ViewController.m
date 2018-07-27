@@ -55,8 +55,14 @@ static NSString *cellIdentifier;
         }];
     }
 
+
+    //Automatic connection with last pinpad.
+    //For a while the Bluetooth Device Low Energy not working.
     _connectedPinpads = [self getConnectedPinpads];
-    [self connectionWithLastPinPad:_connectedPinpads];
+    //Verify if the last pinpad was found.
+    STNPinpad *pinpad = [self didFindLastSelectedPinPadFrom:_connectedPinpads];
+    //Do connection with pinpad
+    [self doConnectionWith:pinpad];
 
 }
 
@@ -157,14 +163,18 @@ static NSString *cellIdentifier;
     return [[STNPinPadConnectionProvider new] listConnectedPinpads];
 }
 
-- (BOOL)connectionWithLastPinPad:(NSArray *)pinpads {
+- (STNPinpad *)didFindLastSelectedPinPadFrom:(NSArray *)pinpads {
     for (STNPinpad *pinpad in pinpads) {
-        if ([pinpad.name isEqualToString:[DemoPreferences lastSelectedDevice]]) {
-            [[STNPinPadConnectionProvider new] selectPinpad:pinpad];
-            return YES;
+        if ([pinpad.name isEqualToString:[DemoPreferences lastSelectedDevice]] || [pinpad.identifier isEqualToString:[DemoPreferences lastSelectedDevice]]) {
+            return pinpad;
         }
     }
-    return NO;
+    return nil;
+}
+
+- (void)doConnectionWith:(STNPinpad *)pinpad {
+    if (pinpad == nil) return;
+    [[STNPinPadConnectionProvider new] selectPinpad:pinpad];
 }
 
 @end
