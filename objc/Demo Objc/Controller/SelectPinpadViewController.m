@@ -82,7 +82,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         BOOL hasConnected = [[STNPinPadConnectionProvider new] selectPinpad:_connectedPinpads[indexPath.row]];
         NSString *labelContent = [NSString stringWithFormat:@"pinpad %@", _connectedPinpads[indexPath.row].name];
         if (hasConnected) {
-            //The pinpad device is selected an available for transactions
+                // The pinpad device is selected and available for transactions
+                // If you want implementing the automatic connection with last pinpad selected
+                // you should save the pinpad indentifier in someplace,
+                // we recommend the save at NSUserDefaults.
             [DemoPreferences updateLastSelectedDevice:((STNPinpad *) _connectedPinpads[indexPath.row]).identifier];
             labelContent = [@"Valid " stringByAppendingString:labelContent];
         } else {

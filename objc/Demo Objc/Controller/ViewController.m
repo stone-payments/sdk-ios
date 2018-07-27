@@ -159,19 +159,25 @@ static NSString *cellIdentifier;
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - AutomaticConnectionWithLastPinpadSelected
+
+
+//Get all pinpads connection with your iOS device, less the bluetooth low energy devices
 - (NSArray *)getConnectedPinpads {
     return [[STNPinPadConnectionProvider new] listConnectedPinpads];
 }
 
+//Check if your last pinpad connected contains in pinpad list connected with your iOS Device
 - (STNPinpad *)didFindLastSelectedPinPadFrom:(NSArray *)pinpads {
     for (STNPinpad *pinpad in pinpads) {
-        if ([pinpad.name isEqualToString:[DemoPreferences lastSelectedDevice]] || [pinpad.identifier isEqualToString:[DemoPreferences lastSelectedDevice]]) {
+        if ([pinpad.identifier isEqualToString:[DemoPreferences lastSelectedDevice]]) {
             return pinpad;
         }
     }
     return nil;
 }
 
+//Stay connection between pinpad and your app
 - (void)doConnectionWith:(STNPinpad *)pinpad {
     if (pinpad == nil) return;
     [[STNPinPadConnectionProvider new] selectPinpad:pinpad];
