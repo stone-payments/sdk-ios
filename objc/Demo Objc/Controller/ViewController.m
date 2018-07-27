@@ -10,12 +10,6 @@
 #import "NSString+Utils.h"
 #import "DemoPreferences.h"
 
-@interface ViewController ()
-
-@property(nonatomic, strong) NSArray *optionsList;
-
-@end
-
 @implementation ViewController
 
 static NSString *cellIdentifier;

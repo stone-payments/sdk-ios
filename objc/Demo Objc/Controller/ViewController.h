@@ -13,5 +13,7 @@
 
 @property (strong, nonatomic) NSArray <STNPinpad*> *connectedPinpads;
 
+@property(nonatomic, strong) NSArray *optionsList;
+
 @end
 
