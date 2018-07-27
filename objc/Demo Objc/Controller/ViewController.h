@@ -11,6 +11,10 @@
 
 @interface ViewController : UITableViewController
 
+//Array where you can found the connected devices with your iOS Device
+@property (strong, nonatomic) NSArray <STNPinpad*> *connectedPinpads;
+
+@property(nonatomic, strong) NSArray *optionsList;
 
 @end
 
