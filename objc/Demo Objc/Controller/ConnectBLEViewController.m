@@ -8,7 +8,6 @@
 
 #import "ConnectBLEViewController.h"
 #import "NSString+Utils.h"
-#import "DemoPreferences.h"
 
 @implementation ConnectBLEViewController
 
@@ -123,7 +122,6 @@
     
     //  Use this specific pinpad in the future transactions
     [_connection selectPinpad:pinpad];
-    [DemoPreferences updateLastSelectedDevice:pinpad.identifier];
 }
 
 // Did disconnect pinpad
