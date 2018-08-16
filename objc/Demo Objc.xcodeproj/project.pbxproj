@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		398772DD21238A71001D5DF3 /* StoneSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398772DC21238A71001D5DF3 /* StoneSDK.framework */; };
+		398772DE21238A71001D5DF3 /* StoneSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 398772DC21238A71001D5DF3 /* StoneSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4104232C1F9FB590003DCDFF /* ConnectBLEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4104232B1F9FB590003DCDFF /* ConnectBLEViewController.m */; };
 		4108B6A61E77011000B3A734 /* CapturePanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4108B6A51E77011000B3A734 /* CapturePanViewController.m */; };
 		4108B6A91E7710BC00B3A734 /* ScreenDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4108B6A81E7710BC00B3A734 /* ScreenDisplayViewController.m */; };
@@ -31,21 +33,19 @@
 		41D21DD01E5F300D00F2ECBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41D21DCF1E5F300D00F2ECBF /* Assets.xcassets */; };
 		41D21DD31E5F300D00F2ECBF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41D21DD11E5F300D00F2ECBF /* LaunchScreen.storyboard */; };
 		41FB49741E6863D30010495B /* RefreshTablesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FB49731E6863D30010495B /* RefreshTablesViewController.m */; };
-		41FB49761E6865310010495B /* StoneSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41FB49751E6865310010495B /* StoneSDK.framework */; };
-		41FB49771E6865310010495B /* StoneSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 41FB49751E6865310010495B /* StoneSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		41FB49831E68A5160010495B /* SelectPinpadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FB49811E68A5160010495B /* SelectPinpadViewController.m */; };
 		6C251D6F20EC066E0002B862 /* ManageStoneCodesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C251D6E20EC066E0002B862 /* ManageStoneCodesViewController.m */; };
 		6C645FFF208FC4E80098C051 /* DemoPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C645FFE208FC4E70098C051 /* DemoPreferences.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		41FB49781E6865310010495B /* Embed Frameworks */ = {
+		398772DF21238A71001D5DF3 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				41FB49771E6865310010495B /* StoneSDK.framework in Embed Frameworks */,
+				398772DE21238A71001D5DF3 /* StoneSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -53,6 +53,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		398772DC21238A71001D5DF3 /* StoneSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StoneSDK.framework; sourceTree = "<group>"; };
+		39E82D1C210BD4D000E18D2B /* StoneSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoneSDK.framework; path = "../../ios-stone-sdk/Build/Release/StoneSDK.framework"; sourceTree = "<group>"; };
 		4104232A1F9FB58F003DCDFF /* ConnectBLEViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectBLEViewController.h; sourceTree = "<group>"; };
 		4104232B1F9FB590003DCDFF /* ConnectBLEViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectBLEViewController.m; sourceTree = "<group>"; };
 		4108B6A41E77011000B3A734 /* CapturePanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapturePanViewController.h; sourceTree = "<group>"; };
@@ -99,7 +101,6 @@
 		41D21DD41E5F300D00F2ECBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41FB49721E6863D30010495B /* RefreshTablesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshTablesViewController.h; sourceTree = "<group>"; };
 		41FB49731E6863D30010495B /* RefreshTablesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshTablesViewController.m; sourceTree = "<group>"; };
-		41FB49751E6865310010495B /* StoneSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StoneSDK.framework; sourceTree = "<group>"; };
 		41FB49801E68A5160010495B /* SelectPinpadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPinpadViewController.h; sourceTree = "<group>"; };
 		41FB49811E68A5160010495B /* SelectPinpadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPinpadViewController.m; sourceTree = "<group>"; };
 		6C251D6D20EC066E0002B862 /* ManageStoneCodesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManageStoneCodesViewController.h; sourceTree = "<group>"; };
@@ -113,20 +114,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41FB49761E6865310010495B /* StoneSDK.framework in Frameworks */,
+				398772DD21238A71001D5DF3 /* StoneSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39E82D1B210BD4D000E18D2B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				39E82D1C210BD4D000E18D2B /* StoneSDK.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		41D21DB71E5F300D00F2ECBF = {
 			isa = PBXGroup;
 			children = (
-				41FB49751E6865310010495B /* StoneSDK.framework */,
+				398772DC21238A71001D5DF3 /* StoneSDK.framework */,
 				41D21DC21E5F300D00F2ECBF /* Demo Objc */,
 				41D21DC31E5F300D00F2ECBF /* Supporting Files */,
 				41D21DC11E5F300D00F2ECBF /* Products */,
+				39E82D1B210BD4D000E18D2B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -165,8 +175,6 @@
 		6C46BC3320DA9D5C0090888E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6C251D6D20EC066E0002B862 /* ManageStoneCodesViewController.h */,
-				6C251D6E20EC066E0002B862 /* ManageStoneCodesViewController.m */,
 				41D21DC91E5F300D00F2ECBF /* ViewController.h */,
 				41D21DCA1E5F300D00F2ECBF /* ViewController.m */,
 				4104232A1F9FB58F003DCDFF /* ConnectBLEViewController.h */,
@@ -247,7 +255,7 @@
 				41D21DBC1E5F300D00F2ECBF /* Sources */,
 				41D21DBD1E5F300D00F2ECBF /* Frameworks */,
 				41D21DBE1E5F300D00F2ECBF /* Resources */,
-				41FB49781E6865310010495B /* Embed Frameworks */,
+				398772DF21238A71001D5DF3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

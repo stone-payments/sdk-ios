@@ -9,6 +9,7 @@
 #import "ActivationOfStoneCodeViewController.h"
 #import "NSString+Utils.h"
 #import "DemoPreferences.h"
+#import "ViewController.h"
 
 @interface ActivationOfStoneCodeViewController ()
 
@@ -56,6 +57,10 @@
             NSLog(@"%@", [kLogActivated localize]);
             // Refresh label data
             self.feedback.text = [kLogActivated localize];
+            UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UIViewController *viewController = [storyBoard instantiateViewControllerWithIdentifier:@"NavigationBar"];
+            [self presentViewController:viewController animated:YES completion:nil];
+
         } else {
             NSLog(@"%@", error.description);
             // Refresh label data
