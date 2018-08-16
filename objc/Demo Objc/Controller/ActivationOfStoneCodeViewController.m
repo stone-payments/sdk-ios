@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *txtStoneCode;
 @property (strong, nonatomic) IBOutlet UILabel *feedback;
 @property (strong, nonatomic) IBOutlet UIPickerView *pickerView;
+@property (strong, nonatomic) IBOutlet UITextView *textViewAlert;
 //List with all available environments
 @property (strong, nonatomic) NSArray *environments;
 
@@ -29,6 +30,13 @@
 
 - (void)viewDidLoad {
     // Setup UI components
+    
+    bool isActived = [STNValidationProvider validateActivation];
+    if(isActived){
+        [_textViewAlert setHidden:false];
+        [_pickerView setUserInteractionEnabled:false];
+    }
+    
     [self setupView];
 }
 
