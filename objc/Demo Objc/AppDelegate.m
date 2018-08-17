@@ -27,7 +27,7 @@ NSTimer* timer;
     
     bool hasActivatedSconeCode = [STNValidationProvider validateActivation];
     if(hasActivatedSconeCode){
-        NSLog(@"Ativado");
+        NSLog(@"One or more Stone codes are already activated.");
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController *viewController = [storyBoard instantiateViewControllerWithIdentifier:@"NavigationBar"];
         self.window.rootViewController = viewController;
