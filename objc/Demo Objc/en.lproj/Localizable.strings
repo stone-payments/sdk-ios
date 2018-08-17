@@ -125,3 +125,5 @@
 "Interest" = "Interest";
 "None" = "None";
 "Issuer" = "Issuer";
+
+"activation_stone_code_alert" = "The environment was selected previously, to change is need deactivate all stone codes activated.";

@@ -995,7 +995,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="70" id="zgC-U1-DOf"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                         </subviews>

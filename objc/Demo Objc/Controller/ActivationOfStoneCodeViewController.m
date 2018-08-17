@@ -34,7 +34,7 @@
     [self setupView];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     bool isActived = [STNValidationProvider validateActivation];
     if (isActived) {
         [_textViewAlert setHidden:NO];
@@ -138,6 +138,7 @@ numberOfRowsInComponent:(NSInteger)component {
     [super viewDidLoad];
     self.navigationItem.title = [kTitleActivation localize];
     _informationLabel.text = [kInstructionActivation localize];
+    _textViewAlert.text = [kActivationStoneCodeAlert localize];
     [_activateButton setTitle:[kButtonActivate localize]
                      forState:UIControlStateNormal];
 
