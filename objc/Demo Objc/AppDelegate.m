@@ -25,8 +25,8 @@ NSTimer* timer;
     // Set the environment, it will impact the kind of requests for activation and authorization of transactions
     [STNConfig setEnvironment:[DemoPreferences lastSelectedEnvironment]];
     
-    bool isActived = [STNValidationProvider validateActivation];
-    if(isActived){
+    bool hasActivatedSconeCode = [STNValidationProvider validateActivation];
+    if(hasActivatedSconeCode){
         NSLog(@"Ativado");
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController *viewController = [storyBoard instantiateViewControllerWithIdentifier:@"NavigationBar"];

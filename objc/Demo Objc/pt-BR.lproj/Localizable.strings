@@ -126,4 +126,4 @@
 "None" = "Nenhum";
 "Issuer" = "Emissor";
 
-"activation_stone_code_alert" = "O ambiente já foi previamente selecionado, para mudar é necessário desativar todos os Stone codes presentes.";
+"Activation_Stone_Code_Alert" = "O ambiente já foi previamente selecionado, para mudar é necessário desativar todos os Stone codes presentes.";

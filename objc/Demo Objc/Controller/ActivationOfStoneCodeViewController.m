@@ -35,8 +35,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    bool isActived = [STNValidationProvider validateActivation];
-    if (isActived) {
+    bool hasActivatedSconeCode = [STNValidationProvider validateActivation];
+    if (hasActivatedSconeCode) {
         [_textViewAlert setHidden:NO];
         [_pickerView setUserInteractionEnabled:NO];
     } else {
