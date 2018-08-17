@@ -112,6 +112,7 @@ NSString *const kGeneralCustomer = @"Customer";
 NSString *const kGeneralInterest = @"Interest";
 NSString *const kGeneralNone = @"None";
 NSString *const kGeneralIssuer = @"Issuer";
+NSString *const kActivationStoneCodeAlert = @"Activation_Stone_Code_Alert";
 
 -(NSString*)localize
 {

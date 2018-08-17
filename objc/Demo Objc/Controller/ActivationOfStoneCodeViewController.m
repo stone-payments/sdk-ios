@@ -9,16 +9,18 @@
 #import "ActivationOfStoneCodeViewController.h"
 #import "NSString+Utils.h"
 #import "DemoPreferences.h"
+#import "ViewController.h"
 
 @interface ActivationOfStoneCodeViewController ()
 
-@property (strong, nonatomic) IBOutlet UILabel *informationLabel;
-@property (strong, nonatomic) IBOutlet UIButton *activateButton;
-@property (strong, nonatomic) IBOutlet UITextField *txtStoneCode;
-@property (strong, nonatomic) IBOutlet UILabel *feedback;
-@property (strong, nonatomic) IBOutlet UIPickerView *pickerView;
+@property(strong, nonatomic) IBOutlet UILabel *informationLabel;
+@property(strong, nonatomic) IBOutlet UIButton *activateButton;
+@property(strong, nonatomic) IBOutlet UITextField *txtStoneCode;
+@property(strong, nonatomic) IBOutlet UILabel *feedback;
+@property(strong, nonatomic) IBOutlet UIPickerView *pickerView;
+@property(strong, nonatomic) IBOutlet UITextView *textViewAlert;
 //List with all available environments
-@property (strong, nonatomic) NSArray *environments;
+@property(strong, nonatomic) NSArray *environments;
 
 @end
 
@@ -28,7 +30,18 @@
 
 - (void)viewDidLoad {
     // Setup UI components
+
     [self setupView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    bool hasActivatedSconeCode = [STNValidationProvider validateActivation];
+    if (hasActivatedSconeCode) {
+        [_textViewAlert setHidden:NO];
+        [_pickerView setUserInteractionEnabled:NO];
+    } else {
+        [self.navigationController setToolbarHidden:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,7 +55,7 @@
     [_overlayView addSubview:_activityIndicator];
     [_activityIndicator startAnimating];
     [self.navigationController.view addSubview:_overlayView];
-    
+
     // Get Stone Code from text field
     NSString *stoneCode = _txtStoneCode.text;
     NSLog(@"%@", [kLogActivating localize]);
@@ -56,6 +69,10 @@
             NSLog(@"%@", [kLogActivated localize]);
             // Refresh label data
             self.feedback.text = [kLogActivated localize];
+            UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UIViewController *viewController = [storyBoard instantiateViewControllerWithIdentifier:@"NavigationBar"];
+            [self presentViewController:viewController animated:YES completion:nil];
+
         } else {
             NSLog(@"%@", error.description);
             // Refresh label data
@@ -89,7 +106,7 @@ numberOfRowsInComponent:(NSInteger)component {
 - (void)pickerView:(UIPickerView *)pickerView
       didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component {
-    
+
     STNEnvironment environment;
     switch (row) {
         case 0:
@@ -121,34 +138,35 @@ numberOfRowsInComponent:(NSInteger)component {
     [super viewDidLoad];
     self.navigationItem.title = [kTitleActivation localize];
     _informationLabel.text = [kInstructionActivation localize];
+    _textViewAlert.text = [kActivationStoneCodeAlert localize];
     [_activateButton setTitle:[kButtonActivate localize]
-                         forState:UIControlStateNormal];
-    
+                     forState:UIControlStateNormal];
+
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc]
-                                     initWithTarget:self.view
-                                     action:@selector(endEditing:)]];
-    
+            initWithTarget:self.view
+                    action:@selector(endEditing:)]];
+
     _overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     _overlayView.backgroundColor = [UIColor colorWithRed:0
-                                                       green:0
-                                                        blue:0
-                                                       alpha:0.5];
+                                                   green:0
+                                                    blue:0
+                                                   alpha:0.5];
     _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     _activityIndicator.center = _overlayView.center;
-    
+
     _pickerView.delegate = self;
     _pickerView.dataSource = self;
-    
+
     _environments = @[[kEnvironmentProduction localize],
-                      [kEnvironmentInternalHomolog localize],
-                      [kEnvironmentSandbox localize],
-                      [kEnvironmentStaging localize],
-                      [kEnvironmentCertification localize]];
-    
+            [kEnvironmentInternalHomolog localize],
+            [kEnvironmentSandbox localize],
+            [kEnvironmentStaging localize],
+            [kEnvironmentCertification localize]];
+
     STNEnvironment env = [DemoPreferences lastSelectedEnvironment];
-    
-    [_pickerView selectRow:(int)env
-                   inComponent:0
-                      animated:NO];
+
+    [_pickerView selectRow:(int) env
+               inComponent:0
+                  animated:NO];
 }
 @end

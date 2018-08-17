@@ -112,6 +112,7 @@ extern NSString *const kGeneralCustomer;
 extern NSString *const kGeneralInterest;
 extern NSString *const kGeneralNone;
 extern NSString *const kGeneralIssuer;
+extern NSString *const kActivationStoneCodeAlert;
 
 -(NSString*)localize;
 

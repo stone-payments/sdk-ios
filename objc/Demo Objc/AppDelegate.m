@@ -25,6 +25,15 @@ NSTimer* timer;
     // Set the environment, it will impact the kind of requests for activation and authorization of transactions
     [STNConfig setEnvironment:[DemoPreferences lastSelectedEnvironment]];
     
+    bool hasActivatedSconeCode = [STNValidationProvider validateActivation];
+    if(hasActivatedSconeCode){
+        NSLog(@"One or more Stone codes are already activated.");
+        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *viewController = [storyBoard instantiateViewControllerWithIdentifier:@"NavigationBar"];
+        self.window.rootViewController = viewController;
+        [self.window makeKeyAndVisible];
+    }
+    
     return YES;
 }
 
