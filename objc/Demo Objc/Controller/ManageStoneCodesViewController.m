@@ -15,11 +15,11 @@
 
 @interface ManageStoneCodesViewController ()
 
-@property (weak, nonatomic) IBOutlet UITableView *stoneCodesTableView;
-@property (weak, nonatomic) IBOutlet UILabel *feedbackLabel;
-@property (weak, nonatomic) IBOutlet UIButton *deactivateButton;
+@property(weak, nonatomic) IBOutlet UITableView *stoneCodesTableView;
+@property(weak, nonatomic) IBOutlet UILabel *feedbackLabel;
+@property(weak, nonatomic) IBOutlet UIButton *deactivateButton;
 // Array with all activated merchants
-@property (strong, nonatomic) NSArray <STNMerchantModel *> *merchants;
+@property(strong, nonatomic) NSArray <STNMerchantModel *> *merchants;
 
 @end
 
@@ -29,7 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     // Refresh table view
     [self refreshStoneCodesTableView];
 }
@@ -65,6 +65,29 @@
             // Refresh table view
             [self refreshStoneCodesTableView];
         }
+        if ([[STNMerchantListProvider listMerchants] count] == 0) {
+            UIStoryboard *uiStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UIViewController *viewController = [uiStoryboard instantiateViewControllerWithIdentifier:@"ActivateStoneCode"];
+            [self presentViewController:viewController animated:YES completion:nil];
+        }
+    }
+}
+
+- (IBAction)deactivateAllStoneCode:(id)sender {
+    // Get index from selected row
+    @try {
+        for (STNMerchantModel *merchantModel in _merchants) {
+            [STNStoneCodeActivationProvider deactivateMerchant:merchantModel];
+        }
+        UIStoryboard *uiStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *viewController = [uiStoryboard instantiateViewControllerWithIdentifier:@"ActivateStoneCode"];
+        [self presentViewController:viewController animated:YES completion:nil];
+    } @catch (NSException *exception) {
+        // Refresh label data
+        [self setFeedbackMessage:@"Unable to deactivate the selected Stone Code"];
+    } @finally {
+        // Refresh table view
+        [self refreshStoneCodesTableView];
     }
 }
 
@@ -76,16 +99,16 @@
     // Get reusable cell
     static NSString *cellIdentifier = @"StoneCodeCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    
+
     if (_merchants.count > indexPath.row) {
         // Get merchant at the position of index path
         STNMerchantModel *merchant = [_merchants objectAtIndex:indexPath.row];
         // Format string with stone code and name
-        NSString *merchantText = [NSString stringWithFormat:@"%@ (%@)",merchant.stonecode, merchant.merchantName];
+        NSString *merchantText = [NSString stringWithFormat:@"%@ (%@)", merchant.stonecode, merchant.merchantName];
         // Update label text of the cell
         [cell.textLabel setText:merchantText];
     }
-    
+
     return cell;
 }
 
@@ -102,17 +125,17 @@
 #pragma mark - UITableViewDelegate
 
 // Select merchant from table view
-- (void)tableView:(UITableView *)tableView
-    didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)      tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_merchants.count > indexPath.row) {
         // Get merchant at the position of index path
         STNMerchantModel *merchant = [_merchants objectAtIndex:indexPath.row];
         // Format string with stone code and name
-        NSString *merchantText = [NSString stringWithFormat:@"%@ (%@)",merchant.stonecode, merchant.merchantName];
+        NSString *merchantText = [NSString stringWithFormat:@"%@ (%@)", merchant.stonecode, merchant.merchantName];
         // Update last selected stone code to retrieve in future transactions attempts
         [DemoPreferences updateLastSelectedStoneCode:merchant.stonecode];
         // Set string to update feedback label
-        NSString *labelString = [NSString stringWithFormat:@"Stone Code selected: %@",merchantText];
+        NSString *labelString = [NSString stringWithFormat:@"Stone Code selected: %@", merchantText];
         [self setFeedbackMessage:labelString];
     }
 }
@@ -120,20 +143,20 @@
 #pragma mark - UI Update
 
 // Update UI Element
--(void)setFeedbackMessage:(NSString*)message {
+- (void)setFeedbackMessage:(NSString *)message {
     dispatch_async(dispatch_get_main_queue(), ^{
         self.feedbackLabel.text = message;
     });
 }
 
 // Load merchants and reload table view
--(void)refreshStoneCodesTableView {
+- (void)refreshStoneCodesTableView {
     dispatch_async(dispatch_get_main_queue(), ^{
         // Get the list of all available merchants
         self.merchants = [STNMerchantListProvider listMerchants];
         // reload table view
         [self.stoneCodesTableView reloadData];
-        
+
         // Retrieve the last selected stone code
         NSString *lastSelectedStoneCode = [DemoPreferences lastSelectedStoneCode];
         if (lastSelectedStoneCode) {

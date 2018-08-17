@@ -351,7 +351,7 @@
                                 <rect key="frame" x="16" y="132" width="288" height="340"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MerchantCell" rowHeight="86" id="WtW-lV-4t1" customClass="MerchantCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MerchantCell" rowHeight="86" id="WtW-lV-4t1" customClass="MerchantCell">
                                         <rect key="frame" x="0.0" y="28" width="288" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WtW-lV-4t1" id="p1C-1q-dUH">
@@ -512,7 +512,7 @@
                                 <rect key="frame" x="0.0" y="174.5" width="375" height="280"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TransCell" rowHeight="85" id="4U5-Me-gGb" customClass="TransactionCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TransCell" rowHeight="85" id="4U5-Me-gGb" customClass="TransactionCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4U5-Me-gGb" id="Kfp-hD-rGZ">
@@ -956,7 +956,7 @@
         <!--Activation Of Stone Code View Controller-->
         <scene sceneID="VGh-F3-Oi0">
             <objects>
-                <viewController id="gCZ-1d-ufx" customClass="ActivationOfStoneCodeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ActivateStoneCode" id="gCZ-1d-ufx" customClass="ActivationOfStoneCodeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2h5-LH-RDp"/>
                         <viewControllerLayoutGuide type="bottom" id="xul-uT-pA0"/>
@@ -1081,13 +1081,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Hj-xf-MTu">
-                                <rect key="frame" x="0.0" y="104.5" width="320" height="170.5"/>
+                                <rect key="frame" x="0.0" y="120" width="320" height="155"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="212" id="kZl-os-dRz"/>
-                                </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StoneCodeCell" id="wjK-uk-X7C">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StoneCodeCell" id="wjK-uk-X7C">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wjK-uk-X7C" id="4nm-7X-aYK">
@@ -1102,7 +1099,10 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a Stone code to use" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EdF-Gk-Sw0">
-                                <rect key="frame" x="10" y="74" width="300" height="20.5"/>
+                                <rect key="frame" x="10" y="74" width="300" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Zjd-j8-72c"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1133,7 +1133,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="deactivateStoneCode:" destination="PA4-fW-JVq" eventType="touchUpInside" id="2GP-JW-tbJ"/>
+                                    <action selector="deactivateAllStoneCode:" destination="PA4-fW-JVq" eventType="touchUpInside" id="XZx-5q-ePV"/>
                                     <action selector="performDesactivation:" destination="gCZ-1d-ufx" eventType="touchUpInside" id="vyb-rf-zJD"/>
                                 </connections>
                             </button>
@@ -1157,10 +1157,10 @@
                             <constraint firstItem="m09-Lc-iOy" firstAttribute="leading" secondItem="Yy3-wN-xZu" secondAttribute="leadingMargin" id="O8B-PM-QwA"/>
                             <constraint firstAttribute="bottom" secondItem="16z-LG-P7s" secondAttribute="bottom" constant="16" id="Ofl-OX-XI6"/>
                             <constraint firstItem="GTD-lK-bJ6" firstAttribute="leading" secondItem="Yy3-wN-xZu" secondAttribute="leadingMargin" id="QEg-H2-czu"/>
-                            <constraint firstItem="5Hj-xf-MTu" firstAttribute="top" secondItem="EdF-Gk-Sw0" secondAttribute="bottom" constant="10" id="Snc-0m-mBk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="m09-Lc-iOy" secondAttribute="trailing" id="b63-ub-Q8q"/>
                             <constraint firstAttribute="trailing" secondItem="5Hj-xf-MTu" secondAttribute="trailing" id="bCz-FB-HAT"/>
                             <constraint firstItem="5Hj-xf-MTu" firstAttribute="leading" secondItem="Yy3-wN-xZu" secondAttribute="leading" id="bcV-7o-BtF"/>
+                            <constraint firstItem="5Hj-xf-MTu" firstAttribute="top" secondItem="EdF-Gk-Sw0" secondAttribute="bottom" constant="16" id="gTH-ix-QV0"/>
                             <constraint firstItem="16z-LG-P7s" firstAttribute="top" secondItem="GTD-lK-bJ6" secondAttribute="bottom" constant="8" id="hty-bu-Cmn"/>
                             <constraint firstAttribute="trailing" secondItem="16z-LG-P7s" secondAttribute="trailing" constant="16" id="ojF-ea-Ofa"/>
                             <constraint firstItem="GTD-lK-bJ6" firstAttribute="top" secondItem="m09-Lc-iOy" secondAttribute="bottom" constant="16" id="t27-GR-OMP"/>
@@ -1282,7 +1282,7 @@
                                 <rect key="frame" x="0.0" y="110" width="320" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="pinpadCell" id="z1I-Ma-gcN">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="pinpadCell" id="z1I-Ma-gcN">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="z1I-Ma-gcN" id="r1W-oh-dSR">
@@ -1449,7 +1449,7 @@
                                 <rect key="frame" x="0.0" y="100.5" width="320" height="163.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="peripheralCell" id="UcY-2n-HLG">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="peripheralCell" id="UcY-2n-HLG">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UcY-2n-HLG" id="wQs-rh-LKi">
