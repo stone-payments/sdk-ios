@@ -84,7 +84,7 @@
         [self presentViewController:viewController animated:YES completion:nil];
     } @catch (NSException *exception) {
         // Refresh label data
-        [self setFeedbackMessage:@"Unable to deactivate the selected Stone Code"];
+        [self setFeedbackMessage:@"Error when deactivate some Stone code."];
     } @finally {
         // Refresh table view
         [self refreshStoneCodesTableView];
