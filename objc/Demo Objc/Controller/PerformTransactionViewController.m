@@ -9,6 +9,7 @@
 #import "PerformTransactionViewController.h"
 #import "NSString+Utils.h"
 #import "DemoPreferences.h"
+#import "CustomAlertViewController.h"
 
 @interface PerformTransactionViewController ()
 
@@ -18,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *instructionLabel;
 @property (strong, nonatomic) IBOutlet UILabel *interestLabel;
 @property (strong, nonatomic) IBOutlet UIButton *sendButton;
+@property (strong, nonatomic) IBOutlet UIButton *changeStoneCode;
 
 @property (weak, nonatomic) IBOutlet UILabel *feedback;
 @property (weak, nonatomic) IBOutlet UITextField *transactionValue;
@@ -47,10 +49,11 @@ static int rowNumber;
     
     self.pickerMenu = @[@"1x", @"2x", @"3x", @"4x", @"5x", @"6x", @"7x", @"8x", @"9x", @"10x", @"11x", @"12x"];
     
-    self.instalmentPicker.hidden = YES;
-    self.rate.hidden = YES;
+    self.instalmentPicker.userInteractionEnabled = NO;
+    self.rate.enabled = NO;
     self.rateSwitch.enabled = NO;
     self.rateSwitch.on = NO;
+    self.rate.text = @"Disable Interest";
     
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
     
@@ -64,6 +67,18 @@ static int rowNumber;
     [super didReceiveMemoryWarning];
 }
 
+- (IBAction) changeStoneCode:(id)sender{
+    CustomAlertViewController *cavc = [CustomAlertViewController new];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Change Stone Code" message:[NSString stringWithFormat:@"Your Stone Code: %@",[STNConfig stoneCode]] preferredStyle:UIAlertControllerStyleActionSheet];
+    [alertController setValue:cavc forKey:@"contentViewController"];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Teste" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+        [alertController dismissViewControllerAnimated:true completion:nil];
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Teste" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action){
+        [alertController dismissViewControllerAnimated:true completion:nil];
+    }]];
+    [self presentViewController:alertController animated:true completion:nil];
+}
 
 - (IBAction)performTransaction:(id)sender {
     
@@ -175,15 +190,16 @@ static int rowNumber;
     switch (self.transactionType.selectedSegmentIndex) {
         case 0:
             NSLog(@"%@", [kGeneralDebit localize]);
-            _instalmentPicker.hidden = YES;
-            self.rate.hidden = YES;
+            [self.instalmentPicker setUserInteractionEnabled:NO];
             [self.rateSwitch setEnabled:NO];
+            [self.rateSwitch setOn:NO];
+            self.rate.text = @"Disable Interest";
             break;
         case 1:
             NSLog(@"%@", [kGeneralCredit localize]);
-            _instalmentPicker.hidden = NO;
-            self.rate.hidden = NO;
+            [self.instalmentPicker setUserInteractionEnabled:YES];
             [self.rateSwitch setEnabled:YES];
+            self.rate.text = @"Interest-free";
             break;
     }
 }
