@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *instalmentPicker;
 @property (weak, nonatomic) IBOutlet UILabel *rate;
 @property (weak, nonatomic) IBOutlet UISwitch *rateSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *captureSwitch;
 
 @end
 
@@ -171,6 +172,12 @@ MerchantPickerViewController *merchantPickerViewController;
         }
     }
     
+    
+    if(_captureSwitch.on){
+        transaction.capture = STNTransactionCaptureYes;
+    } else {
+        transaction.capture = STNTransactionCaptureNo;
+    }
 //    [STNConfig setEnvironment:STNEnvironmentInternalHomolog];
 
     [STNTransactionProvider sendTransaction:transaction withBlock:^(BOOL succeeded, NSError *error) {
