@@ -160,8 +160,8 @@ CustomAlertViewController *customAlertViewController;
     NSArray *merchants;
     merchants = [STNMerchantListProvider listMerchants];
     for (STNMerchantModel *merchantModel in merchants){
-        if([models stonecode] == [DemoPreferences lastSelectedStoneCode]){
-            transaction.merchant = merchant;
+        if([merchantModel stonecode] == [DemoPreferences lastSelectedStoneCode]){
+            transaction.merchant = merchantModel;
             break;
         }
         transaction.merchant = [merchants objectAtIndex:0];
