@@ -33,10 +33,13 @@
 @implementation PerformTransactionViewController
 
 static int rowNumber;
+CustomAlertViewController *customAlertViewController;
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    customAlertViewController = [CustomAlertViewController new];
     self.transactionValue.delegate = self;
     self.navigationItem.hidesBackButton = NO;
     
@@ -68,16 +71,16 @@ static int rowNumber;
 }
 
 - (IBAction) changeStoneCode:(id)sender{
-    CustomAlertViewController *cavc = [CustomAlertViewController new];
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Change Stone Code" message:[NSString stringWithFormat:@"Your Stone Code: %@",[STNConfig stoneCode]] preferredStyle:UIAlertControllerStyleActionSheet];
-    [alertController setValue:cavc forKey:@"contentViewController"];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Teste" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
-        [alertController dismissViewControllerAnimated:true completion:nil];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Choose Stone Code" message:[NSString stringWithFormat:@"Stone Code Selected: %@",[DemoPreferences lastSelectedStoneCode]] preferredStyle:UIAlertControllerStyleActionSheet];
+    [alertController setValue:customAlertViewController forKey:@"contentViewController"];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+        [customAlertViewController chooseStoneCode];
+        [alertController dismissViewControllerAnimated:YES completion:nil];
     }]];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Teste" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action){
-        [alertController dismissViewControllerAnimated:true completion:nil];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action){
+        [alertController dismissViewControllerAnimated:YES completion:nil];
     }]];
-    [self presentViewController:alertController animated:true completion:nil];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (IBAction)performTransaction:(id)sender {
@@ -156,9 +159,12 @@ static int rowNumber;
     
     NSArray *merchants;
     merchants = [STNMerchantListProvider listMerchants];
-    if ([merchants count]>0) {
-        STNMerchantModel *merchant = [merchants objectAtIndex:0];
-        transaction.merchant = merchant;
+    for (STNMerchantModel *merchantModel in merchants){
+        if([models stonecode] == [DemoPreferences lastSelectedStoneCode]){
+            transaction.merchant = merchant;
+            break;
+        }
+        transaction.merchant = [merchants objectAtIndex:0];
     }
     
 //    [STNConfig setEnvironment:STNEnvironmentInternalHomolog];
