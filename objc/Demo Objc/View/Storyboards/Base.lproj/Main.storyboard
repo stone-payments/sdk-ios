@@ -200,7 +200,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="changeStoneCode" destination="ufj-Qm-925" id="8cW-9E-h1A"/>
+                        <outlet property="changeStoneCodeButton" destination="ufj-Qm-925" id="lKb-Qy-ojz"/>
                         <outlet property="feedback" destination="3sL-8Q-TBg" id="MCr-4G-t9I"/>
                         <outlet property="instalmentPicker" destination="HGu-2C-vyX" id="tiK-12-Jaw"/>
                         <outlet property="instructionLabel" destination="5rW-JY-Cre" id="LCL-ba-1I6"/>
