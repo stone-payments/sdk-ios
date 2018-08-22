@@ -56,15 +56,16 @@ STNMerchantModel *choosedMerchant;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    if(row > [merchants count] -1){
-        return nil;
+     NSString * stoneCode = @"";
+    if([merchants count] > row){
+        STNMerchantModel *merchantModel = merchants[row];
+        stoneCode = [merchantModel stonecode];
     }
-    STNMerchantModel *merchantModel = merchants[row];
-    return [merchantModel stonecode];
+    return stoneCode;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    if(row <= [merchants count] -1){
+    if([merchants count] > row){
         choosedMerchant = merchants[row];
     }
 }
