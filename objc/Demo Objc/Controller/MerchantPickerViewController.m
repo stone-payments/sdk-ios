@@ -56,12 +56,17 @@ STNMerchantModel *choosedMerchant;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    if(row > [merchants count] -1){
+        return nil;
+    }
     STNMerchantModel *merchantModel = merchants[row];
     return [merchantModel stonecode];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    choosedMerchant = merchants[row];
+    if(row <= [merchants count] -1){
+        choosedMerchant = merchants[row];
+    }
 }
 
 @end
