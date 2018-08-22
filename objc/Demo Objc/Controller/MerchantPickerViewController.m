@@ -6,17 +6,20 @@
 //  Copyright © 2018 Eduardo Mello de Macedo | Stone. All rights reserved.
 //
 
-#import "CustomAlertViewController.h"
+#import "MerchantPickerViewController.h"
 
-@implementation CustomAlertViewController
+@implementation MerchantPickerViewController
 
-NSArray *merchantListProviders;
-STNMerchantModel *merchantStored;
+NSArray *merchants;
+STNMerchantModel *choosedMerchant;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    merchantListProviders = [STNMerchantListProvider listMerchants];
-    merchantStored = merchantListProviders[0];
+    merchants = [STNMerchantListProvider listMerchants];
+    if([merchants count] >0) {
+        choosedMerchant = merchants[0];
+    }
+    
     
     [self setPreferredContentSize:CGSizeMake(250., 200.)];
 
@@ -35,9 +38,8 @@ STNMerchantModel *merchantStored;
     [self.view addConstraint:centreHorizontallyConstraint];
 }
 
--(BOOL)chooseStoneCode{
-    [DemoPreferences updateLastSelectedStoneCode:[merchantStored stonecode]];
-    return true;
+-(void)chooseStoneCode{
+    [DemoPreferences updateLastSelectedStoneCode:[choosedMerchant stonecode]];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -50,16 +52,16 @@ STNMerchantModel *merchantStored;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return [merchantListProviders count];
+    return [merchants count];
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    STNMerchantModel *merchantModel = merchantListProviders[row];
+    STNMerchantModel *merchantModel = merchants[row];
     return [merchantModel stonecode];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    merchantStored = merchantListProviders[row];
+    choosedMerchant = merchants[row];
 }
 
 @end

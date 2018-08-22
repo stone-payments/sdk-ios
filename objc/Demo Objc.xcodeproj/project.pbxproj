@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		392045E5212CCEFA008C25CC /* CustomAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 392045E4212CCEFA008C25CC /* CustomAlertViewController.m */; };
+		392045E5212CCEFA008C25CC /* MerchantPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 392045E4212CCEFA008C25CC /* MerchantPickerViewController.m */; };
 		398772DD21238A71001D5DF3 /* StoneSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398772DC21238A71001D5DF3 /* StoneSDK.framework */; };
 		398772DE21238A71001D5DF3 /* StoneSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 398772DC21238A71001D5DF3 /* StoneSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4104232C1F9FB590003DCDFF /* ConnectBLEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4104232B1F9FB590003DCDFF /* ConnectBLEViewController.m */; };
@@ -54,8 +54,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		392045E3212CCEFA008C25CC /* CustomAlertViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomAlertViewController.h; sourceTree = "<group>"; };
-		392045E4212CCEFA008C25CC /* CustomAlertViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomAlertViewController.m; sourceTree = "<group>"; };
+		392045E3212CCEFA008C25CC /* MerchantPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MerchantPickerViewController.h; sourceTree = "<group>"; };
+		392045E4212CCEFA008C25CC /* MerchantPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MerchantPickerViewController.m; sourceTree = "<group>"; };
 		398772DC21238A71001D5DF3 /* StoneSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StoneSDK.framework; sourceTree = "<group>"; };
 		39E82D1C210BD4D000E18D2B /* StoneSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoneSDK.framework; path = "../../ios-stone-sdk/Build/Release/StoneSDK.framework"; sourceTree = "<group>"; };
 		4104232A1F9FB58F003DCDFF /* ConnectBLEViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectBLEViewController.h; sourceTree = "<group>"; };
@@ -210,8 +210,8 @@
 				4108B6A51E77011000B3A734 /* CapturePanViewController.m */,
 				4108B6A71E7710BC00B3A734 /* ScreenDisplayViewController.h */,
 				4108B6A81E7710BC00B3A734 /* ScreenDisplayViewController.m */,
-				392045E3212CCEFA008C25CC /* CustomAlertViewController.h */,
-				392045E4212CCEFA008C25CC /* CustomAlertViewController.m */,
+				392045E3212CCEFA008C25CC /* MerchantPickerViewController.h */,
+				392045E4212CCEFA008C25CC /* MerchantPickerViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -331,7 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41B2590C1E607E28001668AA /* PerformTransactionViewController.m in Sources */,
-				392045E5212CCEFA008C25CC /* CustomAlertViewController.m in Sources */,
+				392045E5212CCEFA008C25CC /* MerchantPickerViewController.m in Sources */,
 				414EB8441E734D0400472A3B /* SendingVoucherEmailViewController.m in Sources */,
 				411629BE1E69B7E300F6A4FB /* ActivationOfStoneCodeViewController.m in Sources */,
 				418B0D901E7042C500748B23 /* TransactionCell.m in Sources */,

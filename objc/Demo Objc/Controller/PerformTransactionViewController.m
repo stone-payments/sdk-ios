@@ -9,7 +9,7 @@
 #import "PerformTransactionViewController.h"
 #import "NSString+Utils.h"
 #import "DemoPreferences.h"
-#import "CustomAlertViewController.h"
+#import "MerchantPickerViewController.h"
 
 @interface PerformTransactionViewController ()
 
@@ -19,7 +19,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *instructionLabel;
 @property (strong, nonatomic) IBOutlet UILabel *interestLabel;
 @property (strong, nonatomic) IBOutlet UIButton *sendButton;
-@property (strong, nonatomic) IBOutlet UIButton *changeStoneCode;
+@property (strong, nonatomic) IBOutlet UIButton *changeStoneCodeButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *feedback;
 @property (weak, nonatomic) IBOutlet UITextField *transactionValue;
@@ -33,13 +33,13 @@
 @implementation PerformTransactionViewController
 
 static int rowNumber;
-CustomAlertViewController *customAlertViewController;
+MerchantPickerViewController *merchantPickerViewController;
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     
-    customAlertViewController = [CustomAlertViewController new];
+    merchantPickerViewController = [MerchantPickerViewController new];
     self.transactionValue.delegate = self;
     self.navigationItem.hidesBackButton = NO;
     
@@ -72,9 +72,9 @@ CustomAlertViewController *customAlertViewController;
 
 - (IBAction) changeStoneCode:(id)sender{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Choose Stone Code" message:[NSString stringWithFormat:@"Stone Code Selected: %@",[DemoPreferences lastSelectedStoneCode]] preferredStyle:UIAlertControllerStyleActionSheet];
-    [alertController setValue:customAlertViewController forKey:@"contentViewController"];
+    [alertController setValue:merchantPickerViewController forKey:@"contentViewController"];
     [alertController addAction:[UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
-        [customAlertViewController chooseStoneCode];
+        [merchantPickerViewController chooseStoneCode];
         [alertController dismissViewControllerAnimated:YES completion:nil];
     }]];
     [alertController addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action){
@@ -159,12 +159,16 @@ CustomAlertViewController *customAlertViewController;
     
     NSArray *merchants;
     merchants = [STNMerchantListProvider listMerchants];
+
+    if([merchants count] > 0){
+        transaction.merchant = [merchants objectAtIndex:0];
+    }
+
     for (STNMerchantModel *merchantModel in merchants){
         if([merchantModel stonecode] == [DemoPreferences lastSelectedStoneCode]){
             transaction.merchant = merchantModel;
             break;
         }
-        transaction.merchant = [merchants objectAtIndex:0];
     }
     
 //    [STNConfig setEnvironment:STNEnvironmentInternalHomolog];

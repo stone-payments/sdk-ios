@@ -9,8 +9,8 @@
 #import "ViewController.h"
 #import "DemoPreferences.h"
 
-@interface CustomAlertViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface MerchantPickerViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
--(BOOL) chooseStoneCode;
+-(void) chooseStoneCode;
 
 @end
