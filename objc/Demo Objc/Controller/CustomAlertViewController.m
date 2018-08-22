@@ -11,10 +11,13 @@
 @implementation CustomAlertViewController
 
 NSArray *merchantListProviders;
+STNMerchantModel *merchantStored;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     merchantListProviders = [STNMerchantListProvider listMerchants];
+    merchantStored = merchantListProviders[0];
+    
     [self setPreferredContentSize:CGSizeMake(250., 200.)];
 
     UIPickerView *pickerView = [[UIPickerView new] initWithFrame:CGRectMake(0, 0, 250., 200)];
@@ -32,11 +35,10 @@ NSArray *merchantListProviders;
     [self.view addConstraint:centreHorizontallyConstraint];
 }
 
-- (void)viewDidDisappear:(BOOL)animated{
-    
-    
+-(BOOL)chooseStoneCode{
+    [DemoPreferences updateLastSelectedStoneCode:[merchantStored stonecode]];
+    return true;
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -57,7 +59,7 @@ NSArray *merchantListProviders;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    NSLog(@"Teste Selected");
+    merchantStored = merchantListProviders[row];
 }
 
 @end

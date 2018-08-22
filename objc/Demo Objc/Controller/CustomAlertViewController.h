@@ -7,7 +7,10 @@
 //
 
 #import "ViewController.h"
+#import "DemoPreferences.h"
 
 @interface CustomAlertViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+
+-(BOOL) chooseStoneCode;
 
 @end

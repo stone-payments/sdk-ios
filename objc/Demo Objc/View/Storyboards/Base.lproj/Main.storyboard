@@ -98,7 +98,7 @@
                                             <constraint firstAttribute="height" constant="40" id="R1S-L2-xgS"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Change Stone Code">
+                                        <state key="normal" title="Choose Stone Code">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
