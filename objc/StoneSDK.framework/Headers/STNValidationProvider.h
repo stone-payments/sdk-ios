@@ -23,6 +23,9 @@
 /// Checks wheather the pinpad is connected or not.
 + (BOOL)validatePinpadConnection;
 
+/// Checks wheather the pinpad is supported or not.
++ (BOOL)validateSupportedPinpad;
+
 /// Checks whether the tables are cached or not.
 + (BOOL)validateTablesDownloaded __deprecated;
 

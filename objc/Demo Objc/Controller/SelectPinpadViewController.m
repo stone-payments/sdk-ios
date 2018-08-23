@@ -16,23 +16,6 @@
 - (void)viewDidLoad {
     // Setup UI components
     [self setupView];
-    
-    // Update connectedPinpads
-    [self findConnectedPinpads];
-    
-    // Get the currently selected pinpad.
-    STNPinpad *selectedPinpad = [[STNPinPadConnectionProvider new] selectedPinpad];
-    
-    // if the selected pinpad exists update the selected row at table view
-    if (selectedPinpad != nil && [_connectedPinpads containsObject:selectedPinpad]) {
-        int i = (int)[_connectedPinpads indexOfObject:selectedPinpad];
-        [_tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]
-                                animated:false
-                          scrollPosition:UITableViewScrollPositionTop];
-        
-        // Update label text with the name of selected pinpad
-        _feedback.text = [NSString stringWithFormat:@"Selected pinpad %@", selectedPinpad.name];
-    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,7 +32,7 @@
 // Update connected pinpads list and refresh table view content
 -(void)findConnectedPinpads {
     _connectedPinpads = [[STNPinPadConnectionProvider new] listConnectedPinpads];
-    [self.tableView reloadData];
+    [self refreshTableViewContent];
 }
 
 #pragma mark - UITableViewDataSource
@@ -75,21 +58,24 @@
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Check if the row is a valid position at list of connected pinpads
     if ([_connectedPinpads count] > indexPath.row) {
+        // The selected pinpad could be retrieved as below
+        STNPinpad *pinpad = _connectedPinpads[indexPath.row];
+        
         // selectPinpad will try to select the choosed pinpad
         // the return must be used to check connectivity
-        BOOL hasConnected = [[STNPinPadConnectionProvider new] selectPinpad:_connectedPinpads[indexPath.row]];
-        NSString *labelContent = [NSString stringWithFormat:@"pinpad %@", _connectedPinpads[indexPath.row].name];
-        if (hasConnected) {
-            labelContent = [@"Valid " stringByAppendingString:labelContent];
-        } else {
-            labelContent = [@"Invalid " stringByAppendingString:labelContent];
-        }
-        // Refresh label data
-        [self setFeedbackMessage:labelContent];
-        
-        // The selected pinpad could be retrieved as below
-        STNPinpad *pinpad = [[STNPinPadConnectionProvider new] selectedPinpad];
-        NSLog(@"Selected pinpad %@", pinpad);
+        [[STNPinPadConnectionProvider new] selectPinpad:pinpad
+                                              withBlock:^(BOOL succeeded, NSError * _Nonnull error) {
+            NSString *labelContent = [NSString stringWithFormat:@"pinpad %@", pinpad.name];
+            if (succeeded) {
+                NSLog(@"Pinpad selection succeeded: %@", pinpad);
+                labelContent = [@"Valid " stringByAppendingString:labelContent];
+            } else {
+                NSLog(@"Error: %@", error.description);
+                labelContent = [@"Invalid " stringByAppendingString:labelContent];
+            }
+            // Refresh label data
+            [self setFeedbackMessage:labelContent];
+        }];
     }
 }
 
@@ -111,6 +97,23 @@
     _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     _activityIndicator.center = _overlayView.center;
     [_tableView setAllowsMultipleSelection:NO];
+    
+    // Get the currently selected pinpad.
+    STNPinpad *selectedPinpad = [[STNPinPadConnectionProvider new] selectedPinpad];
+    
+    // Update connectedPinpads
+    [self findConnectedPinpads];
+    
+    // if the selected pinpad exists update the selected row at table view
+    if (selectedPinpad != nil && [_connectedPinpads containsObject:selectedPinpad]) {
+        int i = (int)[_connectedPinpads indexOfObject:selectedPinpad];
+        [_tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]
+                                animated:false
+                          scrollPosition:UITableViewScrollPositionTop];
+        
+        // Update label text with the name of selected pinpad
+        _feedback.text = [NSString stringWithFormat:@"Selected pinpad %@", selectedPinpad.name];
+    }
 }
 
 // Update UI Element
@@ -120,4 +123,10 @@
     });
 }
 
+// Refresh Table View
+-(void) refreshTableViewContent {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+}
 @end
