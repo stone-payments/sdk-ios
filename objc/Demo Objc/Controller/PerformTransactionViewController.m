@@ -9,6 +9,7 @@
 #import "PerformTransactionViewController.h"
 #import "NSString+Utils.h"
 #import "DemoPreferences.h"
+#import "MerchantPickerViewController.h"
 
 @interface PerformTransactionViewController ()
 
@@ -18,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *instructionLabel;
 @property (strong, nonatomic) IBOutlet UILabel *interestLabel;
 @property (strong, nonatomic) IBOutlet UIButton *sendButton;
+@property (strong, nonatomic) IBOutlet UIButton *changeStoneCodeButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *feedback;
 @property (weak, nonatomic) IBOutlet UITextField *transactionValue;
@@ -25,16 +27,20 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *instalmentPicker;
 @property (weak, nonatomic) IBOutlet UILabel *rate;
 @property (weak, nonatomic) IBOutlet UISwitch *rateSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *captureSwitch;
 
 @end
 
 @implementation PerformTransactionViewController
 
 static int rowNumber;
+MerchantPickerViewController *merchantPickerViewController;
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    merchantPickerViewController = [MerchantPickerViewController new];
     self.transactionValue.delegate = self;
     self.navigationItem.hidesBackButton = NO;
     
@@ -47,10 +53,11 @@ static int rowNumber;
     
     self.pickerMenu = @[@"1x", @"2x", @"3x", @"4x", @"5x", @"6x", @"7x", @"8x", @"9x", @"10x", @"11x", @"12x"];
     
-    self.instalmentPicker.hidden = YES;
-    self.rate.hidden = YES;
+    self.instalmentPicker.userInteractionEnabled = NO;
+    self.rate.enabled = NO;
     self.rateSwitch.enabled = NO;
     self.rateSwitch.on = NO;
+    self.rate.text = @"Disable Interest";
     
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
     
@@ -64,6 +71,18 @@ static int rowNumber;
     [super didReceiveMemoryWarning];
 }
 
+- (IBAction) changeStoneCode:(id)sender{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Choose Stone Code" message:[NSString stringWithFormat:@"Stone Code Selected: %@",[DemoPreferences lastSelectedStoneCode]] preferredStyle:UIAlertControllerStyleActionSheet];
+    [alertController setValue:merchantPickerViewController forKey:@"contentViewController"];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+        [merchantPickerViewController chooseStoneCode];
+        [alertController dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action){
+        [alertController dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 
 - (IBAction)performTransaction:(id)sender {
     
@@ -140,11 +159,24 @@ static int rowNumber;
     
     NSArray *merchants;
     merchants = [STNMerchantListProvider listMerchants];
-    if ([merchants count]>0) {
-        STNMerchantModel *merchant = [merchants objectAtIndex:0];
-        transaction.merchant = merchant;
+
+    if([merchants count] > 0){
+        transaction.merchant = [merchants objectAtIndex:0];
+    }
+
+    for (STNMerchantModel *merchantModel in merchants){
+        if([merchantModel stonecode] == [DemoPreferences lastSelectedStoneCode]){
+            transaction.merchant = merchantModel;
+            break;
+        }
     }
     
+    
+    if(_captureSwitch.on){
+        transaction.capture = STNTransactionCaptureYes;
+    } else {
+        transaction.capture = STNTransactionCaptureNo;
+    }
 //    [STNConfig setEnvironment:STNEnvironmentInternalHomolog];
 
     [STNTransactionProvider sendTransaction:transaction withBlock:^(BOOL succeeded, NSError *error) {
@@ -174,15 +206,16 @@ static int rowNumber;
     switch (self.transactionType.selectedSegmentIndex) {
         case 0:
             NSLog(@"%@", [kGeneralDebit localize]);
-            _instalmentPicker.hidden = YES;
-            self.rate.hidden = YES;
+            [self.instalmentPicker setUserInteractionEnabled:NO];
             [self.rateSwitch setEnabled:NO];
+            [self.rateSwitch setOn:NO];
+            self.rate.text = @"Disable Interest";
             break;
         case 1:
             NSLog(@"%@", [kGeneralCredit localize]);
-            _instalmentPicker.hidden = NO;
-            self.rate.hidden = NO;
+            [self.instalmentPicker setUserInteractionEnabled:YES];
             [self.rateSwitch setEnabled:YES];
+            self.rate.text = @"Interest-free";
             break;
     }
 }

@@ -125,3 +125,5 @@
 "Interest" = "Juros";
 "None" = "Nenhum";
 "Issuer" = "Emissor";
+
+"Activation_Stone_Code_Alert" = "O ambiente já foi previamente selecionado, para mudar é necessário desativar todos os Stone codes presentes.";
