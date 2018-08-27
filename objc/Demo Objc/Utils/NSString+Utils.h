@@ -59,6 +59,9 @@ extern NSString *const kLogStartScan;
 extern NSString *const kLogFind;
 extern NSString *const kLogConnect;
 extern NSString *const kLogDisconnect;
+extern NSString *const kLogUnableToConnect;
+extern NSString *const kLogSelect;
+extern NSString *const kLogUnableToSelect;
 extern NSString *const kLogCentralState;
 
 extern NSString *const kLogListAllTransactions;

@@ -61,6 +61,9 @@
 "Log_Find" = "Encontrou pinpad";
 "Log_Connect" = "Conectou a pinpad";
 "Log_Disconnect" = "Desconectou de pinpad";
+"Log_Unable_To_Connect" = "Não foi possível conectar ao pinpad";
+"Log_Select" = "Pinpad selecionado";
+"Log_Unable_To_Select" = "Não foi possível selecionar o pinpad";
 "Log_Central_State" = "Central Manager mudou de estado";
 
 /* Log - List Transaction View Controller */

@@ -80,9 +80,14 @@
                            withBlock:^(BOOL succeeded, NSError * _Nonnull error) {
             if (succeeded) {
                 // You can access the pinpad data
-                NSLog(@"Connection succeeded");
+                NSLog(@"%@: %@", [kLogConnect localize], pinpad.name);
+                //  Refresh label data
+                [self setFeedbackMessage:[kLogConnect localize]];
             } else {
+                NSLog(@"%@: %@", [kLogUnableToConnect localize], pinpad.name);
                 NSLog(@"Connection Error: %@", error.description);
+                //  Refresh label data
+                [self setFeedbackMessage:[kLogUnableToConnect localize]];
             }
             // Stop scanning
             [self->_connection stopScan];
@@ -130,7 +135,7 @@
                           error:(NSError * _Nullable)error {
     if (error){
         NSLog(@"Error: %@", error.description);
-    }else if ([_connection selectedPinpad] == pinpad) {
+    } else if ([_connection selectedPinpad] == pinpad) {
         NSLog(@"Device already selected.");
     } else {
         //  You can access the pinpad data
@@ -138,7 +143,22 @@
         //  Refresh label data
         [self setFeedbackMessage:[kLogConnect localize]];
         //  Use this specific pinpad in the future transactions
-        [_connection selectPinpad:pinpad];
+//        Use the code bellow if you want to select the device
+//        [_connection selectPinpad:pinpad
+//                        withBlock:^(BOOL succeeded, NSError * _Nonnull error)
+//        {
+//            if (succeeded) {
+//                // You can access the pinpad data
+//                NSLog(@"%@: %@", [kLogSelect localize], pinpad.name);
+//                //  Refresh label data
+//                [self setFeedbackMessage:[kLogConnect localize]];
+//            } else {
+//                NSLog(@"%@: %@", [kLogUnableToSelect localize], pinpad.name);
+//                NSLog(@"Connection Error: %@", error.description);
+//                //  Refresh label data
+//                [self setFeedbackMessage:[kLogUnableToSelect localize]];
+//            }
+//        }];
     }
 }
 

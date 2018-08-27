@@ -59,6 +59,9 @@ NSString *const kLogStartScan = @"Log_Start_Scan";
 NSString *const kLogFind = @"Log_Find";
 NSString *const kLogConnect = @"Log_Connect";
 NSString *const kLogDisconnect = @"Log_Disconnect";
+NSString *const kLogUnableToConnect = @"Log_Unable_To_Connect";
+NSString *const kLogSelect = @"Log_Select";
+NSString *const kLogUnableToSelect = @"Log_Unable_To_Select";
 NSString *const kLogCentralState = @"Log_Central_State";
 
 NSString *const kLogListAllTransactions = @"Log_List_All_Transactions";
