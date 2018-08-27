@@ -43,7 +43,7 @@ NSTimer* timer;
 
 // Example code for connection maintenance
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Check that timer is already set
+    // Check if timer is already set
     if (timer == nil) {
         // schedule timer to call the keepConnectionSlive every 3 minutes
         timer = [NSTimer scheduledTimerWithTimeInterval: 60 * 3
