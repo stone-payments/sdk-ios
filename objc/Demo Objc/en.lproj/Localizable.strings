@@ -61,7 +61,11 @@
 "Log_Start_Scan" = "Did start scanning";
 "Log_Find" = "Did find pinpad";
 "Log_Connect" = "Did connect to pinpad";
+"Log_Device_Already_Connected" = "Pinpad already connected";
 "Log_Disconnect" = "Did disconnect from pinpad";
+"Log_Unable_To_Connect" = "Unable to connect to pinpad";
+"Log_Select" = "Pinpad selected";
+"Log_Unable_To_Select" = "Unable to select pinpad";
 "Log_Central_State" = "Did change central state";
 
 /* Log - List Transaction View Controller */

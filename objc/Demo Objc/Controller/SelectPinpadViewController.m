@@ -50,7 +50,7 @@
 // Update connected pinpads list and refresh table view content
 - (void)findConnectedPinpads {
     _connectedPinpads = [[STNPinPadConnectionProvider new] listConnectedPinpads];
-    [self.tableView reloadData];
+    [self refreshTableViewContent];
 }
 
 #pragma mark - UITableViewDataSource
@@ -76,28 +76,38 @@
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Check if the row is a valid position at list of connected pinpads
     if ([_connectedPinpads count] > indexPath.row) {
-        // selectPinpad will try to select the choosed pinpad
-        // the return must be used to check connectivity
-
-        BOOL hasConnected = [[STNPinPadConnectionProvider new] selectPinpad:_connectedPinpads[indexPath.row]];
-        NSString *labelContent = [NSString stringWithFormat:@"pinpad %@", _connectedPinpads[indexPath.row].name];
-        if (hasConnected) {
-                // The pinpad device is selected and available for transactions
-                // If you want implementing the automatic connection with last pinpad selected
-                // you should save the pinpad indentifier in someplace,
-                // we recommend the save at NSUserDefaults.
-            [DemoPreferences updateLastSelectedDevice:((STNPinpad *) _connectedPinpads[indexPath.row]).identifier];
-            labelContent = [@"Valid " stringByAppendingString:labelContent];
-        } else {
-            //The pinpad device is not available for transactions
-            labelContent = [@"Invalid " stringByAppendingString:labelContent];
-        }
-        // Refresh label data
-        [self setFeedbackMessage:labelContent];
-
         // The selected pinpad could be retrieved as below
-        STNPinpad *pinpad = [[STNPinPadConnectionProvider new] selectedPinpad];
-        NSLog(@"Selected pinpad %@", pinpad);
+        STNPinpad *pinpad = _connectedPinpads[indexPath.row];
+        STNPinPadConnectionProvider *pinpadConnectionProvider = [STNPinPadConnectionProvider new];
+        if ([pinpadConnectionProvider selectedPinpad] == pinpad) {
+            NSLog(@"Device already selected.");
+            [self setFeedbackMessage:[kLogDeviceAlreadyConnected localize]];
+        } else {
+            // selectPinpad will try to select the choosed pinpad
+            // the return must be used to check connectivity
+            [pinpadConnectionProvider selectPinpad:pinpad
+                                                  withBlock:^(BOOL succeeded, NSError * _Nonnull error) {
+              NSString *labelContent = [NSString stringWithFormat:@"pinpad %@", pinpad.name];
+                if (succeeded) {
+                    // The pinpad device is selected and available for transactions
+                    // If you want implementing the automatic connection with last pinpad selected
+                    // you should save the pinpad indentifier in someplace,
+                    // we recommend the save at NSUserDefaults.
+                    NSLog(@"Pinpad selection succeeded: %@", pinpad);
+                    labelContent = [@"Valid " stringByAppendingString:labelContent];
+                    [DemoPreferences updateLastSelectedDevice: pinpad.identifier];
+                    // The selected pinpad could be retrieved as commented code below by the application.
+                    // STNPinpad *pinpad = [[STNPinPadConnectionProvider new] selectedPinpad];
+                    // NSLog(@"Selected pinpad %@", pinpad);
+                } else {
+                    //The pinpad device is not available for transactions
+                    NSLog(@"Error: %@", error.description);
+                    labelContent = [@"Invalid " stringByAppendingString:labelContent];
+                }
+                // Refresh label data
+                [self setFeedbackMessage:labelContent];
+            }];
+        }
     }
 }
 
@@ -128,4 +138,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     });
 }
 
+// Refresh Table View
+-(void) refreshTableViewContent {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+}
 @end

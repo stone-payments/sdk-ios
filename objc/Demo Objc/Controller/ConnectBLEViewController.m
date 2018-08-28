@@ -70,10 +70,29 @@
 // Connect to the selected pinpad and stop scanning
 -(void)tableView:(UITableView *)tableView
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Stabilish connection with selected pinpad
-    [_connection connectToPinpad:_peripherals[indexPath.row]];
-    // Stop scanning
-    [_connection stopScan];
+    if ([_peripherals count] > indexPath.row) {
+        STNPinpad *pinpad = _peripherals[indexPath.row];
+        if (_connection.selectedPinpad == pinpad) {
+            NSLog(@"Device already selected");
+            return;
+        }
+        [_connection connectToPinpad:pinpad
+                           withBlock:^(BOOL succeeded, NSError * _Nonnull error) {
+            if (succeeded) {
+                // You can access the pinpad data
+                NSLog(@"%@: %@", [kLogConnect localize], pinpad.name);
+                //  Refresh label data
+                [self setFeedbackMessage:[kLogConnect localize]];
+            } else {
+                NSLog(@"%@: %@", [kLogUnableToConnect localize], pinpad.name);
+                NSLog(@"Connection Error: %@", error.description);
+                //  Refresh label data
+                [self setFeedbackMessage:[kLogUnableToConnect localize]];
+            }
+            // Stop scanning
+            [self->_connection stopScan];
+        }];
+    }
 }
 
 #pragma mark - STNPinPadConnectionDelegate
@@ -114,14 +133,34 @@
 -(void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider
                didConnectPinpad:(STNPinpad *)pinpad
                           error:(NSError * _Nullable)error {
-    //  You can access the pinpad data
-    NSLog(@"%@: %@", [kLogConnect localize], pinpad.name);
-    //  Refresh label data
-    [self setFeedbackMessage:[kLogConnect localize]];
-    //[connection disconnectPinpad:pinpad];
-    
-    //  Use this specific pinpad in the future transactions
-    [_connection selectPinpad:pinpad];
+    if (error){
+        NSLog(@"Error: %@", error.description);
+    } else if ([_connection selectedPinpad] == pinpad) {
+        NSLog(@"Device already selected.");
+        [self setFeedbackMessage:[kLogDeviceAlreadyConnected localize]];
+    } else {
+        //  You can access the pinpad data
+        NSLog(@"%@: %@", [kLogConnect localize], pinpad.name);
+        //  Refresh label data
+        [self setFeedbackMessage:[kLogConnect localize]];
+        //  Use this specific pinpad in the future transactions
+//        Use the code bellow if you want to select the device
+//        [_connection selectPinpad:pinpad
+//                        withBlock:^(BOOL succeeded, NSError * _Nonnull error)
+//        {
+//            if (succeeded) {
+//                // You can access the pinpad data
+//                NSLog(@"%@: %@", [kLogSelect localize], pinpad.name);
+//                //  Refresh label data
+//                [self setFeedbackMessage:[kLogConnect localize]];
+//            } else {
+//                NSLog(@"%@: %@", [kLogUnableToSelect localize], pinpad.name);
+//                NSLog(@"Connection Error: %@", error.description);
+//                //  Refresh label data
+//                [self setFeedbackMessage:[kLogUnableToSelect localize]];
+//            }
+//        }];
+    }
 }
 
 // Did disconnect pinpad

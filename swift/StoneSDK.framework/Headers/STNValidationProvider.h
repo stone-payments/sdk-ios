@@ -20,8 +20,12 @@
 /// Checks whether the provided merchant is activated or not.
 + (BOOL)validateActivationOfMerchant:(STNMerchantModel*)merchant;
 
-/// Checks wheather the pinpad is connected or not.
+/// Checks whether the pinpad is connected or not.
 + (BOOL)validatePinpadConnection;
+
+/// Checks whether the pinpad is supported or not.
++ (BOOL)validateSupportedPinpad __deprecated;
++ (BOOL)validatePinpadSupport;
 
 /// Checks whether the tables are cached or not.
 + (BOOL)validateTablesDownloaded __deprecated;
