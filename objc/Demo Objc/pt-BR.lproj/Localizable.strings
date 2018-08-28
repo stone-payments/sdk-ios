@@ -60,6 +60,7 @@
 "Log_Start_Scan" = "Começou a escanear";
 "Log_Find" = "Encontrou pinpad";
 "Log_Connect" = "Conectou a pinpad";
+"Log_Device_Already_Connected" = "Pinpad já conectado";
 "Log_Disconnect" = "Desconectou de pinpad";
 "Log_Unable_To_Connect" = "Não foi possível conectar ao pinpad";
 "Log_Select" = "Pinpad selecionado";

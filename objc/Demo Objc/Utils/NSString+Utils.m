@@ -58,6 +58,7 @@ NSString *const kEnvironmentCertification = @"Certification";
 NSString *const kLogStartScan = @"Log_Start_Scan";
 NSString *const kLogFind = @"Log_Find";
 NSString *const kLogConnect = @"Log_Connect";
+NSString *const kLogDeviceAlreadyConnected = @"Log_Device_Already_Connected";
 NSString *const kLogDisconnect = @"Log_Disconnect";
 NSString *const kLogUnableToConnect = @"Log_Unable_To_Connect";
 NSString *const kLogSelect = @"Log_Select";

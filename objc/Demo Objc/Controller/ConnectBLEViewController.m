@@ -137,6 +137,7 @@
         NSLog(@"Error: %@", error.description);
     } else if ([_connection selectedPinpad] == pinpad) {
         NSLog(@"Device already selected.");
+        [self setFeedbackMessage:[kLogDeviceAlreadyConnected localize]];
     } else {
         //  You can access the pinpad data
         NSLog(@"%@: %@", [kLogConnect localize], pinpad.name);

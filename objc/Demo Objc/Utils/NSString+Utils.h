@@ -58,6 +58,7 @@ extern NSString *const kEnvironmentCertification;
 extern NSString *const kLogStartScan;
 extern NSString *const kLogFind;
 extern NSString *const kLogConnect;
+extern NSString *const kLogDeviceAlreadyConnected;
 extern NSString *const kLogDisconnect;
 extern NSString *const kLogUnableToConnect;
 extern NSString *const kLogSelect;
