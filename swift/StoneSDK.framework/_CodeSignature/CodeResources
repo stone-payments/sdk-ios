@@ -38,7 +38,7 @@
 		</data>
 		<key>Headers/STNEnums.h</key>
 		<data>
-		mrgrXrD3N4djmJIyuXrqfBC8NEs=
+		v7MLywWp13xtw5+vBL+yxaDIos0=
 		</data>
 		<key>Headers/STNEnums_old.h</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>Headers/STNPinPadConnectionProvider.h</key>
 		<data>
-		AjTpVP39eBHfI6tGopL5bhRziRM=
+		OOJ5akwl8aUinrEMxK9JTbjQF9c=
 		</data>
 		<key>Headers/STNPinpad.h</key>
 		<data>
@@ -110,11 +110,11 @@
 		</data>
 		<key>Headers/STNTransactionProvider.h</key>
 		<data>
-		2gzX0y/TxMxJzWs2NiVCq6zc4i0=
+		BTYmdwrXxdOsET01sdfgG4wgwkw=
 		</data>
 		<key>Headers/STNValidationProvider.h</key>
 		<data>
-		LmfDKQQ2i04u7uAkIlZojENhbl4=
+		XxMtTppNjnBNlWeKCPU783woxbg=
 		</data>
 		<key>Headers/StoneSDK.h</key>
 		<data>
@@ -130,7 +130,7 @@
 		</data>
 		<key>README.md</key>
 		<data>
-		7OVH6n9NKvAuCztIImUEaZYiwBg=
+		UliuwSGRKa+//CQuuEzxrbW9mWc=
 		</data>
 		<key>StoneSDK.momd/StoneSDK.mom</key>
 		<data>
@@ -235,11 +235,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			mrgrXrD3N4djmJIyuXrqfBC8NEs=
+			v7MLywWp13xtw5+vBL+yxaDIos0=
 			</data>
 			<key>hash2</key>
 			<data>
-			2KIWtQZNOgBqRLwr0VLlveBvrD/D+CcDRsDmR/A2gJ4=
+			3/QfIt5niVWehiCVVw2Zvyo7b4Ba1Fc/xPFfKCjWgJs=
 			</data>
 		</dict>
 		<key>Headers/STNEnums_old.h</key>
@@ -312,11 +312,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			AjTpVP39eBHfI6tGopL5bhRziRM=
+			OOJ5akwl8aUinrEMxK9JTbjQF9c=
 			</data>
 			<key>hash2</key>
 			<data>
-			jD2p7ekRkqmCkWeJdtiBmcVe/jnxnR+pEY4vHyBnoLw=
+			M7WHnvUA6GZ1LPj6xRrsEAKmcGEAxfMv8Hm07yLoMbQ=
 			</data>
 		</dict>
 		<key>Headers/STNPinpad.h</key>
@@ -433,22 +433,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			2gzX0y/TxMxJzWs2NiVCq6zc4i0=
+			BTYmdwrXxdOsET01sdfgG4wgwkw=
 			</data>
 			<key>hash2</key>
 			<data>
-			nEE9Kqgc1EdIrQ+HKi5VrW5oSLUryzftLmz97gkRF7A=
+			pFLrASr3Y9ZpqCavhZFBkPqQrXoUydfBEzKyGzyR0io=
 			</data>
 		</dict>
 		<key>Headers/STNValidationProvider.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			LmfDKQQ2i04u7uAkIlZojENhbl4=
+			XxMtTppNjnBNlWeKCPU783woxbg=
 			</data>
 			<key>hash2</key>
 			<data>
-			HpFJiLIdQFO8qeasRf7ISO/Pwh66v94Jt8M0+/h2huA=
+			ljMat9LM8IP02sZFR7186sits2enpKikUqAgiKp57P4=
 			</data>
 		</dict>
 		<key>Headers/StoneSDK.h</key>
@@ -477,11 +477,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			7OVH6n9NKvAuCztIImUEaZYiwBg=
+			UliuwSGRKa+//CQuuEzxrbW9mWc=
 			</data>
 			<key>hash2</key>
 			<data>
-			OvrQ99tJP3VMC++bGH//zlazsl8HHkCZa2bRsu5NbTw=
+			tZhG7vKNmOks5n96eNKrC7UxgfTryQ9GIi48JMbq4hE=
 			</data>
 		</dict>
 		<key>StoneSDK.momd/StoneSDK.mom</key>

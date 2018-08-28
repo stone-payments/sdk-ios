@@ -83,7 +83,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)disconnectPinpad:(STNPinpad *)pinpad;
 
 /**
- Select a already connected pinpad for use.
+ Select an already connected pinpad for use.
  
  @param pinpad The model representing the pinpad. You can get the pinpad instance by using `listConnectedPinpads`.
  @return `YES` if selection was successfull, `NO` if not.
@@ -91,7 +91,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)selectPinpad:(STNPinpad *)pinpad __deprecated_msg("use selectPinpad: withBlock: instead.");;
 
 /**
- Select a already connected pinpad for use.
+ Select an already connected pinpad for use.
  
  @param pinpad The model representing the pinpad. You can get the pinpad instance by using `listConnectedPinpads`.
  @param block With parameters within: succeeded returning `YES` if device was able for selection or `NO` and a specific NSError for treatment

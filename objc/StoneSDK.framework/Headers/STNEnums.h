@@ -82,7 +82,7 @@ typedef enum _STNErrorCode {
     STNErrorCodePinpadCommandTimeout = 309,
     
     STNErrorCodePinpadNotValid = 310,
-    STNErrorCodePinpadUnbaleToConnect = 311,
+    STNErrorCodePinpadUnableToConnect = 311,
     
     STNErrorCodeBluetoothNotReady = 401,
 
@@ -441,20 +441,20 @@ typedef enum STNStreamReadingState {
 typedef enum STNResponseCommandStatus {
     STNResponseCommandSuccess = 0,
 
-    STNErrorNoSecurityCommunication = 3,
+    STNErrorNoSecureCommunication = 3,
     STNPressFunction1 = 4,
     STNPressFunction2 = 5,
     STNPressFunction3 = 6,
     STNPressFunction4 = 7,
-    STNPressBacksapce = 8,
+    STNPressBackspace = 8,
 
     /**
-    * Decoding error data receive by Security communicate
+    * Decoding error data received by secure communicate
     * @enum: STNErrorDecodingData
     **/
     STNErrorDecodingData = 9,
 
-    STNInvalidFunctionOrUnknowCommand = 10,
+    STNInvalidFunctionOrUnknownCommand = 10,
     STNErrorInvalidParameters = 11,
 
     STNErrorTimeOut = 12,
@@ -472,43 +472,43 @@ typedef enum STNResponseCommandStatus {
     STNErrorNoICCOrCTLS = 43,
 
     /**
-     * Pinpad can`t capture more transaction by secutiry.
+     * Pinpad can`t capture more transactions for security reasons.
      * @enum: STNErrorPinpadBusy
-     * @example: When the capture limit is arrived in determined tempo interval
+     * @example: When the capture limit is reached after a specific time interval
      **/
     STNErrorPinpadBusy = 44,
-    STNErrorResponseDataBiggerThenLimit = 45,
+    STNErrorResponseDataBiggerThanLimit = 45,
 
 
-    STNErrorNoSamOrErrorOfCommunication = 51,
+    STNErrorCommunicationOrNoSam = 51,
     STNErrorIccNotFound = 60,
     STNErrorCommunicationIccOrCtlsError = 61,
 
-    STNErrorCardInvalidate = 67,
+    STNErrorCardInvalidated = 67,
     STNErrorIccWithProblem = 68,
     STNErrorIccWithInvalidData = 69,
-    STNErrorIccemvWithoutAvailableApplication = 70,
+    STNErrorIccEmvWithNoAvailableApplication = 70,
 
     /**
      * FallBack error
      * @enum: STNErrorIccToMag
-     * @example:When occurs error in icc for three times and need pass the magnetic strip.
+     * @example: When an error occurs with icc for three times and needs to swipe the magnetic stripe.
      **/
     STNErrorIccToMag = 76,
     STNErrorMultipleCtlsConnected = 80,
-    STNErrorCommunicationCtlsError = 81,
+    STNErrorCtlsCommunication = 81,
     STNErrorInvalidCtls = 82,
 
     /**
-     * When much errors occurs in CTLS processing
+     * When many errors occurs in CTLS processing
      * @enum: STNErrorCtlsProblems
-     * @example: When the CTLS don`t have expected behavior the transaction need be canceling
+     * @example: When the CTLS doesn`t behaves as expected the transaction needs to be cancelled
      */
     STNErrorCtlsProblems = 83,
     STNErrorCtlsWithApplicationCondiction = 84,
     STNErrorCtlsApplicationShouldNotUsed = 85,
     STNErrorMultimediaFileUnexistent = 100,
-    STNErrorMultimediaInvalidformat = 101,
+    STNErrorMultimediaInvalidFormat = 101,
     STNErrorMultimediaFileDataLoad = 102,
 
 

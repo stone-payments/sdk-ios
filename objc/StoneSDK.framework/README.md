@@ -4,7 +4,7 @@
 
 A 'White Label' integration developed to establish communication between iOS devices and ABECS pinpads.
 
-It's main goal is to enable iOS mobile solutions to provide direct payment on their platform via credit card, debit and voucher transactions
+Its main goal is to enable iOS mobile solutions to provide direct payment on their platform via credit card, debit and voucher transactions
 
 - [Documentation](#documentation)
 - [Project settings](#project-settings)
