@@ -19,6 +19,7 @@ extern NSString *const kTitleTableDownload;
 extern NSString *const kTitleActivation;
 extern NSString *const kTitleManageStoneCodes;
 extern NSString *const kTitleSendTransaction;
+extern NSString *const kTitlePosteriorCapture;
 extern NSString *const kTitleUpdateTable;
 extern NSString *const kTitleRefund;
 extern NSString *const kTitleReceipt;

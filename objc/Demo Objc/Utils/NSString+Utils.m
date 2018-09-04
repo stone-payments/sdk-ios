@@ -19,6 +19,7 @@ NSString *const kTitleTableDownload = @"Title_Table_Download";
 NSString *const kTitleActivation = @"Title_Activation";
 NSString *const kTitleManageStoneCodes = @"Title_Manage_Stone_Codes";
 NSString *const kTitleSendTransaction = @"Title_Send_Transaction";
+NSString *const kTitlePosteriorCapture = @"Title_Posterior_Capture_Transaction";
 NSString *const kTitleUpdateTable = @"Title_Update_Table";
 NSString *const kTitleRefund = @"Title_Refund";
 NSString *const kTitleReceipt = @"Title_Receipt";
