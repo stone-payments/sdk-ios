@@ -11,6 +11,6 @@
 @interface PosteriorCaptureViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *transactions;
+@property (strong, nonatomic) NSMutableArray *transactions;
 
 @end

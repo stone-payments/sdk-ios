@@ -1638,6 +1638,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="feedbackMessage" destination="mOO-pX-xXI" id="vFv-3L-nGC"/>
                         <outlet property="tableView" destination="peY-uL-59x" id="EWg-Ol-JY8"/>
                     </connections>
                 </viewController>

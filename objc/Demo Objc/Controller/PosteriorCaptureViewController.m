@@ -11,6 +11,7 @@
 #import "NSString+Utils.h"
 
 @interface PosteriorCaptureViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *feedbackMessage;
 
 @end
 
@@ -19,13 +20,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = [kTitlePosteriorCapture localize];
+    self.transactions = [NSMutableArray new];
     [self getTransactionListCadidateToCaptureTransaction];
 }
+
+- (void) getTransactionListCadidateToCaptureTransaction{
+    for(STNTransactionModel *transactionModel in [STNTransactionListProvider listTransactions]){
+        if([transactionModel capture] == STNTransactionCaptureNo){
+            [self.transactions addObject:transactionModel];
+        }
+    }
+    [self.tableView reloadData];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 #pragma mark - UITableViewDataSource
 
@@ -71,17 +85,20 @@
 - (void) posteriorCaputureConfirmationWith:(STNTransactionModel *)transaction{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Capture transaction" message:@"Do you sure which want do this?" preferredStyle:UIAlertControllerStyleAlert];
     [alertController addAction:[UIAlertAction actionWithTitle:@"Sure!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-        [self getTransactionListCadidateToCaptureTransaction];
+        [STNCaptureTransactionProvider capture:transaction withBlock:^(BOOL succeeded, NSError *error) {
+            if(succeeded){
+                [self getTransactionListCadidateToCaptureTransaction];
+                self.feedbackMessage.text = @"OMG, Its works!";
+                [alertController dismissViewControllerAnimated:YES completion:nil];
+            } else {
+                self.feedbackMessage.text = [error localizedDescription];
+            }
+        }];
     }]];
     [alertController addAction:[UIAlertAction actionWithTitle:@"Puff, obvious not!" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         [alertController dismissViewControllerAnimated:YES completion:nil];
     }]];
     [self presentViewController:alertController animated:YES completion:nil];
-}
-
-- (void) getTransactionListCadidateToCaptureTransaction{
-    self.transactions = [STNTransactionListProvider listTransactions];
 }
 
 @end
