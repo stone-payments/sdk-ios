@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 
-@interface PosteriorCaptureViewController : ViewController
+@interface PosteriorCaptureViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSArray *transactions;
 
 @end

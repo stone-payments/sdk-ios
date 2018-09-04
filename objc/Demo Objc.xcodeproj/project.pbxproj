@@ -11,6 +11,7 @@
 		398772DD21238A71001D5DF3 /* StoneSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398772DC21238A71001D5DF3 /* StoneSDK.framework */; };
 		398772DE21238A71001D5DF3 /* StoneSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 398772DC21238A71001D5DF3 /* StoneSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		39AD99A0213F012C00C97C45 /* PosteriorCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AD999F213F012C00C97C45 /* PosteriorCaptureViewController.m */; };
+		39AD99A3213F354500C97C45 /* PosteriorCaptureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AD99A2213F354500C97C45 /* PosteriorCaptureCell.m */; };
 		4104232C1F9FB590003DCDFF /* ConnectBLEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4104232B1F9FB590003DCDFF /* ConnectBLEViewController.m */; };
 		4108B6A61E77011000B3A734 /* CapturePanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4108B6A51E77011000B3A734 /* CapturePanViewController.m */; };
 		4108B6A91E7710BC00B3A734 /* ScreenDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4108B6A81E7710BC00B3A734 /* ScreenDisplayViewController.m */; };
@@ -60,6 +61,8 @@
 		398772DC21238A71001D5DF3 /* StoneSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StoneSDK.framework; sourceTree = "<group>"; };
 		39AD999E213F012C00C97C45 /* PosteriorCaptureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PosteriorCaptureViewController.h; sourceTree = "<group>"; };
 		39AD999F213F012C00C97C45 /* PosteriorCaptureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PosteriorCaptureViewController.m; sourceTree = "<group>"; };
+		39AD99A1213F354400C97C45 /* PosteriorCaptureCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PosteriorCaptureCell.h; sourceTree = "<group>"; };
+		39AD99A2213F354500C97C45 /* PosteriorCaptureCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PosteriorCaptureCell.m; sourceTree = "<group>"; };
 		39E82D1C210BD4D000E18D2B /* StoneSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoneSDK.framework; path = "../../ios-stone-sdk/Build/Release/StoneSDK.framework"; sourceTree = "<group>"; };
 		4104232A1F9FB58F003DCDFF /* ConnectBLEViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectBLEViewController.h; sourceTree = "<group>"; };
 		4104232B1F9FB590003DCDFF /* ConnectBLEViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectBLEViewController.m; sourceTree = "<group>"; };
@@ -231,6 +234,8 @@
 				418B0D951E708B9800748B23 /* MerchantCell.m */,
 				414EB83B1E73116800472A3B /* CancellationCell.h */,
 				414EB83C1E73116800472A3B /* CancellationCell.m */,
+				39AD99A1213F354400C97C45 /* PosteriorCaptureCell.h */,
+				39AD99A2213F354500C97C45 /* PosteriorCaptureCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -351,6 +356,7 @@
 				418B0D931E70792000748B23 /* ListMerchantViewController.m in Sources */,
 				4108B6A61E77011000B3A734 /* CapturePanViewController.m in Sources */,
 				41C528EF1FCCC7A000BCF378 /* NSString+Utils.m in Sources */,
+				39AD99A3213F354500C97C45 /* PosteriorCaptureCell.m in Sources */,
 				4104232C1F9FB590003DCDFF /* ConnectBLEViewController.m in Sources */,
 				4144BD6B1E70A5D100A6A2D7 /* CancelListTransactionTableViewController.m in Sources */,
 				414EB83D1E73116800472A3B /* CancellationCell.m in Sources */,
