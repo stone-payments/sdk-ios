@@ -94,9 +94,8 @@ MerchantPickerViewController *merchantPickerViewController;
         O valor da transação deve ser sempre por CENTAVOS e para isso 
         devemos utilizar com um int no objeto da transação;
      */
-    float realValue = [self convertToFloat:self.transactionValue.text];
-    float centsFromFloatValue = 100 * realValue;
-    int justCents = (int) centsFromFloatValue;
+    NSString *transactionValue = [[self.transactionValue.text stringByReplacingOccurrencesOfString:@"," withString:@""] stringByReplacingOccurrencesOfString:@"." withString:@""];
+    int justCents = [transactionValue intValue];
     
     // Iniciando o modelo transaction para efetivar a transacao;
     STNTransactionModel *transaction = [[STNTransactionModel alloc] init];

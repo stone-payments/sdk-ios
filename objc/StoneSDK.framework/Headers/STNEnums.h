@@ -8,61 +8,56 @@
 
 #define PINPAD_MESSAGE @"STNPinpadNTMMessage"
 
-typedef enum _STNMailTemplate
-{
+typedef enum _STNMailTemplate {
     STNMailTemplateDefault,
     STNMailTemplateTransaction,
     STNMailTemplateVoidTransaction
-    
+
 } STNMailTemplate DEPRECATED_MSG_ATTRIBUTE("Deprecated in version 2.3.0. Use STNReceiptType instead. Will be removed in the next version.");
 
-typedef enum _STNReceiptType
-{
+typedef enum _STNReceiptType {
     STNReceiptTypeMerchant,
     STNReceiptTypeCustomer,
 
 } STNReceiptType;
 
-typedef enum _STNContentType
-{
+typedef enum _STNContentType {
     STNContentTypePlainData,
     STNContentTypeSignedData,
     STNContentTypeEnumEnvelopedData,
     STNContentTypeDigestedData,
     STNContentTypeEncryptedData,
     STNContentTypeAuthenticatedData,
-    
+
 } STNContentType;
 
-typedef enum _STNAcquirer
-{
+typedef enum _STNAcquirer {
     STNAcquirerInvalid = -1,
     STNAcquirerElavon = 5,
     STNAcquirerStone = 16
 } STNAcquirer;
 
-typedef enum _STNEnvironment
-{
+typedef enum _STNEnvironment {
     STNEnvironmentProduction,
     STNEnvironmentInternalHomolog,
     STNEnvironmentSandbox,
     STNEnvironmentStaging,
     STNEnvironmentCertification
-    
+
 } STNEnvironment;
 
 typedef enum _STNErrorCode {
-    
+
     STNErrorCodeGenericError = 101,
     STNErrorCodeMissingParameter = 102,
     STNErrorCodeEmailMessageError = 103,
     STNErrorCodeNumberOfCharactersExceeded = 105,
     STNErrorCodeNumberOfCharactersExceededForShortName = 106,
     STNErrorCodeFncCommandError = 110,
-    
+
     STNErrorCodeMissingStonecodeActivation = 201,
     STNErrorCodeStonecodeAlreadyActivated = 202,
-    
+
     STNErrorCodeInvalidParameter = 202,
     STNErrorCodeInvalidAmount = 203,
     STNErrorCodeTransactionAutoCancel = 204,
@@ -76,22 +71,26 @@ typedef enum _STNErrorCode {
     STNErrorCodeCardRemovedByUser = 215,
     STNErrorCodeMissingTableContent = 220,
     STNErrorCodeInvalidCardApplication = 221,
-    
+
     STNErrorCodePinpadConnectionNotFound = 303,
     STNErrorCodeTablesNotFound = 304,
     STNErrorCodeLoadingTablesError = 305,
     STNErrorCodeNullResponse = 306,
     STNErrorCodeTableVersionNotFound = 307,
     STNErrorCodePinpadCommunicationFailed = 308,
+
+    STNErrorCodePinpadCommandTimeout = 309,
+    
+    STNErrorCodePinpadNotValid = 310,
+    STNErrorCodePinpadUnableToConnect = 311,
     
     STNErrorCodeBluetoothNotReady = 401,
-    
+
     STNErrorCodeNotConnectedToNetwork = 601
-    
+
 } STNErrorCode;
 
-typedef enum _STNAuthenticationMethodCode
-{
+typedef enum _STNAuthenticationMethodCode {
     STNAuthenticationMethodCodeBypass,
     STNAuthenticationMethodCodeManualVerification,
     STNAuthenticationMethodCodeMerchantAuthentication,
@@ -104,45 +103,40 @@ typedef enum _STNAuthenticationMethodCode
     STNAuthenticationMethodCodeSecureNoCertificate,
     STNAuthenticationMethodCodeSignatureCapture,
     STNAuthenticationMethodCodeUnknownMethod,
-    
+
 } STNAuthenticationMethodCode;
 
-typedef enum _STNCardholderIdentificationType
-{
+typedef enum _STNCardholderIdentificationType {
     STNCardholderIdentificationTypePassportNumber,
     STNCardholderIdentificationTypeDriversLicenseNumber,
     STNCardholderIdentificationTypeEmployeeNumber,
     STNCardholderIdentificationTypeDriverNumber,
-    
+
 } STNCardholderIdentificationType;
 
-typedef enum _STNContextAttendanceCode
-{
+typedef enum _STNContextAttendanceCode {
     STNContextAttendanceCodeAttended,
     STNContextAttendanceCodeSemiAttended,
     STNContextAttendanceCodeUnattended,
-    
+
 } STNContextAttendanceCode;
 
-typedef enum _STNTransactionEnvironmentCode
-{
+typedef enum _STNTransactionEnvironmentCode {
     STNTransactionEnvironmentCodeMerchant,
     STNTransactionEnvironmentCodePrivate,
     STNTransactionEnvironmentCodePublic,
-    
+
 } STNTransactionEnvironmentCode;
 
-typedef enum _STNTransactionChannelCode
-{
+typedef enum _STNTransactionChannelCode {
     STNTransactionChannelCodeMailOrder,
     STNTransactionChannelCodeTelephoneOrder,
     STNTransactionChannelCodeElectronicCommerce,
     STNTransactionChannelCodeTelevisionPayment,
-    
+
 } STNTransactionChannelCode;
 
-typedef enum _STNPoiCardDataReadingCode
-{
+typedef enum _STNPoiCardDataReadingCode {
     STNPoiCardDataReadingCodeTag,
     STNPoiCardDataReadingCodePhysical,
     STNPoiCardDataReadingCodeBarCode,
@@ -151,19 +145,17 @@ typedef enum _STNPoiCardDataReadingCode
     STNPoiCardDataReadingCodeAccountData,
     STNPoiCardDataReadingCodeProximityReader,
     STNPoiCardDataReadingCodeEMVProximityReader,
-    
+
 } STNPoiCardDataReadingCode;
 
-typedef enum _STNInstalmentType
-{
+typedef enum _STNInstalmentType {
     STNInstalmentTypeNone,
     STNInstalmentTypeMerchant,
     STNInstalmentTypeIssuer
-    
+
 } STNInstalmentType;
 
-typedef enum _STNAccountType
-{
+typedef enum _STNAccountType {
     STNAccountTypeDefault,
     STNAccountTypeSavings,
     STNAccountTypeChecking,
@@ -173,11 +165,10 @@ typedef enum _STNAccountType
     STNAccountTypeEpurseCard,
     STNAccountTypeCancellation,
     STNAccountTypeListing
-    
+
 } STNAccountType;
 
-typedef enum _STNPoiComponentType
-{
+typedef enum _STNPoiComponentType {
     STNPoiComponentTypeAcquirerProtocolParameters,
     STNPoiComponentTypePoiApplicationParameters,
     STNPoiComponentTypePoiTerminalParameters,
@@ -193,11 +184,10 @@ typedef enum _STNPoiComponentType
     STNPoiComponentTypeDriver,
     STNPoiComponentTypeOperatingSystem,
     STNPoiComponentTypePoiMerchantParameters
-    
+
 } STNPoiComponentType;
 
-typedef enum _STNMessageFunctionCode
-{
+typedef enum _STNMessageFunctionCode {
     STNMessageFunctionCodeAuthorisationRequest,
     STNMessageFunctionCodeAuthorisationResponse,
     STNMessageFunctionCodeFinancialAuthorisationRequest,
@@ -219,11 +209,10 @@ typedef enum _STNMessageFunctionCode
     STNMessageFunctionCodeReconciliationRequest,
     STNMessageFunctionCodeReconciliationResponse,
     STNMessageFunctionCodeAcceptorRejection,
-    
+
 } STNMessageFunctionCode;
 
-typedef enum _STNEventResultCode
-{
+typedef enum _STNEventResultCode {
     STNEventResultCodeAccessDenied,
     STNEventResultCodeConnectionError,
     STNEventResultCodeFormatError,
@@ -238,11 +227,10 @@ typedef enum _STNEventResultCode
     STNEventResultCodeTimeOut,
     STNEventResultCodeUnknownData,
     STNEventResultCodeUnknowKeyReference
-    
+
 } STNEventResultCode;
 
-typedef enum _STNRequestActionType
-{
+typedef enum _STNRequestActionType {
     STNRequestActionTypeActivate,
     STNRequestActionTypeDeactivate,
     STNRequestActionTypeDelete,
@@ -250,11 +238,10 @@ typedef enum _STNRequestActionType
     STNRequestActionTypeInstall,
     STNRequestActionTypeRestart,
     STNRequestActionTypeUpload
-    
+
 } STNRequestActionType;
 
-typedef enum _STNDataSetCategoryCode
-{
+typedef enum _STNDataSetCategoryCode {
     STNDataSetCategoryCodeAcquirerParameters = 1,
     STNDataSetCategoryCodeApplicationParameters = 2,
     STNDataSetCategoryCodeBatchCapture = 3,
@@ -267,11 +254,10 @@ typedef enum _STNDataSetCategoryCode
     STNDataSetCategoryCodeStatusReport = 10,
     STNDataSetCategoryCodeTerminalParameters = 11,
     STNDataSetCategoryCodeVendorParameters = 12,
-    
+
 } STNDataSetCategoryCode;
 
-typedef enum _STNPartyType
-{
+typedef enum _STNPartyType {
     STNPartyTypeAcceptor,
     STNPartyTypeOriginatingPOI,
     STNPartyTypeMerchant,
@@ -279,11 +265,10 @@ typedef enum _STNPartyType
     STNPartyTypeIntermediaryAgent,
     STNPartyTypeMasterTerminalManager,
     STNPartyTypeTerminalManager
-    
+
 } STNPartyType;
 
-typedef enum _STNInitiatingPartyType
-{
+typedef enum _STNInitiatingPartyType {
     STNInitiatingPartyTypeInvalid,
     STNInitiatingPartyTypeOriginatingPOI,
     STNInitiatingPartyTypeMerchant,
@@ -292,11 +277,10 @@ typedef enum _STNInitiatingPartyType
     STNInitiatingPartyTypeAcquirer,
     STNInitiatingPartyTypeCard,
     STNInitiatingPartyTypeDelegate,
-    
+
 } STNInitiatingPartyType;
 
-typedef enum _STNInitiatingPartyIssuer
-{
+typedef enum _STNInitiatingPartyIssuer {
     STNInitiatingPartyIssuerInvalid,
     STNInitiatingPartyIssuerOriginatingPOI,
     STNInitiatingPartyIssuerMerchant,
@@ -305,11 +289,10 @@ typedef enum _STNInitiatingPartyIssuer
     STNInitiatingPartyIssuerAcquirer,
     STNInitiatingPartyIssuerCard,
     STNInitiatingPartyIssuerDelegate,
-    
+
 } STNInitiatingPartyIssuer;
 
-typedef enum _STNActionType
-{    
+typedef enum _STNActionType {
     STNActionTypeBusy,
     STNActionTypeCaptureCard,
     STNActionTypeDisplayMessage,
@@ -320,39 +303,35 @@ typedef enum _STNActionType
     STNActionTypePrintMessage,
     STNActionTypeReferral,
     STNActionTypeRequestData,
-    
+
 } STNActionType;
 
-typedef enum _STNUserInterfaceCode
-{
+typedef enum _STNUserInterfaceCode {
     STNUserInterfaceCodeCardholderDisplay,
     STNUserInterfaceCodeCardholderReceipt,
     STNUserInterfaceCodeMerchantDisplay,
     STNUserInterfaceCodeMerchantReceipt,
-    
+
 } STNUserInterfaceCode;
 
-typedef enum _STNResponseCode
-{
+typedef enum _STNResponseCode {
     STNResponseCodeDeclined,
     STNResponseCodeApproved,
     STNResponseCodePartialApproved,
     STNResponseCodeTechnicalError,
-    
+
 } STNResponseCode;
 
-typedef enum _STNAmountType
-{
+typedef enum _STNAmountType {
     STNAmountTypeCashback,
     STNAmountTypeGratuity,
     STNAmountTypeFees,
     STNAmountTypeRebates,
     STNAmountTypeValueAddedTax,
-    
+
 } STNAmountType;
 
-typedef enum _STNTransactionStatus
-{
+typedef enum _STNTransactionStatus {
     STNTransactionStatusUnknown,
     STNTransactionStatusDeclined,
     STNTransactionStatusApproved,
@@ -364,28 +343,25 @@ typedef enum _STNTransactionStatus
     STNTransactionStatusFailed,
     STNTransactionStatusAborted,
     STNTransactionStatusDeclinedByCard
-    
+
 } STNTransactionStatus;
 
-typedef enum _STNTransactionTypeSimplified
-{
+typedef enum _STNTransactionTypeSimplified {
     STNTransactionTypeSimplifiedCredit,
     STNTransactionTypeSimplifiedDebit
-    
+
 } STNTransactionTypeSimplified;
 
-typedef enum _STNTransactionType
-{
+typedef enum _STNTransactionType {
     STNTransactionTypeCreditOnly = 1,
     STNTransactionTypeDebitOnly = 2,
     STNTransactionTypeCredit = 3,
     STNTransactionTypeDebit = 4,
     STNTransactionTypeUnknown = 99
-    
+
 } STNTransactionType;
 
-typedef enum _STNTransactionInstalmentAmount
-{
+typedef enum _STNTransactionInstalmentAmount {
     STNTransactionInstalmentAmountInvalid = 0,
     STNTransactionInstalmentAmountOne = 1,
     STNTransactionInstalmentAmountTwo = 2,
@@ -399,26 +375,23 @@ typedef enum _STNTransactionInstalmentAmount
     STNTransactionInstalmentAmountTen = 10,
     STNTransactionInstalmentAmountEleven = 11,
     STNTransactionInstalmentAmountTwelve = 12,
-    
+
 } STNTransactionInstalmentAmount;
 
-typedef enum _STNTransactionCapture
-{
+typedef enum _STNTransactionCapture {
     STNTransactionCaptureYes,
     STNTransactionCaptureNo
-    
+
 } STNTransactionCapture;
 
-typedef enum _STNTransactionEntryMode 
-{
+typedef enum _STNTransactionEntryMode {
     STNTransactionEntryModeUnknown,
     STNTransactionEntryModeMagneticStripe,
     STNTransactionEntryModeChipNPin
-    
+
 } STNTransactionEntryMode;
 
-typedef enum _STNCardBrand
-{
+typedef enum _STNCardBrand {
     STNCardBrandMasterCard,
     STNCardBrandVisa,
     STNCardBrandTicket,
@@ -430,11 +403,10 @@ typedef enum _STNCardBrand
     STNCardBrandHipercard,
     STNCardBrandHiper,
     STNCardBrandAmex
-    
+
 } STNCardBrand;
 
-typedef enum STNTransactionMessage
-{
+typedef enum STNTransactionMessage {
     STNTransactionMessageInvalid,
     STNTransactionMessageDeclined,
     STNTransactionMessageProcessing,
@@ -449,19 +421,95 @@ typedef enum STNTransactionMessage
     STNTransactionMessageInvalidCard,
     STNTransactionMessageIccProblem,
     STNTransactionMessageTableNotFound
-    
+
 } STNTransactionMessage;
 
-typedef enum STNCentralState
-{
+typedef enum STNCentralState {
     STNCentralStateUnknown,
     STNCentralStateOn,
     STNCentralStateOff
-    
+
 } STNCentralState;
 
-typedef enum STNStreamReadingState{
+typedef enum STNStreamReadingState {
     STNStreamReadingStateIdle,
     STNStreamReadingStateBytesAvailable,
     STNStreamReadingStateBusy
 } STNStreamReadingState;
+
+
+typedef enum STNResponseCommandStatus {
+    STNResponseCommandSuccess = 0,
+
+    STNErrorNoSecureCommunication = 3,
+    STNPressFunction1 = 4,
+    STNPressFunction2 = 5,
+    STNPressFunction3 = 6,
+    STNPressFunction4 = 7,
+    STNPressBackspace = 8,
+
+    /**
+    * Decoding error data received by secure communicate
+    * @enum: STNErrorDecodingData
+    **/
+    STNErrorDecodingData = 9,
+
+    STNInvalidFunctionOrUnknownCommand = 10,
+    STNErrorInvalidParameters = 11,
+
+    STNErrorTimeOut = 12,
+    STNErrorOperationCancelledByUser = 13,
+
+    STNErrorOPNNotCalled = 15,
+    STNErrorParametersNotSendBySPE = 19,
+
+    STNErrorTableVersion = 20,
+
+    STNInternalErrorPinpad = 40,
+    STNErrorMagStripRead = 41,
+
+    STNErrorMkDukptNotFound = 42,
+    STNErrorNoICCOrCTLS = 43,
+
+    /**
+     * Pinpad can`t capture more transactions for security reasons.
+     * @enum: STNErrorPinpadBusy
+     * @example: When the capture limit is reached after a specific time interval
+     **/
+    STNErrorPinpadBusy = 44,
+    STNErrorResponseDataBiggerThanLimit = 45,
+
+
+    STNErrorCommunicationOrNoSam = 51,
+    STNErrorIccNotFound = 60,
+    STNErrorCommunicationIccOrCtlsError = 61,
+
+    STNErrorCardInvalidated = 67,
+    STNErrorIccWithProblem = 68,
+    STNErrorIccWithInvalidData = 69,
+    STNErrorIccEmvWithNoAvailableApplication = 70,
+
+    /**
+     * FallBack error
+     * @enum: STNErrorIccToMag
+     * @example: When an error occurs with icc for three times and needs to swipe the magnetic stripe.
+     **/
+    STNErrorIccToMag = 76,
+    STNErrorMultipleCtlsConnected = 80,
+    STNErrorCtlsCommunication = 81,
+    STNErrorInvalidCtls = 82,
+
+    /**
+     * When many errors occurs in CTLS processing
+     * @enum: STNErrorCtlsProblems
+     * @example: When the CTLS doesn`t behaves as expected the transaction needs to be cancelled
+     */
+    STNErrorCtlsProblems = 83,
+    STNErrorCtlsWithApplicationCondiction = 84,
+    STNErrorCtlsApplicationShouldNotUsed = 85,
+    STNErrorMultimediaFileUnexistent = 100,
+    STNErrorMultimediaInvalidFormat = 101,
+    STNErrorMultimediaFileDataLoad = 102,
+
+
+} STNResponseCommandStatus;
