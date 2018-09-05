@@ -22,6 +22,7 @@
     self.title = [kTitlePosteriorCapture localize];
     self.transactions = [NSMutableArray new];
     [self getTransactionListCadidateToCaptureTransaction];
+    self.activityIndicator = [[ActivityIndicatorView new] initWithView:self.navigationController.view];
 }
 
 - (void) getTransactionListCadidateToCaptureTransaction{
@@ -32,7 +33,6 @@
     }
     [self.tableView reloadData];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -117,7 +117,6 @@
     return [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         [alertController dismissViewControllerAnimated:YES completion:nil];
     }];
-    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 @end

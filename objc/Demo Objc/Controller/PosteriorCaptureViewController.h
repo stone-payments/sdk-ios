@@ -7,10 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "ActivityIndicatorView.h"
 
 @interface PosteriorCaptureViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *transactions;
+
+@property (strong, nonatomic) ActivityIndicatorView *activityIndicator;
 
 @end
