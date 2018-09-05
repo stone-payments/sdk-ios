@@ -107,7 +107,7 @@
 - (void) captureTransactionActionFromAuthorizerResponseWith:(BOOL) succeeded error:(NSError *)error {
     if(succeeded){
         [self getTransactionListCadidateToCaptureTransaction];
-        self.feedbackMessage.text = @"Transaction capture.";
+        self.feedbackMessage.text = @"Transaction Captured.";
     } else {
         self.feedbackMessage.text = [NSString stringWithFormat:@"%@",error];
     }
