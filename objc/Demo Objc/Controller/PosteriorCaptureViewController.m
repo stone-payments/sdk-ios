@@ -83,21 +83,40 @@
 }
 
 - (void) posteriorCaputureConfirmationWith:(STNTransactionModel *)transaction{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Capture transaction" message:@"Do you sure which want do this?" preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Sure!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [STNCaptureTransactionProvider capture:transaction withBlock:^(BOOL succeeded, NSError *error) {
-            if(succeeded){
-                [self getTransactionListCadidateToCaptureTransaction];
-                self.feedbackMessage.text = @"OMG, Its works!";
-                [alertController dismissViewControllerAnimated:YES completion:nil];
-            } else {
-                self.feedbackMessage.text = [error localizedDescription];
-            }
-        }];
-    }]];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Puff, obvious not!" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Capture transaction" message:@"Do you want capture this transaction?" preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[self alertActionSuccessButtonWith:alertController transaction:transaction]];
+    [alertController addAction:[self alertActionDestructiveButtonWith:alertController]];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (UIAlertAction *) alertActionSuccessButtonWith:(UIAlertController *)alertController transaction:(STNTransactionModel *)transaction{
+    return [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self.activityIndicator startActivityIndicator];
+        [self captureTransactionProvideRequestToAuthorizerWithTransaction:transaction alertController:alertController];
+    }];
+}
+
+- (void) captureTransactionProvideRequestToAuthorizerWithTransaction:(STNTransactionModel *)transaction alertController:(UIAlertController *)alertController{
+    [STNCaptureTransactionProvider capture:transaction withBlock:^(BOOL succeeded, NSError *error) {
+        [self.activityIndicator stopActivityIndicator];
+        [self captureTransactionActionFromAuthorizerResponseWith:succeeded error:error];
         [alertController dismissViewControllerAnimated:YES completion:nil];
-    }]];
+    }];
+}
+
+- (void) captureTransactionActionFromAuthorizerResponseWith:(BOOL) succeeded error:(NSError *)error {
+    if(succeeded){
+        [self getTransactionListCadidateToCaptureTransaction];
+        self.feedbackMessage.text = @"Transaction capture.";
+    } else {
+        self.feedbackMessage.text = [NSString stringWithFormat:@"%@",error];
+    }
+}
+
+- (UIAlertAction *) alertActionDestructiveButtonWith:(UIAlertController *)alertController {
+    return [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [alertController dismissViewControllerAnimated:YES completion:nil];
+    }];
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
