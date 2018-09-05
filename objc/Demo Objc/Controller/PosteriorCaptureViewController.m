@@ -54,7 +54,6 @@
     STNTransactionModel *transaction = [self.transactions objectAtIndex:indexPath.row];
     
     // Tratamento do amount somente para exibição.
-    int justCents = [transactionValue intValue];
     int centsValue = [transaction.amount intValue];
     float realValue = centsValue*0.01;
     NSString *amount = [NSString stringWithFormat:@"%.02f", realValue];
@@ -100,14 +99,14 @@
 - (void) captureTransactionProvideRequestToAuthorizerWithTransaction:(STNTransactionModel *)transaction alertController:(UIAlertController *)alertController{
     [STNCaptureTransactionProvider capture:transaction withBlock:^(BOOL succeeded, NSError *error) {
         [self.activityIndicator stopActivityIndicator];
-        [self captureTransactionActionFromAuthorizerResponseWith:succeeded error:error];
+        [self updateFeedbackMessageUsingAuthorizerResponseWith:succeeded error:error];
         [alertController dismissViewControllerAnimated:YES completion:nil];
     }];
 }
 
-- (void) captureTransactionActionFromAuthorizerResponseWith:(BOOL) succeeded error:(NSError *)error {
+- (void) updateFeedbackMessageUsingAuthorizerResponseWith:(BOOL) succeeded error:(NSError *)error {
     if(succeeded){
-        [self getTransactionListCadidateToCaptureTransaction];
+        [self getTransactionListCandidateToCaptureTransaction];
         self.feedbackMessage.text = @"Transaction Captured.";
     } else {
         self.feedbackMessage.text = [NSString stringWithFormat:@"%@",error];
