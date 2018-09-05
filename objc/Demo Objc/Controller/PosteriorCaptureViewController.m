@@ -83,7 +83,7 @@
 }
 
 - (void) posteriorCaputureConfirmationWith:(STNTransactionModel *)transaction{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Capture transaction" message:@"Do you sure which want do this?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Capture transaction" message:@"Do you want capture this transaction?" preferredStyle:UIAlertControllerStyleAlert];
     [alertController addAction:[self alertActionSuccessButtonWith:alertController transaction:transaction]];
     [alertController addAction:[self alertActionDestructiveButtonWith:alertController]];
     [self presentViewController:alertController animated:YES completion:nil];
