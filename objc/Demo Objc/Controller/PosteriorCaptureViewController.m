@@ -54,16 +54,17 @@
     STNTransactionModel *transaction = [self.transactions objectAtIndex:indexPath.row];
     
     // Tratamento do amount somente para exibição.
+    int justCents = [transactionValue intValue];
     int centsValue = [transaction.amount intValue];
     float realValue = centsValue*0.01;
     NSString *amount = [NSString stringWithFormat:@"%.02f", realValue];
-    cell.amountLabel.text = [NSString stringWithFormat:@"%@ %@", @"R$", amount];
+    cell.amountLabel.text = [NSString stringWithFormat:@"R$ %@", amount];
     
     // Tratamento do status.
     NSString *shortStatus;
-    if ([transaction.statusString isEqual: @"Transação Aprovada"]) {
+    if (transaction.status == STNTransactionStatusApproved){
         shortStatus = [kGeneralApproved localize];
-    } else if ([transaction.statusString isEqual:@"Transação Cancelada"]) {
+    } else if (transaction.status == STNTransactionStatusCancelled){
         shortStatus = [kGeneralCancelled localize];
     } else {
         shortStatus = transaction.statusString;
