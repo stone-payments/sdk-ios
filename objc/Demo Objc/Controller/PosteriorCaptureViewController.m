@@ -21,13 +21,13 @@
     [super viewDidLoad];
     self.title = [kTitlePosteriorCapture localize];
     self.transactions = [NSMutableArray new];
-    [self getTransactionListCadidateToCaptureTransaction];
+    [self getTransactionListCandidateToCaptureTransaction];
     self.activityIndicator = [[ActivityIndicatorView new] initWithView:self.navigationController.view];
 }
 
-- (void) getTransactionListCadidateToCaptureTransaction{
+- (void) getTransactionListCandidateToCaptureTransaction{
     for(STNTransactionModel *transactionModel in [STNTransactionListProvider listTransactions]){
-        if([transactionModel capture] == STNTransactionCaptureNo){
+        if(transactionModel.capture == STNTransactionCaptureNo){
             [self.transactions addObject:transactionModel];
         }
     }
