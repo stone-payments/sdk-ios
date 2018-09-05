@@ -24,6 +24,7 @@
 "Title_Validation" = "Teste Validações";
 "Title_Pan" = "Captura de PAN";
 "Title_Display" = "Exibe mensagem no display";
+"Title_Posterior_Capture_Transaction" = "Captura Posterior";
 
 /* Buttons */
 "Button_Scan" = "Escanear";
