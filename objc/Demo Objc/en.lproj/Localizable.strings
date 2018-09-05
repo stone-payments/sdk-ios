@@ -24,6 +24,7 @@
 "Title_Validation" = "Validations";
 "Title_Pan" = "Get card PAN";
 "Title_Display" = "Display message";
+"Title_Posterior_Capture_Transaction" = "Posterior Capture Transaction";
 
 /* Buttons */
 "Button_Scan" = "Scan";
