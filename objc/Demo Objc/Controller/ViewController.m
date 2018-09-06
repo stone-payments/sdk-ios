@@ -33,7 +33,8 @@ static NSString *cellIdentifier;
             [kTitleReceipt localize],
             [kTitleValidation localize],
             [kTitlePan localize],
-            [kTitleDisplay localize]];
+            [kTitleDisplay localize],
+            [kTitlePosteriorCapture localize]];
 
     // Verificamos se já foi definido um Stone Code;
     if ([STNValidationProvider validateActivation] == NO) {
@@ -142,6 +143,10 @@ static NSString *cellIdentifier;
         }
         case 13: {
             [self performSegueWithIdentifier:@"ScreenDisplay" sender:nil];
+            break;
+        }
+        case 14: {
+            [self performSegueWithIdentifier:@"PosteriorCapture" sender:nil];
             break;
         }
     }
