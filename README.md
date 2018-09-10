@@ -12,7 +12,7 @@ SDK de integração para iOS.
 
 - Ativação do Stone Code
 - Criação de sessão com o pinpad
-- Carragamento das tabelas AID e CAPK
+- Carregamento das tabelas AID e CAPK
 - Envio transações
 - Cancelamento de transações
 - Listagem das transações
@@ -78,9 +78,9 @@ mv "$FRAMEWORK_EXECUTABLE_PATH-merged" "$FRAMEWORK_EXECUTABLE_PATH"
 
 - [STNCardProvider](#captura-de-pan) - Captura os 4 últimos números do cartão
 
-- [STNDisplayProvider](#exibição-no-display-do-pinpad) - Exibe mensagem de até 32 caracteres no vizor do pinpad
+- [STNDisplayProvider](#exibição-no-display-do-pinpad) - Exibe mensagem de até 32 caracteres no visor do pinpad
 
-- [STNLoggerProvider](#logger) - Exibe mensages do log de eventos da SDK
+- [STNLoggerProvider](#logger) - Exibe mensagens do log de eventos da SDK
 
 ## Lista de models disponiveis
 
@@ -103,7 +103,7 @@ mv "$FRAMEWORK_EXECUTABLE_PATH-merged" "$FRAMEWORK_EXECUTABLE_PATH"
 
 ## Models
 
-Alguns providers retornam models que podem ser usados pelo usuario do SDK.
+Alguns providers retornam models que podem ser usados pelo usuário do SDK.
 
 ### Transação
 
@@ -125,7 +125,7 @@ O model `STNTransactionModel` disponibiliza, em suas propriedades, informações
 - dateString (**String**) - string que representa a propriedade `date`
 - receiptTransactionKey (**String**) - ID da transação
 - reference (**String**) - referencia da transação
-- pan (**String**) - 4 últimos número do cartão
+- pan (**String**) - 4 últimos números do cartão
 - cardBrand (**String**) - bandeira do cartão
 - cardHolderName (**String**) - nome do portador do cartão
 - authorizationCode (**String**) - Stone ID
@@ -133,17 +133,17 @@ O model `STNTransactionModel` disponibiliza, em suas propriedades, informações
 - shortName (**String**) - nome customizado exibido na fatura (se não for definido será `nil`)
 - merchant (**STNMerchantModel**) - lojista que passou a transação
 - pinpad (**STNPinpadModel**) - pinpad que passou a transação
-- entryMode (**STNTransactionEntryMode**): determina o tipo de cartão aplicado, Ex. `STNTransactionEntryModeMagneticStripe` para cartões de tarja magnérita ou com chip e senha: `STNTransactionEntryModeChipNPin`
+- entryMode (**STNTransactionEntryMode**): determina o tipo de cartão aplicado, Ex. `STNTransactionEntryModeMagneticStripe` para cartões de tarja magnética ou com chip e senha: `STNTransactionEntryModeChipNPin`
 - signature (**NSData**): arquivo binário com imagem para assinatura do titular do cartão
 - cvm (**NSString**): string enviada pelo pinpad em hexadecimal para método de verificação deo titular do cartão (apenas cartões com chip EMV)
-- serviceCode (**NSString**): string enviada pelo pinpad em hexadecimal para que indica os tipos de cobranças aceitos (coletado tanto em verões magnéticos quanto com chip EMV)
+- serviceCode (**NSString**): string enviada pelo pinpad em hexadecimal que indica os tipos de cobranças aceitos (coletado tanto em versões magnéticas quanto com chip EMV)
 - actionCode (**NSString**): código de resposta da autorização
 - subMerchantCategoryCode (**NSString**):  código da categoria do sub comerciante/lojista
 - subMerchantAddress (**NSString**): endereço do sub comerciante/lojista
 
 ### Lojista
 
-O model `STNMerchantModel` disponibiliza, em suas propriedades, informações do lojista/usuario do aplicativo.
+O model `STNMerchantModel` disponibiliza, em suas propriedades, informações do lojista/usuário do aplicativo.
 
 #### Lista de propriedades
 
@@ -184,18 +184,18 @@ O model `STNAddressModel` disponibiliza, em suas propriedades, informações de 
 
 ### Pinpad
 
-`STNPinpad`  is an object representing the pinpad.
+`STNPinpad` objecto representando o pinpad.
 
-#### Properties list
+#### Lista de propriedades
 
-- name (**NSString**) - device name
-- identifier (**NSString**) - the UUID of BLE devices, or the connection ID of Bluetooth devices
-- alias (**NSString**): custom name
-- device (**id**): it stores the CBPeripheral (BLE) or the EAAccessory (Bluetooth) object.
+- name (**NSString**) - nome do dispositivo
+- identifier (**NSString**) - UUID nos casos de dispotivisos BLE, ou o serial number no caso dos dispositivos Bluetooth convencionais, ou a descrição do modelo no caso do PAX - D200.
+- alias (**NSString**): nome personalizado
+- device (**id**): referência ao objeto do dispositivo:  CBPeripheral para dispositivos low energy (BLE) ou EAAccessory para os demais.
 
 ### Códigos de erro
 
-You can check error code by value or by it's enumaration. Possible values:
+Você pode verificar o erro pelo valor ou pelo cógido. Possiveis valores:
 
 - 101 - erro genérico (**STNErrorCodeGenericError**)
 - 102 - ausência de parâmetro (**STNErrorCodeMissingParameter**)
@@ -214,7 +214,7 @@ You can check error code by value or by it's enumaration. Possible values:
 - 209 - Stone Code desconhecido (**STNErrorCodeTransactionAlreadyCancelled**)
 - 210 - transação já foi cancelada (**STNErrorCodeTransactionAlreadyCancelled**)
 - 211 - transação negada (**STNErrorCodeTransactionRejected**)
-- 214 - operação cancelada pelo usuario (**STNErrorCodeOperationCancelledByUser**)
+- 214 - operação cancelada pelo usuário (**STNErrorCodeOperationCancelledByUser**)
 - 215 - cartão removido pelo usuário (**STNErrorCardRemovedByUser**)
 - 220 - conteúdo de carga de tabelas não encontrado no dispositivo (**STNErrorCodeMissingTableContent**)
 - 221 - aplicação de cartão invalida (**STNErrorCodeInvalidCardApplication**)
@@ -230,4 +230,4 @@ You can check error code by value or by it's enumaration. Possible values:
 - 401 - dispositivo bluetooth não está preparado (**STNErrorBluetoothNotReady**)
 - 601 - erro na conexão com a internet (**STNErrorCodeNotConnectedToNetwork**)
 
-> Contact integracoes@stone.com.br for more details.
+> Para mais detalhes entre em contatoa través do e-mail: integracoes@stone.com.br.

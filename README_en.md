@@ -213,7 +213,7 @@ You can check error code by value or by it's enumaration. Possible values:
 - 211 - transaction denied (**STNErrorCodeTransactionRejected**)
 - 214 - operation cancelled by user (**STNErrorCodeOperationCancelledByUser**)
 - 215 - card removed by user (**STNErrorCardRemovedByUser**)
-- 220 - table content not found at device (**STNErrorCodeMissingTableContent**)
+- 220 - device table content not found (**STNErrorCodeMissingTableContent**)
 - 221 - invalid card application (**STNErrorCodeInvalidCardApplication**)
 - 303 - no session with pinpad found (**STNErrorCodePinpadConnectionNotFound**)
 - 304 - no AID and CAPK tables found (**STNErrorCodeTablesNotFound**)
