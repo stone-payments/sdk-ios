@@ -4,7 +4,7 @@
 
 SDK de integração para iOS.
 
-[This document in English 🇬🇧🇬🇧🇬🇧🇬🇧🇬🇧🇬🇧🇬🇧](https://github.com/stone-payments/sdk-ios-v2/blob/master/README_en.md)
+[This document in English](https://github.com/stone-payments/sdk-ios-v2/blob/master/README_en.md)
 
 > Download do último release pode ser feito em [releases](https://github.com/stone-pagamentos/sdk-ios-v2/releases).
 
@@ -54,7 +54,7 @@ rm "$FRAMEWORK_EXECUTABLE_PATH"
 mv "$FRAMEWORK_EXECUTABLE_PATH-merged" "$FRAMEWORK_EXECUTABLE_PATH"
 ```
 
-## Lista de providers disponiveis
+## Lista de providers disponíveis
 
 - [STNPinPadConnectionProvider](#criação-de-sessão-com-o-pinpad) - Estabelece sessão entre o aplicativo e o pinpad
 
@@ -82,7 +82,7 @@ mv "$FRAMEWORK_EXECUTABLE_PATH-merged" "$FRAMEWORK_EXECUTABLE_PATH"
 
 - [STNLoggerProvider](#logger) - Exibe mensagens do log de eventos da SDK
 
-## Lista de models disponiveis
+## Lista de models disponíveis
 
 - [STNTransactionModel](#transação) - Model com propriedades da transação
 
@@ -95,7 +95,8 @@ mv "$FRAMEWORK_EXECUTABLE_PATH-merged" "$FRAMEWORK_EXECUTABLE_PATH"
 - [STNReceiptModel](#receipt) - Model com propriedades do recibo de transação
 
 
-## Outros objectos disponíveis
+## Outros objetos 
+veis
 
 - [STNConfig](#configurations) - Configurações gerais
 
@@ -184,7 +185,7 @@ O model `STNAddressModel` disponibiliza, em suas propriedades, informações de 
 
 ### Pinpad
 
-`STNPinpad` objecto representando o pinpad.
+`STNPinpad` objeto representando o pinpad.
 
 #### Lista de propriedades
 
