@@ -95,8 +95,7 @@ mv "$FRAMEWORK_EXECUTABLE_PATH-merged" "$FRAMEWORK_EXECUTABLE_PATH"
 - [STNReceiptModel](#receipt) - Model com propriedades do recibo de transação
 
 
-## Outros objetos 
-veis
+## Outros objetos disponíveis
 
 - [STNConfig](#configurations) - Configurações gerais
 
@@ -196,7 +195,7 @@ O model `STNAddressModel` disponibiliza, em suas propriedades, informações de 
 
 ### Códigos de erro
 
-Você pode verificar o erro pelo valor ou pelo cógido. Possiveis valores:
+Você pode verificar o erro pelo valor ou pelo cógido. Possíveis valores:
 
 - 101 - erro genérico (**STNErrorCodeGenericError**)
 - 102 - ausência de parâmetro (**STNErrorCodeMissingParameter**)
