@@ -297,8 +297,8 @@
 				TargetAttributes = {
 					41D21DBF1E5F300D00F2ECBF = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 8Q54VRJ624;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = WD26YPBP7A;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -517,8 +517,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 8Q54VRJ624;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WD26YPBP7A;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -527,10 +527,10 @@
 				INFOPLIST_FILE = "Demo Objc/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "br.com.stone.sdk.mobile.Demo-Objc";
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.stone.mobilesdk.Demo-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2a151117-523d-4b6e-adf1-a41030399e37";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development br.com.stone.sdk.mobile.*";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -539,8 +539,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 8Q54VRJ624;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WD26YPBP7A;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -549,10 +549,10 @@
 				INFOPLIST_FILE = "Demo Objc/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "br.com.stone.sdk.mobile.Demo-Objc";
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.stone.mobilesdk.Demo-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2a151117-523d-4b6e-adf1-a41030399e37";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development br.com.stone.sdk.mobile.*";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

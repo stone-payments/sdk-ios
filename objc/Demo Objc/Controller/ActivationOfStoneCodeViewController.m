@@ -38,7 +38,7 @@
     bool hasActivatedSconeCode = [STNValidationProvider validateActivation];
     if (hasActivatedSconeCode) {
         [_textViewAlert setHidden:NO];
-        [_pickerView setUserInteractionEnabled:NO];
+//        [_pickerView setUserInteractionEnabled:NO];
     } else {
         [self.navigationController setToolbarHidden:YES];
     }

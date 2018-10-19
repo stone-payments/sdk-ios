@@ -420,7 +420,8 @@ typedef enum STNTransactionMessage {
     STNTransactionMessageEMVCard,
     STNTransactionMessageInvalidCard,
     STNTransactionMessageIccProblem,
-    STNTransactionMessageTableNotFound
+    STNTransactionMessageTableNotFound,
+    STNTransactionMessageBlockedCard,
 
 } STNTransactionMessage;
 
@@ -513,3 +514,25 @@ typedef enum STNResponseCommandStatus {
 
 
 } STNResponseCommandStatus;
+
+typedef enum STNResponseCommandFncDecision {
+    STNResponseCommandFncDecisionApproved,
+    STNResponseCommandFncDecisionDeniedByCard,
+    STNResponseCommandFncDecisionDeniedByNet,
+    STNResponseCommandFncDecisionCommunicationError,
+
+
+} STNResponseCommandFncDecision ;
+
+
+typedef enum STNCardholderVerificationMethod {
+    STNCardholderVerificationMethodFail = 0,
+    STNCardholderVerificationMethodPlainPinByIcc = 1,
+    STNCardholderVerificationMethodEncryptedPinOnline = 2,
+    STNCardholderVerificationMethodPlainPinByIccPlusSignature = 3,
+    STNCardholderVerificationMethodEncryptedPinByIcc = 4,
+    STNCardholderVerificationMethodEncryptedPinByIccPlusSignature = 5,
+    STNCardholderVerificationMethodSignature = 30,
+    STNCardholderVerificationMethodNoCvmRequired = 31
+
+} STNCardholderVerificationMethod;

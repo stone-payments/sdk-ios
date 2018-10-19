@@ -137,6 +137,7 @@ static NSArray *exemploTransacao;
     NSLog(@"instalmentType: %u",transaction.instalmentType);
     NSLog(@"initiatorTransactionKey: %@",transaction.initiatorTransactionKey);
     NSLog(@"receiptTransactionKey: %@",transaction.receiptTransactionKey);
+    NSLog(@"service Code: %@",transaction.serviceCode);
 }
 
 @end

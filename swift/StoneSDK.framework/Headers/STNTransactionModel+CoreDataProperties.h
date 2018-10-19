@@ -45,6 +45,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSData *signature;
 /// The cardholder verification method, as a string representing the hex value sent by the pinpad (only for EMV chip transactions)
 @property (nullable, nonatomic, retain) NSString *cvm;
+// The aplication label from card
+@property (nullable, nonatomic, retain) NSString *applicationLabel;
 /// Indicates what types of charges can be accepted, saved as a string representing the hex value sent by the pinpad (gathered on both EMV and magnetic stripe transactions)
 @property (nullable, nonatomic, retain) NSString *serviceCode;
 /// ICC related data.
