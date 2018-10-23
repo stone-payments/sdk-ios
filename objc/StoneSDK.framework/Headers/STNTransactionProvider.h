@@ -17,6 +17,9 @@
 /// Send payment transaction.
 + (void)sendTransaction:(STNTransactionModel *)transaction withBlock:(void (^)(BOOL succeeded, NSError *error))block;
 
++ (NSString *)responseMessageFromAuthorizerForLastTransaction;
+
+
 @end
 
 

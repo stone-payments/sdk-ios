@@ -127,7 +127,21 @@ static int rowNumber;
             case 12: transaction.instalmentAmount = STNTransactionInstalmentAmountTwelve; break;  // 12 parcelas
         }
     }
-    
+
+    NSArray *merchants;
+    merchants = [STNMerchantListProvider listMerchants];
+    if ([merchants count]>0) {
+        STNMerchantModel *merchant = [merchants objectAtIndex:0];
+        transaction.merchant = merchant;
+    }
+
+    transaction.shortName = @"Nome do submerchant";
+    transaction.subMerchantCategoryCode = @"MCC do submerchant";
+    transaction.subMerchantCity = @"Cidade A";
+    transaction.subMerchantPostalAddress = @"Endereço B";
+    transaction.subMerchantTaxIdentificationNumber = @"Identificação CPF/CNPJ";
+    transaction.subMerchantRegisteredIdentifier = @"Identificador do submerchant";
+
     // Vamos efetivar a transacao;
     [STNTransactionProvider sendTransaction:transaction withBlock:^(BOOL succeeded, NSError *error) {
         [self.overlayView removeFromSuperview];

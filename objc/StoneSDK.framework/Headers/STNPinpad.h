@@ -12,7 +12,7 @@
 
 /// Device name.
 @property (nonatomic, readonly, strong) NSString *name;
-/// the UUID for BLE devices or connection ID for classic devices.
+/// the UUID for BLE devices or serial number for classic devices.
 @property (nonatomic, readonly, strong) NSString *identifier;
 /// Custom name.
 @property (nonatomic, strong) NSString *alias;
@@ -22,5 +22,8 @@
 
 /// Initialize with a CBPeripheral or EAAccessory object.
 -(instancetype)initWithDevice:(id)device;
+
+/// Initialize with an identifier. All other properties are initialized with nil value.
+-(instancetype)initWithIdentifier:(NSString*)identifier;
 
 @end

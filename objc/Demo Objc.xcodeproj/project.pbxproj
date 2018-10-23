@@ -31,9 +31,9 @@
 		41D21DD01E5F300D00F2ECBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41D21DCF1E5F300D00F2ECBF /* Assets.xcassets */; };
 		41D21DD31E5F300D00F2ECBF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41D21DD11E5F300D00F2ECBF /* LaunchScreen.storyboard */; };
 		41FB49741E6863D30010495B /* RefreshTablesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FB49731E6863D30010495B /* RefreshTablesViewController.m */; };
-		41FB49761E6865310010495B /* StoneSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41FB49751E6865310010495B /* StoneSDK.framework */; };
 		41FB49771E6865310010495B /* StoneSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 41FB49751E6865310010495B /* StoneSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		41FB49831E68A5160010495B /* SelectPinpadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FB49811E68A5160010495B /* SelectPinpadViewController.m */; };
+		6C6D536B217FCA8A0032353E /* StoneSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41FB49751E6865310010495B /* StoneSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -107,7 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41FB49761E6865310010495B /* StoneSDK.framework in Frameworks */,
+				6C6D536B217FCA8A0032353E /* StoneSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +204,8 @@
 				41D21DBD1E5F300D00F2ECBF /* Frameworks */,
 				41D21DBE1E5F300D00F2ECBF /* Resources */,
 				41FB49781E6865310010495B /* Embed Frameworks */,
+				6C6D536A217FC95E0032353E /* Run Script */,
+				6C6D5369217FC8AB0032353E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -225,7 +227,7 @@
 				TargetAttributes = {
 					41D21DBF1E5F300D00F2ECBF = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 8Q54VRJ624;
+						DevelopmentTeam = WD26YPBP7A;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -262,6 +264,44 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6C6D5369217FC8AB0032353E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FRAMEWORK=\"StoneSDK\"\nFRAMEWORK_EXECUTABLE_PATH=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/$FRAMEWORK.framework/$FRAMEWORK\"\nEXTRACTED_ARCHS=()\nfor ARCH in $ARCHS\ndo\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n";
+		};
+		6C6D536A217FC95E0032353E /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		41D21DBC1E5F300D00F2ECBF /* Sources */ = {
@@ -417,7 +457,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8Q54VRJ624;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = WD26YPBP7A;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -426,7 +467,7 @@
 				INFOPLIST_FILE = "Demo Objc/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "br.com.stone.Demo-Objc";
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.stone.mobilesdk.Demo-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -435,7 +476,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8Q54VRJ624;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = WD26YPBP7A;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -444,7 +486,7 @@
 				INFOPLIST_FILE = "Demo Objc/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "br.com.stone.Demo-Objc";
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.stone.mobilesdk.Demo-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

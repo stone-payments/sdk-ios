@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) STNCentralState centralState;
 
 /**
- Estabilishes session when connected to Pinpad. Use for single connection to non-BLE pinpads.
+ Estabilishes session when connected to Pinpad. Use it for single connection to non-BLE pinpads.
 
  @param block Callback with connection result. If connection is successfull, succeeded will be `YES` and error will be nil. If not, succeded will be `NO` and error will contain the error information.
  */
@@ -61,10 +61,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Connect to a Bluetooth Low Energy pinpad.
-
+ 
  @param pinpad The model representing the pinpad. You can get the pinpad instance by scanning for pinpads.
  */
-- (void)connectToPinpad:( STNPinpad *)pinpad;
+- (void)connectToPinpad:( STNPinpad *)pinpad __deprecated_msg("use connectToPinpad: withBlock: instead.");
+
+/**
+ Connect to a Bluetooth Low Energy pinpad.
+ 
+ @param pinpad The model representing the pinpad. You can get the pinpad instance by scanning for pinpads.
+ @param block With parameters within: succeeded returning `YES` if device was able for connection or `NO` and a specific NSError for treatment
+ */
+- (void)connectToPinpad:( STNPinpad *)pinpad withBlock:(void (^)(BOOL succeeded, NSError *error))block;
 
 /**
  Disconnect from a connected Bluetooth Low Energy pinpad. Other kind of pinpad must be disconnected from the iOS Settings.
@@ -75,20 +83,43 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)disconnectPinpad:(STNPinpad *)pinpad;
 
 /**
- Select a already connected pinpad for use.
-
+ Select an already connected pinpad for use.
+ 
  @param pinpad The model representing the pinpad. You can get the pinpad instance by using `listConnectedPinpads`.
  @return `YES` if selection was successfull, `NO` if not.
  */
-- (BOOL)selectPinpad:(STNPinpad *)pinpad;
+- (BOOL)selectPinpad:(STNPinpad *)pinpad __deprecated_msg("use selectPinpad: withBlock: instead.");;
 
+/**
+ Select an already connected pinpad for use.
+ 
+ @param pinpad The model representing the pinpad. You can get the pinpad instance by using `listConnectedPinpads`.
+ @param block With parameters within: succeeded returning `YES` if device was able for selection or `NO` and a specific NSError for treatment
+ */
+- (void)selectPinpad:(STNPinpad *)pinpad withBlock:(void (^)(BOOL succeeded, NSError *error))block;
+
+/**
+ Check if pinpad device has a valid KEY.
+ 
+ @return `YES` if a Stone key index was found 
+ */
+- (BOOL)isValid;
 /**
  List connected BLE pinpads that matches the given UUIDs identifiers.
 
- @param identifiers An array of NSString representing the UUIDs of the BLE pinpads.
+ @param identifiers An array of NSUUID representing the UUIDs of the BLE pinpads.
  @return A list of connected STNPinpad with UUIDs matching the ones passed.
  */
-- (NSArray <STNPinpad *> *)listPinpadsWithIdentifiers:(NSArray <NSString *> *)identifiers;
+- (NSArray <STNPinpad *> *)listPinpadsWithIdentifiers:(NSArray <NSUUID *> *)identifiers;
+
+
+/**
+ Creates or get a pinpad instance that matches the provided identifier.
+
+ @param identifier The UUID for BLE pinpad or the serial number for Classic Bluetooth pinpads.
+ @return The STNPinpad object representing the pinpad with the provided identifier. If this identifier doesn't have a corresponding connected device, only the identifier property will be filled. This object can be used further for connection.
+ */
+- (STNPinpad *)pinpadWithIdentifier:(NSString*)identifier;
 
 /**
  Get the currently selected pinpad.

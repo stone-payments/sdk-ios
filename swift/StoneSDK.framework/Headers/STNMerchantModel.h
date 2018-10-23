@@ -13,6 +13,7 @@
 
 @class STNAddressModel;
 @class STNTransactionModel;
+@class STNTableVersionModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
