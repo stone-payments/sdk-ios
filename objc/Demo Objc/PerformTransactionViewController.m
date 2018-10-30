@@ -136,7 +136,6 @@ static int rowNumber;
     }
 
     transaction.shortName = @"Nome do submerchant";
-    transaction.subMerchantCategoryCode = @"MCC do submerchant";
     transaction.subMerchantCity = @"Cidade A";
     transaction.subMerchantPostalAddress = @"Endereço B";
     transaction.subMerchantTaxIdentificationNumber = @"Identificação CPF/CNPJ";
@@ -152,6 +151,7 @@ static int rowNumber;
             self.feedback.text = error.description;
             NSLog(@"%@. [%@]", [kGeneralErrorMessage localize], error);
         }
+        NSLog(@"Response Message: %@", [STNTransactionProvider responseMessageFromAuthorizerForLastTransaction]);
      }];
 }
 

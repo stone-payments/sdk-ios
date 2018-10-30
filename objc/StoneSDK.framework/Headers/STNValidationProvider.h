@@ -7,19 +7,33 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "STNMerchantModel.h"
 
 @interface STNValidationProvider : NSObject
 
-/// Checks wheather Stonecode is activated or not.
+/// Checks whether a Stonecode is activated or not.
 + (BOOL)validateActivation;
 
-/// Checks wheather the pinpad is connected or not.
+/// Checks whether the provided Stonecode is activated or not.
++ (BOOL)validateActivationOfStonecode:(NSString*)stoneCode;
+
+/// Checks whether the provided merchant is activated or not.
++ (BOOL)validateActivationOfMerchant:(STNMerchantModel*)merchant;
+
+/// Checks whether the pinpad is connected or not.
 + (BOOL)validatePinpadConnection;
 
-/// Checks wheather the tables are cached or not.
-+ (BOOL)validateTablesDownloaded;
+/// Checks whether the pinpad is supported or not.
++ (BOOL)validateSupportedPinpad __deprecated;
++ (BOOL)validatePinpadSupport;
 
-/// Checks wheather the servers are reachable or not.
+/// Checks whether the tables are cached or not.
++ (BOOL)validateTablesDownloaded __deprecated;
+
+/// Checks whether the tables are correct or not.
++ (BOOL)validateTablesData;
+
+/// Checks whether the servers are reachable or not.
 + (BOOL)validateConnectionToNetWork;
 
 @end

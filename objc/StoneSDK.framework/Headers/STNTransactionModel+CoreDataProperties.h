@@ -63,7 +63,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *subMerchantPostalAddress;
 @property (nullable, nonatomic, retain) NSString *subMerchantTaxIdentificationNumber;
 @property (nullable, nonatomic, retain) NSString *subMerchantRegisteredIdentifier;
-
+// is fallback
+@property (nullable, nonatomic, retain) NSNumber *isFallbackTransaction;
 
 @property (nullable, nonatomic, retain) NSNumber *rawInstalmentAmount;
 @property (nullable, nonatomic, retain) NSNumber *rawInstalmentType;
