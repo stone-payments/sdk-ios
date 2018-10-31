@@ -153,8 +153,14 @@ MerchantPickerViewController *merchantPickerViewController;
         
         NSLog(@"transaction.instalmentAmount: %d", (int)transaction.instalmentAmount);
     }
-//    transaction.capture = STNTransactionCaptureNo;
-//    transaction.capture = STNTransactionCaptureYes;
+
+    // Dados do sub merchant
+    transaction.shortName = @"Nome do submerchant";
+    transaction.subMerchantCity = @"Cidade A";
+    transaction.subMerchantPostalAddress = @"Endereço B";
+    transaction.subMerchantTaxIdentificationNumber = @"Identificação CPF/CNPJ";
+    transaction.subMerchantRegisteredIdentifier = @"Identificador do submerchant";
+
     // Vamos efetivar a transacao;
     
     NSArray *merchants;
@@ -188,6 +194,8 @@ MerchantPickerViewController *merchantPickerViewController;
             self.feedback.text = error.description;
             NSLog(@"%@. [%@]", [kGeneralErrorMessage localize], error);
         }
+        // obtem a resposta do autorizador da última requisição
+        NSLog(@"Response Message: %@", [STNTransactionProvider responseMessageFromAuthorizerForLastTransaction]);
      }];
 }
 
@@ -259,7 +267,7 @@ MerchantPickerViewController *merchantPickerViewController;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    rowNumber = row;
+    rowNumber = (int) row;
 }
 
 - (BOOL)textField:(UITextField*)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString*)string {
