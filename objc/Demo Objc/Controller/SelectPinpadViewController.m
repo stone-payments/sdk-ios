@@ -85,28 +85,28 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         } else {
             // selectPinpad will try to select the choosed pinpad
             // the return must be used to check connectivity
-            [pinpadConnectionProvider selectPinpad:pinpad
-                                                  withBlock:^(BOOL succeeded, NSError * _Nonnull error) {
-              NSString *labelContent = [NSString stringWithFormat:@"pinpad %@", pinpad.name];
-                if (succeeded) {
-                    // The pinpad device is selected and available for transactions
-                    // If you want implementing the automatic connection with last pinpad selected
-                    // you should save the pinpad indentifier in someplace,
-                    // we recommend the save at NSUserDefaults.
-                    NSLog(@"Pinpad selection succeeded: %@", pinpad);
-                    labelContent = [@"Valid " stringByAppendingString:labelContent];
-                    [DemoPreferences updateLastSelectedDevice: pinpad.identifier];
-                    // The selected pinpad could be retrieved as commented code below by the application.
-                    // STNPinpad *pinpad = [[STNPinPadConnectionProvider new] selectedPinpad];
-                    // NSLog(@"Selected pinpad %@", pinpad);
-                } else {
-                    //The pinpad device is not available for transactions
-                    NSLog(@"Error: %@", error.description);
-                    labelContent = [@"Invalid " stringByAppendingString:labelContent];
-                }
-                // Refresh label data
-                [self setFeedbackMessage:labelContent];
-            }];
+                [pinpadConnectionProvider selectPinpad:pinpad
+                                                      withBlock:^(BOOL succeeded, NSError * _Nonnull error) {
+                  NSString *labelContent = [NSString stringWithFormat:@"pinpad %@", pinpad.name];
+                    if (succeeded) {
+                        // The pinpad device is selected and available for transactions
+                        // If you want implementing the automatic connection with last pinpad selected
+                        // you should save the pinpad indentifier in someplace,
+                        // we recommend the save at NSUserDefaults.
+                        NSLog(@"Pinpad selection succeeded: %@", pinpad);
+                        labelContent = [@"Valid " stringByAppendingString:labelContent];
+                        [DemoPreferences updateLastSelectedDevice: pinpad.identifier];
+                        // The selected pinpad could be retrieved as commented code below by the application.
+                        // STNPinpad *pinpad = [[STNPinPadConnectionProvider new] selectedPinpad];
+                        // NSLog(@"Selected pinpad %@", pinpad);
+                    } else {
+                        //The pinpad device is not available for transactions
+                        NSLog(@"Error: %@", error.description);
+                        labelContent = [@"Invalid " stringByAppendingString:labelContent];
+                    }
+                    // Refresh label data
+                    [self setFeedbackMessage:labelContent];
+                }];
         }
     }
 }
