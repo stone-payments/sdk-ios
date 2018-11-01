@@ -154,13 +154,6 @@ MerchantPickerViewController *merchantPickerViewController;
         NSLog(@"transaction.instalmentAmount: %d", (int)transaction.instalmentAmount);
     }
 
-    // Dados do sub merchant
-    transaction.shortName = @"Nome do submerchant";
-    transaction.subMerchantCity = @"Cidade A";
-    transaction.subMerchantPostalAddress = @"Endereço B";
-    transaction.subMerchantTaxIdentificationNumber = @"Identificação CPF/CNPJ";
-    transaction.subMerchantRegisteredIdentifier = @"Identificador do submerchant";
-
     // Vamos efetivar a transacao;
     
     NSArray *merchants;
