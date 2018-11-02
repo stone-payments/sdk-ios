@@ -36,27 +36,7 @@
 }
 
 - (IBAction)performDownload:(id)sender {
-    
-    [self.overlayView addSubview:self.activityIndicator];
-    [self.activityIndicator startAnimating];
-    [self.navigationController.view addSubview:self.overlayView];
-    
-    NSLog(@"%@", [kLogAskDownload localize]);
-    
-    /*
-        Efetuando o download das tabelas.
-     */
-    [STNTableDownloaderProvider downLoadTables:^(BOOL succeeded, NSError *error) {
-        [self.overlayView removeFromSuperview];
-        if (succeeded) {
-             NSLog(@"%@", [kLogDownloadSuccess localize]);
-            self.feedback.text = [kLogDownloadSuccess localize];
-             
-         } else {
-             self.feedback.text = error.description;
-             NSLog(@"%@", error.description);
-         }
-     }];
+    NSLog(@"Deprecated feature");
 }
 
 @end

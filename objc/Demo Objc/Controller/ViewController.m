@@ -179,7 +179,13 @@ static NSString *cellIdentifier;
 //Stay connection between pinpad and your app
 - (void)doConnectionWith:(STNPinpad *)pinpad {
     if (pinpad == nil) return;
-    [[STNPinPadConnectionProvider new] selectPinpad:pinpad];
+//    [[STNPinPadConnectionProvider new] selectPinpad:pinpad];
+
+    [[STNPinPadConnectionProvider new] selectPinpad:pinpad withBlock:^(BOOL succeeded, NSError * _Nonnull error) {
+        if (!succeeded) {
+            NSLog(@"%@", error);
+        }
+    }];
 }
 
 @end

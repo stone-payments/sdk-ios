@@ -55,11 +55,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) STNMerchantModel *merchant;
 /// Pinpad used in the transaction.
 @property (nullable, nonatomic, retain) STNPinpadModel *pinpad;
-/// Authorization response code.
+/// Authorisation response code.
 @property (nullable, nonatomic, retain) NSString *actionCode;
 @property (nullable, nonatomic, retain) NSString *subMerchantCategoryCode;
 @property (nullable, nonatomic, retain) NSString *subMerchantAddress;
-
+@property (nullable, nonatomic, retain) NSString *subMerchantCity;
+@property (nullable, nonatomic, retain) NSString *subMerchantPostalAddress;
+@property (nullable, nonatomic, retain) NSString *subMerchantTaxIdentificationNumber;
+@property (nullable, nonatomic, retain) NSString *subMerchantRegisteredIdentifier;
+// is fallback
+@property (nullable, nonatomic, retain) NSNumber *isFallbackTransaction;
 
 @property (nullable, nonatomic, retain) NSNumber *rawInstalmentAmount;
 @property (nullable, nonatomic, retain) NSNumber *rawInstalmentType;

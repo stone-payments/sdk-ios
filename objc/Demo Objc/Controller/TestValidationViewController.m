@@ -54,13 +54,7 @@
 }
 
 - (IBAction)PerfomTablesDownloaded:(id)sender {
-    if ([STNValidationProvider validateTablesDownloaded] == YES) {
-        NSLog(@"%@", [kLogTablesDownloaded localize]);
-        self.feedback.text = [kLogTablesDownloaded localize];
-    } else {
-        NSLog(@"%@", [kLogTablesNotDownloaded localize]);
-        self.feedback.text = [kLogTablesNotDownloaded localize];
-    }
+    NSLog(@"Deprecated feature");
 }
 
 - (IBAction)performConnectionNetwork:(id)sender {

@@ -127,17 +127,7 @@ static NSArray *exemploTransacao;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     STNTransactionModel *transaction = [self.transactions objectAtIndex:indexPath.row];
-    
-    NSLog(@"date: %@",transaction.dateString);
-    NSLog(@"Amount: %@",transaction.amount);
-    NSLog(@"cvm: %@",transaction.cvm);
-    NSLog(@"balance: %@",transaction.balance);
-    NSLog(@"instalmentAmount: %u",transaction.instalmentAmount);
-    NSLog(@"type: %u",transaction.type);
-    NSLog(@"instalmentType: %u",transaction.instalmentType);
-    NSLog(@"initiatorTransactionKey: %@",transaction.initiatorTransactionKey);
-    NSLog(@"receiptTransactionKey: %@",transaction.receiptTransactionKey);
-    NSLog(@"service Code: %@",transaction.serviceCode);
+    // Você pode acessar os atributos do objeto da transação. Ex transaction.amount
 }
 
 @end
