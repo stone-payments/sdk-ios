@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "STNTransactionModel.h"
+#import "STNBaseProvider.h"
 
-@interface STNCancellationProvider : NSObject
+@interface STNCancellationProvider : STNBaseProvider
 
 /// Cancels transaction having the transaction object as parameter.
 + (void)cancelTransaction:(STNTransactionModel *)transaction withBlock:(void (^)(BOOL succeeded, NSError *error))block;

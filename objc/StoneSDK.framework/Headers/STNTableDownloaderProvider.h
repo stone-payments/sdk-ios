@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "STNMerchantModel.h"
+#import "STNBaseProvider.h"
 
-@interface STNTableDownloaderProvider : NSObject
+@interface STNTableDownloaderProvider : STNBaseProvider
 
 /// Downloads AID and CAPK tables from server. Uses the first activated merchant.
 + (void)downLoadTables:(void (^)(BOOL succeeded, NSError *error))block __deprecated_msg("no need anymore.");

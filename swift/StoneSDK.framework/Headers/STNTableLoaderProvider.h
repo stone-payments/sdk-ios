@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "STNMerchantModel.h"
+#import "STNBaseProvider.h"
 
-@interface STNTableLoaderProvider : NSObject
+@interface STNTableLoaderProvider : STNBaseProvider
 
 /// Loads AID and CAPK tables to the PinPad. Uses the tables from the first activated merchant.
 + (void)loadTables:(void (^)(BOOL succeeded, NSError *error))block;

@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "STNMerchantModel.h"
+#import "STNBaseProvider.h"
 
-@interface STNStoneCodeActivationProvider : NSObject
+@interface STNStoneCodeActivationProvider : STNBaseProvider
 
 /// Validates and activates merchant with Stonecode.
 + (void)activateStoneCode:(NSString *_Nonnull)stonecode withBlock:(nullable void (^)(BOOL succeeded, NSError *_Nullable error))block;

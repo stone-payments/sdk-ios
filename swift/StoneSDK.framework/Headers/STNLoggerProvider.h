@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "STNBaseProvider.h"
 
 @interface STNLoggerProvider : NSObject
 

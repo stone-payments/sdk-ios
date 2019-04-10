@@ -536,3 +536,11 @@ typedef enum STNCardholderVerificationMethod {
     STNCardholderVerificationMethodNoCvmRequired = 31
 
 } STNCardholderVerificationMethod;
+
+
+typedef enum STNPdmError {
+    STNPdmMerchantNotActivated,
+    STNPdmVersionOutdated,
+    STNPdmVersionVerificationAlreadyInCourse,
+
+} STNPdmError;

@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "STNMerchantModel.h"
+#import "STNBaseProvider.h"
 
-@interface STNCardProvider : NSObject
+@interface STNCardProvider : STNBaseProvider
 
 /// Asks user to insert card and gets its last 4 digits. Uses the first activated merchant tables.
 + (void)getCardPan:(void (^)(BOOL succeeded, NSString *pan, NSError *error))block;

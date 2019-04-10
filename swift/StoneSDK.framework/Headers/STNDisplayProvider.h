@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "STNBaseProvider.h"
 
-@interface STNDisplayProvider : NSObject
+@interface STNDisplayProvider : STNBaseProvider
 
 /// Send message to the Pinpad's display.
 + (void)displayMessage:(NSString *)message withBlock:(void (^)(BOOL succeeded, NSError *error))block;

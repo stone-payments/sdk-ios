@@ -11,8 +11,9 @@
 #import "STNTransactionModel.h"
 
 #import "STNEnums_old.h"
+#import "STNBaseProvider.h"
 
-@interface STNCaptureTransactionProvider : NSObject
+@interface STNCaptureTransactionProvider : STNBaseProvider
 
 /// Capture payment transaction.
 + (void)capture:(STNTransactionModel *)transaction withBlock:(void (^)(BOOL succeeded, NSError *error))block;

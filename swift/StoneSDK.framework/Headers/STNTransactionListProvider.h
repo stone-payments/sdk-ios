@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "STNBaseProvider.h"
 
-@interface STNTransactionListProvider : NSObject
+@interface STNTransactionListProvider : STNBaseProvider
 
 /// Lists all completed transactions.
 + (NSArray *)listTransactions;

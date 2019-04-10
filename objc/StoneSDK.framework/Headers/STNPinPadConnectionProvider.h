@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "STNBluetoothConnectionDelegate.h"
+#import "STNBaseProvider.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -29,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)pinpadConnectionProvider:(STNPinPadConnectionProvider *)provider didChangeCentralState:(CBManagerState)state;
 @end
 
-@interface STNPinPadConnectionProvider : NSObject <STNBluetoothConnectionDelegate>
+@interface STNPinPadConnectionProvider : STNBaseProvider <STNBluetoothConnectionDelegate>
 
 @property (nonatomic, weak) id <STNPinPadConnectionDelegate> _Nullable delegate;
 /// Boolean value indicating if scan is currently in progress.

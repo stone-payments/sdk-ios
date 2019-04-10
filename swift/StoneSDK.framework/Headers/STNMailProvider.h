@@ -11,6 +11,7 @@
 #import "STNTransactionModel.h"
 #import "STNReceiptModel.h"
 #import "STNContactModel.h"
+#import "STNBaseProvider.h"
 
 @interface STNMailProvider : NSObject
 

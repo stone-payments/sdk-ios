@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "STNMerchantModel.h"
+#import "STNBaseProvider.h"
 
 @interface STNMerchantListProvider : NSObject
 
@@ -16,7 +17,7 @@
 
  @return An array of STNMerchantModel containing all activated merchant.
  */
-+ (NSArray *)listMerchants;
++ (NSArray *) listMerchants;
 
 /**
  Gets a merchant model with given stonecode.
@@ -24,6 +25,6 @@
  @param stoneCode The merchant's stonecode.
  @return The merchant model representing the merchant with given stonecode.
  */
-+ (STNMerchantModel *)getActivatedMerchantWithStonecode:(NSString*)stoneCode;
++ (STNMerchantModel *)getActivatedMerchantWithStoneCode:(NSString*)stoneCode;
 
 @end
