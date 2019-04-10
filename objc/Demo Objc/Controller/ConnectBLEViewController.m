@@ -32,7 +32,13 @@
 
 // Start scanning BLE devices
 - (IBAction)startScanning:(id)sender {
-    [_connection startScan];
+    if (_connection.isScanning) {
+        [_connection stopScan];
+        [_scanButton setTitle:@"Start" forState:UIControlStateNormal];
+    } else {
+        [_connection startScan];
+        [_scanButton setTitle:@"Stop" forState:UIControlStateNormal];
+    }
 }
 
 // Disconnect all Bluetooth Low Energy pinpads
