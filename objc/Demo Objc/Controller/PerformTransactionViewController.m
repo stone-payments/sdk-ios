@@ -104,54 +104,67 @@ MerchantPickerViewController *merchantPickerViewController;
     transaction.amount = [NSNumber numberWithInteger:justCents];
     
     
-    // Verifica se é DÉBITO ou CRÉDITO.
-    if (self.transactionType.selectedSegmentIndex == 0) { // é Débito
-        
-        // Propriedade Obrigatória, define o número de parcelas da transação;
-        transaction.instalmentAmount = STNTransactionInstalmentAmountOne;
-        
-        // Propriedade Obrigatória, define o tipo de transação, se é débito ou crédito;
-        transaction.type = STNTransactionTypeSimplifiedDebit;
-        
-        // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros ou pagamento a vista;
-        transaction.instalmentType = STNInstalmentTypeNone;
-        
-    } else { // é Crédito
-        
-        // Propriedade Obrigatória, define o tipo de transação, se é débito ou crédito;
-        transaction.type = STNTransactionTypeSimplifiedCredit;
-        
-        transaction.instalmentType = STNInstalmentTypeNone;
-        if (_rateSwitch.isEnabled && rowNumber > 0){
-            if (_rateSwitch.isOn) {
-                // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros ou pagamento a vista;
-                transaction.instalmentType = STNInstalmentTypeIssuer;
+    // Verifica se é DÉBITO, CRÉDITO ou VOUCHER.
+    switch (self.transactionType.selectedSegmentIndex) {
+        //DEBIT
+        case 0:
+            // Propriedade Obrigatória, define o número de parcelas da transação;
+            transaction.instalmentAmount = STNTransactionInstalmentAmountOne;
+            
+            // Propriedade Obrigatória, define o tipo de transação, se é débito ou crédito;
+            transaction.type = STNTransactionTypeSimplifiedDebit;
+            
+            // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros ou pagamento a vista;
+            transaction.instalmentType = STNInstalmentTypeNone;
+            break;
+        // VOUCHER
+        case 2:
+            // Propriedade Obrigatória, define o número de parcelas da transação;
+            transaction.instalmentAmount = STNTransactionInstalmentAmountOne;
+            
+            // Propriedade Obrigatória, define o tipo de transação, se é débito, crédito ou voucher;
+            transaction.type = STNTransactionTypeSimplifiedVoucher;
+            
+            // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros ou pagamento a vista;
+            transaction.instalmentType = STNInstalmentTypeNone;
+            break;
+        //CREDIT
+        case 1:
+        default:
+            // Propriedade Obrigatória, define o tipo de transação, se é débito ou crédito;
+            transaction.type = STNTransactionTypeSimplifiedCredit;
+            
+            transaction.instalmentType = STNInstalmentTypeNone;
+            if (_rateSwitch.isEnabled && rowNumber > 0){
+                if (_rateSwitch.isOn) {
+                    // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros ou pagamento a vista;
+                    transaction.instalmentType = STNInstalmentTypeIssuer;
+                }
+                else {
+                    // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros ou pagamento a vista;
+                    transaction.instalmentType = STNInstalmentTypeMerchant;
+                }
             }
-            else {
-                // Propriedade Obrigatória, define o tipo de parcelamento, com juros, sem juros ou pagamento a vista;
-                transaction.instalmentType = STNInstalmentTypeMerchant;
-            }
-        }
 
-        // Propriedade Obrigatória, define o número de parcelas da transação;
-        switch (rowNumber) {
-            case 0: transaction.instalmentAmount = STNTransactionInstalmentAmountOne;
-                transaction.instalmentType = STNInstalmentTypeNone;
-                break; // 1 parcela ou à vista;
-            case 1: transaction.instalmentAmount = STNTransactionInstalmentAmountTwo; break; // 2 parcelas
-            case 2: transaction.instalmentAmount = STNTransactionInstalmentAmountThree; break; // ...
-            case 3: transaction.instalmentAmount = STNTransactionInstalmentAmountFour; break;
-            case 4: transaction.instalmentAmount = STNTransactionInstalmentAmountFive; break;
-            case 5: transaction.instalmentAmount = STNTransactionInstalmentAmountSix; break;
-            case 6: transaction.instalmentAmount = STNTransactionInstalmentAmountSeven; break;
-            case 7: transaction.instalmentAmount = STNTransactionInstalmentAmountEight; break;
-            case 8: transaction.instalmentAmount = STNTransactionInstalmentAmountNine; break;
-            case 9: transaction.instalmentAmount = STNTransactionInstalmentAmountTen; break;
-            case 10: transaction.instalmentAmount = STNTransactionInstalmentAmountEleven; break; // ...
-            case 11: transaction.instalmentAmount = STNTransactionInstalmentAmountTwelve; break;  // 12 parcelas
-        }
-        
-        NSLog(@"transaction.instalmentAmount: %d", (int)transaction.instalmentAmount);
+            // Propriedade Obrigatória, define o número de parcelas da transação;
+            switch (rowNumber) {
+                case 0: transaction.instalmentAmount = STNTransactionInstalmentAmountOne;
+                    transaction.instalmentType = STNInstalmentTypeNone;
+                    break; // 1 parcela ou à vista;
+                case 1: transaction.instalmentAmount = STNTransactionInstalmentAmountTwo; break; // 2 parcelas
+                case 2: transaction.instalmentAmount = STNTransactionInstalmentAmountThree; break; // ...
+                case 3: transaction.instalmentAmount = STNTransactionInstalmentAmountFour; break;
+                case 4: transaction.instalmentAmount = STNTransactionInstalmentAmountFive; break;
+                case 5: transaction.instalmentAmount = STNTransactionInstalmentAmountSix; break;
+                case 6: transaction.instalmentAmount = STNTransactionInstalmentAmountSeven; break;
+                case 7: transaction.instalmentAmount = STNTransactionInstalmentAmountEight; break;
+                case 8: transaction.instalmentAmount = STNTransactionInstalmentAmountNine; break;
+                case 9: transaction.instalmentAmount = STNTransactionInstalmentAmountTen; break;
+                case 10: transaction.instalmentAmount = STNTransactionInstalmentAmountEleven; break; // ...
+                case 11: transaction.instalmentAmount = STNTransactionInstalmentAmountTwelve; break;  // 12 parcelas
+            }
+            
+            NSLog(@"transaction.instalmentAmount: %d", (int)transaction.instalmentAmount);
     }
 
     // Vamos efetivar a transacao;

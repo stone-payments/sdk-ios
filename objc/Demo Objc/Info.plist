@@ -42,9 +42,15 @@
 		<string>com.paxsz.iPOS</string>
 		<string>br.com.gertec.protocoloGertec</string>
 	</array>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Bluetooth required to connect Pinpad devices as card reader interface</string>
 </dict>
 </plist>

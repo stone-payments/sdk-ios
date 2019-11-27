@@ -348,7 +348,8 @@ typedef enum _STNTransactionStatus {
 
 typedef enum _STNTransactionTypeSimplified {
     STNTransactionTypeSimplifiedCredit,
-    STNTransactionTypeSimplifiedDebit
+    STNTransactionTypeSimplifiedDebit,
+    STNTransactionTypeSimplifiedVoucher
 
 } STNTransactionTypeSimplified;
 

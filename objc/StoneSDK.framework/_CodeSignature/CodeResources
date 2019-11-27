@@ -46,7 +46,7 @@
 		</data>
 		<key>Headers/STNEnums.h</key>
 		<data>
-		JVT+TdMbZM0uC8UfVWOFDNCrou8=
+		NjKtTVLazRzCgl8MydVegq11UNo=
 		</data>
 		<key>Headers/STNEnums_old.h</key>
 		<data>
@@ -130,7 +130,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		qoLb5b5vWqokRm9w1TvGDJSgbPc=
+		BkccawHh3WCDznbaHu5MTY6QStE=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -142,7 +142,7 @@
 		</data>
 		<key>StoneSDK.momd/StoneSDK.mom</key>
 		<data>
-		Vcc6xG0ou8dNuhQxmQEjDXmmoEw=
+		kKK1Hfu7Bewqpry8qw0QOc/+ap4=
 		</data>
 		<key>StoneSDK.momd/VersionInfo.plist</key>
 		<data>
@@ -265,11 +265,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			JVT+TdMbZM0uC8UfVWOFDNCrou8=
+			NjKtTVLazRzCgl8MydVegq11UNo=
 			</data>
 			<key>hash2</key>
 			<data>
-			t5c2tQ38SHsFGpTo/27rq/1vw1NMHCCsrToKEdUt9P4=
+			Ny8E9GGki0I5rlUThT1sOjdXJLsD/fUpoEDt2+4Jbm0=
 			</data>
 		</dict>
 		<key>Headers/STNEnums_old.h</key>
@@ -518,11 +518,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Vcc6xG0ou8dNuhQxmQEjDXmmoEw=
+			kKK1Hfu7Bewqpry8qw0QOc/+ap4=
 			</data>
 			<key>hash2</key>
 			<data>
-			gM2Z7vvYUrFExR8tDMfH33bCygVvlWyhCmizit3fWKg=
+			GAv+NBH0gKK+c3nBK9xHWzVMDFueYs+ELkb+mraWWFE=
 			</data>
 		</dict>
 		<key>StoneSDK.momd/VersionInfo.plist</key>
