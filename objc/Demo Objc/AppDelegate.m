@@ -43,25 +43,6 @@ NSTimer* timer;
 
 // Example code for connection maintenance
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Check if timer is already set
-//    if (timer == nil) {
-//        // schedule timer to call the keepConnectionSlive every 3 minutes
-//        timer = [NSTimer scheduledTimerWithTimeInterval: 60 * 3
-//                                                 target: self
-//                                               selector: @selector(keepConnectionAlive)
-//                                               userInfo: nil
-//                                                repeats: YES];
-//        // Get the singleton app instance
-//        __block UIApplication *app = [UIApplication sharedApplication];
-//        // Initiate the Task identifier
-//        UIBackgroundTaskIdentifier bgTask = 0;
-//
-//        // Get the current background task identifier with a expiration handler to end the task
-//        bgTask = [app beginBackgroundTaskWithExpirationHandler:^ {
-//            // End the background task at expiration
-//            [app endBackgroundTask:bgTask];
-//        }];
-//    }
 }
 
 // Keep the connection alive
